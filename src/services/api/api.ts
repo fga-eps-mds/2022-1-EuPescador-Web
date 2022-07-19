@@ -1,38 +1,46 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { defaultsDeep } from 'lodash'
-import {
-  handleRequestFulfilled,
-  handleRequestRejected,
-  handleResponseFulfilled,
-  handleResponseRejected,
-} from './interceptors'
+import axios from 'axios'
 
-const defaultConfig = {
+const apiService = axios.create({
+  baseURL: process.env.BFF_URL,
+  withCredentials: true,
+  timeout: 60000,
   headers: {
-    Accept: 'application/json',
+    'content-Type': 'application/json',
+    Accept: '/',
+    'Cache-Control': 'no-cache',
   },
-}
+})
 
-const api = (baseURL: string, config?: AxiosRequestConfig) => {
-  const axiosApi = axios.create({ baseURL, ...config })
+apiService.interceptors.request.use(
+  (request) => {
+    const accessToken = 'lala'
 
-  const request = async <TData>(path: string, config?: AxiosRequestConfig) => {
-    const mergedConfig = defaultsDeep(config, defaultConfig) as AxiosRequestConfig
+    if (accessToken) {
+      request.headers = {
+        ...request.headers,
+        Authorization: `Bearer ${accessToken}`,
+      }
+    }
+    return request
+  },
 
-    return axiosApi(path, mergedConfig).then((response: AxiosResponse<TData>) => response.data)
-  }
+  (err) => Promise.reject(err),
+)
 
-  axiosApi.request = request
-  axiosApi.get = request
-  axiosApi.put = request
-  axiosApi.delete = request
-  axiosApi.patch = request
-  axiosApi.post = request
+apiService.interceptors.response.use(
+  (response) => response.data,
+  (err) => {
+    if (err.response === undefined) {
+      return Promise.reject(new Error('Não foi possível conectar ao servidor.'))
+    }
 
-  axiosApi.interceptors.request.use(handleRequestFulfilled, handleRequestRejected)
-  axiosApi.interceptors.response.use(handleResponseFulfilled, handleResponseRejected)
+    if (err.response.status === 401) {
+      window.location.assign(process.env.CENTRAL_URL)
+      return Promise.resolve()
+    }
 
-  return axiosApi
-}
+    return Promise.reject(err)
+  },
+)
 
-export default api
+export default apiService
