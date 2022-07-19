@@ -24,6 +24,7 @@
   },
   "rules": {
     "semi": ["error", "never"],
+    "@typescript-eslint/no-unsafe-member-access": "off",
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }],
     "react/react-in-jsx-scope": "off"

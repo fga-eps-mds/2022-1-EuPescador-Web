@@ -7,24 +7,13 @@ import {
   Route,
   Link
 } from "react-router-dom"
+import Login from 'pages/Login'
+import Register from 'pages/Register'
 
 function App() {
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-        </ul>
-
-        <hr />
         <Switch>
           <Route exact path="/">
           <>
@@ -35,31 +24,15 @@ function App() {
        />
           </>
           </Route>
-          <Route path="/about">
-            <About />
+          <Route path="/login">
+           <Login/>
           </Route>
-          <Route path="/dashboard">
-            <Dashboard />
+          <Route path="/register">
+          <Register/>
           </Route>
         </Switch>
       </div>
     </Router>
-  )
-}
-
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  )
-}
-
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
-    </div>
   )
 }
 
