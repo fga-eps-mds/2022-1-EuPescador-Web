@@ -2,8 +2,6 @@ import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
 import Link from '@mui/material/Link'
 import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
@@ -42,10 +40,9 @@ export default function Register() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: 'url(https://source.unsplash.com/random)',
+            backgroundImage: 'url(https://source.unsplash.com/wcMK9KKbmms)',
             backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+            backgroundColor: (t) => (t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900]),
             backgroundSize: 'cover',
             backgroundPosition: 'center',
           }}
@@ -60,11 +57,11 @@ export default function Register() {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <Avatar sx={{ m: 1, bgcolor: '#003c8f' }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Crie sua conta
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
@@ -72,42 +69,61 @@ export default function Register() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="E-mail"
                 name="email"
                 autoComplete="email"
                 autoFocus
+                InputLabelProps={{
+                  style: { color: '#111111' },
+                }}
+                InputProps={{
+                  style: {
+                    borderRadius: '8px',
+                    color: '#111111',
+                  },
+                }}
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label="Senha"
                 type="password"
                 id="password"
                 autoComplete="current-password"
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
+                InputLabelProps={{
+                  style: { color: '#111111' },
+                }}
+                InputProps={{
+                  style: {
+                    borderRadius: '8px',
+                    color: '#111111',
+                  },
+                }}
               />
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                disableElevation
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  backgroundColor: '#1565c0',
+                  borderRadius: '10px',
+                  height: '42px',
+                  textTransform: 'capitalize',
+                  fontWeight: '700',
+                }}
               >
-                Sign In
+                Criar
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
+                <Grid item xs></Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                  <Link href="/login" variant="body2">
+                    {'Já tem uma conta?'}
                   </Link>
                 </Grid>
               </Grid>
