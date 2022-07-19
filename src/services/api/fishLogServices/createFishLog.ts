@@ -1,4 +1,4 @@
-import apiService from '../api'
+import { fishLogService } from './fishLogService'
 
 export const createFishLog = async (
   photoString: string | undefined,
@@ -25,7 +25,7 @@ export const createFishLog = async (
     photo = photoString
   }
 
-  await apiService.post(
+  await fishLogService.post(
     '/fishLog/',
     {
       userId,

@@ -1,5 +1,5 @@
-import apiService from '../api'
 import { ResI } from '../interfaces'
+import { fishLogService } from './fishLogService'
 
 export async function UpdateFishLog(
   log_id: string,
@@ -32,7 +32,7 @@ export async function UpdateFishLog(
   if (photoString) {
     photo = photoString
   }
-  const res: ResI = await apiService.patch(
+  const res: ResI = await fishLogService.patch(
     `/fishLog/${log_id}`,
     {
       name,

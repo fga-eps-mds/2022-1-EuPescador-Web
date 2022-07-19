@@ -1,4 +1,4 @@
-import apiService from '../api'
+import { userService } from './userService'
 
 async function CreateUser(
   name: string,
@@ -12,7 +12,7 @@ async function CreateUser(
   superAdmin?: boolean,
   superToken?: string,
 ) {
-  await apiService.post('/user/', {
+  await userService.post('/user/', {
     name,
     email,
     phone,

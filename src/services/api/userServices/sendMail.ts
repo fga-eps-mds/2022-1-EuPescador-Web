@@ -1,5 +1,5 @@
-import apiService from '../api'
+import { userService } from './userService'
 
 export async function SendMail(email: string) {
-  apiService.post('/recover-password', { email })
+  userService.post('/recover-password', { email })
 }
