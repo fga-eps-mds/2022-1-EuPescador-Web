@@ -1,5 +1,6 @@
 export interface ResI {
   data: []
+  status: string
 }
 
 export interface FishWiki {
