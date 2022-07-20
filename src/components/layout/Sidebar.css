@@ -15,13 +15,13 @@
     padding: 20px;
   }
   .sidebar{
-    background: rgb(0,7,61);
-    color: white;
+    background: #E3F2FD;
+    color: #111111;
     height: 100vh;
   }
   
   .routes{
-    color: white;
+    color: rgb(0, 0, 0);
   }
   
   .top_section{
@@ -38,22 +38,22 @@
   
   .link{
     display: flex;
-    color: white;
+    color: darkslategrey;
     gap: 10px;
     padding: 5px 10px;
-    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
     transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
   }
   
   .link:hover{
-    border-right: 4px solid white;
+    border-left: 2px solid midnightblue;
     transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-    background: rgb(45, 51, 89);
+    background: aliceblue;
   }
   
   .active{
-    border-right: 4px solid white;
-    background: rgb(45, 51, 89);
+    border-left: 2px solid midnightblue;
+    background: aliceblue;
   }
   
   .link-text{
