@@ -1,34 +1,64 @@
 import * as React from 'react'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
+import { styled } from '@mui/material/styles'
+import Grid from '@mui/material/Grid'
+import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
-import { Button, CardActionArea, CardActions } from '@mui/material'
+import ButtonBase from '@mui/material/ButtonBase'
 
-export default function FishCard() {
+const Img = styled('img')({
+  margin: 'auto',
+  display: 'block',
+  maxWidth: '100%',
+  maxHeight: '100%',
+
+})
+
+export default function fishcard() {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="150"
-          image="https://respostas.sebrae.com.br/wp-content/uploads/2014/05/Informa%C3%A7%C3%B5es-t%C3%A9cnicas-para-manter-um-viveiro-de-Til%C3%A1pia.jpg"
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            tilapia
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            DESCRIÇÃO DO PEIXE
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions>
-    </Card>
+    <Paper
+      sx={{
+        p: 1,
+        margin: 0,
+        maxWidth: 330,
+        flexGrow: 1,
+        backgroundColor: (theme) =>
+          theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+      }}
+    >
+      <Grid container spacing={2}>
+        <Grid item>
+          <ButtonBase sx={{ width: 150, height: 150 }}>
+            <Img alt="complex" src='https://www.istoedinheiro.com.br/wp-content/uploads/sites/17/2022/02/tilapia-e1645622421681.jpg' />
+          </ButtonBase>
+        </Grid>
+        <Grid item xs={12} sm container>
+          <Grid item xs container direction="column" spacing={2}>
+            <Grid item xs>
+              <Typography gutterBottom variant="h5" component="div">
+                Tilapia azul
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                122 cm
+              </Typography>
+              <Typography variant='body2' color='text.secondary'>
+                Pantanal Brasil
+              </Typography>
+              <Typography variant='body2' color='text.secondary'>
+                Até 120 KG
+              </Typography >
+            </Grid>
+            <Grid item>
+              <Typography sx={{ cursor: 'pointer' }} variant="body2">
+                Remove
+              </Typography>
+            </Grid>
+          </Grid>
+
+        </Grid>
+      </Grid>
+    </Paper>
   )
+
+
 }
+
