@@ -3,30 +3,34 @@ import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import { AnimatePresence, motion } from "framer-motion"
 
+import { MdLogout, MdInsertEmoticon, MdOutlineAssignment } from "react-icons/md"
 import { FaBars, FaRegUserCircle } from 'react-icons/fa'
-import { BsClipboardData, BsMap } from 'react-icons/bs'
+import { BsMap } from 'react-icons/bs'
 import { TbFish } from 'react-icons/tb'
+import { MdOutlineAdd } from 'react-icons/md'
+import { ImCancelCircle } from 'react-icons/im'
+
 
 const routes = [
     {
-        path:"/",
-        name: "Início",
-        icon: <BsMap />,
-    },
-    {
-        path:"/usuario",
-        name: "Usuário",
-        icon: <FaRegUserCircle />,
+        path:"/dados",
+        name: "Listar",
+        icon: <MdOutlineAssignment />,
     },
     {
         path:"/peixes",
-        name: "Peixes",
-        icon: <TbFish />,
+        name: "Cadastrar",
+        icon: <MdOutlineAdd />,
     },
     {
-        path:"/dados",
-        name: "Dados",
-        icon: <BsClipboardData />,
+        path:"/",
+        name: "Mapa",
+        icon: <BsMap />,
+    },
+    {
+        path:"/usuarios",
+        name: "Usuários",
+        icon: <MdInsertEmoticon />,
     },
 ]
 
@@ -40,7 +44,7 @@ const Sidebar = ({children}) => {
           width: 0,
           opacity: 0,
           transition: {
-            duration: 0.5,
+            duration: 0.3,
           },
         },
         show: {
@@ -56,7 +60,7 @@ const Sidebar = ({children}) => {
         <div className="main-container">
             <motion.div
                 animate={{
-                    width: isOpen ? "200px" : "45px",
+                    width: isOpen ? "200px" : "90px",
                     transition: {
                     duration: 0.5,
                     type: "spring",
@@ -66,24 +70,23 @@ const Sidebar = ({children}) => {
                 className={`sidebar`}
             >
                 <div className="top_section">
-                <AnimatePresence>
-                    {isOpen && (
-                        <motion.h1
-                            variants={showAnimation}
-                            initial="hidden"
-                            animate="show"
-                            exit="hidden"
-                            className="logo"
-                        >
-                            Eu Pescador
-                        </motion.h1>
-                    )}
-                </AnimatePresence>
+                    <AnimatePresence>
+                        {isOpen && (
+                            <motion.h1
+                                variants={showAnimation}
+                                initial="hidden"
+                                animate="show"
+                                exit="hidden"
+                                className="logo"
+                            >
+                                Logo
+                            </motion.h1>
+                        )}
+                    </AnimatePresence>
                     <div className="bars">
                         <FaBars onClick={toggle} />
                     </div>
                 </div>
-
 
                 <section className="routes">
                     {routes.map((route) => (
@@ -110,6 +113,24 @@ const Sidebar = ({children}) => {
                 </NavLink> 
                     ))}
                 </section>
+                <div className="sub_section">
+                    <div className="logout">
+                        <MdLogout />
+                    </div>
+                    <AnimatePresence>
+                        {isOpen && (
+                            <motion.div
+                                variants={showAnimation}
+                                initial="hidden"
+                                animate="show"
+                                exit="hidden"
+                                className="logout-text"
+                            >
+                                Sair
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
             </motion.div>
             <main>{children}</main>
         </div>

@@ -21,14 +21,14 @@
   }
   
   .routes{
-    color: rgb(0, 0, 0);
+    color: white;
   }
   
   .top_section{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 10px;
+    padding: 50px 30px;
   }
   
   .logo{
@@ -40,23 +40,37 @@
     display: flex;
     color: darkslategrey;
     gap: 10px;
-    padding: 5px 10px;
+    padding: 20px 30px;
     border-left: 4px solid transparent;
     transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
   }
   
   .link:hover{
-    border-left: 2px solid midnightblue;
+    border-left: 3px solid #0D47A1;
     transition: 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
     background: aliceblue;
   }
   
   .active{
-    border-left: 2px solid midnightblue;
+    border-left: 3px solid #0D47A1;
     background: aliceblue;
   }
   
   .link-text{
     white-space: nowrap;
     font-size: 15px;
+  }
+  .sub_section{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 100px 30px;
+  }
+ .logout-text{
+    white-space: nowrap;
+    font-size: 15px;
+    color: tomato;
+  }
+  .logout{
+    color: rosybrown;
   }
