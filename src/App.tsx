@@ -9,6 +9,7 @@ import {
 } from "react-router-dom"
 import Login from 'pages/Login'
 import Register from 'pages/Register'
+import Header from '~components/Header'
 
 function App() {
   return (
@@ -29,6 +30,9 @@ function App() {
           </Route>
           <Route path="/register">
           <Register/>
+          </Route>
+          <Route path="/header">
+          <Header/>
           </Route>
         </Switch>
       </div>
