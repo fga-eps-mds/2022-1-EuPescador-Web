@@ -4,12 +4,14 @@ import Grid from '@mui/material/Grid'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import ButtonBase from '@mui/material/ButtonBase'
+import AllOutIcon from '@mui/icons-material/AllOut'
 
 const Img = styled('img')({
   margin: 'auto',
   display: 'block',
   maxWidth: '100%',
   maxHeight: '100%',
+  borderRadius: '10%'
 
 })
 
@@ -27,7 +29,7 @@ export default function fishcard() {
     >
       <Grid container spacing={2}>
         <Grid item>
-          <ButtonBase sx={{ width: 150, height: 150 }}>
+          <ButtonBase sx={{ width: 170, height: 150 }}>
             <Img alt="complex" src='https://www.istoedinheiro.com.br/wp-content/uploads/sites/17/2022/02/tilapia-e1645622421681.jpg' />
           </ButtonBase>
         </Grid>
@@ -47,10 +49,8 @@ export default function fishcard() {
                 Até 120 KG
               </Typography >
             </Grid>
-            <Grid item>
-              <Typography sx={{ cursor: 'pointer' }} variant="body2">
-                Remove
-              </Typography>
+            <Grid container justifyContent='flex-end'>
+              <AllOutIcon />
             </Grid>
           </Grid>
 
@@ -58,7 +58,4 @@ export default function fishcard() {
       </Grid>
     </Paper>
   )
-
-
 }
-
