@@ -5,7 +5,6 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import { Avatar } from '@mui/material'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
-/*import getMuiTheme from '@mui/styles/getMuiTheme'*/
 
 const UserCard = () => {
   return (
@@ -20,12 +19,12 @@ const UserCard = () => {
   )
 }
 
-export default function Header() {
+export default function Header({title="Titulo"} : any) {
   return (
       <AppBar position="static" sx={{ color: 'black' , backgroundColor: 'white'}}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
-          Titulo do header
+          {title}
           </Typography>
         <UserCard />
         </Toolbar>
