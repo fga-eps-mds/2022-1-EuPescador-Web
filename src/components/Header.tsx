@@ -7,11 +7,12 @@ import { Avatar } from '@mui/material'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 
 const UserCard = () => {
+  const user = localStorage.getItem('user')
   return (
     <Box display='flex' sx={{alignItems: 'center'}}>
       <Avatar sx={{mr:2}} />
       <Box>
-        <Typography>Fulano de tal</Typography>
+        <Typography>{user}</Typography>
         <Typography>Administrador</Typography>
       </Box>
       <ArrowDropDownIcon/>
