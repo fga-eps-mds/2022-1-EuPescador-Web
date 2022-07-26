@@ -5,29 +5,33 @@ import Typography from '@mui/material/Typography'
 import { Avatar } from '@mui/material'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 
+interface HeaderProps {
+  title: string
+}
+
 const UserCard = () => {
   const user = localStorage.getItem('user')
   return (
-    <Box display='flex' sx={{alignItems: 'center'}}>
-      <Avatar sx={{mr:2}} />
+    <Box display="flex" sx={{ alignItems: 'center' }}>
+      <Avatar sx={{ mr: 2 }} />
       <Box>
         <Typography>{user}</Typography>
         <Typography>Administrador</Typography>
       </Box>
-      <ArrowDropDownIcon/>
+      <ArrowDropDownIcon />
     </Box>
   )
 }
 
-export default function Header({title="Titulo"} : any) {
+export default function Header({ title = 'Titulo' }: HeaderProps) {
   return (
-      <AppBar position="static" sx={{ color: 'black' , backgroundColor: 'white'}}>
-        <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
+    <AppBar position="static" sx={{ color: 'black', backgroundColor: 'white' }}>
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {title}
-          </Typography>
+        </Typography>
         <UserCard />
-        </Toolbar>
-      </AppBar>
+      </Toolbar>
+    </AppBar>
   )
 }
