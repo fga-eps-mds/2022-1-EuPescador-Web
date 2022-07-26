@@ -1,4 +1,5 @@
 *{
+    font-family: sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,7 +13,8 @@
   }
   
   main{
-    padding: 20px;
+    font-size: 25px;
+    padding: 50px 60px;
   }
   .sidebar{
     background: #E3F2FD;
@@ -38,7 +40,7 @@
   
   .link{
     display: flex;
-    color: darkslategrey;
+    color: #666D81;
     gap: 10px;
     padding: 20px 30px;
     border-left: 4px solid transparent;
@@ -60,17 +62,11 @@
     white-space: nowrap;
     font-size: 15px;
   }
-  .sub_section{
+  
+  .logout{
+    color: #666D81;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     padding: 100px 30px;
-  }
- .logout-text{
-    white-space: nowrap;
-    font-size: 15px;
-    color: tomato;
-  }
-  .logout{
-    color: rosybrown;
   }

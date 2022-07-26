@@ -7,7 +7,7 @@ import { MdLogout, MdInsertEmoticon, MdOutlineAssignment } from "react-icons/md"
 import { FaBars, FaRegUserCircle } from 'react-icons/fa'
 import { BsMap } from 'react-icons/bs'
 import { TbFish } from 'react-icons/tb'
-import { MdOutlineAdd } from 'react-icons/md'
+import { MdOutlineAdd } from 'react-icons/md' 
 import { ImCancelCircle } from 'react-icons/im'
 
 
@@ -54,7 +54,7 @@ const Sidebar = ({children}) => {
             duration: 0.5,
           },
         },
-      }
+    }
 
     return (
         <div className="main-container">
@@ -91,46 +91,33 @@ const Sidebar = ({children}) => {
                 <section className="routes">
                     {routes.map((route) => (
                         <NavLink 
-                        activeClassName="active"
+                            activeClassName="active"
                             to={route.path} 
                             key={route.name}
                             className="link"
                         >
-                        <div className="icon">{route.icon}</div>
-                    <AnimatePresence>
-                        {isOpen && (
-                            <motion.div
-                                variants={showAnimation}
-                                initial="hidden"
-                                animate="show"
-                                exit="hidden"
-                                className="link_text"
-                            >
-                                {route.name}
-                            </motion.div>
-                        )}
-                  </AnimatePresence>
-                </NavLink> 
+                            <div className="icon">{route.icon}</div>
+                            <AnimatePresence>
+                                {isOpen && (
+                                    <motion.div
+                                        variants={showAnimation}
+                                        initial="hidden"
+                                        animate="show"
+                                        exit="hidden"
+                                        className="link-text"
+                                    >
+                                        {route.name}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </NavLink> 
                     ))}
                 </section>
-                <div className="sub_section">
-                    <div className="logout">
-                        <MdLogout />
-                    </div>
-                    <AnimatePresence>
-                        {isOpen && (
-                            <motion.div
-                                variants={showAnimation}
-                                initial="hidden"
-                                animate="show"
-                                exit="hidden"
-                                className="logout-text"
-                            >
-                                Sair
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
-                </div>
+
+                <section className="logout">
+                    <div className="logout-icon"><MdLogout /></div>
+                </section>                      
+
             </motion.div>
             <main>{children}</main>
         </div>
