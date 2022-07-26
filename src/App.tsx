@@ -1,12 +1,6 @@
-
 import GlobalStyle from '~assets/styles/global'
 import truck from '~assets/images/truck.gif'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import Login from 'pages/Login'
 import Register from 'pages/Register'
 import Header from '~components/Header'
@@ -17,22 +11,28 @@ function App() {
       <div>
         <Switch>
           <Route exact path="/">
-          <>
-     <GlobalStyle />
-      <img
-        src={truck}
-        style={{ height: 200, position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%, -50%)' }}
-       />
-          </>
+            <>
+              <GlobalStyle />
+              <img
+                src={truck}
+                style={{
+                  height: 200,
+                  position: 'absolute',
+                  top: '40%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                }}
+              />
+            </>
           </Route>
           <Route path="/login">
-           <Login/>
+            <Login />
           </Route>
           <Route path="/register">
-          <Register/>
+            <Register />
           </Route>
           <Route path="/header">
-          <Header/>
+            <Header title="Titulo" />
           </Route>
         </Switch>
       </div>
