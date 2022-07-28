@@ -7,53 +7,63 @@ import { MdLogout, MdInsertEmoticon, MdOutlineAssignment } from "react-icons/md"
 import { FaBars, FaRegUserCircle } from 'react-icons/fa'
 import { BsMap } from 'react-icons/bs'
 import { TbFish } from 'react-icons/tb'
-import { MdOutlineAdd } from 'react-icons/md' 
+import { MdOutlineAdd } from 'react-icons/md'
 import { ImCancelCircle } from 'react-icons/im'
+
 
 
 const routes = [
     {
-        path:"/dados",
+        path: "/dados",
         name: "Listar",
         icon: <MdOutlineAssignment />,
     },
     {
-        path:"/peixes",
+        path: "/peixes",
         name: "Cadastrar",
         icon: <MdOutlineAdd />,
     },
     {
-        path:"/",
+        path: "/",
         name: "Mapa",
         icon: <BsMap />,
     },
     {
-        path:"/usuarios",
+        path: "/usuarios",
         name: "Usuários",
         icon: <MdInsertEmoticon />,
     },
 ]
 
-const Sidebar = ({children}) => {
+const Sidebar = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false)
 
     const toggle = () => setIsOpen(!isOpen)
 
     const showAnimation = {
         hidden: {
-          width: 0,
-          opacity: 0,
-          transition: {
-            duration: 0.3,
-          },
+            width: 0,
+            opacity: 0,
+            transition: {
+                duration: 0.3,
+            },
         },
         show: {
-          opacity: 1,
-          width: "auto",
-          transition: {
-            duration: 0.5,
-          },
+            opacity: 1,
+            width: "auto",
+            transition: {
+                duration: 0.5,
+            },
         },
+    }
+
+    function clearUserData() {
+        localStorage.clear()
+    }
+
+    function handleLogoutClick() {
+        clearUserData()
+        //routeChange()
     }
 
     return (
@@ -62,9 +72,9 @@ const Sidebar = ({children}) => {
                 animate={{
                     width: isOpen ? "200px" : "90px",
                     transition: {
-                    duration: 0.5,
-                    type: "spring",
-                    damping: 10,
+                        duration: 0.5,
+                        type: "spring",
+                        damping: 10,
                     },
                 }}
                 className={`sidebar`}
@@ -90,9 +100,9 @@ const Sidebar = ({children}) => {
 
                 <section className="routes">
                     {routes.map((route) => (
-                        <NavLink 
+                        <NavLink
                             activeClassName="active"
-                            to={route.path} 
+                            to={route.path}
                             key={route.name}
                             className="link"
                         >
@@ -110,13 +120,17 @@ const Sidebar = ({children}) => {
                                     </motion.div>
                                 )}
                             </AnimatePresence>
-                        </NavLink> 
+                        </NavLink>
                     ))}
                 </section>
 
                 <section className="logout">
-                    <div className="logout-icon"><MdLogout /></div>
-                </section>                      
+                    <div className="logout-icon">
+                        <button onClick={handleLogoutClick}>
+                            <MdLogout />
+                        </button>
+                    </div>
+                </section>
 
             </motion.div>
             <main>{children}</main>
