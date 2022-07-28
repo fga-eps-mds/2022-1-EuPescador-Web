@@ -3,23 +3,18 @@
 .boxCard {
     display: flex;
     justify-content: flex-start;
-
     position: relative;
     width: 330px;
     height: 161px;
     left: 144px;
     top: 164px;
     margin-right: 15px;
-
     background: #FFFFFF;
     border: 1px solid #DDDFE4;
     border-radius: 12px;
-
-
 }
 
 .imageCard {
-
     width: 140px;
     height: 118px;
     margin-top: 20px;
@@ -28,10 +23,10 @@
 }
 
 .infoCard {
+
     display: flex;
     flex-direction: column;
     margin-right: 20px;
-
 }
 
 .areaButton {
