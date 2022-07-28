@@ -10,13 +10,14 @@ import User from './pages/User'
 
 import Login from 'pages/Login'
 import Register from 'pages/Register'
+import Header from '~components/Header'
 
 import Sidebar from './components/Sidebar'
 import './components/layout/Sidebar.css'
 
 function App() {
   return (
-    <>
+   <>
       <Router>
         <Sidebar>
           <Routes>
