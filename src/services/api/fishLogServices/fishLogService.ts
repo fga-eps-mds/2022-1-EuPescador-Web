@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const fishLogService = axios.create({
-  baseURL: `https://pescador-fish-log.herokuapp.com`,
+  baseURL: `https://fish-log-2022-1.herokuapp.com`,
 })
 
 export { fishLogService }

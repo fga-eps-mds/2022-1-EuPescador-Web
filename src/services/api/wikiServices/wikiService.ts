@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const wikiService = axios.create({
-  baseURL: `https://pescador-fish-wiki.herokuapp.com`,
+  baseURL: `https://fish-wiki-2022-1.herokuapp.com`,
 })
 
 export default wikiService
