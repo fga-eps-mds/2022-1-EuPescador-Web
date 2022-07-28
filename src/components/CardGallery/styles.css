@@ -1,7 +1,5 @@
 .limit {
-    width: 1046px;
-    margin-left: 121px;
-    /* '11,4%' */
-    margin-top: 103px;
-    /* '9,8%' */
+    width: 1220px;
+    justify-content: center;
+
 }
