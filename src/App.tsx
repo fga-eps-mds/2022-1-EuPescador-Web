@@ -9,6 +9,8 @@ import Login from 'pages/Login'
 import Register from 'pages/Register'
 import './components/layout/Sidebar.css'
 
+
+
 function App() {
   return (
     <>

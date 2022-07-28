@@ -9,7 +9,7 @@ const Fishes = () => {
         <Sidebar />
       </Grid>
       <Grid item xs={11}>
-        <Header title="Mapas e Cadastros"></Header>
+        <Header title="Criar registro"></Header>
       </Grid>
     </Grid>
   )

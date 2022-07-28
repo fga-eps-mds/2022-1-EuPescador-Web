@@ -1,6 +1,9 @@
 import { Grid } from '@mui/material'
+import { Box } from '@mui/system'
+import { type } from 'os'
+import React from 'react'
 import { FishCard } from '~components/Card/FishCard'
-
+import "./styles.css"
 
 export default function CardGallery() {
     const peixes = [
@@ -27,20 +30,18 @@ export default function CardGallery() {
 
     ]
     return (
-        <Grid container rowSpacing={6} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
-            {peixes.map((fish, index) => (
-                <Grid item xs={2} sm={2} md={2} key={index}>
-                    <FishCard fish={fish} />
+        <Box className="limit">
+            <Box sx={{ m: 2 }}>
+                <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+                    {/* rowSpacing={2} columnSpacing={{ xs: 2, sm: 2, md: 3 }}> */}
+                    {peixes.map((fish, index) => (
+                        <Grid item xs={2} sm={4} md={4} key={index}>
+                            <FishCard fish={fish} />
+                        </Grid>
+                    ))}
                 </Grid>
-            ))}
-        </Grid>
-
+            </Box>
+        </Box>
 
     )
 }
-
-
-
-
-
-
