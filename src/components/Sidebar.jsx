@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { AnimatePresence, motion } from "framer-motion"
 
 import { MdLogout, MdInsertEmoticon, MdOutlineAssignment } from "react-icons/md"
@@ -57,13 +57,19 @@ const Sidebar = ({ children }) => {
         },
     }
 
+    let navigate = useNavigate()
+    const routeChange = () => {
+        let path = '/login'
+        navigate(path)
+    }
+
     function clearUserData() {
         localStorage.clear()
     }
 
     function handleLogoutClick() {
         clearUserData()
-        //routeChange()
+        routeChange()
     }
 
     return (
