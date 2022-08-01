@@ -7,5 +7,5 @@ export async function GetWikiFishes(query?: string) {
 
   const res: ResI = await wikiService.get(route)
 
-  return res.data as any[]
+  return res.data
 }

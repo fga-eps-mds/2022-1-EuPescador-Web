@@ -9,5 +9,5 @@ export async function GetAllFishLogs(token: string, query: string) {
   const res: ResI = await fishLogService.get(route, {
     headers: { Authorization: userToken },
   })
-  return res.data as any
+  return res.data
 }
