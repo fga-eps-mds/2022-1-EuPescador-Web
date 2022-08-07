@@ -8,7 +8,7 @@ import { FaBars, FaRegUserCircle } from 'react-icons/fa'
 import { BsMap } from 'react-icons/bs'
 import { TbFish } from 'react-icons/tb'
 import { MdOutlineAdd } from 'react-icons/md'
-import { FaCircle } from 'react-icons/fa'git 
+import { FaCircle } from 'react-icons/fa'
 
 const routes = [
   {
