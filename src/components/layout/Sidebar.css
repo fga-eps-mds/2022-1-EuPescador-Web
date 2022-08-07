@@ -10,6 +10,8 @@ a {
 }
 
 .main-container {
+  height: 150%;
+  width: 90px;
   display: flex;
 }
 
@@ -21,7 +23,6 @@ main {
 .sidebar {
   background: #E3F2FD;
   color: #111111;
-  height: 100%;
 }
 
 .routes {
