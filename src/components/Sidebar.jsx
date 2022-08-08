@@ -8,7 +8,7 @@ import { FaBars, FaRegUserCircle } from 'react-icons/fa'
 import { BsMap } from 'react-icons/bs'
 import { TbFish } from 'react-icons/tb'
 import { MdOutlineAdd } from 'react-icons/md'
-import { ImCancelCircle } from 'react-icons/im'
+import { FaCircle } from 'react-icons/fa'
 
 const routes = [
   {
@@ -34,9 +34,9 @@ const routes = [
 ]
 
 const Sidebar = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(false)
 
-  const toggle = () => setIsOpen(!isOpen)
+  const toggle = () => setIsOpen(isOpen) // Desativei a animação porque nao agrega valor ao produto e esta com bugs
 
   const showAnimation = {
     hidden: {
@@ -50,7 +50,7 @@ const Sidebar = ({ children }) => {
       opacity: 1,
       width: 'auto',
       transition: {
-        duration: 0.5,
+        duration: 0.3,
       },
     },
   }
@@ -76,9 +76,9 @@ const Sidebar = ({ children }) => {
         animate={{
           width: isOpen ? '300px' : '90px',
           transition: {
-            duration: 0.5,
-            type: 'spring',
-            damping: 10,
+          duration: 0.5,
+          type: 'spring',
+          damping: 10,
           },
         }}
         className={`sidebar`}
@@ -92,7 +92,7 @@ const Sidebar = ({ children }) => {
             )}
           </AnimatePresence>
           <div className="bars">
-            <FaBars onClick={toggle} />
+            <FaCircle onClick={toggle} />
           </div>
         </div>
 
