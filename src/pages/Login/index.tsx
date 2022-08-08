@@ -31,6 +31,7 @@ export default function Login() {
     await UserLogin(data.get('email').toString(), data.get('password').toString())
       .then((res) => {
         localStorage.setItem('UserData', JSON.stringify(res.data))
+        window.location.href = '/dados'
         navigate('/dados', { replace: true })
       })
       .catch((E) => {
