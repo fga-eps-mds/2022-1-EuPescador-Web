@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import React from 'react'
 import { Grid } from '@mui/material'
 import { useEffect } from 'react'
