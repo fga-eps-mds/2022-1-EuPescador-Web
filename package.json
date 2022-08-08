@@ -17,6 +17,7 @@
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "latest",
+    "react-toastify": "^9.0.8",
     "styled-components": "^5.3.5"
   },
   "scripts": {

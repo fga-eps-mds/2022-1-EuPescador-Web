@@ -9,15 +9,19 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 interface HeaderProps {
   title: string
 }
+interface UserProps {
+  admin: boolean
+  name: string
+}
 
 const UserCard = () => {
-  const user = localStorage.getItem('user')
+  const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
   return (
     <Box display="flex" sx={{ alignItems: 'center' }}>
       <Avatar sx={{ mr: 2 }} />
       <Box>
-        <Typography sx={{ fontWeight: 'bold', fontSize: '14px' }}>{user}</Typography>
-        <Typography>Administrador</Typography>
+        <Typography sx={{ fontWeight: 'bold', fontSize: '14px' }}>{user.name}</Typography>
+        <Typography>{user.admin ? 'Administrador' : 'Usuário'}</Typography>
       </Box>
       <ArrowDropDownIcon />
     </Box>
@@ -26,10 +30,7 @@ const UserCard = () => {
 
 export default function Header({ title = 'Titulo' }: HeaderProps) {
   return (
-    <AppBar
-      position="static"
-      sx={{ color: 'black', backgroundColor: 'white', paddingLeft: '32px', paddingTop: '15px', boxShadow: 0 }}
-    >
+    <AppBar position="static" sx={{ color: 'black', backgroundColor: 'white', paddingTop: '15px', boxShadow: 0 }}>
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: '700', fontSize: '24px' }}>
           {title}
