@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'r
 import Fishes from './pages/Fishes'
 import Datas from './pages/Datas'
 import User from './pages/User'
+import Home from './pages/Home'
 
 import Login from 'pages/Login'
 import Register from 'pages/Register'
@@ -14,7 +15,7 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={auth ? <Datas /> : <Navigate replace to="/login" />} />
+      <Route path="/" element={auth ? <Home /> : <Navigate replace to="/login" />} />
       <Route path="/peixes" element={auth ? <Fishes /> : <Navigate replace to="/login" />} />
       <Route path="/dados" element={auth ? <Datas /> : <Navigate replace to="/login" />} />
       <Route path="/usuarios" element={auth ? <User /> : <Navigate replace to="/login" />} />

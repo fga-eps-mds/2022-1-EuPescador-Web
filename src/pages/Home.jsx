@@ -9,7 +9,7 @@ const Home = () => {
         <Sidebar />
       </Grid>
       <Grid item xs={11}>
-        <Header title="Listagem de Peixes"></Header>
+        <Header title="Mapa e Cadastros"></Header>
       </Grid>
     </Grid>
   )

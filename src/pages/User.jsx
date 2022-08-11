@@ -9,7 +9,7 @@ const User = () => {
         <Sidebar />
       </Grid>
       <Grid item xs={11}>
-        <Header title="Gerência de úsuarios"></Header>
+        <Header title="Gerência de Usuários"></Header>
       </Grid>
     </Grid>
   )
