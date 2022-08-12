@@ -9,7 +9,7 @@ import Login from 'pages/Login'
 import Register from 'pages/Register'
 
 import './assets/styles/Sidebar.css'
-import './assets/styles/Table.css';
+import './assets/styles/Table.css'
 
 import React from 'react'
 
