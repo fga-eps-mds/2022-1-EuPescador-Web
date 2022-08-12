@@ -7,7 +7,10 @@ import Home from './pages/Home'
 
 import Login from 'pages/Login'
 import Register from 'pages/Register'
-import './components/layout/Sidebar.css'
+
+import './assets/styles/Sidebar.css'
+import './assets/styles/Table.css';
+
 import React from 'react'
 
 function App() {
