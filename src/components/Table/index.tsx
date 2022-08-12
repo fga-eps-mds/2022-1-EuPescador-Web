@@ -20,6 +20,11 @@ interface TableProps {
 }
 
 export default function TableComponent({ rows, columns, onDelete, onEdit }: TableProps) {
+  const result = rows.map((row) => {
+    const display = columns.map((column) => row[column.value])
+    return display
+  })
+
   return (
     <TableContainer
       sx={{
@@ -50,9 +55,37 @@ export default function TableComponent({ rows, columns, onDelete, onEdit }: Tabl
         aria-label="a dense table"
       >
         <TableHead>
-          <TableRow></TableRow>
+          <TableRow>
+            {columns.map((column) => (
+              <TableCell component="th">{column.label}</TableCell>
+            ))}
+            {onEdit && <TableCell component="th">Editar</TableCell>}
+            {onDelete && <TableCell component="th">Deletar</TableCell>}
+          </TableRow>
         </TableHead>
-        <TableBody></TableBody>
+        <TableBody>
+          {result.map((row, index) => (
+            <TableRow>
+              {row.map((data) => (
+                <TableCell>{data}</TableCell>
+              ))}
+              {onEdit && (
+                <TableCell>
+                  <IconButton onClick={() => onEdit(rows[index])} color="warning">
+                    <Edit />
+                  </IconButton>
+                </TableCell>
+              )}
+              {onDelete && (
+                <TableCell>
+                  <IconButton onClick={() => onDelete(rows[index])} color="error">
+                    <Delete />
+                  </IconButton>
+                </TableCell>
+              )}
+            </TableRow>
+          ))}
+        </TableBody>
       </Table>
     </TableContainer>
   )
