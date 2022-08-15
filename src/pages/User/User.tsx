@@ -1,6 +1,6 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid } from '@mui/material'
 import Header from '~components/Header'
-import Sidebar from '../components/Sidebar'
+import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
 import { GetAllUsers, UserI } from '~services/api/userServices/getAllUsers'
 import { useEffect, useState } from 'react'

@@ -1,6 +1,6 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, TextField, Switch, FormGroup, FormControlLabel } from '@mui/material'
 import Header from '~components/Header'
-import Sidebar from '../components/Sidebar'
+import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
 import { GetAllUsers, UserI } from '~services/api/userServices/getAllUsers'
 import { useEffect, useState } from 'react'
@@ -11,6 +11,7 @@ export default function UserForm() {
   const handleSubmit = () => {
     console.log('clicou no submit form')
   }
+
 
   return (
     <Grid container>
@@ -142,7 +143,6 @@ export default function UserForm() {
                 borderRadius: '8px',
                 color: '#111111',
                 width: '500px',
-
               },
             }}
           />
@@ -166,7 +166,6 @@ export default function UserForm() {
               textTransform: 'capitalize',
               fontWeight: '200',
               width: '250px',
-
             }}
           >
             Salvar
@@ -185,11 +184,8 @@ export default function UserForm() {
               textTransform: 'capitalize',
               fontWeight: '200',
               width: '250px',
-
-
             }}
           >
-
             Cancelar
           </Button>
         </Box>
