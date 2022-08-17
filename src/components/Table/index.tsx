@@ -4,7 +4,7 @@ import { Delete, Edit } from '@mui/icons-material'
 import { IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 
 interface RowProp {
-  [key: string]: number
+  [key: string]: string
 }
 
 interface ColumnProp {

@@ -31,6 +31,13 @@ const routes = [
     name: 'Usuários',
     icon: <MdInsertEmoticon />,
   },
+
+  {
+    path: '/logs',
+    name: 'Logs',
+    icon: <MdInsertEmoticon />,
+  },
+
 ]
 
 const Sidebar = ({ children }) => {
@@ -116,7 +123,6 @@ const Sidebar = ({ children }) => {
             </NavLink>
           ))}
         </section>
-
         <section className="logout">
           <div className="logout-icon">
             <button onClick={handleLogoutClick}>
