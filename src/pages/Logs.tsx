@@ -9,47 +9,76 @@ export default function User() {
   
     const [logs, setLogs] = useState({})
     useEffect(() => {
-      GetAllFishLogs().then(ras => console.log (ras)).catch(err => console.error(err))
+      GetAllFishLogs("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJsdWx1QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiNzAyMjAwIiwiYWRtaW4iOmZhbHNlLCJzdXBlckFkbWluIjpmYWxzZSwiaWF0IjoxNjYwNzQ0NzczfQ.Q6i7jKd7L8eByAOX5TrCeS9Jj0u65cqKVrmLtTvLLz4", "").then(ras => console.log (ras)).catch(err => console.error(err))
         
     },[])
 
     const columns = [
     {
+        label: 'Id',
+        value: 'id',
+    },
+      {
       label: 'Nome',
       value: 'name',
     },
     {
-      label: 'Email',
-      value: 'email',
+      label: 'Classe',
+      value: 'largeGroup',
     },
     {
-      label: 'Tipo de usuario',
-      value: 'userRole',
+      label: 'Ordem',
+      value: 'group',
     },
     {
-      label: 'Desde',
-      value: 'userSince',
+      label: 'Espécie',
+      value: 'species',
     },
+    {
+      label: 'Tamanho',
+      value: 'lenght',
+    },
+    {
+      label: 'Massa',
+      value: 'weight',
+    },
+    {
+      label: 'Status',
+      value: 'reviewed',
+    },
+    
   ]
 
   const rows = [
     {
-      name: 'Fulano de tal',
-      email: 'fulano@gmail.com',
-      userRole: 'Admin',
-      userSince: '20-03-2010',
+      id: 1,
+      name: 'Piabinha 1',
+      largeGroup: 'Cascudos',
+      group:'Cascudos grandes',
+      species: 'Hypostomus plecostomus',
+      weight: 20,
+      lenght: 10,
+      reviewed: 'aprovado',
     },
     {
-      name: 'Fulano de tal',
-      email: 'fulano@gmail.com',
-      userRole: 'Admin',
-      userSince: '20-03-2010',
+      id: 2,
+      name: 'Piabinha 2',
+      largeGroup: 'Cascudos',
+      group:'Cascudos grandes',
+      species: 'Hypancistrus sp.',
+      weight: 32,
+      lenght: 30,
+      reviewed: 'pendente',
     },
     {
-      name: 'Fulano de tal',
-      email: 'fulano@gmail.com',
-      userRole: 'Admin',
-      userSince: '20-03-2010',
+      id: 3,
+      name: 'Piabinha 3',
+      largeGroup: 'Cascudos',
+      group:'Cascudos grandes',
+      species: 'Panaque nigrolineatus',
+      weight: 12,
+      lenght: 123,
+      reviewed: 'pendente',
     },
   ]
   return (

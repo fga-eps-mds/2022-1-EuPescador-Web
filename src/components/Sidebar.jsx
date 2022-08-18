@@ -9,6 +9,7 @@ import { BsMap } from 'react-icons/bs'
 import { TbFish } from 'react-icons/tb'
 import { MdOutlineAdd } from 'react-icons/md'
 import { FaCircle } from 'react-icons/fa'
+import { GiDoubleFish } from 'react-icons/gi'
 
 const routes = [
   {
@@ -35,7 +36,7 @@ const routes = [
   {
     path: '/logs',
     name: 'Logs',
-    icon: <MdInsertEmoticon />,
+    icon: <GiDoubleFish />,
   },
 
 ]
