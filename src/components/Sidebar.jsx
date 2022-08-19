@@ -9,8 +9,9 @@ import { BsMap } from 'react-icons/bs'
 import { TbFish } from 'react-icons/tb'
 import { MdOutlineAdd } from 'react-icons/md'
 import { FaCircle } from 'react-icons/fa'
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-const routes = [
+const routesAdmin = [
   {
     path: '/dados',
     name: 'Listar',
@@ -32,6 +33,25 @@ const routes = [
     icon: <MdInsertEmoticon />,
   },
 ]
+
+const routesNotAdmin = [
+  {
+    path: '/dados',
+    name: 'Listar',
+    icon: <MdOutlineAssignment />,
+  },
+  {
+    path: '/peixes',
+    name: 'Cadastrar',
+    icon: <MdOutlineAdd />,
+  },
+  {
+    path: '/',
+    name: 'Mapa',
+    icon: <BsMap />,
+  },
+]
+
 
 const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -55,6 +75,57 @@ const Sidebar = ({ children }) => {
     },
   }
 
+  function fazRota() {
+    const user = JSON.parse(localStorage.getItem('UserData'))
+    if (user.admin) {
+      return (
+        <section className="routes">
+          {routesAdmin.map((route) => (
+            <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
+              <div className="icon">{route.icon}</div>
+              <AnimatePresence>
+                {isOpen && (
+                  <motion.div
+                    variants={showAnimation}
+                    initial="hidden"
+                    animate="show"
+                    exit="hidden"
+                    className="link-text"
+                  >
+                    {route.name}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </NavLink>
+          ))}
+        </section>
+      )
+    } else {
+      return (
+        <section className="routes">
+          {routesNotAdmin.map((route) => (
+            <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
+              <div className="icon">{route.icon}</div>
+              <AnimatePresence>
+                {isOpen && (
+                  <motion.div
+                    variants={showAnimation}
+                    initial="hidden"
+                    animate="show"
+                    exit="hidden"
+                    className="link-text"
+                  >
+                    {route.name}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </NavLink>
+          ))}
+        </section>
+      )
+    }
+  }
+
   let navigate = useNavigate()
   const routeChange = () => {
     let path = '/login'
@@ -76,9 +147,9 @@ const Sidebar = ({ children }) => {
         animate={{
           width: isOpen ? '300px' : '90px',
           transition: {
-          duration: 0.5,
-          type: 'spring',
-          damping: 10,
+            duration: 0.5,
+            type: 'spring',
+            damping: 10,
           },
         }}
         className={`sidebar`}
@@ -96,26 +167,8 @@ const Sidebar = ({ children }) => {
           </div>
         </div>
 
-        <section className="routes">
-          {routes.map((route) => (
-            <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
-              <div className="icon">{route.icon}</div>
-              <AnimatePresence>
-                {isOpen && (
-                  <motion.div
-                    variants={showAnimation}
-                    initial="hidden"
-                    animate="show"
-                    exit="hidden"
-                    className="link-text"
-                  >
-                    {route.name}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </NavLink>
-          ))}
-        </section>
+        <div>{fazRota()}</div>
+
 
         <section className="logout">
           <div className="logout-icon">
