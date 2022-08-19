@@ -4,12 +4,18 @@ import Sidebar from '../components/Sidebar'
 import TableComponent from '~components/Table'
 import { useEffect, useState } from 'react'
 import {  GetAllFishLogs } from '~services/api/fishLogServices/getAllLogs'
+interface UserDataProps {
+  token: string;
+}
 
 export default function User() {
   
-    const [logs, setLogs] = useState({})
-    useEffect(() => {
-      GetAllFishLogs("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJsdWx1QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiNzAyMjAwIiwiYWRtaW4iOmZhbHNlLCJzdXBlckFkbWluIjpmYWxzZSwiaWF0IjoxNjYwNzQ0NzczfQ.Q6i7jKd7L8eByAOX5TrCeS9Jj0u65cqKVrmLtTvLLz4", "").then(ras => console.log (ras)).catch(err => console.error(err))
+    const [logs, setLogs] = useState([])
+      useEffect(() => {
+      const userData = localStorage.getItem('UserData')
+      const parsedUserData: UserDataProps = JSON.parse(userData) as UserDataProps
+           console.log(parsedUserData)
+      GetAllFishLogs(parsedUserData.token,"").then(ras => setLogs(ras)).catch(err => console.error(err))
         
     },[])
 
@@ -90,7 +96,7 @@ export default function User() {
         <Header title="Logs dos Peixes"></Header>
         <TableComponent
           columns={columns}
-          rows={rows}
+          rows={logs}
           onDelete={(row) => console.log(row)}
           onEdit={(row) => console.log(row)}
         />
