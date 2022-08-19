@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'r
 
 import Fishes from './pages/Fishes'
 import Datas from './pages/Datas'
-import User from './pages/User'
+import User from './pages/User/User'
 import Home from './pages/Home'
 import Logs from './pages/Logs'
 
@@ -13,6 +13,7 @@ import './assets/styles/Sidebar.css'
 import './assets/styles/Table.css'
 
 import React from 'react'
+import UserForm from './pages/User/UserEdit'
 
 function App() {
   const [auth, setAuth] = React.useState<string>(localStorage.getItem('UserData'))
