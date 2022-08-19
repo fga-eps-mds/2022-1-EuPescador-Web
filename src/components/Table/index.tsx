@@ -4,7 +4,7 @@ import { Delete, Edit } from '@mui/icons-material'
 import { IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 
 interface RowProp {
-  [key: string]: number
+  [key: string]: string
 }
 
 interface ColumnProp {
@@ -65,7 +65,7 @@ export default function TableComponent({ rows, columns, onDelete, onEdit }: Tabl
         </TableHead>
         <TableBody>
           {result.map((row, index) => (
-            <TableRow>
+            <TableRow key={index}>
               {row.map((data) => (
                 <TableCell>{data}</TableCell>
               ))}

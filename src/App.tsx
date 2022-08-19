@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'r
 
 import Fishes from './pages/Fishes'
 import Datas from './pages/Datas'
-import User from './pages/User'
+import User from './pages/User/User'
 import Home from './pages/Home'
 
 import Login from 'pages/Login'
@@ -12,6 +12,7 @@ import './assets/styles/Sidebar.css'
 import './assets/styles/Table.css'
 
 import React from 'react'
+import UserForm from './pages/User/UserEdit'
 
 function App() {
   const [auth, setAuth] = React.useState<string>(localStorage.getItem('UserData'))
@@ -22,6 +23,7 @@ function App() {
       <Route path="/peixes" element={auth ? <Fishes /> : <Navigate replace to="/login" />} />
       <Route path="/dados" element={auth ? <Datas /> : <Navigate replace to="/login" />} />
       <Route path="/usuarios" element={auth ? <User /> : <Navigate replace to="/login" />} />
+      <Route path="/usuarios/:id" element={auth ? <UserForm /> : <Navigate replace to="/login" />} />
       <Route path="/login" element={auth ? <Login /> : <Login />} />
       <Route path="/register" element={auth ? <Register /> : <Register />} />
     </Routes>
