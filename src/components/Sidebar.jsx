@@ -9,7 +9,9 @@ import { BsMap } from 'react-icons/bs'
 import { TbFish } from 'react-icons/tb'
 import { MdOutlineAdd } from 'react-icons/md'
 import { FaCircle } from 'react-icons/fa'
+import { GiDoubleFish } from 'react-icons/gi'
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 
 const routesAdmin = [
   {
@@ -32,6 +34,13 @@ const routesAdmin = [
     name: 'Usuários',
     icon: <MdInsertEmoticon />,
   },
+
+  {
+    path: '/logs',
+    name: 'Logs',
+    icon: <GiDoubleFish />,
+  },
+
 ]
 
 const routesNotAdmin = [
@@ -166,10 +175,7 @@ const Sidebar = ({ children }) => {
             <FaCircle onClick={toggle} />
           </div>
         </div>
-
         <div>{fazRota()}</div>
-
-
         <section className="logout">
           <div className="logout-icon">
             <button onClick={handleLogoutClick}>
