@@ -74,6 +74,57 @@ const Sidebar = ({ children }) => {
     },
   }
 
+  function fazRota() {
+    const user = JSON.parse(localStorage.getItem('UserData'))
+    if (user.admin) {
+      return (
+        <section className="routes">
+          {routesAdmin.map((route) => (
+            <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
+              <div className="icon">{route.icon}</div>
+              <AnimatePresence>
+                {isOpen && (
+                  <motion.div
+                    variants={showAnimation}
+                    initial="hidden"
+                    animate="show"
+                    exit="hidden"
+                    className="link-text"
+                  >
+                    {route.name}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </NavLink>
+          ))}
+        </section>
+      )
+    } else {
+      return (
+        <section className="routes">
+          {routesNotAdmin.map((route) => (
+            <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
+              <div className="icon">{route.icon}</div>
+              <AnimatePresence>
+                {isOpen && (
+                  <motion.div
+                    variants={showAnimation}
+                    initial="hidden"
+                    animate="show"
+                    exit="hidden"
+                    className="link-text"
+                  >
+                    {route.name}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </NavLink>
+          ))}
+        </section>
+      )
+    }
+  }
+
   let navigate = useNavigate()
   const routeChange = () => {
     let path = '/login'
@@ -115,26 +166,7 @@ const Sidebar = ({ children }) => {
           </div>
         </div>
 
-        <section className="routes">
-          {routesAdmin.map((route) => (
-            <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
-              <div className="icon">{route.icon}</div>
-              <AnimatePresence>
-                {isOpen && (
-                  <motion.div
-                    variants={showAnimation}
-                    initial="hidden"
-                    animate="show"
-                    exit="hidden"
-                    className="link-text"
-                  >
-                    {route.name}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </NavLink>
-          ))}
-        </section>
+        <div>{fazRota()}</div>
 
 
         <section className="logout">
