@@ -10,7 +10,7 @@ import { TbFish } from 'react-icons/tb'
 import { MdOutlineAdd } from 'react-icons/md'
 import { FaCircle } from 'react-icons/fa'
 
-const routes = [
+const routesAdmin = [
   {
     path: '/dados',
     name: 'Listar',
@@ -32,6 +32,25 @@ const routes = [
     icon: <MdInsertEmoticon />,
   },
 ]
+
+const routesNotAdmin = [
+  {
+    path: '/dados',
+    name: 'Listar',
+    icon: <MdOutlineAssignment />,
+  },
+  {
+    path: '/peixes',
+    name: 'Cadastrar',
+    icon: <MdOutlineAdd />,
+  },
+  {
+    path: '/',
+    name: 'Mapa',
+    icon: <BsMap />,
+  },
+]
+
 
 const Sidebar = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -76,9 +95,9 @@ const Sidebar = ({ children }) => {
         animate={{
           width: isOpen ? '300px' : '90px',
           transition: {
-          duration: 0.5,
-          type: 'spring',
-          damping: 10,
+            duration: 0.5,
+            type: 'spring',
+            damping: 10,
           },
         }}
         className={`sidebar`}
@@ -97,7 +116,7 @@ const Sidebar = ({ children }) => {
         </div>
 
         <section className="routes">
-          {routes.map((route) => (
+          {routesAdmin.map((route) => (
             <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
               <div className="icon">{route.icon}</div>
               <AnimatePresence>
@@ -116,6 +135,7 @@ const Sidebar = ({ children }) => {
             </NavLink>
           ))}
         </section>
+
 
         <section className="logout">
           <div className="logout-icon">
