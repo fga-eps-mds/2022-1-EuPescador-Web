@@ -1,7 +1,7 @@
 import { ResI } from '../interfaces'
 import { fishLogService } from './fishLogService'
 
-export async function GetAllFishLogs(token: string, query: string) {
+const GetAllFishLogs = async (token: string, query: string) => {
   let route = '/fishLog/'
   if (query) route += query
 
@@ -11,3 +11,5 @@ export async function GetAllFishLogs(token: string, query: string) {
   })
   return res.data
 }
+
+export default GetAllFishLogs

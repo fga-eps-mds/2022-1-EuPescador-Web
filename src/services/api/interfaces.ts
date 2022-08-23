@@ -1,5 +1,5 @@
 export interface ResI {
-  data: []
+  data: [any]
   status: string
 }
 

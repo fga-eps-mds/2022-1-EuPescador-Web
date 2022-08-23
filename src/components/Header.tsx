@@ -9,9 +9,10 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 interface HeaderProps {
   title: string
 }
-interface UserProps {
+export interface UserProps {
   admin: boolean
   name: string
+  token: string
 }
 
 const UserCard = () => {
