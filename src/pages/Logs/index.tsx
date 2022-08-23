@@ -1,25 +1,24 @@
 import { Grid } from '@mui/material'
 import Header, { UserProps } from '~components/Header'
-import Sidebar from '../components/Sidebar'
+import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
 import { useEffect, useState } from 'react'
 import GetAllFishLogs from '~services/api/fishLogServices/getAllLogs'
+import { useNavigate } from 'react-router-dom'
 
 export default function FishLogs() {
-
   const [logs, setLogs] = useState([])
-
+  const navigate = useNavigate()
 
   useEffect(() => {
-
     const fetchData = async () => {
       const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
-      const reps = await GetAllFishLogs(user.token, "")
-      reps.forEach(element => {
+      const reps = await GetAllFishLogs(user.token, '')
+      reps.forEach((element) => {
         if (element.reviewed) {
-          element.reviewed = element.reviewed ? "Revisado" : "Pendente"
+          element.reviewed = element.reviewed ? 'Revisado' : 'Pendente'
         } else {
-          element.reviewed = "Pendente"
+          element.reviewed = 'Pendente'
         }
       })
       setLogs(reps)
@@ -29,7 +28,6 @@ export default function FishLogs() {
     fetchData()
       // make sure to catch any error
       .catch(console.error)
-
   }, [])
 
   const columns = [
@@ -65,7 +63,6 @@ export default function FishLogs() {
       label: 'Status',
       value: 'reviewed',
     },
-
   ]
 
   const rows = [
@@ -111,7 +108,7 @@ export default function FishLogs() {
           columns={columns}
           rows={logs || []}
           onDelete={(row) => console.log(row)}
-          onEdit={(row) => console.log(row)}
+          onEdit={(row: { id: string }) => navigate(`/logs/${row.id}`)}
         />
       </Grid>
     </Grid>
