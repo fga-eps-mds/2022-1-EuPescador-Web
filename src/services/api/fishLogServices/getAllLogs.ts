@@ -1,15 +1,21 @@
 import { ResI } from '../interfaces'
 import { fishLogService } from './fishLogService'
 
-const GetAllFishLogs = async (token: string, query: string) => {
-  let route = '/fishLog/'
-  if (query) route += query
-
-  const userToken = `Bearer ${token}`
-  const res: ResI = await fishLogService.get(route, {
-    headers: { Authorization: userToken },
-  })
-  return res.data
+export interface FishLogInterface {
+  id: any
+  userId: string
+  name: string
+  largeGroup: string
+  group: string
+  species: string
+  coordenates: string
+  photo: string
+  length: string
+  weight: string
+  visible,
 }
 
-export default GetAllFishLogs
+export async function GetAllLogs() {
+  const res: ResI = await fishLogService.get('/logs/')
+  return res.data as FishLogInterface[]
+}

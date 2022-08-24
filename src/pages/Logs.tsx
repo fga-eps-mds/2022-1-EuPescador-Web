@@ -1,42 +1,17 @@
-import { Grid } from '@mui/material'
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid } from '@mui/material'
 import Header, { UserProps } from '~components/Header'
 import Sidebar from '../components/Sidebar'
 import TableComponent from '~components/Table'
+import { FishLogInterface, GetAllLogs } from 'services/api/fishLogServices/getAllLogs'
 import { useEffect, useState } from 'react'
-import GetAllFishLogs from '~services/api/fishLogServices/getAllLogs'
+import { deleteFishLogs } from '~services/api/adminServices/deleteFishLog'
+import { useNavigate } from 'react-router-dom'
 
 export default function FishLogs() {
-
-  const [logs, setLogs] = useState([])
-
-
-  useEffect(() => {
-
-    const fetchData = async () => {
-      const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
-      const reps = await GetAllFishLogs(user.token, "")
-      reps.forEach(element => {
-        if (element.reviewed) {
-          element.reviewed = element.reviewed ? "Revisado" : "Pendente"
-        } else {
-          element.reviewed = "Pendente"
-        }
-      })
-      setLogs(reps)
-    }
-
-    // call the function
-    fetchData()
-      // make sure to catch any error
-      .catch(console.error)
-
-  }, [])
-
+  const navigate = useNavigate()
   const columns = [
-    {
-      label: 'Id',
-      value: 'id',
-    },
     {
       label: 'Nome',
       value: 'name',
@@ -60,46 +35,29 @@ export default function FishLogs() {
     {
       label: 'Massa',
       value: 'weight',
-    },
-    {
-      label: 'Status',
-      value: 'reviewed',
-    },
-
+    }
   ]
 
-  const rows = [
-    {
-      id: 1,
-      name: 'Piabinha 1',
-      largeGroup: 'Cascudos',
-      group: 'Cascudos grandes',
-      species: 'Hypostomus plecostomus',
-      weight: 20,
-      lenght: 10,
-      reviewed: 'aprovado',
-    },
-    {
-      id: 2,
-      name: 'Piabinha 2',
-      largeGroup: 'Cascudos',
-      group: 'Cascudos grandes',
-      species: 'Hypancistrus sp.',
-      weight: 32,
-      lenght: 30,
-      reviewed: 'pendente',
-    },
-    {
-      id: 3,
-      name: 'Piabinha 3',
-      largeGroup: 'Cascudos',
-      group: 'Cascudos grandes',
-      species: 'Panaque nigrolineatus',
-      weight: 12,
-      lenght: 123,
-      reviewed: 'pendente',
-    },
-  ]
+  const [open, setOpen] = useState(false)
+
+  const handleClickOpen = async (id: string) => {
+    await deleteFishLogs(id)
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const [logs, setLogs] = useState<FishLogInterface[]>()
+  useEffect(() => {
+    GetAllLogs()
+      .then((res: FishLogInterface[]) => {
+        setLogs(res)
+      })
+      .catch((e) => console.error(e))
+  }, [])
+
   return (
     <Grid container>
       <Grid item xs={1}>
@@ -109,10 +67,41 @@ export default function FishLogs() {
         <Header title="Logs dos Peixes"></Header>
         <TableComponent
           columns={columns}
-          rows={logs || []}
+          rows={(logs || []).map(logs => {
+            return {
+              name: logs.name,
+              largeGroup: logs.largeGroup,
+              group: logs.group,
+              species: logs.species,
+              length: logs.length,
+              weight: logs.weight
+            }
+          })}
           onDelete={(row) => console.log(row)}
           onEdit={(row) => console.log(row)}
         />
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title-fishLog"
+        aria-describedby="alert-dialog-description-fishLog"
+      >
+        <DialogTitle id="alert-dialog-title-fishLog">
+          {"Deseja excluir o usuário?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description-fishLog">
+            Clique em confirmar para prosseguir com a exclusão do peixe
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancelar</Button>
+          <Button onClick={handleClose} autoFocus>
+            Confirmar
+          </Button>
+        </DialogActions>
+      </Dialog>
       </Grid>
     </Grid>
   )
