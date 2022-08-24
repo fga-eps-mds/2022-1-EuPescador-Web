@@ -1,4 +1,4 @@
-import { fishLogService } from "./fishService";
+import { fishLogService } from './fishLogService'
 
 async function ReviewFishLog(
     logId: string,
@@ -8,9 +8,9 @@ async function ReviewFishLog(
     const userToken = `Bearer ${token}`;
     const res = await fishLogService.patch(`/fishLog/${logId}`, {
         name,
-        reviewed : true,
-        visible : true
-    }, { headers: { Authorization: `Bearer ${token}`  } });
+        reviewed: true,
+        visible: true
+    }, { headers: { Authorization: `Bearer ${token}` } });
     return res.data;
 }
 
