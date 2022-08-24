@@ -1,12 +1,15 @@
+import { ResI } from '../interfaces'
 import { fishLogService } from './fishLogService'
 
-async function ReviewFishLog(
+export async function ReviewFishLog(
     logId: string,
     name: string | undefined,
     token: string
 ) {
     const userToken = `Bearer ${token}`;
-    const res = await fishLogService.patch(`/fishLog/${logId}`, {
+    const res: ResI = await fishLogService.patch(
+        `/fishLog/${logId}`, 
+        {
         name,
         reviewed: true,
         visible: true
@@ -14,4 +17,3 @@ async function ReviewFishLog(
     return res.data;
 }
 
-export { ReviewFishLog };
