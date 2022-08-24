@@ -52,8 +52,8 @@ export default function LogsDetails() {
       </Grid>
       <Grid item xs={11}>
         <Header title="Detalhes do Log"></Header>
-        <Box sx={{ mt: 1, display: 'flex' }}>
-          <Box sx={{ mt: 1, width: '50%' }}>
+        <Box sx={{ mt: 5, ml: 5, display: 'flex' }}>
+          <Box sx={{mt: 2, width: '50%' }}>
             <TextField
               margin="normal"
               fullWidth
@@ -61,11 +61,11 @@ export default function LogsDetails() {
               name="name"
               value={log.name || loadingMessage}
               InputLabelProps={{
-                style: { color: '#111111' },
+                style: { color: '#111111'},
               }}
               InputProps={{
                 style: {
-                  borderRadius: '8px',
+                  borderRadius: '25px',
                   color: '#111111',
                   width: '500px',
                 },
@@ -82,7 +82,7 @@ export default function LogsDetails() {
               }}
               InputProps={{
                 style: {
-                  borderRadius: '8px',
+                  borderRadius: '25px',
                   color: '#111111',
                   width: '500px',
                 },
@@ -99,7 +99,7 @@ export default function LogsDetails() {
               }}
               InputProps={{
                 style: {
-                  borderRadius: '8px',
+                  borderRadius: '25px',
                   color: '#111111',
                   width: '500px',
                 },
@@ -116,15 +116,15 @@ export default function LogsDetails() {
               }}
               InputProps={{
                 style: {
-                  borderRadius: '8px',
+                  borderRadius: '25px',
                   color: '#111111',
                   width: '500px',
                 },
               }}
             />
-            <Box sx={{ mt: 1, display: 'flex', width: '50%' }}>
+            <Box sx={{display: 'flex', width: '50%' }}>
               <TextField
-                label="Massa"
+                label="Massa(g)"
                 value={log.weight || loadingMessage}
                 sx={{ mr: 4 }}
                 InputLabelProps={{
@@ -132,13 +132,13 @@ export default function LogsDetails() {
                 }}
                 InputProps={{
                   style: {
-                    borderRadius: '8px',
+                    borderRadius: '25px',
                     color: '#111111',
                   },
                 }}
               />
               <TextField
-                label="Tamanho"
+                label="Tamanho(Cm)"
                 name="length"
                 value={log.length || loadingMessage}
                 InputLabelProps={{
@@ -146,7 +146,7 @@ export default function LogsDetails() {
                 }}
                 InputProps={{
                   style: {
-                    borderRadius: '8px',
+                    borderRadius: '25px',
                     color: '#111111',
                   },
                 }}
@@ -155,15 +155,15 @@ export default function LogsDetails() {
           </Box>
           <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column' }}>
             <Typography>Foto</Typography>
-            <img src={`data:image/png;base64,${log.photo}`} width={350} height={200} />
-            <Typography sx={{ mt: 5 }}>Localização</Typography>
+            <img src={`data:image/png;base64,${log.photo}`} width={400} height={250} style={{ borderRadius: '20px'}} />
+            <Typography sx={{ mt: 5}}>Localização</Typography>
 
             {!!log.coordenates && (
               <MapContainer
                 center={[log.coordenates.latitude, log.coordenates.longitude]}
                 zoom={13}
                 scrollWheelZoom
-                style={{ height: '40vh' }}
+                style={{ height: '40vh', borderRadius: '20px solid'}}
               >
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
