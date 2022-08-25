@@ -1,17 +1,22 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid } from '@mui/material'
 import Header, { UserProps } from '~components/Header'
 import Sidebar from '../components/Sidebar'
 import TableComponent from '~components/Table'
-import { FishLogInterface, GetAllLogs } from 'services/api/fishLogServices/getAllLogs'
+import { GetAllLogs, FishLogI } from 'services/api/fishLogServices/getAllLogs'
 import { useEffect, useState } from 'react'
+import { ResI } from '~services/api/interfaces'
 import { deleteFishLogs } from '~services/api/adminServices/deleteFishLog'
 import { useNavigate } from 'react-router-dom'
 
 export default function FishLogs() {
   const navigate = useNavigate()
   const columns = [
+    {
+      label: 'Id',
+      value: 'id',
+    },
     {
       label: 'Nome',
       value: 'name',
@@ -49,13 +54,25 @@ export default function FishLogs() {
     setOpen(false)
   }
 
-  const [logs, setLogs] = useState<FishLogInterface[]>()
+  const [logs, setLogs] = useState([])
+
+  // const [logs, setLogs] = useState<FishLogI[]>()
+  // useEffect(() => {
+  //   GetAllLogs()
+  //     .then((res: FishLogI[]) => {
+  //       setLogs(res)
+  //     })
+  //     .catch((e) => console.error(e))
+  // }, [])
+
   useEffect(() => {
-    GetAllLogs()
-      .then((res: FishLogInterface[]) => {
-        setLogs(res)
-      })
-      .catch((e) => console.error(e))
+    const fetchData = async () => {
+      const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
+      const reps = await GetAllLogs(user.token, '')
+      setLogs(reps)
+    }
+
+    fetchData().catch(console.error)
   }, [])
 
   return (
@@ -67,18 +84,18 @@ export default function FishLogs() {
         <Header title="Logs dos Peixes"></Header>
         <TableComponent
           columns={columns}
-          rows={(logs || []).map(logs => {
+          rows={(logs || []).map(fishLog => {
             return {
-              name: logs.name,
-              largeGroup: logs.largeGroup,
-              group: logs.group,
-              species: logs.species,
-              length: logs.length,
-              weight: logs.weight
+              id: fishLog.userId.toString(),
+              name: fishLog.name,
+              largeGroup: fishLog.largeGroup,
+              group: fishLog.group,
+              species: fishLog.species,
+              length: fishLog.length,
+              weight: fishLog.weight
             }
           })}
-          onDelete={(row) => console.log(row)}
-          onEdit={(row) => console.log(row)}
+          onDelete={(fishLog) => handleClickOpen(`${fishLog.id}`)}
         />
 
       <Dialog
