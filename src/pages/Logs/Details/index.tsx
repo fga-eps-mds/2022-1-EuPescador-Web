@@ -32,7 +32,7 @@ export default function LogsDetails() {
   const getLog = async (logId: string) => {
     const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
     const data = await GetOneFishLog(logId, user.token)
-    console.log(data.photo)
+    console.log(data)
     setLog(data)
   }
 
@@ -154,12 +154,12 @@ export default function LogsDetails() {
             </Box>
           </Box>
           <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column' }}>
-            <Typography sx={{ mb: 1, fontWeight: 'bold' }}>Foto</Typography>
+            <Typography sx={{ mb: 1, fontWeight: 'bold' }}>Foto:</Typography>
             <img src={`data:image/png;base64,${log.photo}`} width={400} height={250} style={{ borderRadius: '20px' }} />
 
-            <Typography sx={{ mt: 5, mb: 1, fontWeight: 'bold' }}>Localização</Typography>
+            <Typography sx={{ mt: 5, mb: 1, fontWeight: 'bold' }}>Localização:</Typography>
 
-            {!!log.coordenates && (
+            {(log.coordenates && log.coordenates.latitude && log.coordenates.longitude) ? (
               <MapContainer
                 center={[log.coordenates.latitude, log.coordenates.longitude]}
                 zoom={13}
@@ -174,7 +174,11 @@ export default function LogsDetails() {
                   <Popup>Esta é a localização do {log.name}</Popup>
                 </Marker>
               </MapContainer>
-            )}
+            ) :
+              <Box sx={{ display: 'flex' }}>
+                <Typography sx={{ ml: 5, mt: 2, mb: 1, fontWeight: 'light' }}>Sem Localização</Typography>
+              </Box>
+            }
           </Box>
         </Box>
       </Grid>
