@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { Grid, Box, TextField, Typography } from '@mui/material'
+import { Grid, Box, TextField, Typography, ButtonBase, Button, Alert } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Header, { UserProps } from '~components/Header'
@@ -10,6 +10,8 @@ import { GetOneFishLog } from '../../../services/api/fishLogServices/getOneFishL
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import '../../../assets/styles/DetailsButtons.css'
 import { UpdateFishLog } from '~services/api/fishLogServices/updateFishLog'
+import { ReviewFishLog } from '~services/api/fishLogServices/reviewFishLog'
+import { toast } from 'react-toastify'
 
 export interface FishLogProps {
   coordenates: {
@@ -34,7 +36,6 @@ export default function LogsDetails() {
   const getLog = async (logId: string) => {
     const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
     const data = await GetOneFishLog(logId, user.token)
-    console.log(data)
     setLog(data)
   }
 
@@ -49,16 +50,45 @@ export default function LogsDetails() {
 
   const atualizaLog = async () => {
     const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
-    const dadinhos = await UpdateFishLog(id, log.name, log.largeGroup, log.group, log.species, log.coordenates.latitude ? (log.coordenates.latitude).toString() : null, log.coordenates.longitude ? (log.coordenates.longitude).toString() : null, log.photo, log.length, log.weight, log.reviewed, true, true, true, user.token)
+    const dadinhos = await UpdateFishLog(
+      id,
+      log.name,
+      log.largeGroup,
+      log.group,
+      log.species,
+      log.coordenates.latitude ? log.coordenates.latitude.toString() : null,
+      log.coordenates.longitude ? log.coordenates.longitude.toString() : null,
+      log.photo,
+      log.length,
+      log.weight,
+      log.reviewed,
+      true,
+      true,
+      true,
+      user.token,
+    )
     console.log(dadinhos)
     routeChange()
   }
-
 
   const navigate = useNavigate()
   const routeChange = () => {
     const path = '/logs'
     navigate(path)
+  }
+
+  const handleReviewLog = async () => {
+    try {
+      const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
+      await ReviewFishLog(id, log.name, user.token)
+      toast.success('Registro aprovado com sucesso!')
+      setLog({
+        ...log,
+        reviewed: true,
+      })
+    } catch (error) {
+      toast.error('Algo deu errado, tente novamente!')
+    }
   }
 
   return (
@@ -77,7 +107,7 @@ export default function LogsDetails() {
               name="name"
               defaultValue={log.name || loadingMessage}
               key={log.name}
-              onChange={(e) => log.name = e.target.value}
+              onChange={(e) => (log.name = e.target.value)}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -96,7 +126,7 @@ export default function LogsDetails() {
               name="largeGroup"
               defaultValue={log.largeGroup || loadingMessage}
               key={log.largeGroup}
-              onChange={(e) => log.largeGroup = e.target.value}
+              onChange={(e) => (log.largeGroup = e.target.value)}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -115,7 +145,7 @@ export default function LogsDetails() {
               name="group"
               defaultValue={log.group || loadingMessage}
               key={log.group}
-              onChange={(e) => log.group = e.target.value}
+              onChange={(e) => (log.group = e.target.value)}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -134,7 +164,7 @@ export default function LogsDetails() {
               name="species"
               defaultValue={log.species || loadingMessage}
               key={log.species}
-              onChange={(e) => log.species = e.target.value}
+              onChange={(e) => (log.species = e.target.value)}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -151,7 +181,7 @@ export default function LogsDetails() {
                 label="Massa(g)"
                 defaultValue={log.weight || loadingMessage}
                 key={log.weight}
-                onChange={(e) => log.weight = e.target.value}
+                onChange={(e) => (log.weight = e.target.value)}
                 sx={{ mr: 4 }}
                 InputLabelProps={{
                   style: { color: '#111111' },
@@ -168,7 +198,7 @@ export default function LogsDetails() {
                 name="length"
                 defaultValue={log.length || loadingMessage}
                 key={log.length}
-                onChange={(e) => log.length = e.target.value}
+                onChange={(e) => (log.length = e.target.value)}
                 InputLabelProps={{
                   style: { color: '#111111' },
                 }}
@@ -180,14 +210,46 @@ export default function LogsDetails() {
                 }}
               />
             </Box>
+            <Typography sx={{ mt: 2 }}>Status: {log.reviewed ? 'Aprovado' : 'Pendente'}</Typography>
             <Box sx={{ display: 'flex', width: '50%', mt: 10, ml: 0 }}>
-              <button className="btn-save" onClick={atualizaLog}>SALVAR</button>
-              <button className="btn-cancel" onClick={routeChange}>CANCELAR</button>
+              <button className="btn-save" onClick={atualizaLog}>
+                SALVAR
+              </button>
+              <button className="btn-cancel" onClick={routeChange}>
+                CANCELAR
+              </button>
             </Box>
+            {!log.reviewed && (
+              <Button
+                onClick={handleReviewLog}
+                sx={{
+                  display: 'flex',
+                  width: '50%',
+                  height: '40px',
+                  backgroundColor: '#ACEA97',
+                  borderRadius: '12px',
+                  mt: 2,
+                  color: '#000000',
+                  fontSize: '14px',
+                  fontWeight: '',
+                }}
+              >
+                APROVAR
+              </Button>
+            )}
           </Box>
           <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column' }}>
             <Typography sx={{ mb: 1, fontWeight: 'bold' }}>Foto:</Typography>
-            <img src={`data:image/png;base64,${log.photo}`} width={400} height={250} style={{ borderRadius: '20px' }} />
+            {log.photo ? (
+              <img
+                src={`data:image/png;base64,${log.photo}`}
+                width={400}
+                height={250}
+                style={{ borderRadius: '20px' }}
+              />
+            ) : (
+              <Alert severity="info">Opa, parece que este registro não possui uma foto.</Alert>
+            )}
 
             <Typography sx={{ mt: 5, mb: 1, fontWeight: 'bold' }}>Localização:</Typography>
 
