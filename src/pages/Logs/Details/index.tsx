@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { Grid, Box, TextField, Typography, ButtonBase } from '@mui/material'
+import { Grid, Box, TextField, Typography, ButtonBase, Button, Alert } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Header, { UserProps } from '~components/Header'
@@ -122,7 +122,7 @@ export default function LogsDetails() {
                 },
               }}
             />
-            <Box sx={{ display: 'flex', width: '50%' }}>
+            <Box sx={{ display: 'flex', width: '50%', mt: 2 }}>
               <TextField
                 label="Massa(g)"
                 value={log.weight || loadingMessage}
@@ -152,7 +152,8 @@ export default function LogsDetails() {
                 }}
               />
             </Box>
-            <ButtonBase
+            <Typography sx={{ mt: 2 }}>Status: {log.reviewed ? 'Aprovado' : 'Pendente'}</Typography>
+            <Button
               sx={{
                 display: 'flex',
                 width: '400px',
@@ -160,17 +161,26 @@ export default function LogsDetails() {
                 backgroundColor: '#ACEA97',
                 borderRadius: '12px',
                 mt: '140px',
-                placeholder: '#afd683',
                 color: '#000000',
                 fontSize: '14px',
+                fontWeight: '',
               }}
             >
               APROVAR
-            </ButtonBase>
+            </Button>
           </Box>
           <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column' }}>
             <Typography>Foto</Typography>
-            <img src={`data:image/png;base64,${log.photo}`} width={400} height={250} style={{ borderRadius: '20px' }} />
+            {log.photo ? (
+              <img
+                src={`data:image/png;base64,${log.photo}`}
+                width={400}
+                height={250}
+                style={{ borderRadius: '20px' }}
+              />
+            ) : (
+              <Alert severity="info">Opa, parece que este registro não possui uma foto.</Alert>
+            )}
             <Typography sx={{ mt: 5 }}>Localização</Typography>
 
             {!!log.coordenates && (
