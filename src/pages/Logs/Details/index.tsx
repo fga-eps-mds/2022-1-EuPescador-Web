@@ -53,7 +53,7 @@ export default function LogsDetails() {
       <Grid item xs={11}>
         <Header title="Detalhes do Log"></Header>
         <Box sx={{ mt: 5, ml: 5, display: 'flex' }}>
-          <Box sx={{mt: 2, width: '50%' }}>
+          <Box sx={{ mt: 2, width: '50%' }}>
             <TextField
               margin="normal"
               fullWidth
@@ -61,7 +61,7 @@ export default function LogsDetails() {
               name="name"
               value={log.name || loadingMessage}
               InputLabelProps={{
-                style: { color: '#111111'},
+                style: { color: '#111111' },
               }}
               InputProps={{
                 style: {
@@ -122,7 +122,7 @@ export default function LogsDetails() {
                 },
               }}
             />
-            <Box sx={{display: 'flex', width: '50%' }}>
+            <Box sx={{ display: 'flex', width: '50%' }}>
               <TextField
                 label="Massa(g)"
                 value={log.weight || loadingMessage}
@@ -152,17 +152,26 @@ export default function LogsDetails() {
                 }}
               />
             </Box>
-                <ButtonBase 
-                sx={{display: 'flex', width: '400px', height:'40px',
-                    backgroundColor: '#ACEA97', borderRadius: '12px', 
-                    mt: '140px', placeholder: '#afd683', color: '#000000', fontSize: '14px'}}>
-                    APROVAR   
-                </ButtonBase>
+            <ButtonBase
+              sx={{
+                display: 'flex',
+                width: '400px',
+                height: '40px',
+                backgroundColor: '#ACEA97',
+                borderRadius: '12px',
+                mt: '140px',
+                placeholder: '#afd683',
+                color: '#000000',
+                fontSize: '14px',
+              }}
+            >
+              APROVAR
+            </ButtonBase>
           </Box>
           <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column' }}>
             <Typography>Foto</Typography>
-            <img src={`data:image/png;base64,${log.photo}`} width={400} height={250} style={{ borderRadius: '20px'}} />
-            <Typography sx={{ mt: 5}}>Localização</Typography>
+            <img src={`data:image/png;base64,${log.photo}`} width={400} height={250} style={{ borderRadius: '20px' }} />
+            <Typography sx={{ mt: 5 }}>Localização</Typography>
 
             {!!log.coordenates && (
               <MapContainer
