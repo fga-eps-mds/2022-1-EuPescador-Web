@@ -16,9 +16,9 @@ export async function UpdateFishLog(
   admin: boolean,
   superAdmin: boolean,
   visible: boolean,
+  token?: string
 ) {
   const userId = await localStorage.getItem('@eupescador/userId')
-  const token = await localStorage.getItem('@eupescador/token')
   const userToken = `Bearer ${token}`
   let photo = null
   let reviewedBy = null

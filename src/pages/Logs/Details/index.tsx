@@ -47,9 +47,11 @@ export default function LogsDetails() {
     }
   }, [id])
 
-  const atualizaLog = () => {
-    const dadinhos = UpdateFishLog(id, log.name, log.largeGroup, log.group, log.species, (log.coordenates.latitude).toString(), (log.coordenates.longitude).toString(), log.photo, log.length, log.weight, log.reviewed, true, true, true)
+  const atualizaLog = async () => {
+    const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
+    const dadinhos = await UpdateFishLog(id, log.name, log.largeGroup, log.group, log.species, (log.coordenates.latitude).toString(), (log.coordenates.longitude).toString(), log.photo, log.length, log.weight, log.reviewed, true, true, true, user.token)
     console.log(dadinhos)
+    routeChange()
   }
 
 
@@ -178,7 +180,7 @@ export default function LogsDetails() {
                 }}
               />
             </Box>
-            <Box sx={{ display: 'flex', width: '50%', mt: 15, ml: 0 }}>
+            <Box sx={{ display: 'flex', width: '50%', mt: 10, ml: 0 }}>
               <button className="btn-save" onClick={atualizaLog}>SALVAR</button>
               <button className="btn-cancel" onClick={routeChange}>CANCELAR</button>
             </Box>
