@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { Grid, Box, TextField, Typography } from '@mui/material'
+import { Grid, Box, TextField, Typography, ButtonBase, Button } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Header, { UserProps } from '~components/Header'
@@ -152,6 +152,11 @@ export default function LogsDetails() {
                 }}
               />
             </Box>
+                <ButtonBase sx={{display: 'flex', width: '400px', height:'40px', backgroundColor: '#ACEA97', borderRadius: '12px', mt: '140px'}}>
+                  <Button sx={{color: '#000000', fontStyle: 'bold'}} >
+                    Aprovar
+                    </Button>
+                </ButtonBase>
           </Box>
           <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column' }}>
             <Typography>Foto</Typography>
@@ -163,7 +168,7 @@ export default function LogsDetails() {
                 center={[log.coordenates.latitude, log.coordenates.longitude]}
                 zoom={13}
                 scrollWheelZoom
-                style={{ height: '40vh', borderRadius: '20px solid'}}
+                style={{ height: '40vh' }}
               >
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
