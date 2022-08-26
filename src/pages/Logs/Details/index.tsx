@@ -49,7 +49,7 @@ export default function LogsDetails() {
 
   const atualizaLog = async () => {
     const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
-    const dadinhos = await UpdateFishLog(id, log.name, log.largeGroup, log.group, log.species, (log.coordenates.latitude).toString(), (log.coordenates.longitude).toString(), log.photo, log.length, log.weight, log.reviewed, true, true, true, user.token)
+    const dadinhos = await UpdateFishLog(id, log.name, log.largeGroup, log.group, log.species, log.coordenates.latitude ? (log.coordenates.latitude).toString() : null, log.coordenates.longitude ? (log.coordenates.longitude).toString() : null, log.photo, log.length, log.weight, log.reviewed, true, true, true, user.token)
     console.log(dadinhos)
     routeChange()
   }
