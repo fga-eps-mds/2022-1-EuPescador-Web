@@ -8,6 +8,7 @@ import Header, { UserProps } from '~components/Header'
 import Sidebar from '../../../components/Sidebar'
 import { GetOneFishLog } from '../../../services/api/fishLogServices/getOneFishLog'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import '../../../assets/styles/DetailsButtons.css'
 
 export interface FishLogProps {
   coordenates: {
@@ -44,6 +45,10 @@ export default function LogsDetails() {
       getLog(id)
     }
   }, [id])
+
+  // const handleSaveButton = () => {}
+
+  // const handleCancelButton = () => {}
 
   return (
     <Grid container>
@@ -152,6 +157,10 @@ export default function LogsDetails() {
                 }}
               />
             </Box>
+            <Box sx={{ display: 'flex', width: '50%', mt: 15, ml: 0 }}>
+              <button className="btn-save">SALVAR</button>
+              <button className="btn-cancel">CANCELAR</button>
+            </Box>
           </Box>
           <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column' }}>
             <Typography sx={{ mb: 1, fontWeight: 'bold' }}>Foto:</Typography>
@@ -159,7 +168,7 @@ export default function LogsDetails() {
 
             <Typography sx={{ mt: 5, mb: 1, fontWeight: 'bold' }}>Localização:</Typography>
 
-            {(log.coordenates && log.coordenates.latitude && log.coordenates.longitude) ? (
+            {log.coordenates && log.coordenates.latitude && log.coordenates.longitude ? (
               <MapContainer
                 center={[log.coordenates.latitude, log.coordenates.longitude]}
                 zoom={13}
@@ -174,11 +183,11 @@ export default function LogsDetails() {
                   <Popup>Esta é a localização do {log.name}</Popup>
                 </Marker>
               </MapContainer>
-            ) :
+            ) : (
               <Box sx={{ display: 'flex' }}>
                 <Typography sx={{ ml: 5, mt: 2, mb: 1, fontWeight: 'light' }}>Sem Localização</Typography>
               </Box>
-            }
+            )}
           </Box>
         </Box>
       </Grid>
