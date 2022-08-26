@@ -4,6 +4,10 @@ on:
   push:
     tags:
       - 'v*'
+
+  pull_request:
+    types: [opened, closed]
+
 jobs:
   build:
     runs-on: ubuntu-latest
