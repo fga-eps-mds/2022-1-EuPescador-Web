@@ -13,8 +13,8 @@ export async function UpdateFishLog(
   length: string | undefined,
   weight: string | undefined,
   reviewed: boolean | undefined,
-  admin: Boolean,
-  superAdmin: Boolean,
+  admin: boolean,
+  superAdmin: boolean,
   visible: boolean,
 ) {
   const userId = await localStorage.getItem('@eupescador/userId')

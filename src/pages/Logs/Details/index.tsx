@@ -3,12 +3,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Grid, Box, TextField, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import Header, { UserProps } from '~components/Header'
 import Sidebar from '../../../components/Sidebar'
 import { GetOneFishLog } from '../../../services/api/fishLogServices/getOneFishLog'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import '../../../assets/styles/DetailsButtons.css'
+import { UpdateFishLog } from '~services/api/fishLogServices/updateFishLog'
 
 export interface FishLogProps {
   coordenates: {
@@ -22,8 +23,8 @@ export interface FishLogProps {
   photo: string | null
   reviewed: boolean
   species: string
-  length: number
-  weight: number
+  length: string
+  weight: string
 }
 
 export default function LogsDetails() {
@@ -46,16 +47,17 @@ export default function LogsDetails() {
     }
   }, [id])
 
-  // const handleSaveButton = () => {}
+  const atualizaLog = () => {
+    const dadinhos = UpdateFishLog(id, log.name, log.largeGroup, log.group, log.species, (log.coordenates.latitude).toString(), (log.coordenates.longitude).toString(), log.photo, log.length, log.weight, log.reviewed, true, true, true)
+    console.log(dadinhos)
+  }
 
-  // const handleCancelButton = () => {}
 
-  const [newName, setNewName] = useState('')
-  const [newLargeGroup, setNewLargeGroup] = useState('')
-  const [newGroup, setNewGroup] = useState('')
-  const [newSpecies, setNewSpecies] = useState('')
-  const [newWeight, setNewWeight] = useState('')
-  const [newLength, setNewLength] = useState('')
+  const navigate = useNavigate()
+  const routeChange = () => {
+    const path = '/logs'
+    navigate(path)
+  }
 
   return (
     <Grid container>
@@ -73,7 +75,7 @@ export default function LogsDetails() {
               name="name"
               defaultValue={log.name || loadingMessage}
               key={log.name}
-              onChange={(e) => setNewName(e.target.value)}
+              onChange={(e) => log.name = e.target.value}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -92,7 +94,7 @@ export default function LogsDetails() {
               name="largeGroup"
               defaultValue={log.largeGroup || loadingMessage}
               key={log.largeGroup}
-              onChange={(e) => setNewLargeGroup(e.target.value)}
+              onChange={(e) => log.largeGroup = e.target.value}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -111,7 +113,7 @@ export default function LogsDetails() {
               name="group"
               defaultValue={log.group || loadingMessage}
               key={log.group}
-              onChange={(e) => setNewGroup(e.target.value)}
+              onChange={(e) => log.group = e.target.value}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -130,7 +132,7 @@ export default function LogsDetails() {
               name="species"
               defaultValue={log.species || loadingMessage}
               key={log.species}
-              onChange={(e) => setNewSpecies(e.target.value)}
+              onChange={(e) => log.species = e.target.value}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -147,7 +149,7 @@ export default function LogsDetails() {
                 label="Massa(g)"
                 defaultValue={log.weight || loadingMessage}
                 key={log.weight}
-                onChange={(e) => setNewWeight(e.target.value)}
+                onChange={(e) => log.weight = e.target.value}
                 sx={{ mr: 4 }}
                 InputLabelProps={{
                   style: { color: '#111111' },
@@ -164,7 +166,7 @@ export default function LogsDetails() {
                 name="length"
                 defaultValue={log.length || loadingMessage}
                 key={log.length}
-                onChange={(e) => setNewLength(e.target.value)}
+                onChange={(e) => log.length = e.target.value}
                 InputLabelProps={{
                   style: { color: '#111111' },
                 }}
@@ -177,8 +179,8 @@ export default function LogsDetails() {
               />
             </Box>
             <Box sx={{ display: 'flex', width: '50%', mt: 15, ml: 0 }}>
-              <button className="btn-save">SALVAR</button>
-              <button className="btn-cancel">CANCELAR</button>
+              <button className="btn-save" onClick={atualizaLog}>SALVAR</button>
+              <button className="btn-cancel" onClick={routeChange}>CANCELAR</button>
             </Box>
           </Box>
           <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column' }}>
