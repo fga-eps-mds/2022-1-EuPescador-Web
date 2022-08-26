@@ -97,7 +97,8 @@ export default function FishLogs() {
           })}
           onDelete={(fishLog) => handleClickOpen(`${fishLog.id}`)}
         />
-
+      
+      </Grid>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -119,7 +120,6 @@ export default function FishLogs() {
           </Button>
         </DialogActions>
       </Dialog>
-      </Grid>
     </Grid>
   )
 }
