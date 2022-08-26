@@ -13,14 +13,14 @@ export async function UpdateFishLog(
   length: string | undefined,
   weight: string | undefined,
   reviewed: boolean | undefined,
-  admin: Boolean,
-  superAdmin: Boolean,
+  admin: boolean,
+  superAdmin: boolean,
   visible: boolean,
+  token?: string
 ) {
-  const userId = await localStorage.getItem('@eupescador/userId')
-  const token = await localStorage.getItem('@eupescador/token')
+  const userId = localStorage.getItem('@eupescador/userId')
   const userToken = `Bearer ${token}`
-  let photo = null
+  let photo = ''
   let reviewedBy = null
 
   if (admin || superAdmin) reviewedBy = userId
@@ -31,6 +31,8 @@ export async function UpdateFishLog(
   }
   if (photoString) {
     photo = photoString
+  } else {
+    photo = null
   }
   const res: ResI = await fishLogService.patch(
     `/fishLog/${log_id}`,

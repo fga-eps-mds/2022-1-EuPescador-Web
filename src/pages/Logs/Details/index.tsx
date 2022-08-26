@@ -3,11 +3,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Grid, Box, TextField, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import Header, { UserProps } from '~components/Header'
 import Sidebar from '../../../components/Sidebar'
 import { GetOneFishLog } from '../../../services/api/fishLogServices/getOneFishLog'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import '../../../assets/styles/DetailsButtons.css'
+import { UpdateFishLog } from '~services/api/fishLogServices/updateFishLog'
 
 export interface FishLogProps {
   coordenates: {
@@ -21,8 +23,8 @@ export interface FishLogProps {
   photo: string | null
   reviewed: boolean
   species: string
-  length: number
-  weight: number
+  length: string
+  weight: string
 }
 
 export default function LogsDetails() {
@@ -45,6 +47,20 @@ export default function LogsDetails() {
     }
   }, [id])
 
+  const atualizaLog = async () => {
+    const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
+    const dadinhos = await UpdateFishLog(id, log.name, log.largeGroup, log.group, log.species, log.coordenates.latitude ? (log.coordenates.latitude).toString() : null, log.coordenates.longitude ? (log.coordenates.longitude).toString() : null, log.photo, log.length, log.weight, log.reviewed, true, true, true, user.token)
+    console.log(dadinhos)
+    routeChange()
+  }
+
+
+  const navigate = useNavigate()
+  const routeChange = () => {
+    const path = '/logs'
+    navigate(path)
+  }
+
   return (
     <Grid container>
       <Grid item xs={1}>
@@ -59,7 +75,9 @@ export default function LogsDetails() {
               fullWidth
               label="Nome"
               name="name"
-              value={log.name || loadingMessage}
+              defaultValue={log.name || loadingMessage}
+              key={log.name}
+              onChange={(e) => log.name = e.target.value}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -76,7 +94,9 @@ export default function LogsDetails() {
               fullWidth
               label="Classe"
               name="largeGroup"
-              value={log.largeGroup || loadingMessage}
+              defaultValue={log.largeGroup || loadingMessage}
+              key={log.largeGroup}
+              onChange={(e) => log.largeGroup = e.target.value}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -93,7 +113,9 @@ export default function LogsDetails() {
               fullWidth
               label="Ordem"
               name="group"
-              value={log.group || loadingMessage}
+              defaultValue={log.group || loadingMessage}
+              key={log.group}
+              onChange={(e) => log.group = e.target.value}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -110,7 +132,9 @@ export default function LogsDetails() {
               fullWidth
               label=" Espécie"
               name="species"
-              value={log.species || loadingMessage}
+              defaultValue={log.species || loadingMessage}
+              key={log.species}
+              onChange={(e) => log.species = e.target.value}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -125,7 +149,9 @@ export default function LogsDetails() {
             <Box sx={{ display: 'flex', width: '50%', mt: 2 }}>
               <TextField
                 label="Massa(g)"
-                value={log.weight || loadingMessage}
+                defaultValue={log.weight || loadingMessage}
+                key={log.weight}
+                onChange={(e) => log.weight = e.target.value}
                 sx={{ mr: 4 }}
                 InputLabelProps={{
                   style: { color: '#111111' },
@@ -140,7 +166,9 @@ export default function LogsDetails() {
               <TextField
                 label="Tamanho(Cm)"
                 name="length"
-                value={log.length || loadingMessage}
+                defaultValue={log.length || loadingMessage}
+                key={log.length}
+                onChange={(e) => log.length = e.target.value}
                 InputLabelProps={{
                   style: { color: '#111111' },
                 }}
@@ -152,6 +180,10 @@ export default function LogsDetails() {
                 }}
               />
             </Box>
+            <Box sx={{ display: 'flex', width: '50%', mt: 10, ml: 0 }}>
+              <button className="btn-save" onClick={atualizaLog}>SALVAR</button>
+              <button className="btn-cancel" onClick={routeChange}>CANCELAR</button>
+            </Box>
           </Box>
           <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column' }}>
             <Typography sx={{ mb: 1, fontWeight: 'bold' }}>Foto:</Typography>
@@ -159,7 +191,7 @@ export default function LogsDetails() {
 
             <Typography sx={{ mt: 5, mb: 1, fontWeight: 'bold' }}>Localização:</Typography>
 
-            {(log.coordenates && log.coordenates.latitude && log.coordenates.longitude) ? (
+            {log.coordenates && log.coordenates.latitude && log.coordenates.longitude ? (
               <MapContainer
                 center={[log.coordenates.latitude, log.coordenates.longitude]}
                 zoom={13}
@@ -174,11 +206,11 @@ export default function LogsDetails() {
                   <Popup>Esta é a localização do {log.name}</Popup>
                 </Marker>
               </MapContainer>
-            ) :
+            ) : (
               <Box sx={{ display: 'flex' }}>
                 <Typography sx={{ ml: 5, mt: 2, mb: 1, fontWeight: 'light' }}>Sem Localização</Typography>
               </Box>
-            }
+            )}
           </Box>
         </Box>
       </Grid>
