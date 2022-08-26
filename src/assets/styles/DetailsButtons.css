@@ -1,0 +1,28 @@
+.btn-save {
+  border: solid 1px #c4c4c4;
+  border-radius: 25px;
+  color: #111111;
+  width: 45%;
+  padding: 15px;
+  background-color: #e3f2fd;
+  font-size: 14px;
+}
+
+.btn-cancel {
+  margin-left: 50px;
+  border: solid 1px #c4c4c4;
+  border-radius: 25px;
+  color: #111111;
+  width: 45%;
+  padding: 20px;
+  background-color: #e3f2fd;
+  font-size: 14px;
+}
+
+.btn-save:hover {
+  background-color: #d7ffd2;
+}
+
+.btn-cancel:hover {
+  background-color: #fde3e3;
+}
