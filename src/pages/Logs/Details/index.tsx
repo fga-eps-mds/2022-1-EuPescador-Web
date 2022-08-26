@@ -207,11 +207,11 @@ export default function LogsDetails() {
             <Button
               sx={{
                 display: 'flex',
-                width: '400px',
+                width: '50%',
                 height: '40px',
                 backgroundColor: '#ACEA97',
                 borderRadius: '12px',
-                mt: '140px',
+                mt: 2,
                 color: '#000000',
                 fontSize: '14px',
                 fontWeight: '',
@@ -221,7 +221,7 @@ export default function LogsDetails() {
             </Button>
           </Box>
           <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column' }}>
-            <Typography>Foto</Typography>
+            <Typography sx={{ mb: 1, fontWeight: 'bold' }}>Foto:</Typography>
             {log.photo ? (
               <img
                 src={`data:image/png;base64,${log.photo}`}
@@ -232,10 +232,6 @@ export default function LogsDetails() {
             ) : (
               <Alert severity="info">Opa, parece que este registro não possui uma foto.</Alert>
             )}
-          </Box>
-          <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column' }}>
-            <Typography sx={{ mb: 1, fontWeight: 'bold' }}>Foto:</Typography>
-            <img src={`data:image/png;base64,${log.photo}`} width={400} height={250} style={{ borderRadius: '20px' }} />
 
             <Typography sx={{ mt: 5, mb: 1, fontWeight: 'bold' }}>Localização:</Typography>
 
