@@ -10,6 +10,8 @@ import { GetOneFishLog } from '../../../services/api/fishLogServices/getOneFishL
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import '../../../assets/styles/DetailsButtons.css'
 import { UpdateFishLog } from '~services/api/fishLogServices/updateFishLog'
+import { ReviewFishLog } from '~services/api/fishLogServices/reviewFishLog'
+import { toast } from 'react-toastify'
 
 export interface FishLogProps {
   coordenates: {
@@ -34,7 +36,6 @@ export default function LogsDetails() {
   const getLog = async (logId: string) => {
     const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
     const data = await GetOneFishLog(logId, user.token)
-    console.log(data)
     setLog(data)
   }
 
@@ -60,7 +61,7 @@ export default function LogsDetails() {
       log.photo,
       log.length,
       log.weight,
-      log.reviewed,
+      false,
       true,
       true,
       true,
@@ -74,6 +75,20 @@ export default function LogsDetails() {
   const routeChange = () => {
     const path = '/logs'
     navigate(path)
+  }
+
+  const handleReviewLog = async () => {
+    try {
+      const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
+      await ReviewFishLog(id, log.name, user.token)
+      toast.success('Registro aprovado com sucesso!')
+      setLog({
+        ...log,
+        reviewed: true,
+      })
+    } catch (error) {
+      toast.error('Algo deu errado, tente novamente!')
+    }
   }
 
   return (
@@ -204,21 +219,24 @@ export default function LogsDetails() {
                 CANCELAR
               </button>
             </Box>
-            <Button
-              sx={{
-                display: 'flex',
-                width: '50%',
-                height: '40px',
-                backgroundColor: '#ACEA97',
-                borderRadius: '12px',
-                mt: 2,
-                color: '#000000',
-                fontSize: '14px',
-                fontWeight: '',
-              }}
-            >
-              APROVAR
-            </Button>
+            {!log.reviewed && (
+              <Button
+                onClick={handleReviewLog}
+                sx={{
+                  display: 'flex',
+                  width: '50%',
+                  height: '40px',
+                  backgroundColor: '#ACEA97',
+                  borderRadius: '12px',
+                  mt: 2,
+                  color: '#000000',
+                  fontSize: '14px',
+                  fontWeight: '',
+                }}
+              >
+                APROVAR
+              </Button>
+            )}
           </Box>
           <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column' }}>
             <Typography sx={{ mb: 1, fontWeight: 'bold' }}>Foto:</Typography>
