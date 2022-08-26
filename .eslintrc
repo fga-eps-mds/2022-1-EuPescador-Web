@@ -9,7 +9,13 @@
     "plugin:react/jsx-runtime"
   ],
   "parser": "@typescript-eslint/parser",
-  "plugins": ["jest", "prettier", "import", "@typescript-eslint", "react-hooks"],
+  "plugins": [
+    "jest",
+    "prettier",
+    "import",
+    "@typescript-eslint",
+    "react-hooks"
+  ],
   "env": {
     "browser": true,
     "es2021": true,
@@ -23,15 +29,36 @@
     "sourceType": "module"
   },
   "rules": {
-    "semi": ["error", "never"],
+    "semi": [
+      "error",
+      "never"
+    ],
     "@typescript-eslint/no-unsafe-member-access": "off",
-    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-    "@typescript-eslint/no-misused-promises": ["error", { "checksVoidReturn": false }],
+    "react/jsx-filename-extension": [
+      2,
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    ],
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ],
     "react/react-in-jsx-scope": "off"
   },
   "settings": {
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
+      "@typescript-eslint/parser": [
+        ".ts",
+        ".tsx"
+      ]
     },
     "import/resolver": {
       "typescript": {
@@ -39,5 +66,9 @@
       }
     }
   },
-  "ignorePatterns": ["src/utils/test-utils.jsx", "src/utils/setupTests.js", "config-overrides.js"]
+  "ignorePatterns": [
+    "src/utils/test-utils.jsx",
+    "src/utils/setupTests.js",
+    "config-overrides.js"
+  ]
 }
