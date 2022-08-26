@@ -61,7 +61,7 @@ export default function LogsDetails() {
       log.photo,
       log.length,
       log.weight,
-      false,
+      log.reviewed,
       true,
       true,
       true,
