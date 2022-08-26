@@ -50,6 +50,13 @@ export default function LogsDetails() {
 
   // const handleCancelButton = () => {}
 
+  const [newName, setNewName] = useState('')
+  const [newLargeGroup, setNewLargeGroup] = useState('')
+  const [newGroup, setNewGroup] = useState('')
+  const [newSpecies, setNewSpecies] = useState('')
+  const [newWeight, setNewWeight] = useState('')
+  const [newLength, setNewLength] = useState('')
+
   return (
     <Grid container>
       <Grid item xs={1}>
@@ -64,7 +71,9 @@ export default function LogsDetails() {
               fullWidth
               label="Nome"
               name="name"
-              value={log.name || loadingMessage}
+              defaultValue={log.name || loadingMessage}
+              key={log.name}
+              onChange={(e) => setNewName(e.target.value)}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -81,7 +90,9 @@ export default function LogsDetails() {
               fullWidth
               label="Classe"
               name="largeGroup"
-              value={log.largeGroup || loadingMessage}
+              defaultValue={log.largeGroup || loadingMessage}
+              key={log.largeGroup}
+              onChange={(e) => setNewLargeGroup(e.target.value)}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -98,7 +109,9 @@ export default function LogsDetails() {
               fullWidth
               label="Ordem"
               name="group"
-              value={log.group || loadingMessage}
+              defaultValue={log.group || loadingMessage}
+              key={log.group}
+              onChange={(e) => setNewGroup(e.target.value)}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -115,7 +128,9 @@ export default function LogsDetails() {
               fullWidth
               label=" Espécie"
               name="species"
-              value={log.species || loadingMessage}
+              defaultValue={log.species || loadingMessage}
+              key={log.species}
+              onChange={(e) => setNewSpecies(e.target.value)}
               InputLabelProps={{
                 style: { color: '#111111' },
               }}
@@ -130,7 +145,9 @@ export default function LogsDetails() {
             <Box sx={{ display: 'flex', width: '50%', mt: 2 }}>
               <TextField
                 label="Massa(g)"
-                value={log.weight || loadingMessage}
+                defaultValue={log.weight || loadingMessage}
+                key={log.weight}
+                onChange={(e) => setNewWeight(e.target.value)}
                 sx={{ mr: 4 }}
                 InputLabelProps={{
                   style: { color: '#111111' },
@@ -145,7 +162,9 @@ export default function LogsDetails() {
               <TextField
                 label="Tamanho(Cm)"
                 name="length"
-                value={log.length || loadingMessage}
+                defaultValue={log.length || loadingMessage}
+                key={log.length}
+                onChange={(e) => setNewLength(e.target.value)}
                 InputLabelProps={{
                   style: { color: '#111111' },
                 }}
