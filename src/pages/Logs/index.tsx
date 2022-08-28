@@ -3,8 +3,9 @@ import Header, { UserProps } from '~components/Header'
 import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
 import { useEffect, useState } from 'react'
-import GetAllFishLogs from '~services/api/fishLogServices/getAllLogs'
+import GetAllFishLogs from '~services/api/fishLogServices/getAllFishLogs'
 import { useNavigate } from 'react-router-dom'
+import { DeleteFishLog } from '~services/api/fishLogServices/deleteFishLog'
 
 export default function FishLogs() {
   const [logs, setLogs] = useState([])
@@ -65,38 +66,6 @@ export default function FishLogs() {
     },
   ]
 
-  const rows = [
-    {
-      id: 1,
-      name: 'Piabinha 1',
-      largeGroup: 'Cascudos',
-      group: 'Cascudos grandes',
-      species: 'Hypostomus plecostomus',
-      weight: 20,
-      lenght: 10,
-      reviewed: 'aprovado',
-    },
-    {
-      id: 2,
-      name: 'Piabinha 2',
-      largeGroup: 'Cascudos',
-      group: 'Cascudos grandes',
-      species: 'Hypancistrus sp.',
-      weight: 32,
-      lenght: 30,
-      reviewed: 'pendente',
-    },
-    {
-      id: 3,
-      name: 'Piabinha 3',
-      largeGroup: 'Cascudos',
-      group: 'Cascudos grandes',
-      species: 'Panaque nigrolineatus',
-      weight: 12,
-      lenght: 123,
-      reviewed: 'pendente',
-    },
-  ]
   return (
     <Grid container>
       <Grid item xs={1}>
@@ -107,7 +76,7 @@ export default function FishLogs() {
         <TableComponent
           columns={columns}
           rows={logs || []}
-          onDelete={(row) => console.log(row)}
+         // onDelete={(row: {id: string}) => DeleteFishLog(???)}
           onEdit={(row: { id: string }) => navigate(`/logs/${row.id}`)}
         />
       </Grid>

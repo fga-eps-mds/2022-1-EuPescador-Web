@@ -5,7 +5,7 @@ import TableComponent from '~components/Table'
 import { GetAllUsers, UserI } from '~services/api/userServices/getAllUsers'
 import { useEffect, useState } from 'react'
 import { ResI } from '~services/api/interfaces'
-import { deleteUser } from '~services/api/adminServices/deleteUser'
+import { deleteUser } from '~services/api/userServices/deleteUser'
 import { useNavigate } from 'react-router-dom'
 
 export default function User() {
