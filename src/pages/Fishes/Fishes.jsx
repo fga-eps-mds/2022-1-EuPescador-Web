@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material'
 import Header from '~components/Header'
-import Sidebar from '../components/Sidebar'
+import Sidebar from '../../components/Sidebar'
 
 const Fishes = () => {
   return (
