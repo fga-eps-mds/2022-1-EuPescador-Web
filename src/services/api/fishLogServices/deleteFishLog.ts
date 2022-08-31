@@ -1,19 +1,26 @@
+import { UserProps } from '~components/Header'
 import { ResI } from '../interfaces'
 import { fishLogService } from './fishLogService'
 
-export async function DeleteFishLog(logId: string) {
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+export async function deleteFishLog(logId: string) {
+  const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
+
   try {
-    const userSuperAdmin = localStorage.getItem('@eupescador/userSuperAdmin')
-    
-    if (userSuperAdmin === 'true') {
-      const token = 'admToken'
-      const superAdminToken = `Bearer ${token}`
-      const res: ResI = await fishLogService.delete(`/fishLog/${logId}`, { 
-    headers: { Authorization: superAdminToken } 
-    })
-    return res.data
+    if (user.admin) {
+
+      console.log(user.name)
+
+      const token = user.token
+      const adminToken = `Bearer ${token}`
+
+      const res: ResI = await fishLogService.delete(`/fishLog/${logId}`, { headers: 
+        { Authorization: adminToken } 
+      })
+      return res.status
     } else {
-      console.log('Deu errado')
+      console.log('Usuario nao administrador')
     }
   } catch (error) {
     console.error(error)

@@ -3,9 +3,9 @@ import Header, { UserProps } from '~components/Header'
 import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
 import { useEffect, useState } from 'react'
-import GetAllFishLogs from '~services/api/fishLogServices/getAllFishLogs'
 import { useNavigate } from 'react-router-dom'
-import { DeleteFishLog } from '~services/api/fishLogServices/deleteFishLog'
+import GetAllFishLogs from '~services/api/fishLogServices/GetAllFishLogs'
+import { deleteFishLog } from '~services/api/fishLogServices/deleteFishLog'
 
 export default function FishLogs() {
   const [logs, setLogs] = useState([])
@@ -76,7 +76,7 @@ export default function FishLogs() {
         <TableComponent
           columns={columns}
           rows={logs || []}
-         // onDelete={(row: {id: string}) => DeleteFishLog(???)}
+          onDelete={(row: { id: string }) => deleteFishLog(row.id)}
           onEdit={(row: { id: string }) => navigate(`/logs/${row.id}`)}
         />
       </Grid>
