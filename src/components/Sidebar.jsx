@@ -90,7 +90,7 @@ const Sidebar = ({ children }) => {
       return (
         <section className="routes">
           {routesAdmin.map((route) => (
-            <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
+            <NavLink activeclassname="active" to={route.path} key={route.name} className="link">
               <div className="icon">{route.icon}</div>
               <AnimatePresence>
                 {isOpen && (
