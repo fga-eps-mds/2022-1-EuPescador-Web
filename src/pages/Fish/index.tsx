@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid } from '@mui/material'
-import Header, { UserProps } from '~components/Header'
-import Sidebar from '../components/Sidebar'
-import TableComponent from '~components/Table'
-import { GetAllLogs, FishLogI } from 'services/api/fishLogServices/getAllLogs'
-import { useEffect, useState } from 'react'
-import { ResI } from '~services/api/interfaces'
-import { deleteFishLogs } from '~services/api/adminServices/deleteFishLog'
+import Header, { UserProps } from '../../components/Header'
+import Sidebar from '../../components/Sidebar'
+import TableComponent from '../../components/Table'
+import { GetAllLogs, FishLogI } from '../../services/api/fishLogServices/getAllLogs'
+import React, { useEffect, useState } from 'react'
+import { deleteFishLogs } from '../../services/api/adminServices/deleteFishLog'
 import { useNavigate } from 'react-router-dom'
 
 export default function FishLogs() {
@@ -57,9 +56,9 @@ export default function FishLogs() {
     setOpen(false)
   }
 
-  const [logs, setLogs] = useState([])
+  const [logs, setLogs] = useState<FishLogI[]>()
 
-  // const [logs, setLogs] = useState<FishLogI[]>()
+  // const [logs, setLogs] = useState
   // useEffect(() => {
   //   GetAllLogs()
   //     .then((res: FishLogI[]) => {
@@ -70,7 +69,7 @@ export default function FishLogs() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
+      const user: UserProps = JSON.parse(localStorage.getItem('UserData') || '') as UserProps
       const reps = await GetAllLogs(user.token, '')
       setLogs(reps)
     }
