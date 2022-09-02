@@ -56,8 +56,8 @@ export default function TableComponent({ rows, columns, onDelete, onEdit }: Tabl
       >
         <TableHead>
           <TableRow>
-            {columns.map((column) => (
-              <TableCell component="th">{column.label}</TableCell>
+            {columns.map((column, index) => (
+              <TableCell key={index} component="th">{column.label}</TableCell>
             ))}
             {onEdit && <TableCell component="th">Editar</TableCell>}
             {onDelete && <TableCell component="th">Deletar</TableCell>}
@@ -66,8 +66,8 @@ export default function TableComponent({ rows, columns, onDelete, onEdit }: Tabl
         <TableBody>
           {result.map((row, index) => (
             <TableRow key={index}>
-              {row.map((data) => (
-                <TableCell>{data}</TableCell>
+              {row.map((data, index) => (
+                <TableCell key={index}>{data}</TableCell>
               ))}
               {onEdit && (
                 <TableCell>
