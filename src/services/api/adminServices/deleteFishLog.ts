@@ -1,14 +1,25 @@
+import { fishLogService } from '../fishLogServices/fishLogService'
 import { ResI } from '../interfaces'
 import { adminService } from './adminService'
 
-export async function deleteFishLogs(id: string) {
-  try {
-    const userSuperAdmin = localStorage.getItem('@eupescador/userSuperAdmin')
+export interface UserProps {
+  admin: boolean
+  name: string
+  token: string
+  superAdmin: boolean
+}
 
-    if (userSuperAdmin === 'true') {
-      const token = 'admToken'
+export async function deleteFishLogs(id: number) {
+  try {
+    const userData = JSON.parse(localStorage.getItem('UserData')) as UserProps
+    console.log(`Deletar peixe ${id}`)
+    console.log(userData)
+
+    if (userData.superAdmin) {
+      const token = userData.token
       const superAdminToken = `Bearer ${token}`
-      const res: ResI = await adminService.delete(`/admin/${id}`, { headers: { Authorization: superAdminToken } })
+      const res: ResI = await fishLogService.delete(`/fishLog/${id}`, { headers: { Authorization: superAdminToken } })
+      console.log(res)
       return res.status
     } else {
       console.log('Deu errado')

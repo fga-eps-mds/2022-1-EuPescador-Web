@@ -44,13 +44,16 @@ export default function FishLogs() {
   ]
 
   const [open, setOpen] = useState(false)
+  const [idToDelete, setIdToDelete] = useState(-1)
 
-  const handleClickOpen = async (id: string) => {
-    await deleteFishLogs(id)
+
+  const handleClickOpen = (id: number) => {
+    setIdToDelete(id)
     setOpen(true)
   }
 
-  const handleClose = () => {
+  const handleDelete = async () => {
+    await deleteFishLogs(idToDelete)
     setOpen(false)
   }
 
@@ -86,7 +89,7 @@ export default function FishLogs() {
           columns={columns}
           rows={(logs || []).map(fishLog => {
             return {
-              id: fishLog.userId.toString(),
+              id: String(fishLog.id),
               name: fishLog.name,
               largeGroup: fishLog.largeGroup,
               group: fishLog.group,
@@ -95,13 +98,13 @@ export default function FishLogs() {
               weight: fishLog.weight
             }
           })}
-          onDelete={(fishLog) => handleClickOpen(`${fishLog.id}`)}
+          onDelete={(fishLog) => handleClickOpen(Number(fishLog.id))}
         />
-      
+
       </Grid>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
         aria-labelledby="alert-dialog-title-fishLog"
         aria-describedby="alert-dialog-description-fishLog"
       >
@@ -114,8 +117,8 @@ export default function FishLogs() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={() => setOpen(false)}>Cancelar</Button>
+          <Button onClick={handleDelete} autoFocus>
             Confirmar
           </Button>
         </DialogActions>
