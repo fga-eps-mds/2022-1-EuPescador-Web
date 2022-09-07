@@ -12,8 +12,7 @@ const Home = () => {
     latitude: 0,
     longitude: 0,
   })
-  console.log(position)
-  const filteredLogs = logs.filter((log) => log.coordenates.latitude && log.coordenates.longitude)
+
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -26,6 +25,8 @@ const Home = () => {
       toast.info('Geolocation is not supported by this browser.')
     }
   }, [])
+
+  const filteredLogs = logs.filter((log) => log.coordenates.latitude && log.coordenates.longitude)
 
   return (
     <Grid container>
