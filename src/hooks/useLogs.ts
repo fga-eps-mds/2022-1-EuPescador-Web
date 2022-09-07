@@ -18,7 +18,6 @@ export default function useLogs() {
         }
       })
       setLogs(reps)
-      console.log('Data: ', reps)
     }
 
     // call the function
