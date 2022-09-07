@@ -49,7 +49,9 @@ const Home = () => {
             />
             {filteredLogs.map((log) => (
               <Marker position={[log.coordenates.latitude, log.coordenates.longitude]}>
-                <Popup>Esta é a localização do {log.name}</Popup>
+                <Popup>
+                  Esta é a localização do {log.name} com peso {log.weight}Kg e tamanho {log.length}
+                </Popup>
               </Marker>
             ))}
           </MapContainer>
