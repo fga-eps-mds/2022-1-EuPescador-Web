@@ -1,7 +1,7 @@
 import { FishLogProps } from 'pages/Logs/Details'
 import { useEffect, useState } from 'react'
-import { UserProps } from '~components/Header'
-import GetAllFishLogs from '~services/api/fishLogServices/getAllLogs'
+import { UserProps } from '../components/Header'
+import GetAllFishLogs from '../services/api/fishLogServices/GetAllFishLogs'
 
 export default function useLogs() {
   const [logs, setLogs] = useState([] as FishLogProps[])
