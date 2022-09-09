@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'r
 import Fishes from './pages/Fishes/Fishes'
 import Datas from './pages/Datas/Datas'
 import User from './pages/User/User'
-import Home from './pages/Home/Home'
+import Home from './pages/Home'
 import Logs from './pages/Logs/index'
 
 import Login from 'pages/Login'
