@@ -9,8 +9,8 @@ import { toast } from 'react-toastify'
 const Home = () => {
   const { logs } = useLogs()
   const [position, setPosition] = useState({
-    latitude: 0,
-    longitude: 0,
+    latitude: -11,
+    longitude: -48,
   })
 
   useEffect(() => {
