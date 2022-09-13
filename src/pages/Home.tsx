@@ -1,13 +1,16 @@
-import { CircularProgress, Grid } from '@mui/material'
+import { CircularProgress, Grid, IconButton} from '@mui/material'
+import { Edit } from '@mui/icons-material'
 import Header from '~components/Header'
 import Sidebar from '../components/Sidebar'
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { MapContainer, Marker, Popup, TileLayer} from 'react-leaflet'
 import useLogs from 'hooks/useLogs'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
-  const { logs } = useLogs()
+  const navigate = useNavigate()
+  const { logs } = useLogs()  
   const [position, setPosition] = useState({
     latitude: -11,
     longitude: -48,
@@ -50,7 +53,12 @@ const Home = () => {
             {filteredLogs.map((log) => (
               <Marker position={[log.coordenates.latitude, log.coordenates.longitude]}>
                 <Popup>
+                  
                   Esta é a localização do {log.name} com peso {log.weight}Kg e tamanho {log.length}
+
+                  <IconButton onClick = {() => navigate(`/logs/${log.id}`)} color="warning"> 
+                    <Edit />
+                  </IconButton>
                 </Popup>
               </Marker>
             ))}

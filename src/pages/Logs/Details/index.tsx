@@ -14,6 +14,7 @@ import { ReviewFishLog } from '~services/api/fishLogServices/reviewFishLog'
 import { toast } from 'react-toastify'
 
 export interface FishLogProps {
+  id: number
   coordenates: {
     latitude: number
     longitude: number
