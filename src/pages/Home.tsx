@@ -54,8 +54,7 @@ const Home = () => {
               <Marker position={[log.coordenates.latitude, log.coordenates.longitude]}>
                 <Popup>
                   
-                  Esta é a localização do {log.name} com peso {log.weight}Kg e tamanho {log.length}
-
+                  Localização do {log.name}, pesando {log.weight}kg e medindo {log.length}cm.
                   <IconButton onClick = {() => navigate(`/logs/${log.id}`)} color="warning"> 
                     <Edit />
                   </IconButton>
