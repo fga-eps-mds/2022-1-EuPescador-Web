@@ -7,7 +7,7 @@ export default {
   testTimeout: 30000,
   // All imported modules in your tests should be mocked automatically
   // automock: false,
-
+  "testResultsProcessor": "jest-sonar-reporter",
   // Stop running tests after `n` failures
   // bail: 0,
 
