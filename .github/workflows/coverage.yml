@@ -4,8 +4,14 @@ on:
   push:
     branches:
       - devel
+      - main
+  pull_request:
+    types: [opened, closed]
+    branches:
+      - devel
+      - main
 
-name: Main Workflow
+name: Coverage
 jobs:
   sonarcloud:
     runs-on: ubuntu-latest
