@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/home/andre/Documentos/Faculdade/EPS/2022-1-EuPescador-Web/src/services/api/userServices/index.spec.tsx">
+    <testCase name="User Service Test Deve realizar o login" duration="824"/>
+    <testCase name="User Service Test Deve falhar o login" duration="737"/>
+    <testCase name="User Service Test Listar todos os usuarios" duration="681"/>
+  </file>
+  <file path="/home/andre/Documentos/Faculdade/EPS/2022-1-EuPescador-Web/src/services/api/wikiServices/index.spec.tsx">
+    <testCase name="Wiki Service Test Recuperar dados de um peixe" duration="954"/>
+    <testCase name="Wiki Service Test Peixe não existente" duration="768"/>
+    <testCase name="Wiki Service Test Recuperar todos os peixes" duration="847"/>
+  </file>
+  <file path="/home/andre/Documentos/Faculdade/EPS/2022-1-EuPescador-Web/src/components/Table/index.spec.tsx">
+    <testCase name="Table component Should render component" duration="85"/>
+    <testCase name="Table component Should render edit button" duration="79"/>
+    <testCase name="Table component Should render delete button" duration="68"/>
+  </file>
+  <file path="/home/andre/Documentos/Faculdade/EPS/2022-1-EuPescador-Web/src/services/api/fishLogServices/index.spec.tsx">
+    <testCase name="Fish Log Service Test Recuperar todos os logs" duration="6507"/>
+    <testCase name="Fish Log Service Test Recuperar um log" duration="3114"/>
+    <testCase name="Fish Log Service Test Log não existente" duration="1927"/>
+  </file>
+</testExecutions>
