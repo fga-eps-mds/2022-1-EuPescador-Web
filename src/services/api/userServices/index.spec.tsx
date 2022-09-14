@@ -1,5 +1,4 @@
-import axios from 'axios'
-import MockAdapter from 'axios-mock-adapter'
+import { GetAllUsers } from './getAllUsers'
 import { UserLogin } from './login'
 
 describe('User Service Test', () => {
@@ -9,9 +8,16 @@ describe('User Service Test', () => {
       expect(response.data.email).toContain('lulu@gmail.com')
     })
   })
+
   it('Deve falhar o login', async () => {
     await UserLogin('lulu@gmail.com', '1234').catch((error) => {
       expect(error.response.status).toEqual(401)
+    })
+  })
+
+  it('Listar todos os usuarios', async () => {
+    await GetAllUsers().then((res) => {
+      expect(res.length).toBeGreaterThanOrEqual(1)
     })
   })
 })
