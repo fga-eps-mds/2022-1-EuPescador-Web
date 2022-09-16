@@ -1,6 +1,8 @@
 import { UserLogin } from '../userServices/login'
 import GetAllFishLogs from './GetAllFishLogs'
 import { GetOneFishLog } from './getOneFishLog'
+import { UpdateFishLog } from './updateFishLog'
+import { createFishLog } from './createFishLog'
 
 describe('Fish Log Service Test', () => {
   it('Recuperar todos os logs', async () => {
@@ -26,4 +28,22 @@ describe('Fish Log Service Test', () => {
       })
     })
   })
+
+  it('Atualiza um log', async () => {
+    await UserLogin('lulu@gmail.com', '702200').then(async (response) => {
+      await UpdateFishLog("159", "0", "0", "0", "0", "0", "0", "0", "0", "0", false, false, false, false, response.data.token).catch((res) => {
+        console.log(res)
+        expect(res.id).toEqual(159)
+      })
+    })
+  }, 700000)
+
+  it('Atualiza um log sem foto', async () => {
+    await UserLogin('lulu@gmail.com', '702200').then(async (response) => {
+      await UpdateFishLog("159", "0", "0", "0", "0", null, null, null, null, null, false, false, false, false, response.data.token).catch((res) => {
+        expect(res.id).toEqual(159)
+      })
+    })
+  }, 700000)
+
 })
