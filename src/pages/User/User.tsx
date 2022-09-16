@@ -8,8 +8,12 @@ import { ResI } from '~services/api/interfaces'
 import { deleteUser } from '~services/api/userServices/deleteUser'
 import { useNavigate } from 'react-router-dom'
 
-export default function User() {
+export default function User() { 
+  const [users, setUsers] = useState<UserI[]>()
+  const [exclude, setExclude] = useState(-1)
+  const [open, setOpen] = useState(false)
   const navigate = useNavigate()
+  
   const columns = [
     {
       label: 'Nome',
@@ -28,25 +32,37 @@ export default function User() {
       value: 'userSince',
     },
   ]
+//-------------
+const handleClose = () => {
+  setOpen(false)
+  setExclude(-1)
+}
 
-  const [open, setOpen] = useState(false)
+const handeDelete = () => {
+  deleteUser(`${exclude}`)
+  setExclude(-1)
+  setUsers([])
+  fetchData().catch(console.error)
+  setOpen(false)
+}
 
-  const handleClickOpen = async (id: string) => {
-    await deleteUser(id)
-    setOpen(true)
-  }
+const handleOpen = (id) => {
+  setExclude(id)
+  setOpen(true)
+}
 
-  const handleClose = () => {
-    setOpen(false)
-  }
+//-----------
 
-  const [users, setUsers] = useState<UserI[]>()
-  useEffect(() => {
+  const fetchData = async () => {
     GetAllUsers()
       .then((res: UserI[]) => {
-        setUsers(res)
-      })
-      .catch((e) => console.error(e))
+      setUsers(res)
+    })
+  }
+
+  useEffect(() => {
+    fetchData()
+    .catch(console.error)
   }, [])
 
   return (
@@ -67,12 +83,11 @@ export default function User() {
                 userRole: (user.superAdmin ? 'Super Admin' : (user.admin ? 'Admin' : ' Usuário'))
               }
             })}
-            onDelete={(user) => console.log(user.id)}
+            onDelete={(row) => handleOpen(`${row.id}`)}
             onEdit={(row) => navigate(`/usuarios/${row.id}`)}
           />
         ) : (
           <CircularProgress />
-
         )}
 
       </Grid>
@@ -92,7 +107,7 @@ export default function User() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={handeDelete} autoFocus>
             Confirmar
           </Button>
         </DialogActions>
