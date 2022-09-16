@@ -1,13 +1,6 @@
 import { fishLogService } from '../fishLogServices/fishLogService'
 import { ResI } from '../interfaces'
-import { adminService } from './adminService'
-
-export interface UserProps {
-  admin: boolean
-  name: string
-  token: string
-  superAdmin: boolean
-}
+import { UserProps } from '~components/Header'
 
 export async function deleteFishLogs(id: number) {
   try {
