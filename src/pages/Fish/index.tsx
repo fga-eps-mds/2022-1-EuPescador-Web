@@ -1,11 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid } from '@mui/material'
 import Header, { UserProps } from '../../components/Header'
 import Sidebar from '../../components/Sidebar'
 import TableComponent from '../../components/Table'
 import { GetAllLogs, FishLogI } from '../../services/api/fishLogServices/getAllLogs'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { deleteFishLogs } from '../../services/api/adminServices/deleteFishLog'
 import { useNavigate } from 'react-router-dom'
 
@@ -57,15 +55,6 @@ export default function FishLogs() {
   }
 
   const [logs, setLogs] = useState<FishLogI[]>()
-
-  // const [logs, setLogs] = useState
-  // useEffect(() => {
-  //   GetAllLogs()
-  //     .then((res: FishLogI[]) => {
-  //       setLogs(res)
-  //     })
-  //     .catch((e) => console.error(e))
-  // }, [])
 
   useEffect(() => {
     const fetchData = async () => {
