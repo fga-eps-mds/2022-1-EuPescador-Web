@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 
-import Fishes from './pages/Fishes'
-import Datas from './pages/Datas'
+import Fishes from './pages/Fishes/Fishes'
+import Datas from './pages/Datas/Datas'
 import User from './pages/User/User'
 import Home from './pages/Home'
-import Logs from './pages/Logs'
+import Fish from './pages/Fish/index'
 
 import Login from 'pages/Login'
 import Register from 'pages/Register'
@@ -24,7 +24,7 @@ function App() {
       <Route path="/peixes" element={auth ? <Fishes /> : <Navigate replace to="/login" />} />
       <Route path="/dados" element={auth ? <Datas /> : <Navigate replace to="/login" />} />
       <Route path="/usuarios" element={auth ? <User /> : <Navigate replace to="/login" />} />
-      <Route path="/logs" element={auth ? <Logs /> : <Navigate replace to="/login" />} />
+      <Route path="/logs" element={auth ? <Fish /> : <Navigate replace to="/login" />} />
       <Route path="/usuarios/:id" element={auth ? <UserForm /> : <Navigate replace to="/login" />} />
       <Route path="/login" element={auth ? <Login /> : <Login />} />
       <Route path="/register" element={auth ? <Register /> : <Register />} />
