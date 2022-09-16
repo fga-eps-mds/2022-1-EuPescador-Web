@@ -20,4 +20,10 @@ describe('Wiki Service Test', () => {
       expect(response.length).toBeGreaterThanOrEqual(1)
     })
   })
+
+  it('Recuperar todos um peixe', async () => {
+    await GetWikiFishes('1').then((response) => {
+      expect(response.id).toEqual(1)
+    })
+  })
 })
