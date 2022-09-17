@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/components/Header.spec.tsx">
-    <testCase name="Header Component Should render title" duration="66"/>
+  <file path="/home/iancosta/2022-1-EuPescador-Web/src/components/Header.spec.tsx">
+    <testCase name="Header Component Should render title" duration="53"/>
     <testCase name="Header Component Should render avatar" duration="9"/>
-    <testCase name="Header Component Should render username" duration="8"/>
-    <testCase name="Header Component Should render type of user" duration="8"/>
-    <testCase name="Header Component Title color should be default" duration="37"/>
-    <testCase name="Header Component Header Background should be white" duration="13"/>
+    <testCase name="Header Component Should render username" duration="5"/>
+    <testCase name="Header Component Should render type of user" duration="5"/>
+    <testCase name="Header Component Title color should be default" duration="27"/>
+    <testCase name="Header Component Header Background should be white" duration="9"/>
+    <testCase name="Header Component Header should be visible" duration="7"/>
+    <testCase name="Header Component Check if width is 100%" duration="7"/>
+    <testCase name="Header Component Check if font-color is black" duration="7"/>
   </file>
-  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/services/api/wikiServices/index.spec.tsx">
-    <testCase name="Wiki Service Test Recuperar dados de um peixe" duration="771"/>
-    <testCase name="Wiki Service Test Peixe não existente" duration="700"/>
-    <testCase name="Wiki Service Test Recuperar todos os peixes" duration="1012"/>
-  </file>
-  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/components/Table/index.spec.tsx">
-    <testCase name="Table component Should render component" duration="56"/>
-    <testCase name="Table component Should render edit button" duration="50"/>
-    <testCase name="Table component Should render delete button" duration="30"/>
-  </file>
-  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/services/api/userServices/index.spec.tsx">
-    <testCase name="User Service Test Deve realizar o login" duration="7903"/>
+  <file path="/home/iancosta/2022-1-EuPescador-Web/src/services/api/userServices/index.spec.tsx">
+    <testCase name="User Service Test Deve realizar o login" duration="788"/>
     <testCase name="User Service Test Deve falhar o login" duration="705"/>
-    <testCase name="User Service Test Listar todos os usuarios" duration="715"/>
+    <testCase name="User Service Test Listar todos os usuarios" duration="653"/>
   </file>
-  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/services/api/fishLogServices/index.spec.tsx">
-    <testCase name="Fish Log Service Test Recuperar todos os logs" duration="15268"/>
-    <testCase name="Fish Log Service Test Recuperar um log" duration="3184"/>
-    <testCase name="Fish Log Service Test Log não existente" duration="2103"/>
+  <file path="/home/iancosta/2022-1-EuPescador-Web/src/services/api/wikiServices/index.spec.tsx">
+    <testCase name="Wiki Service Test Recuperar dados de um peixe" duration="807"/>
+    <testCase name="Wiki Service Test Peixe não existente" duration="673"/>
+    <testCase name="Wiki Service Test Recuperar todos os peixes" duration="1042"/>
+  </file>
+  <file path="/home/iancosta/2022-1-EuPescador-Web/src/components/Table/index.spec.tsx">
+    <testCase name="Table component Should render component" duration="43"/>
+    <testCase name="Table component Should render edit button" duration="36"/>
+    <testCase name="Table component Should render delete button" duration="22"/>
+  </file>
+  <file path="/home/iancosta/2022-1-EuPescador-Web/src/services/api/fishLogServices/index.spec.tsx">
+    <testCase name="Fish Log Service Test Recuperar todos os logs" duration="5909"/>
+    <testCase name="Fish Log Service Test Recuperar um log" duration="2785"/>
+    <testCase name="Fish Log Service Test Log não existente" duration="1901"/>
   </file>
 </testExecutions>

@@ -36,4 +36,24 @@ describe('Header Component', () => {
     const style = getComputedStyle(element[0])
     expect(style.backgroundColor).toBe('white')
   })
+
+  it('Header should be visible', () => {
+    render(<Header title="Título" />)
+    const element = document.getElementsByClassName('appbar')
+    const style = getComputedStyle(element[0])
+    expect(style.visibility).toBe('visible')
+  })
+
+  it('Check if width is 100%', () => {
+    render(<Header title="Título" />)
+    const element = document.getElementsByClassName('appbar')
+    const style = getComputedStyle(element[0])
+    expect(style.width).toBe('100%')
+  })
+  it('Check if font-color is black', () => {
+    render(<Header title="Título" />)
+    const element = document.getElementsByClassName('appbar')
+    const style = getComputedStyle(element[0])
+    expect(style.color).toBe('black')
+  })
 })
