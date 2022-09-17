@@ -40,6 +40,20 @@ describe('Register page', () => {
     const [avatar] = getAllByTestId('avatar')
     expect(avatar).toBeInTheDocument()
   })
+
+  it('Should render email TextField', () => {
+    render(<Register />)
+    const element = document.getElementsByClassName('textfield')
+    const style = getComputedStyle(element[0])
+    expect(style.visibility).toBe('visible')
+  })
+
+  it('Email TextField background color should be default', () => {
+    render(<Register />)
+    const element = document.getElementsByClassName('textfield')
+    const style = getComputedStyle(element[0])
+    expect(style.backgroundColor).toBe('')
+  })
 })
 
-export {}
+export { }
