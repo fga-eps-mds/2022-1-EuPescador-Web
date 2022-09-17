@@ -27,6 +27,19 @@ describe('Login page', () => {
     const style = getComputedStyle(element)
     expect(style.backgroundColor).toBe('')
   })
+
+  it('Title should be visible', () => {
+    render(<Login />)
+    const element = screen.getByText('Entre na sua conta')
+    const style = getComputedStyle(element)
+    expect(style.visibility).toBe('visible')
+  })
+
+  it('Should render avatar', () => {
+    const { getAllByTestId } = render(<Login />)
+    const [avatar] = getAllByTestId('avatar')
+    expect(avatar).toBeInTheDocument()
+  })
 })
 
-export {}
+export { }
