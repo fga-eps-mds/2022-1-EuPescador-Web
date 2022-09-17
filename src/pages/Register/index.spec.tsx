@@ -28,6 +28,18 @@ describe('Register page', () => {
     expect(style.backgroundColor).toBe('')
   })
 
+  it('Title should be visible', () => {
+    render(<Register />)
+    const element = screen.getByText('Crie sua conta')
+    const style = getComputedStyle(element)
+    expect(style.visibility).toBe('visible')
+  })
+
+  it('Should render avatar', () => {
+    const { getAllByTestId } = render(<Register />)
+    const [avatar] = getAllByTestId('avatar')
+    expect(avatar).toBeInTheDocument()
+  })
 })
 
-export { }
+export {}
