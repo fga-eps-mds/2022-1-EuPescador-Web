@@ -75,6 +75,12 @@ describe('Register page', () => {
     const style = getComputedStyle(element[0])
     expect(style.visibility).toBe('visible')
   })
+  it('Image should be get by url', () => {
+    render(<Register />)
+    const element = document.getElementsByClassName('imagem')
+    const style = getComputedStyle(element[0])
+    expect(style.backgroundImage).toBe('url(https://source.unsplash.com/wcMK9KKbmms)')
+  })
 })
 
-export { }
+export {}
