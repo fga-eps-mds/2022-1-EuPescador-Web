@@ -40,6 +40,20 @@ describe('Login page', () => {
     const [avatar] = getAllByTestId('avatar')
     expect(avatar).toBeInTheDocument()
   })
+
+  it('Should render first TextField', () => {
+    render(<Login />)
+    const element = document.getElementsByClassName('textfield')
+    const style = getComputedStyle(element[0])
+    expect(style.visibility).toBe('visible')
+  })
+
+  it('First TextField background color should be default', () => {
+    render(<Login />)
+    const element = document.getElementsByClassName('textfield')
+    const style = getComputedStyle(element[0])
+    expect(style.backgroundColor).toBe('')
+  })
 })
 
-export { }
+export {}
