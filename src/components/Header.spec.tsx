@@ -29,4 +29,11 @@ describe('Header Component', () => {
     const style = getComputedStyle(element)
     expect(style.backgroundColor).toBe('')
   })
+
+  it('Header Background should be white', () => {
+    render(<Header title="Título" />)
+    const element = document.getElementsByClassName('appbar')
+    const style = getComputedStyle(element[0])
+    expect(style.backgroundColor).toBe('white')
+  })
 })
