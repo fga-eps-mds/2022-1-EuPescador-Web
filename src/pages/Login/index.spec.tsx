@@ -68,6 +68,13 @@ describe('Login page', () => {
     const style = getComputedStyle(element[1])
     expect(style.backgroundColor).toBe('')
   })
+
+  it('Image should be visible', () => {
+    render(<Login />)
+    const element = document.getElementsByClassName('imagem')
+    const style = getComputedStyle(element[0])
+    expect(style.visibility).toBe('visible')
+  })
 })
 
-export { }
+export {}
