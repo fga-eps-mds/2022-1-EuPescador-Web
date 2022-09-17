@@ -13,4 +13,9 @@ describe('Header Component', () => {
     expect(avatar).toBeInTheDocument()
   })
 
+  it('Should render username', () => {
+    const { getByText } = render(<Header title="Título" />)
+    expect(getByText('Nome')).toBeInTheDocument()
+  })
+
 })
