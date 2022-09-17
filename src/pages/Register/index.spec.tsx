@@ -54,6 +54,20 @@ describe('Register page', () => {
     const style = getComputedStyle(element[0])
     expect(style.backgroundColor).toBe('')
   })
+
+  it('Should render password TextField', () => {
+    render(<Register />)
+    const element = document.getElementsByClassName('textfield')
+    const style = getComputedStyle(element[1])
+    expect(style.visibility).toBe('visible')
+  })
+
+  it('Password TextField background color should be default', () => {
+    render(<Register />)
+    const element = document.getElementsByClassName('textfield')
+    const style = getComputedStyle(element[1])
+    expect(style.backgroundColor).toBe('')
+  })
 })
 
-export { }
+export {}
