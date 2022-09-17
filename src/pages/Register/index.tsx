@@ -61,6 +61,7 @@ export default function Register() {
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
+              className='textfield'
               margin="normal"
               required
               fullWidth
@@ -80,6 +81,7 @@ export default function Register() {
               }}
             />
             <TextField
+              className='textfield'
               margin="normal"
               required
               fullWidth

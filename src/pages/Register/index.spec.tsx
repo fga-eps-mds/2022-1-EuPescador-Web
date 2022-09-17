@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import Register from '.'
 
 jest.mock('react-router-dom')
@@ -13,6 +13,21 @@ describe('Register page', () => {
     expect(getByText('Crie sua conta')).toBeInTheDocument()
     expect(registerButton).toBeInTheDocument()
   })
+
+  it('Login button should be render', () => {
+    render(<Register />)
+    const element = screen.getByText('Já tem uma conta?')
+    const style = getComputedStyle(element)
+    expect(style.visibility).toBe('visible')
+  })
+
+  it('Title color should be default', () => {
+    render(<Register />)
+    const element = screen.getByText('Crie sua conta')
+    const style = getComputedStyle(element)
+    expect(style.backgroundColor).toBe('')
+  })
+
 })
 
-export {}
+export { }
