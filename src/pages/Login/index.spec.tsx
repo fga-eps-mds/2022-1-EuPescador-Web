@@ -75,6 +75,13 @@ describe('Login page', () => {
     const style = getComputedStyle(element[0])
     expect(style.visibility).toBe('visible')
   })
+
+  it('Image should be get by url', () => {
+    render(<Login />)
+    const element = document.getElementsByClassName('imagem')
+    const style = getComputedStyle(element[0])
+    expect(style.backgroundImage).toBe('url(https://source.unsplash.com/qsHDqcJzHOA)')
+  })
 })
 
-export {}
+export { }
