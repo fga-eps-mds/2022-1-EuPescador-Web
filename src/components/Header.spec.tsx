@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import Header from './Header'
 
 describe('Header Component', () => {
@@ -21,5 +21,12 @@ describe('Header Component', () => {
   it('Should render type of user', () => {
     const { getByText } = render(<Header title="Título" />)
     expect(getByText('Usuário')).toBeInTheDocument()
+  })
+
+  it('Title color should be default', () => {
+    render(<Header title="Título" />)
+    const element = screen.getByText('Título')
+    const style = getComputedStyle(element)
+    expect(style.backgroundColor).toBe('')
   })
 })

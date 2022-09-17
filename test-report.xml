@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
   <file path="/home/iancosta/2022-1-EuPescador-Web/src/components/Header.spec.tsx">
-    <testCase name="Header Component Should render title" duration="59"/>
+    <testCase name="Header Component Should render title" duration="47"/>
+    <testCase name="Header Component Should render avatar" duration="7"/>
+    <testCase name="Header Component Should render username" duration="6"/>
+    <testCase name="Header Component Should render type of user" duration="8"/>
+    <testCase name="Header Component Title color should be default" duration="28"/>
   </file>
   <file path="/home/iancosta/2022-1-EuPescador-Web/src/services/api/userServices/index.spec.tsx">
-    <testCase name="User Service Test Deve realizar o login" duration="909"/>
-    <testCase name="User Service Test Deve falhar o login" duration="666"/>
-    <testCase name="User Service Test Listar todos os usuarios" duration="670"/>
+    <testCase name="User Service Test Deve realizar o login" duration="872"/>
+    <testCase name="User Service Test Deve falhar o login" duration="659"/>
+    <testCase name="User Service Test Listar todos os usuarios" duration="706"/>
   </file>
   <file path="/home/iancosta/2022-1-EuPescador-Web/src/services/api/wikiServices/index.spec.tsx">
-    <testCase name="Wiki Service Test Recuperar dados de um peixe" duration="833"/>
-    <testCase name="Wiki Service Test Peixe não existente" duration="669"/>
-    <testCase name="Wiki Service Test Recuperar todos os peixes" duration="914"/>
+    <testCase name="Wiki Service Test Recuperar dados de um peixe" duration="869"/>
+    <testCase name="Wiki Service Test Peixe não existente" duration="672"/>
+    <testCase name="Wiki Service Test Recuperar todos os peixes" duration="1068"/>
   </file>
   <file path="/home/iancosta/2022-1-EuPescador-Web/src/components/Table/index.spec.tsx">
-    <testCase name="Table component Should render component" duration="46"/>
-    <testCase name="Table component Should render edit button" duration="36"/>
-    <testCase name="Table component Should render delete button" duration="27"/>
+    <testCase name="Table component Should render component" duration="44"/>
+    <testCase name="Table component Should render edit button" duration="38"/>
+    <testCase name="Table component Should render delete button" duration="28"/>
   </file>
   <file path="/home/iancosta/2022-1-EuPescador-Web/src/services/api/fishLogServices/index.spec.tsx">
-    <testCase name="Fish Log Service Test Recuperar todos os logs" duration="6408"/>
-    <testCase name="Fish Log Service Test Recuperar um log" duration="3118"/>
-    <testCase name="Fish Log Service Test Log não existente" duration="1980"/>
+    <testCase name="Fish Log Service Test Recuperar todos os logs" duration="5885"/>
+    <testCase name="Fish Log Service Test Recuperar um log" duration="2873"/>
+    <testCase name="Fish Log Service Test Log não existente" duration="1843"/>
   </file>
 </testExecutions>
