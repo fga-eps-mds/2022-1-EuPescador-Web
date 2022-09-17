@@ -18,4 +18,8 @@ describe('Header Component', () => {
     expect(getByText('Nome')).toBeInTheDocument()
   })
 
+  it('Should render type of user', () => {
+    const { getByText } = render(<Header title="Título" />)
+    expect(getByText('Usuário')).toBeInTheDocument()
+  })
 })
