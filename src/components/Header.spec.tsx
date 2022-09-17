@@ -6,4 +6,11 @@ describe('Header Component', () => {
     const { getByText } = render(<Header title="Título" />)
     expect(getByText('Título')).toBeInTheDocument()
   })
+
+  it('Should render avatar', () => {
+    const { getAllByTestId } = render(<Header title="Título" />)
+    const [avatar] = getAllByTestId('avatar')
+    expect(avatar).toBeInTheDocument()
+  })
+
 })
