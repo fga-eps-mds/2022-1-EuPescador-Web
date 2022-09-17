@@ -19,10 +19,10 @@ const UserCard = () => {
   const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
   return (
     <Box display="flex" sx={{ alignItems: 'center' }}>
-      <Avatar sx={{ mr: 2 }} />
+      <Avatar data-testid="avatar" sx={{ mr: 2 }} />
       <Box>
-        <Typography sx={{ fontWeight: 'bold', fontSize: '14px' }}>{user.name}</Typography>
-        <Typography>{user.admin ? 'Administrador' : 'Usuário'}</Typography>
+        <Typography sx={{ fontWeight: 'bold', fontSize: '14px' }}>{user?.name ? user.name : 'Nome'}</Typography>
+        <Typography>{user?.admin ? 'Administrador' : 'Usuário'}</Typography>
       </Box>
       <ArrowDropDownIcon />
     </Box>
@@ -31,7 +31,11 @@ const UserCard = () => {
 
 export default function Header({ title = 'Titulo' }: HeaderProps) {
   return (
-    <AppBar position="static" sx={{ color: 'black', backgroundColor: 'white', paddingTop: '15px', boxShadow: 0 }}>
+    <AppBar
+      className="appbar"
+      position="static"
+      sx={{ color: 'black', backgroundColor: 'white', paddingTop: '15px', boxShadow: 0 }}
+    >
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: '700', fontSize: '24px' }}>
           {title}
