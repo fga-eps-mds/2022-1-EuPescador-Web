@@ -51,6 +51,7 @@ export default function Login() {
       <Grid container component="main" sx={{ height: '100vh', margin: 0, padding: 0 }}>
         <CssBaseline />
         <Grid
+          className="imagem"
           item
           xs={false}
           sm={4}
@@ -81,6 +82,7 @@ export default function Login() {
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
               <TextField
+                className="textfield"
                 margin="normal"
                 required
                 fullWidth
@@ -100,6 +102,7 @@ export default function Login() {
                 }}
               />
               <TextField
+                className="textfield"
                 margin="normal"
                 required
                 fullWidth

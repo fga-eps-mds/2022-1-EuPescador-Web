@@ -1,4 +1,4 @@
-import { render, waitFor } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import Login from '.'
 import { UserLogin } from '../../services/api/userServices/login'
 
@@ -13,6 +13,19 @@ describe('Login page', () => {
 
     expect(getByText('Entre na sua conta')).toBeInTheDocument()
     expect(loginButton).toBeInTheDocument()
+  })
+  it('Register button should be render', () => {
+    render(<Login />)
+    const element = screen.getByText('Ainda não tem uma conta?')
+    const style = getComputedStyle(element)
+    expect(style.visibility).toBe('visible')
+  })
+
+  it('Title color should be default', () => {
+    render(<Login />)
+    const element = screen.getByText('Entre na sua conta')
+    const style = getComputedStyle(element)
+    expect(style.backgroundColor).toBe('')
   })
 })
 
