@@ -31,6 +31,7 @@ export default function Register() {
     <Grid container component="main" sx={{ height: '100vh', margin: 0, padding: 0 }}>
       <CssBaseline />
       <Grid
+        className='imagem'
         item
         xs={false}
         sm={4}
