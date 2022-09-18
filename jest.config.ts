@@ -7,7 +7,7 @@ export default {
   testTimeout: 30000,
   // All imported modules in your tests should be mocked automatically
   // automock: false,
-  "testResultsProcessor": "jest-sonar-reporter",
+  testResultsProcessor: 'jest-sonar-reporter',
   // Stop running tests after `n` failures
   // bail: 0,
 
@@ -136,7 +136,7 @@ export default {
   // setupFiles: [],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  setupFilesAfterEnv: ['<rootDir>/src/test/setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/tests/setup.ts'],
 
   // The number of seconds after which a test is considered as slow and reported as such in the results.
   // slowTestThreshold: 5,

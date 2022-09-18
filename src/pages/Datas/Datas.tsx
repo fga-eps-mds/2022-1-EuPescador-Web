@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Grid } from '@mui/material'
-import { useEffect } from 'react'
-import Header from '~components/Header'
+import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar'
-import { GetWikiFishes } from '~services/api/wikiServices/getWikiFishes'
-import { FishCard } from '~components/FishCard/FishCard'
-import { FishWiki } from '~services/api/interfaces'
+import { GetWikiFishes } from '../../services/api/wikiServices/getWikiFishes'
+import { FishCard } from '../../components/FishCard/FishCard'
+import { FishWiki } from '../../services/api/interfaces'
 
 const Datas = () => {
-  const [fishes, setFishes] = React.useState()
-  React.useEffect(() => {
+  const [fishes, setFishes] = useState()
+  useEffect(() => {
     GetWikiFishes()
       .then((res: any) => setFishes(res))
       .catch((e) => console.log(e))

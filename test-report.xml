@@ -1,23 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/home/andre/Documentos/Faculdade/EPS/2022-1-EuPescador-Web/src/services/api/userServices/index.spec.tsx">
-    <testCase name="User Service Test Deve realizar o login" duration="824"/>
-    <testCase name="User Service Test Deve falhar o login" duration="737"/>
-    <testCase name="User Service Test Listar todos os usuarios" duration="681"/>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/services/api/userServices/index.spec.tsx">
+    <testCase name="User Service Test Deve realizar o login" duration="834"/>
+    <testCase name="User Service Test Deve falhar o login" duration="722"/>
+    <testCase name="User Service Test Listar todos os usuarios" duration="791"/>
   </file>
-  <file path="/home/andre/Documentos/Faculdade/EPS/2022-1-EuPescador-Web/src/services/api/wikiServices/index.spec.tsx">
-    <testCase name="Wiki Service Test Recuperar dados de um peixe" duration="954"/>
-    <testCase name="Wiki Service Test Peixe não existente" duration="768"/>
-    <testCase name="Wiki Service Test Recuperar todos os peixes" duration="847"/>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/components/Header.spec.tsx">
+    <testCase name="Header Component Should render title" duration="102"/>
+    <testCase name="Header Component Should render avatar" duration="12"/>
+    <testCase name="Header Component Should render username" duration="14"/>
+    <testCase name="Header Component Should render type of user" duration="10"/>
+    <testCase name="Header Component Title color should be default" duration="59"/>
+    <testCase name="Header Component Header Background should be white" duration="21"/>
+    <testCase name="Header Component Header should be visible" duration="21"/>
+    <testCase name="Header Component Check if width is 100%" duration="21"/>
+    <testCase name="Header Component Check if font-color is black" duration="21"/>
   </file>
-  <file path="/home/andre/Documentos/Faculdade/EPS/2022-1-EuPescador-Web/src/components/Table/index.spec.tsx">
-    <testCase name="Table component Should render component" duration="85"/>
-    <testCase name="Table component Should render edit button" duration="79"/>
-    <testCase name="Table component Should render delete button" duration="68"/>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/pages/Login/index.spec.tsx">
+    <testCase name="Login page Should render page" duration="376"/>
+    <testCase name="Login page Register button should be render" duration="149"/>
+    <testCase name="Login page Title color should be default" duration="137"/>
+    <testCase name="Login page Title should be visible" duration="100"/>
+    <testCase name="Login page Should render avatar" duration="61"/>
+    <testCase name="Login page Should render first TextField" duration="83"/>
+    <testCase name="Login page First TextField background color should be default" duration="71"/>
+    <testCase name="Login page Should render second TextField" duration="79"/>
+    <testCase name="Login page Second TextField background color should be default" duration="93"/>
+    <testCase name="Login page Image should be visible" duration="66"/>
+    <testCase name="Login page Image should be get by url" duration="65"/>
   </file>
-  <file path="/home/andre/Documentos/Faculdade/EPS/2022-1-EuPescador-Web/src/services/api/fishLogServices/index.spec.tsx">
-    <testCase name="Fish Log Service Test Recuperar todos os logs" duration="6507"/>
-    <testCase name="Fish Log Service Test Recuperar um log" duration="3114"/>
-    <testCase name="Fish Log Service Test Log não existente" duration="1927"/>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/services/api/wikiServices/index.spec.tsx">
+    <testCase name="Wiki Service Test Recuperar dados de um peixe" duration="957"/>
+    <testCase name="Wiki Service Test Peixe não existente" duration="827"/>
+    <testCase name="Wiki Service Test Recuperar todos os peixes" duration="874"/>
+  </file>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/pages/Datas/index.spec.tsx">
+    <testCase name="Login page Should render page" duration="230"/>
+  </file>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/pages/Register/index.spec.tsx">
+    <testCase name="Register page Should render page" duration="289"/>
+  </file>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/components/Table/index.spec.tsx">
+    <testCase name="Table component Should render component" duration="64"/>
+    <testCase name="Table component Should render edit button" duration="60"/>
+    <testCase name="Table component Should render delete button" duration="43"/>
+  </file>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/services/api/fishLogServices/index.spec.tsx">
+    <testCase name="Fish Log Service Test Recuperar todos os logs" duration="11581"/>
+    <testCase name="Fish Log Service Test Recuperar um log" duration="3757"/>
+    <testCase name="Fish Log Service Test Log não existente" duration="2277"/>
   </file>
 </testExecutions>
