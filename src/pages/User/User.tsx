@@ -66,7 +66,7 @@ export default function User() {
               userRole: (user.superAdmin ? 'Super Admin' : (user.admin ? 'Admin' : ' Usuário'))
             }
           })}
-          onDelete={(user) => handleClickOpen(`${user.id}`)}
+          onDelete={(user) => console.log(user.id)}
           onEdit={(row) => navigate(`/usuarios/${row.id}`)}
         />
       </Grid>

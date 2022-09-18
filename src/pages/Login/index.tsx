@@ -13,6 +13,7 @@ import { UserLogin } from '~services/api/userServices/login'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useNavigate } from 'react-router-dom'
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function Copyright(props: any) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
