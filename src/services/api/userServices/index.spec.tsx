@@ -1,4 +1,4 @@
-import { GetAllUsers } from './getAllUsers'
+import  GetAllUsers  from './getAllUsers'
 import { UserLogin } from './login'
 
 describe('User Service Test', () => {

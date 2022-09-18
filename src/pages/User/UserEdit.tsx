@@ -2,7 +2,7 @@ import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, D
 import Header from '~components/Header'
 import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
-import { GetAllUsers, UserI } from '~services/api/userServices/getAllUsers'
+import { UserI } from '~services/api/userServices/getAllUsers'
 import { useEffect, useState } from 'react'
 import * as React from 'react'
 

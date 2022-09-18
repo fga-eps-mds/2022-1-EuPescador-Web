@@ -13,7 +13,9 @@ export interface UserI {
   superAdmin: boolean
 }
 
-export async function GetAllUsers() {
+const GetAllUsers = async() =>{
   const res: ResI = await userService.get('/user/')
-  return res.data as UserI[]
+  return res.data
 }
+
+export default GetAllUsers

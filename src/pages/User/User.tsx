@@ -2,7 +2,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import Header from '~components/Header'
 import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
-import { GetAllUsers, UserI } from '~services/api/userServices/getAllUsers'
+import GetAllUsers, { UserI } from '~services/api/userServices/getAllUsers'
 import { useEffect, useState } from 'react'
 import { ResI } from '~services/api/interfaces'
 import { deleteUser } from '~services/api/userServices/deleteUser'
@@ -54,7 +54,7 @@ const handleOpen = (id) => {
 //-----------
 
   const fetchData = async () => {
-    GetAllUsers()
+    await GetAllUsers()
       .then((res: UserI[]) => {
       setUsers(res)
     })
