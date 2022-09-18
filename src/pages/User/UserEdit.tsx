@@ -53,7 +53,6 @@ export default function UserForm() {
         <Sidebar children={undefined} />
       </Grid>
       <Grid item xs={11}>
-        {JSON.stringify(user)}
         <Header title="Alterar Usuário"></Header>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <TextField
