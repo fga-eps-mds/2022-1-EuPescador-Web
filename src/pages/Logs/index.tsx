@@ -12,6 +12,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import GetAllFishLogs from '~services/api/fishLogServices/GetAllFishLogs'
 import { deleteFishLog } from '~services/api/fishLogServices/deleteFishLog'
+import { DownloadExcel } from "react-excel-export"
+
 
 export default function FishLogs() {
   const [logs, setLogs] = useState([])
@@ -43,6 +45,20 @@ export default function FishLogs() {
       } else {
         element.reviewed = 'Pendente'
       }
+      element.latitude = element.coordenates.latitude || " "
+      element.longitude = element.coordenates.longitude || " "
+
+      delete element.reviewedBy
+      delete element.family
+      delete element.visible
+      delete element.createdAt
+      delete element.createdBy
+      delete element.updatedAt
+      delete element.updatedBy
+      delete element.deletedAt
+      delete element.deletedBy
+      delete element.coordenates
+      delete element.photo
     })
     setLogs(reps)
   }
@@ -97,13 +113,23 @@ export default function FishLogs() {
       </Grid>
       <Grid item xs={11}>
         <Header title="Logs dos Peixes"></Header>
+
         {logs.length ? (
-          <TableComponent
-            columns={columns}
-            rows={logs || []}
-            onDelete={(row: { id: string }) => handleOpen(parseInt(`${row.id}`))}
-            onEdit={(row: { id: string }) => navigate(`/logs/${row.id}`)}
-          />
+          <>
+
+            <DownloadExcel
+              data={logs}
+              buttonLabel="Clique aqui para exportar logs"
+              fileName="fish-logs"
+              className="button"
+            />
+            <TableComponent
+              columns={columns}
+              rows={logs || []}
+              onDelete={(row: { id: string }) => handleOpen(parseInt(`${row.id}`))}
+              onEdit={(row: { id: string }) => navigate(`/logs/${row.id}`)}
+            />
+          </>
         ) : (
           <CircularProgress />
 
