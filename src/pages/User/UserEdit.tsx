@@ -5,11 +5,19 @@ import TableComponent from '~components/Table'
 import { UserI } from '~services/api/userServices/getAllUsers'
 import { useEffect, useState } from 'react'
 import * as React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function UserForm() {
   const handleSubmit = () => {
     console.log('clicou no submit form')
+  }
+
+  const navigate = useNavigate()
+  
+  const routeChange = () => {
+    const path = '/usuarios'
+    navigate(path)
   }
 
 
@@ -185,6 +193,7 @@ export default function UserForm() {
               fontWeight: '200',
               width: '250px',
             }}
+            onClick={routeChange}
           >
             Cancelar
           </Button>
