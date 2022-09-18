@@ -31,6 +31,7 @@ export default function Register() {
     <Grid container component="main" sx={{ height: '100vh', margin: 0, padding: 0 }}>
       <CssBaseline />
       <Grid
+        className='imagem'
         item
         xs={false}
         sm={4}
@@ -53,7 +54,7 @@ export default function Register() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: '#003c8f' }}>
+          <Avatar data-testid="avatar" sx={{ m: 1, bgcolor: '#003c8f' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -61,6 +62,7 @@ export default function Register() {
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
+              className="textfield"
               margin="normal"
               required
               fullWidth
@@ -80,6 +82,7 @@ export default function Register() {
               }}
             />
             <TextField
+              className="textfield"
               margin="normal"
               required
               fullWidth
