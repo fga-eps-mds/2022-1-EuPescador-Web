@@ -20,11 +20,6 @@ const routesAdmin = [
     icon: <MdOutlineAssignment />,
   },
   {
-    path: '/peixes',
-    name: 'Cadastrar',
-    icon: <MdOutlineAdd />,
-  },
-  {
     path: '/',
     name: 'Mapa',
     icon: <BsMap />,
@@ -48,11 +43,6 @@ const routesNotAdmin = [
     path: '/dados',
     name: 'Listar',
     icon: <MdOutlineAssignment />,
-  },
-  {
-    path: '/peixes',
-    name: 'Cadastrar',
-    icon: <MdOutlineAdd />,
   },
   {
     path: '/',

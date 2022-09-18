@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom'
-
-import Fishes from './pages/Fishes/Fishes'
 import Datas from './pages/Datas/Datas'
 import User from './pages/User/User'
 import Home from './pages/Home'
@@ -21,7 +19,6 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={auth ? <Home /> : <Navigate replace to="/login" />} />
-      <Route path="/peixes" element={auth ? <Fishes /> : <Navigate replace to="/login" />} />
       <Route path="/dados" element={auth ? <Datas /> : <Navigate replace to="/login" />} />
       <Route path="/usuarios" element={auth ? <User /> : <Navigate replace to="/login" />} />
       <Route path="/logs" element={auth ? <Logs /> : <Navigate replace to="/login" />} />
