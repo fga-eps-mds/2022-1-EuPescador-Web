@@ -22,18 +22,20 @@ export default function FishLogs() {
     setOpen(false)
     setexclude(-1)
   }
+  
   const handeDelete = () => {
     deleteFishLog(`${exclude}`)
     setexclude(-1)
     setLogs([])
     fetchData().catch(console.error)
     setOpen(false)
-
   }
+
   const handleOpen = (id) => {
     setexclude(id)
     setOpen(true)
   }
+
   const fetchData = async () => {
     const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
     const reps = await GetAllFishLogs(user.token, '')
@@ -46,9 +48,8 @@ export default function FishLogs() {
     })
     setLogs(reps)
   }
+
   useEffect(() => {
-
-
     // call the function
     fetchData()
       // make sure to catch any error

@@ -1,6 +1,7 @@
 import { ResI } from '../interfaces'
 import { userService } from './userService'
 
+/*
 export interface UserI {
   admin: boolean
   city: string
@@ -12,6 +13,7 @@ export interface UserI {
   state: string
   superAdmin: boolean
 }
+*/
 
 const GetAllUsers = async() =>{
   const res: ResI = await userService.get('/user/')

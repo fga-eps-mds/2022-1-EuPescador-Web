@@ -6,6 +6,9 @@ import { UserProps } from '~components/Header'
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 export async function deleteUser(id: string) {
   const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
+  //Verificar
+  console.log(`Deletar usuario: ${id}`)
+  console.log(user.name)
   try {
     if (user.admin) {
       const token = user.token

@@ -2,19 +2,23 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 import Header from '~components/Header'
 import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
-import GetAllUsers, { UserI } from '~services/api/userServices/getAllUsers'
+import GetAllUsers /*, { UserI }*/ from '~services/api/userServices/getAllUsers'
 import { useEffect, useState } from 'react'
 import { ResI } from '~services/api/interfaces'
 import { deleteUser } from '~services/api/userServices/deleteUser'
 import { useNavigate } from 'react-router-dom'
 
 export default function User() { 
-  const [users, setUsers] = useState<UserI[]>()
+  const [users, setUsers] = useState([])
   const [exclude, setExclude] = useState(-1)
   const [open, setOpen] = useState(false)
   const navigate = useNavigate()
   
   const columns = [
+    {
+      label: 'Id',
+      value: 'id',
+    },
     {
       label: 'Nome',
       value: 'name',
@@ -54,10 +58,10 @@ const handleOpen = (id) => {
 //-----------
 
   const fetchData = async () => {
-    await GetAllUsers()
-      .then((res: UserI[]) => {
-      setUsers(res)
-    })
+    const reps = await GetAllUsers()
+      //.then((res: UserI[]) => {
+      setUsers(reps)
+    //})
   }
 
   useEffect(() => {
@@ -80,11 +84,12 @@ const handleOpen = (id) => {
                 id: user.id.toString(),
                 name: user.name,
                 email: user.email,
-                userRole: (user.superAdmin ? 'Super Admin' : (user.admin ? 'Admin' : ' Usuário'))
+                userRole: (user.superAdmin ? 'Super Admin' : (user.admin ? 'Admin' : ' Usuário')),
+                userSince: '-'
               }
             })}
-            onDelete={(row) => handleOpen(`${row.id}`)}
-            onEdit={(row) => navigate(`/usuarios/${row.id}`)}
+            onDelete={(row: { id: string }) => handleOpen(parseInt(`${row.id}`))}
+            onEdit={(row: { id: string }) => navigate(`/usuarios/${row.id}`)}
           />
         ) : (
           <CircularProgress />
