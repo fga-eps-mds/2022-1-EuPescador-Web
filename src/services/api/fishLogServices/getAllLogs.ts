@@ -12,6 +12,7 @@ export interface FishLogI {
   photo: string
   length: string
   weight: string
+  reviewed: boolean | string
   visible,
 }
 
