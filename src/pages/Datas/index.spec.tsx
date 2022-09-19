@@ -34,6 +34,13 @@ describe('Login page', () => {
     const style = getComputedStyle(element)
     expect(style.visibility).toBe('visible')
   })
+
+  it('Title should be visible', () => {
+    render(<Data />)
+    const element = screen.getByText('Listagem de Peixes')
+    const style = getComputedStyle(element)
+    expect(style.visibility).toBe('visible')
+  })
 })
 
-export {}
+export { }
