@@ -16,8 +16,8 @@ export interface FishLogI {
   visible,
 }
 
-export async function GetAllLogs(token: string, query: string) {
-  let route = '/fishLog'
+export const GetAllFishLogs = async (token: string, query: string) => {
+  let route = '/fishLog/all'
   if (query) route += query
 
   const userToken = `Bearer ${token}`

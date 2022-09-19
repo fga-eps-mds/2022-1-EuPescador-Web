@@ -1,5 +1,5 @@
 import { ResI } from '../interfaces'
-import { adminService } from './adminService'
+import { adminService } from '../adminServices/adminService'
 
 export async function deleteUser(id: string) {
   try {
