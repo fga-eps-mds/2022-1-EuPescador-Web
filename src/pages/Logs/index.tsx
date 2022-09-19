@@ -1,19 +1,36 @@
-import { Grid } from '@mui/material'
+import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid } from '@mui/material'
 import Header, { UserProps } from '~components/Header'
 import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
 import { useEffect, useState } from 'react'
-import GetAllFishLogs from '~services/api/fishLogServices/getAllLogs'
+import { GetAllLogs, FishLogI } from '~services/api/fishLogServices/getAllLogs'
 import { useNavigate } from 'react-router-dom'
+import { deleteFishLogs } from '~services/api/adminServices/deleteFishLog'
+
+import '~assets/styles/Logs.css'
+import { columns } from './tableColumns'
 
 export default function FishLogs() {
-  const [logs, setLogs] = useState([])
   const navigate = useNavigate()
 
+  const [logs, setLogs] = useState<FishLogI[]>([])
+
+  const [open, setOpen] = useState(false)
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  const [idToDelete, setIdToDelete] = useState(-1)
+  const [logNameToDelete, setLogNameToDelete] = useState('')
+
   useEffect(() => {
-    const fetchData = async () => {
+    fetchData().catch(console.error)
+  }, [])
+
+  const fetchData = async () => {
+    setIsLoading(true)
+    try {
       const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
-      const reps = await GetAllFishLogs(user.token, '')
+      const reps = await GetAllLogs(user.token, '')
       reps.forEach((element) => {
         if (element.reviewed) {
           element.reviewed = element.reviewed ? 'Revisado' : 'Pendente'
@@ -22,81 +39,25 @@ export default function FishLogs() {
         }
       })
       setLogs(reps)
+    } catch(err) {
+      console.error(err)
+      setLogs([])
+    } finally {
+      setIsLoading(false)
     }
+  }
+  const handleClickOpen = (id: number, name: string) => {
+    setIdToDelete(id)
+    setLogNameToDelete(name)
+    setOpen(true)
+  }
 
-    // call the function
-    fetchData()
-      // make sure to catch any error
-      .catch(console.error)
-  }, [])
+  const handleDelete = async () => {
+    await deleteFishLogs(idToDelete)
+    setOpen(false)
+    await fetchData()
+  }
 
-  const columns = [
-    {
-      label: 'Id',
-      value: 'id',
-    },
-    {
-      label: 'Nome',
-      value: 'name',
-    },
-    {
-      label: 'Classe',
-      value: 'largeGroup',
-    },
-    {
-      label: 'Ordem',
-      value: 'group',
-    },
-    {
-      label: 'Espécie',
-      value: 'species',
-    },
-    {
-      label: 'Tamanho',
-      value: 'length',
-    },
-    {
-      label: 'Massa',
-      value: 'weight',
-    },
-    {
-      label: 'Status',
-      value: 'reviewed',
-    },
-  ]
-
-  const rows = [
-    {
-      id: 1,
-      name: 'Piabinha 1',
-      largeGroup: 'Cascudos',
-      group: 'Cascudos grandes',
-      species: 'Hypostomus plecostomus',
-      weight: 20,
-      lenght: 10,
-      reviewed: 'aprovado',
-    },
-    {
-      id: 2,
-      name: 'Piabinha 2',
-      largeGroup: 'Cascudos',
-      group: 'Cascudos grandes',
-      species: 'Hypancistrus sp.',
-      weight: 32,
-      lenght: 30,
-      reviewed: 'pendente',
-    },
-    {
-      id: 3,
-      name: 'Piabinha 3',
-      largeGroup: 'Cascudos',
-      group: 'Cascudos grandes',
-      species: 'Panaque nigrolineatus',
-      weight: 12,
-      lenght: 123,
-      reviewed: 'pendente',
-    },
-  ]
   return (
     <Grid container>
       <Grid item xs={1}>
@@ -104,13 +65,53 @@ export default function FishLogs() {
       </Grid>
       <Grid item xs={11}>
         <Header title="Logs dos Peixes"></Header>
-        <TableComponent
-          columns={columns}
-          rows={logs || []}
-          onDelete={(row) => console.log(row)}
-          onEdit={(row: { id: string }) => navigate(`/logs/${row.id}`)}
-        />
+        {isLoading
+          ? (
+              <div id="loading-container">
+                <CircularProgress />
+              </div>
+            )
+          : (
+            <TableComponent
+              columns={columns}
+              rows={(logs || []).map(fishLog => {
+                return {
+                  id: String(fishLog.id),
+                  name: fishLog.name,
+                  largeGroup: fishLog.largeGroup,
+                  group: fishLog.group,
+                  species: fishLog.species,
+                  length: fishLog.length,
+                  weight: fishLog.weight
+                }
+              })}
+              onDelete={(fishLog) => handleClickOpen(Number(fishLog.id), String(fishLog.name))}
+              onEdit={(row: { id: string }) => navigate(`/logs/${row.id}`)}
+            />
+        )}
+
       </Grid>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        aria-labelledby="alert-dialog-title-fishLog"
+        aria-describedby="alert-dialog-description-fishLog"
+      >
+        <DialogTitle id="alert-dialog-title-fishLog">
+          {`Deseja excluir o log do peixe ${logNameToDelete}?`}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description-fishLog">
+            Clique em confirmar para prosseguir com a exclusão do log do peixe
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)}>Cancelar</Button>
+          <Button onClick={handleDelete} autoFocus>
+            Confirmar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Grid>
   )
 }
