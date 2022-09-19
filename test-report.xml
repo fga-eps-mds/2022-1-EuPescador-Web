@@ -1,63 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="/home/lucas/Documentos/EPS/2022-1-EuPescador-Web/src/components/Header.spec.tsx">
-    <testCase name="Header Component Should render title" duration="96"/>
-    <testCase name="Header Component Should render avatar" duration="14"/>
-    <testCase name="Header Component Should render username" duration="12"/>
-    <testCase name="Header Component Should render type of user" duration="13"/>
-    <testCase name="Header Component Title color should be default" duration="58"/>
-    <testCase name="Header Component Header Background should be white" duration="19"/>
-    <testCase name="Header Component Header should be visible" duration="16"/>
-    <testCase name="Header Component Check if width is 100%" duration="14"/>
-    <testCase name="Header Component Check if font-color is black" duration="17"/>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/components/Header.spec.tsx">
+    <testCase name="Header Component Should render title" duration="106"/>
+    <testCase name="Header Component Should render avatar" duration="15"/>
+    <testCase name="Header Component Should render username" duration="10"/>
+    <testCase name="Header Component Should render type of user" duration="18"/>
+    <testCase name="Header Component Title color should be default" duration="63"/>
+    <testCase name="Header Component Header Background should be white" duration="20"/>
+    <testCase name="Header Component Header should be visible" duration="23"/>
+    <testCase name="Header Component Check if width is 100%" duration="18"/>
+    <testCase name="Header Component Check if font-color is black" duration="21"/>
   </file>
-  <file path="/home/lucas/Documentos/EPS/2022-1-EuPescador-Web/src/pages/Register/index.spec.tsx">
-    <testCase name="Register page Should render page" duration="294"/>
-    <testCase name="Register page Login button should be render" duration="103"/>
-    <testCase name="Register page Title color should be default" duration="76"/>
-    <testCase name="Register page Title should be visible" duration="59"/>
-    <testCase name="Register page Should render avatar" duration="56"/>
-    <testCase name="Register page Should render email TextField" duration="68"/>
-    <testCase name="Register page Email TextField background color should be default" duration="62"/>
-    <testCase name="Register page Should render password TextField" duration="58"/>
-    <testCase name="Register page Password TextField background color should be default" duration="65"/>
-    <testCase name="Register page Image should be visible" duration="56"/>
-    <testCase name="Register page Image should be get by url" duration="56"/>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/pages/Register/index.spec.tsx">
+    <testCase name="Register page Should render page" duration="420"/>
+    <testCase name="Register page Login button should be render" duration="148"/>
+    <testCase name="Register page Title color should be default" duration="116"/>
+    <testCase name="Register page Title should be visible" duration="92"/>
+    <testCase name="Register page Should render avatar" duration="66"/>
+    <testCase name="Register page Should render email TextField" duration="65"/>
+    <testCase name="Register page Email TextField background color should be default" duration="71"/>
+    <testCase name="Register page Should render password TextField" duration="66"/>
+    <testCase name="Register page Password TextField background color should be default" duration="73"/>
+    <testCase name="Register page Image should be visible" duration="52"/>
+    <testCase name="Register page Image should be get by url" duration="51"/>
   </file>
-  <file path="/home/lucas/Documentos/EPS/2022-1-EuPescador-Web/src/pages/Datas/index.spec.tsx">
-    <testCase name="Login page Should render page" duration="190"/>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/services/api/userServices/index.spec.tsx">
+    <testCase name="User Service Test Deve realizar o login" duration="836"/>
+    <testCase name="User Service Test Deve falhar o login" duration="758"/>
+    <testCase name="User Service Test Listar todos os usuarios" duration="753"/>
   </file>
-  <file path="/home/lucas/Documentos/EPS/2022-1-EuPescador-Web/src/pages/Login/index.spec.tsx">
-    <testCase name="Login page Should render page" duration="237"/>
-    <testCase name="Login page Register button should be render" duration="85"/>
-    <testCase name="Login page Title color should be default" duration="52"/>
-    <testCase name="Login page Title should be visible" duration="47"/>
-    <testCase name="Login page Should render avatar" duration="42"/>
-    <testCase name="Login page Should render first TextField" duration="45"/>
-    <testCase name="Login page First TextField background color should be default" duration="52"/>
-    <testCase name="Login page Should render second TextField" duration="39"/>
-    <testCase name="Login page Second TextField background color should be default" duration="46"/>
-    <testCase name="Login page Image should be visible" duration="37"/>
-    <testCase name="Login page Image should be get by url" duration="40"/>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/services/api/wikiServices/index.spec.tsx">
+    <testCase name="Wiki Service Test Recuperar dados de um peixe" duration="793"/>
+    <testCase name="Wiki Service Test Peixe não existente" duration="731"/>
+    <testCase name="Wiki Service Test Recuperar todos os peixes" duration="1071"/>
   </file>
-  <file path="/home/lucas/Documentos/EPS/2022-1-EuPescador-Web/src/components/Table/index.spec.tsx">
-    <testCase name="Table component Should render component" duration="60"/>
-    <testCase name="Table component Should render edit button" duration="51"/>
-    <testCase name="Table component Should render delete button" duration="34"/>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/pages/Datas/index.spec.tsx">
+    <testCase name="Login page Should render page" duration="259"/>
+    <testCase name="Login page Title color should be default" duration="62"/>
+    <testCase name="Login page Title should be visible" duration="53"/>
+    <testCase name="Login page Should render grid" duration="54"/>
+    <testCase name="Login page Width should be correct" duration="42"/>
   </file>
-  <file path="/home/lucas/Documentos/EPS/2022-1-EuPescador-Web/src/services/api/userServices/index.spec.tsx">
-    <testCase name="User Service Test Deve realizar o login" duration="8122"/>
-    <testCase name="User Service Test Deve falhar o login" duration="877"/>
-    <testCase name="User Service Test Listar todos os usuarios" duration="922"/>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/pages/Login/index.spec.tsx">
+    <testCase name="Login page Should render page" duration="272"/>
+    <testCase name="Login page Register button should be render" duration="83"/>
+    <testCase name="Login page Title color should be default" duration="59"/>
+    <testCase name="Login page Title should be visible" duration="60"/>
+    <testCase name="Login page Should render avatar" duration="45"/>
+    <testCase name="Login page Should render first TextField" duration="58"/>
+    <testCase name="Login page First TextField background color should be default" duration="59"/>
+    <testCase name="Login page Should render second TextField" duration="62"/>
+    <testCase name="Login page Second TextField background color should be default" duration="73"/>
+    <testCase name="Login page Image should be visible" duration="53"/>
+    <testCase name="Login page Image should be get by url" duration="47"/>
   </file>
-  <file path="/home/lucas/Documentos/EPS/2022-1-EuPescador-Web/src/services/api/wikiServices/index.spec.tsx">
-    <testCase name="Wiki Service Test Recuperar dados de um peixe" duration="9105"/>
-    <testCase name="Wiki Service Test Peixe não existente" duration="862"/>
-    <testCase name="Wiki Service Test Recuperar todos os peixes" duration="1227"/>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/components/Table/index.spec.tsx">
+    <testCase name="Table component Should render component" duration="65"/>
+    <testCase name="Table component Should render edit button" duration="55"/>
+    <testCase name="Table component Should render delete button" duration="42"/>
   </file>
-  <file path="/home/lucas/Documentos/EPS/2022-1-EuPescador-Web/src/services/api/fishLogServices/index.spec.tsx">
-    <testCase name="Fish Log Service Test Recuperar todos os logs" duration="57417"/>
-    <testCase name="Fish Log Service Test Recuperar um log" duration="3386"/>
-    <testCase name="Fish Log Service Test Log não existente" duration="2179"/>
+  <file path="/home/potter/Documentos/unb_2022_1/mds/2022-1-EuPescador-Web/src/services/api/fishLogServices/index.spec.tsx">
+    <testCase name="Fish Log Service Test Recuperar todos os logs" duration="8828"/>
+    <testCase name="Fish Log Service Test Recuperar um log" duration="3133"/>
+    <testCase name="Fish Log Service Test Log não existente" duration="1996"/>
   </file>
 </testExecutions>

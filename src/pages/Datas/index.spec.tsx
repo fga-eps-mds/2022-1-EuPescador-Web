@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import Data from './Datas'
 import { GetWikiFishes } from '../../services/api/wikiServices/getWikiFishes'
 
@@ -20,6 +20,14 @@ describe('Login page', () => {
 
     expect(getByText('Listagem de Peixes')).toBeInTheDocument()
   })
+
+  it('Title color should be default', () => {
+    render(<Data />)
+    const element = screen.getByText('Listagem de Peixes')
+    const style = getComputedStyle(element)
+    expect(style.backgroundColor).toBe('')
+  })
+
 })
 
-export {}
+export { }
