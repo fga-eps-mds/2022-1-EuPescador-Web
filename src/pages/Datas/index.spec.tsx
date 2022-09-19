@@ -41,6 +41,13 @@ describe('Login page', () => {
     const style = getComputedStyle(element)
     expect(style.visibility).toBe('visible')
   })
+
+  it('Width should be correct', () => {
+    render(<Data />)
+    const element = document.getElementsByClassName('fishcard')
+    const style = getComputedStyle(element[0])
+    expect(style.width).toBe('100%')
+  })
 })
 
-export { }
+export {}
