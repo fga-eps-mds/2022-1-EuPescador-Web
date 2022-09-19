@@ -1,110 +1,77 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-floating-promises */
-
-
-import { Grid, CircularProgress, Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material'
+import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid } from '@mui/material'
 import Header, { UserProps } from '~components/Header'
 import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import GetAllFishLogs from '~services/api/fishLogServices/GetAllFishLogs'
+import { GetAllFishLogs, FishLogI } from '~services/api/fishLogServices/GetAllFishLogs'
 import { deleteFishLog } from '~services/api/fishLogServices/deleteFishLog'
 import { DownloadExcel } from "react-excel-export"
 
+import { columns } from './tableColumns'
 
 export default function FishLogs() {
   const [logs, setLogs] = useState([])
-  const [exclude, setexclude] = useState(-1)
   const [open, setOpen] = useState(false)
   const navigate = useNavigate()
-  const handleClose = () => {
-    setOpen(false)
-    setexclude(-1)
-  }
-  const handeDelete = () => {
-    deleteFishLog(`${exclude}`)
-    setexclude(-1)
-    setLogs([])
-    fetchData().catch(console.error)
-    setOpen(false)
 
-  }
-  const handleOpen = (id) => {
-    setexclude(id)
-    setOpen(true)
-  }
-  const fetchData = async () => {
-    const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
-    const reps = await GetAllFishLogs(user.token, '')
-    reps.forEach((element) => {
-      if (element.reviewed) {
-        element.reviewed = element.reviewed ? 'Revisado' : 'Pendente'
-      } else {
-        element.reviewed = 'Pendente'
-      }
-      element.latitude = element.coordenates.latitude || " "
-      element.longitude = element.coordenates.longitude || " "
+  const [idToDelete, setIdToDelete] = useState(-1)
+  const [logNameToDelete, setLogNameToDelete] = useState('')
 
-      delete element.reviewedBy
-      delete element.family
-      delete element.visible
-      delete element.createdAt
-      delete element.createdBy
-      delete element.updatedAt
-      delete element.updatedBy
-      delete element.deletedAt
-      delete element.deletedBy
-      delete element.coordenates
-      delete element.photo
-    })
-    setLogs(reps)
-  }
   useEffect(() => {
-
-
-    // call the function
-    fetchData()
-      // make sure to catch any error
-      .catch(console.error)
+    fetchData().catch(console.error)
   }, [])
 
-  const columns = [
-    {
-      label: 'Id',
-      value: 'id',
-    },
-    {
-      label: 'Nome',
-      value: 'name',
-    },
-    {
-      label: 'Classe',
-      value: 'largeGroup',
-    },
-    {
-      label: 'Ordem',
-      value: 'group',
-    },
-    {
-      label: 'Espécie',
-      value: 'species',
-    },
-    {
-      label: 'Tamanho',
-      value: 'length',
-    },
-    {
-      label: 'Massa',
-      value: 'weight',
-    },
-    {
-      label: 'Status',
-      value: 'reviewed',
-    },
-  ]
+  const fetchData = async () => {
+    try {
+      const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
+      const reps = await GetAllFishLogs(user.token, '')
+      reps.forEach((element) => {
+        if (element.reviewed) {
+          element.reviewed = element.reviewed ? 'Revisado' : 'Pendente'
+        } else {
+          element.reviewed = 'Pendente'
+        }
+
+        element.latitude = element.coordenates.latitude || " "
+        element.longitude = element.coordenates.longitude || " "
+
+        delete element.reviewedBy
+        delete element.family
+        delete element.visible
+        delete element.createdAt
+        delete element.createdBy
+        delete element.updatedAt
+        delete element.updatedBy
+        delete element.deletedAt
+        delete element.deletedBy
+        delete element.coordenates
+        delete element.photo
+      })
+      setLogs(reps)
+    } catch(err) {
+      console.error(err)
+      setLogs([])
+    }
+  }
+  const handleClickOpen = (id: number, name: string) => {
+    setIdToDelete(id)
+    setLogNameToDelete(name)
+    setOpen(true)
+  }
+
+  const handleClickClose = () => {
+    setOpen(false)
+    setLogNameToDelete('')
+    setIdToDelete(-1)
+  }
+
+  const handleDelete = async () => {
+    await deleteFishLog(`${idToDelete}`)
+    handleClickClose()
+    setLogs([])
+    await fetchData()
+  }
 
   return (
     <Grid container>
@@ -116,33 +83,35 @@ export default function FishLogs() {
 
         {logs.length ? (
           <>
-
-            <DownloadExcel
-              data={logs}
-              buttonLabel="Clique aqui para exportar logs"
-              fileName="fish-logs"
-              className="button"
-            />
+            <button id="excel-logs-button">
+              <DownloadExcel
+                data={logs}
+                buttonLabel="Clique aqui para exportar logs"
+                fileName="fish-logs"
+                className="button"
+              />
+            </button>
             <TableComponent
               columns={columns}
               rows={logs || []}
-              onDelete={(row: { id: string }) => handleOpen(parseInt(`${row.id}`))}
+              onDelete={
+                (row: { id: string, name: string }) => handleClickOpen(parseInt(`${row.id}`), row.name)
+              }
               onEdit={(row: { id: string }) => navigate(`/logs/${row.id}`)}
             />
           </>
         ) : (
           <CircularProgress />
-
         )}
       </Grid>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={handleClickClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Deseja excluir o registro?"}
+        {`Deseja excluir o registro do peixe ${logNameToDelete}?`}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -150,8 +119,8 @@ export default function FishLogs() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handeDelete} autoFocus>
+          <Button onClick={handleClickClose}>Cancelar</Button>
+          <Button onClick={handleDelete} autoFocus>
             Confirmar
           </Button>
         </DialogActions>

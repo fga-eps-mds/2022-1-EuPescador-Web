@@ -1,17 +1,12 @@
 import { useState } from 'react'
-
 import { NavLink, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-
 import { MdLogout, MdInsertEmoticon, MdOutlineAssignment } from 'react-icons/md'
-import { FaBars, FaRegUserCircle } from 'react-icons/fa'
 import { BsMap } from 'react-icons/bs'
-import { TbFish } from 'react-icons/tb'
 import { MdOutlineAdd } from 'react-icons/md'
 import { FaCircle } from 'react-icons/fa'
 import { GiDoubleFish } from 'react-icons/gi'
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
+import { UserProps } from './Header'
 
 const routesAdmin = [
   {
@@ -75,12 +70,12 @@ const Sidebar = ({ children }) => {
   }
 
   function fazRota() {
-    const user = JSON.parse(localStorage.getItem('UserData'))
+    const user = JSON.parse(localStorage.getItem('UserData')) as UserProps
     if (user.admin) {
       return (
         <section className="routes">
           {routesAdmin.map((route) => (
-            <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
+            <NavLink to={route.path} key={route.name} className="link">
               <div className="icon">{route.icon}</div>
               <AnimatePresence>
                 {isOpen && (
@@ -103,7 +98,7 @@ const Sidebar = ({ children }) => {
       return (
         <section className="routes">
           {routesNotAdmin.map((route) => (
-            <NavLink activeClassName="active" to={route.path} key={route.name} className="link">
+            <NavLink to={route.path} key={route.name} className="link">
               <div className="icon">{route.icon}</div>
               <AnimatePresence>
                 {isOpen && (
@@ -125,9 +120,9 @@ const Sidebar = ({ children }) => {
     }
   }
 
-  let navigate = useNavigate()
+  const navigate = useNavigate()
   const routeChange = () => {
-    let path = '/login'
+    const path = '/login'
     navigate(path)
   }
 

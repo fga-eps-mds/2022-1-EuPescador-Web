@@ -13,6 +13,7 @@ export interface UserProps {
   admin: boolean
   name: string
   token: string
+  superAdmin: boolean
 }
 
 const UserCard = () => {
