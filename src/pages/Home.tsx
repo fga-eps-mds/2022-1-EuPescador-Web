@@ -7,10 +7,11 @@ import useLogs from 'hooks/useLogs'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import { FishLogI } from '~services/api/fishLogServices/GetAllFishLogs'
 
 const Home = () => {
   const navigate = useNavigate()
-  const { logs } = useLogs()  
+  const { logs } = useLogs()
   const [position, setPosition] = useState({
     latitude: -11,
     longitude: -48,
@@ -50,12 +51,12 @@ const Home = () => {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            {filteredLogs.map((log) => (
-              <Marker position={[log.coordenates.latitude, log.coordenates.longitude]}>
+            {filteredLogs.map((log: FishLogI) => (
+              <Marker position={[Number(log.coordenates.latitude), Number(log.coordenates.longitude)]}>
                 <Popup>
-                  
+
                   Localização do {log.name}, pesando {log.weight}g e medindo {log.length}cm.
-                  <IconButton onClick = {() => navigate(`/logs/${log.id}`)} color="warning"> 
+                  <IconButton onClick = {() => navigate(`/logs/${log.id}`)} color="warning">
                     <Edit />
                   </IconButton>
                 </Popup>
