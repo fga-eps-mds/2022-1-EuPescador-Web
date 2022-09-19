@@ -1,5 +1,5 @@
 import { UserLogin } from '../userServices/login'
-import GetAllFishLogs from './GetAllFishLogs'
+import { GetAllFishLogs } from './GetAllFishLogs'
 import { GetOneFishLog } from './getOneFishLog'
 
 describe('Fish Log Service Test', () => {
