@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import Data from './Datas'
 import { GetWikiFishes } from '../../services/api/wikiServices/getWikiFishes'
 
@@ -19,6 +19,34 @@ describe('Login page', () => {
     const { getByText } = render(<Data />)
 
     expect(getByText('Listagem de Peixes')).toBeInTheDocument()
+  })
+
+  it('Title color should be default', () => {
+    render(<Data />)
+    const element = screen.getByText('Listagem de Peixes')
+    const style = getComputedStyle(element)
+    expect(style.backgroundColor).toBe('')
+  })
+
+  it('Title should be visible', () => {
+    render(<Data />)
+    const element = screen.getByText('Listagem de Peixes')
+    const style = getComputedStyle(element)
+    expect(style.visibility).toBe('visible')
+  })
+
+  it('Title should be visible', () => {
+    render(<Data />)
+    const element = screen.getByText('Listagem de Peixes')
+    const style = getComputedStyle(element)
+    expect(style.visibility).toBe('visible')
+  })
+
+  it('Width should be correct', () => {
+    render(<Data />)
+    const element = document.getElementsByClassName('fishcard')
+    const style = getComputedStyle(element[0])
+    expect(style.width).toBe('100%')
   })
 })
 
