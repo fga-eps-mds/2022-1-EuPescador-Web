@@ -4,7 +4,6 @@ import Fishes from './pages/Fishes/Fishes'
 import Datas from './pages/Datas/Datas'
 import User from './pages/User/User'
 import Home from './pages/Home'
-import Fish from './pages/Fish/index'
 import Logs from './pages/Logs/index'
 
 import Login from 'pages/Login'
@@ -26,8 +25,7 @@ function App() {
       <Route path="/peixes" element={auth ? <Fishes /> : <Navigate replace to="/login" />} />
       <Route path="/dados" element={auth ? <Datas /> : <Navigate replace to="/login" />} />
       <Route path="/usuarios" element={auth ? <User /> : <Navigate replace to="/login" />} />
-      <Route path="/logs" element={auth ? <Fish /> : <Navigate replace to="/login" />} />
-      <Route path="/logs-backup" element={auth ? <Logs /> : <Navigate replace to="/login" />} />
+      <Route path="/logs" element={auth ? <Logs /> : <Navigate replace to="/login" />} />
       <Route path="/logs/:id" element={auth ? <LogsDetails /> : <Navigate replace to="/login" />} />
       <Route path="/usuarios/:id" element={auth ? <UserForm /> : <Navigate replace to="/login" />} />
       <Route path="/login" element={auth ? <Login /> : <Login />} />
