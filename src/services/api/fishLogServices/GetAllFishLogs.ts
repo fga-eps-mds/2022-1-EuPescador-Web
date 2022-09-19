@@ -8,12 +8,25 @@ export interface FishLogI {
   largeGroup: string
   group: string
   species: string
-  coordenates: string
   photo: string
   length: string
   weight: string
   reviewed: boolean | string
+  latitude: string
+  longitude: string
+  coordenates: {
+    latitude: string
+    longitude: string
+  }
+  reviewedBy,
+  family,
   visible,
+  createdAt,
+  createdBy,
+  updatedAt,
+  updatedBy,
+  deletedAt,
+  deletedBy,
 }
 
 export const GetAllFishLogs = async (token: string, query: string) => {
