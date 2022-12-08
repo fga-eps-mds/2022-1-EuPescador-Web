@@ -31,7 +31,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.GIT_TOKEN }}
         with:
           source_file: ${{ steps.report.outputs.report_file_name }}.json
-          destination_repo: 'fga-eps-mds/2022-1-EuPescador-Doc'
+          destination_repo: 'fga-eps-mds/2022-2-EuPescador-Doc'
           destination_folder: 'analytics-raw-data'
           user_email: ${{ secrets.GIT_EMAIL}}
           user_name: ${{ secrets.GIT_USER }}
@@ -40,7 +40,7 @@ jobs:
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GIT_TOKEN }}
           tag: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
           body: ${{ steps.tag_version.outputs.changelog }}
