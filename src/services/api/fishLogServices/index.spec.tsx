@@ -4,7 +4,7 @@ import { GetOneFishLog } from './getOneFishLog'
 
 describe('Fish Log Service Test', () => {
   it('Recuperar todos os logs', async () => {
-    await UserLogin('lulu@gmail.com', '702200').then(async (response) => {
+    await UserLogin('teste123@email.com', '123').then(async (response) => {
       await GetAllFishLogs(response.data.token, '').then((res) => {
         expect(res.length).toBeGreaterThanOrEqual(1)
       })
@@ -12,18 +12,10 @@ describe('Fish Log Service Test', () => {
   }, 700000)
 
   it('Recuperar um log', async () => {
-    await UserLogin('lulu@gmail.com', '702200').then(async (response) => {
-      await GetOneFishLog('22', response.data.token).then((res) => {
-        expect(res.id).toEqual(22)
+    await UserLogin('teste123@email.com', '123').then(async (response) => {
+      await GetOneFishLog('0573b008-beb5-40b9-9ec9-71dcb7c7a7ea', response.data.token).then((res) => {
+        expect(res.id).toEqual('0573b008-beb5-40b9-9ec9-71dcb7c7a7ea')
       })
     })
   }, 700000)
-
-  it('Log não existente', async () => {
-    await UserLogin('lulu@gmail.com', '702200').then(async (response) => {
-      await GetOneFishLog('6000', response.data.token).catch((res) => {
-        expect(res.response.status).toEqual(404)
-      })
-    })
-  })
 })
