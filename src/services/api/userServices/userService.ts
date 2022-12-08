@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const userService = axios.create({
-  baseURL: `https://user-2022-1.herokuapp.com`,
+  baseURL: `https://eupescador-user.herokuapp.com`,
 })
 
 export { userService }
