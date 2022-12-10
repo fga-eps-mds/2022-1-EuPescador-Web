@@ -8,18 +8,22 @@ type FishModalProps = {
   fish: FishWiki
 }
 
-const style = {
+const estiloTabela = {
   position: 'absolute',
   display: 'flex',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 600,
+  height: 400,
   bgcolor: '#FEFEFE',
   border: '2px solid #0095D9',
-  borderRadius: '8px',
+  borderRadius: 4,
   boxShadow: 24,
-  p: 1
+  paddingLeft: 3,
+  paddingTop: 4,
+  paddingRight: 1,
+  paddingBottom: 1
 }
 
 const Img = styled('img')({
@@ -28,23 +32,35 @@ const Img = styled('img')({
   borderRadius: '10%'
 })
 
+
 export function FishModal(props: FishModalProps) {
   return (
+
     <Box
       flexWrap='wrap'
       overflow='hidden'
       justifyContent='space-between'
-      sx={style}
+      sx={estiloTabela}
     >
 
       <Box
-        width='60%'
+        width='40%'
         display='flex'
         flexDirection='column'
+        gap={2}
+        alignContent='center'
+        flexBasis='200px'
+        textAlign='center'
       >
         <Button
           sx={{
             borderRadius: '20px',
+            width: '170px',
+            fontSize: '0.90rem',
+            justifySelf: 'center',
+            alignSelf: 'center',
+            textTransform: 'capitalize',
+            fontWeight: 'bold'
           }}
           variant="contained"
           startIcon={<BiEdit />}
@@ -52,7 +68,7 @@ export function FishModal(props: FishModalProps) {
           Editar Espécie
         </Button>
 
-        <Img alt="complex" src={props.fish.photo == null ? 'https://source.unsplash.com/qsHDqcJzHOA' : props.fish.photo} style={{ width: '140px', height: '110px' }} />
+        <Img alt="complex" src={props.fish.photo == null ? 'https://source.unsplash.com/qsHDqcJzHOA' : props.fish.photo} style={{ width: '200px', height: '175px' }} />
 
         <Typography
           gutterBottom
@@ -62,6 +78,8 @@ export function FishModal(props: FishModalProps) {
             fontSize: '18px',
             fontWeight: 'bold',
             textOverflow: 'ellipsis',
+            color: '#028BDE',
+            textAlign: 'center'
           }}
         >
           {props.fish.commonName}
@@ -82,38 +100,213 @@ export function FishModal(props: FishModalProps) {
       </Box>
 
       <Box
-        width='40%'
+        width='60%'
         style={{
           padding: '2px'
         }}
       >
+        {/* Campo cor Azul 1*/}
         <Box
           width='100%'
           style={{
+            padding: '3px',
             backgroundColor: '#E3F1FA',
             display: 'flex',
             justifyContent: 'space-between',
-            flexDirection: 'row'
+            flexDirection: 'row',
+            borderRadius: '8px',
+            gap: '20px',
+            paddingLeft: '8px'
           }}
         >
+          {/* Primeira coluna */}
           <Box
             width='50%'
-            margin='0 auto'
+            margin='5px auto'
           >
-            <label style={{ color: '#028BDE' }}>peixao</label>
-            <p>auau</p>
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Grande Grupo</label>
+            <p>{props.fish.largeGroup ?? '---'}</p>
           </Box>
 
+          {/* Segunda coluna */}
           <Box
             width='50%'
-            margin='0 auto'
+            margin='5px auto'
           >
-            <label style={{ color: '#028BDE' }}>peixao</label>
-            <p>auau</p>
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Grupo</label>
+            <p>{props.fish.group ?? '---'}</p>
           </Box>
-
         </Box>
+        {/* Final da Campo Azul 1 */}
+
+        {/* Campo cor Branca 1 */}
+        <Box
+          width='100%'
+          style={{
+            padding: '3px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            borderRadius: '8px',
+            gap: '20px',
+            paddingLeft: '8px',
+          }}
+        >
+
+          <Box
+            width='50%'
+            margin='5px auto'
+          >
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Família</label>
+            <p>{props.fish.family ?? '---'}</p>
+          </Box>
+
+          <Box
+            width='50%'
+            margin='5px auto'
+          >
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Alimentação</label>
+            <p>{props.fish.food ?? '---'}</p>
+          </Box>
+        </Box>
+        {/* Final da Campo Branco 1 */}
+
+        {/* Campo cor Azul 2*/}
+        <Box
+          width='100%'
+          style={{
+            padding: '3px',
+            backgroundColor: '#E3F1FA',
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            borderRadius: '8px',
+            gap: '20px',
+            paddingLeft: '8px'
+          }}
+        >
+          {/* Primeira coluna */}
+          <Box
+            width='50%'
+            margin='5px auto'
+          >
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Tamanho Máx(cm)</label>
+            <p>{props.fish.maxSize ?? '---'}</p>
+          </Box>
+
+          {/* Segunda coluna */}
+          <Box
+            width='50%'
+            margin='5px auto'
+          >
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Peso Máx(kg)</label>
+            <p>{props.fish.maxWeight ?? '---'}</p>
+          </Box>
+        </Box>
+
+        {/* Final da Campo Azul 2 */}
+
+        {/* Campo cor Branca 2 */}
+        <Box
+          width='100%'
+          style={{
+            padding: '3px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            borderRadius: '8px',
+            gap: '20px',
+            paddingLeft: '8px',
+          }}
+        >
+
+          <Box
+            width='50%'
+            margin='5px auto'
+          >
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Habitat</label>
+            <p>{props.fish.habitat ?? '---'}</p>
+          </Box>
+
+          <Box
+            width='50%'
+            margin='5px auto'
+          >
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Endêmico ?</label>
+            <p>{props.fish.isEndemic ? 'Sim' : 'Não' ?? '---'}</p>
+          </Box>
+        </Box>
+        {/* Final da Campo Branco 2 */}
+
+        {/* Campo cor Azul 3*/}
+        <Box
+          width='100%'
+          style={{
+            padding: '3px',
+            backgroundColor: '#E3F1FA',
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            borderRadius: '8px',
+            gap: '20px',
+            paddingLeft: '8px'
+          }}
+        >
+          {/* Primeira coluna */}
+          <Box
+            width='50%'
+            margin='5px auto'
+          >
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Ameaçado ?</label>
+            <p>{props.fish.isThreatened ? 'Sim' : 'Não' ?? '---'}</p>
+          </Box>
+
+          {/* Segunda coluna */}
+          <Box
+            width='50%'
+            margin='5px auto'
+          >
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Faz Piracema ?</label>
+            <p>{props.fish.hasSpawningSeason ? 'Sim' : 'Não' ?? '---'}</p>
+          </Box>
+        </Box>
+
+        {/* Final da Campo Azul 3 */}
+
+        {/* Campo cor Branca 3 */}
+        <Box
+          width='100%'
+          style={{
+            padding: '3px',
+            display: 'flex',
+            flexDirection: 'row',
+            borderRadius: '8px',
+            gap: '20px',
+            paddingLeft: '8px',
+          }}
+        >
+
+          <Box
+            width='50%'
+            margin='0px'
+            paddingTop='5px'
+
+          >
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Foi introduzido ?</label>
+            <p>{props.fish.wasIntroduced ? 'Sim' : 'Não' ?? '---'}</p>
+          </Box>
+        </Box>
+        {/* Final da Campo Branco 3 */}
       </Box>
+      {/* Unicode para o botao de sair  Unicode: &#10006;*/}
+      < span style={{
+        color: '#0095D9',
+        cursor: 'pointer',
+        position: 'absolute',
+        left: '95%',
+        bottom: '93%'
+      }} >&#10006;</span >
     </Box >
+
   )
 }
