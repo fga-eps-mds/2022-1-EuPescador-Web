@@ -16,7 +16,7 @@ describe('User Service Test', () => {
   }, 700000)
 
   it('Listar todos os usuarios', async () => {
-    await GetAllUsers().then((res) => {
+    await GetAllUsers('122sklnslan').then((res) => { // TODO: Colocar um token válido, para o teste passar
       expect(res.length).toBeGreaterThanOrEqual(1)
     })
   }, 700000)

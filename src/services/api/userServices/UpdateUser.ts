@@ -21,7 +21,7 @@ export async function UpdateUser(user_id: string, token: string, user: UserI) {
             user_id: user_id,
             ...user
         },
-        { headers: { Authorization: `Bearer ${token}` } },
+        { headers: { Authorization: userToken } },
     )
     return res.data
 

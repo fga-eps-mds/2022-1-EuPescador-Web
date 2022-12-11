@@ -13,7 +13,10 @@ export interface UserI {
   superAdmin: boolean
 }
 
-export async function GetAllUsers() {
-  const res: ResI = await userService.get('/user/')
+export async function GetAllUsers(token: string) {
+  const userToken = `Bearer ${token}`
+  const res: ResI = await userService.get('/user/', {
+    headers: { Authorization: userToken }
+  })
   return res.data as UserI[]
 }
