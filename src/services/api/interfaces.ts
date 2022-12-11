@@ -1,3 +1,6 @@
+import { styled } from "@mui/material"
+
+
 export interface ResI {
   data: [any]
   status: string
