@@ -35,7 +35,6 @@ const Img = styled('img')({
 
 export function FishModal(props: FishModalProps) {
   return (
-
     <Box
       flexWrap='wrap'
       overflow='hidden'
@@ -68,7 +67,7 @@ export function FishModal(props: FishModalProps) {
           Editar Espécie
         </Button>
 
-        <Img alt="complex" src={props.fish.photo == null ? 'https://source.unsplash.com/qsHDqcJzHOA' : props.fish.photo} style={{ width: '200px', height: '175px' }} />
+        <Img alt="complex" id="fishImage" src={props.fish.photo == null ? 'https://source.unsplash.com/qsHDqcJzHOA' : props.fish.photo} style={{ width: '200px', height: '175px' }} />
 
         <Typography
           gutterBottom
@@ -105,7 +104,7 @@ export function FishModal(props: FishModalProps) {
           padding: '2px'
         }}
       >
-        {/* Campo cor Azul 1*/}
+
         <Box
           width='100%'
           style={{
@@ -119,7 +118,7 @@ export function FishModal(props: FishModalProps) {
             paddingLeft: '8px'
           }}
         >
-          {/* Primeira coluna */}
+
           <Box
             width='50%'
             margin='5px auto'
@@ -128,7 +127,7 @@ export function FishModal(props: FishModalProps) {
             <p>{props.fish.largeGroup ?? '---'}</p>
           </Box>
 
-          {/* Segunda coluna */}
+
           <Box
             width='50%'
             margin='5px auto'
@@ -137,9 +136,7 @@ export function FishModal(props: FishModalProps) {
             <p>{props.fish.group ?? '---'}</p>
           </Box>
         </Box>
-        {/* Final da Campo Azul 1 */}
 
-        {/* Campo cor Branca 1 */}
         <Box
           width='100%'
           style={{
@@ -169,9 +166,7 @@ export function FishModal(props: FishModalProps) {
             <p>{props.fish.food ?? '---'}</p>
           </Box>
         </Box>
-        {/* Final da Campo Branco 1 */}
 
-        {/* Campo cor Azul 2*/}
         <Box
           width='100%'
           style={{
@@ -185,7 +180,7 @@ export function FishModal(props: FishModalProps) {
             paddingLeft: '8px'
           }}
         >
-          {/* Primeira coluna */}
+
           <Box
             width='50%'
             margin='5px auto'
@@ -194,7 +189,7 @@ export function FishModal(props: FishModalProps) {
             <p>{props.fish.maxSize ?? '---'}</p>
           </Box>
 
-          {/* Segunda coluna */}
+
           <Box
             width='50%'
             margin='5px auto'
@@ -204,9 +199,6 @@ export function FishModal(props: FishModalProps) {
           </Box>
         </Box>
 
-        {/* Final da Campo Azul 2 */}
-
-        {/* Campo cor Branca 2 */}
         <Box
           width='100%'
           style={{
@@ -236,9 +228,7 @@ export function FishModal(props: FishModalProps) {
             <p>{props.fish.isEndemic ? 'Sim' : 'Não' ?? '---'}</p>
           </Box>
         </Box>
-        {/* Final da Campo Branco 2 */}
 
-        {/* Campo cor Azul 3*/}
         <Box
           width='100%'
           style={{
@@ -252,7 +242,7 @@ export function FishModal(props: FishModalProps) {
             paddingLeft: '8px'
           }}
         >
-          {/* Primeira coluna */}
+
           <Box
             width='50%'
             margin='5px auto'
@@ -261,7 +251,7 @@ export function FishModal(props: FishModalProps) {
             <p>{props.fish.isThreatened ? 'Sim' : 'Não' ?? '---'}</p>
           </Box>
 
-          {/* Segunda coluna */}
+
           <Box
             width='50%'
             margin='5px auto'
@@ -271,9 +261,6 @@ export function FishModal(props: FishModalProps) {
           </Box>
         </Box>
 
-        {/* Final da Campo Azul 3 */}
-
-        {/* Campo cor Branca 3 */}
         <Box
           width='100%'
           style={{
@@ -295,10 +282,11 @@ export function FishModal(props: FishModalProps) {
             <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Foi introduzido ?</label>
             <p>{props.fish.wasIntroduced ? 'Sim' : 'Não' ?? '---'}</p>
           </Box>
+
         </Box>
-        {/* Final da Campo Branco 3 */}
+
       </Box>
-      {/* Unicode para o botao de sair  Unicode: &#10006;*/}
+
       < span style={{
         color: '#0095D9',
         cursor: 'pointer',
@@ -307,6 +295,5 @@ export function FishModal(props: FishModalProps) {
         bottom: '93%'
       }} >&#10006;</span >
     </Box >
-
   )
 }
