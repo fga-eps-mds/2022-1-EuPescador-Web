@@ -8,7 +8,8 @@ export async function deleteUser(id: string) {
     if (userSuperAdmin === 'true') {
       const token = 'admToken'
       const superAdminToken = `Bearer ${token}`
-      const res: ResI = await adminService.delete(`/admin/${id}`, { headers: { Authorization: superAdminToken } })
+      const res: ResI = await adminService.delete(`/user/${id}`, { headers: { Authorization: superAdminToken } })
+      // Mudança de rotas de admin para user
       return res.status
     } else {
       console.log('Deu errado')
