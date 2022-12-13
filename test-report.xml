@@ -1,67 +1,339 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\services\api\fishLogServices\index.spec.tsx">
-    <testCase name="Fish Log Service Test Recuperar todos os logs" duration="2450"/>
-    <testCase name="Fish Log Service Test Recuperar um log" duration="1893"/>
+  <file path="/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/src/services/api/fishLogServices/index.spec.tsx">
+    <testCase name="Fish Log Service Test Recuperar todos os logs" duration="746">
+      <failure message="Network Error"><![CDATA[Network Error]]></failure>
+    </testCase>
+    <testCase name="Fish Log Service Test Recuperar um log" duration="627">
+      <failure message="Network Error"><![CDATA[Network Error]]></failure>
+    </testCase>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\components\FishModal\FishModal.spec.tsx">
-    <testCase name="FishModal Component" duration="7"/>
-    <testCase name="FishModal Component Should render component" duration="836"/>
-    <testCase name="FishModal Component renders an image" duration="89"/>
+  <file path="/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/src/pages/Register/index.spec.tsx">
+    <testCase name="Register page Should render page" duration="306"/>
+    <testCase name="Register page Login button should be render" duration="112"/>
+    <testCase name="Register page Title color should be default" duration="73"/>
+    <testCase name="Register page Title should be visible" duration="61"/>
+    <testCase name="Register page Should render avatar" duration="62"/>
+    <testCase name="Register page Should render email TextField" duration="62"/>
+    <testCase name="Register page Email TextField background color should be default" duration="59"/>
+    <testCase name="Register page Should render password TextField" duration="69"/>
+    <testCase name="Register page Password TextField background color should be default" duration="72"/>
+    <testCase name="Register page Image should be visible" duration="69"/>
+    <testCase name="Register page Image should be get by url" duration="54"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\services\api\wikiServices\index.spec.tsx">
-    <testCase name="Wiki Service Test Recuperar dados de um peixe" duration="775"/>
-    <testCase name="Wiki Service Test Peixe não existente" duration="631"/>
-    <testCase name="Wiki Service Test Recuperar todos os peixes" duration="951"/>
+  <file path="/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/src/services/api/userServices/index.spec.tsx">
+    <testCase name="User Service Test Deve realizar o login" duration="694">
+      <failure message="Network Error"><![CDATA[Network Error]]></failure>
+    </testCase>
+    <testCase name="User Service Test Deve falhar o login" duration="618">
+      <failure message="Error: expect(received).toEqual(expected) // deep equality"><![CDATA[Error: expect(received).toEqual(expected) // deep equality
+
+Expected: 401
+Received: 0
+    at toEqual (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/src/services/api/userServices/index.spec.tsx:14:37)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at Object.<anonymous> (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/src/services/api/userServices/index.spec.tsx:13:5)]]></failure>
+    </testCase>
+    <testCase name="User Service Test Listar todos os usuarios" duration="625">
+      <failure message="Network Error"><![CDATA[Network Error]]></failure>
+    </testCase>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\services\api\userServices\index.spec.tsx">
-    <testCase name="User Service Test Deve realizar o login" duration="1261"/>
-    <testCase name="User Service Test Deve falhar o login" duration="702"/>
-    <testCase name="User Service Test Listar todos os usuarios" duration="1120"/>
+  <file path="/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/src/components/Header.spec.tsx">
+    <testCase name="Header Component Should render title" duration="101"/>
+    <testCase name="Header Component Should render avatar" duration="16"/>
+    <testCase name="Header Component Should render username" duration="13"/>
+    <testCase name="Header Component Should render type of user" duration="23"/>
+    <testCase name="Header Component Title color should be default" duration="66"/>
+    <testCase name="Header Component Header Background should be white" duration="22"/>
+    <testCase name="Header Component Header should be visible" duration="16"/>
+    <testCase name="Header Component Check if width is 100%" duration="13"/>
+    <testCase name="Header Component Check if font-color is black" duration="23"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\pages\Register\index.spec.tsx">
-    <testCase name="Register page Should render page" duration="1159"/>
-    <testCase name="Register page Login button should be render" duration="413"/>
-    <testCase name="Register page Title color should be default" duration="167"/>
-    <testCase name="Register page Title should be visible" duration="171"/>
-    <testCase name="Register page Should render avatar" duration="162"/>
-    <testCase name="Register page Should render email TextField" duration="166"/>
-    <testCase name="Register page Email TextField background color should be default" duration="145"/>
-    <testCase name="Register page Should render password TextField" duration="166"/>
-    <testCase name="Register page Password TextField background color should be default" duration="171"/>
-    <testCase name="Register page Image should be visible" duration="124"/>
-    <testCase name="Register page Image should be get by url" duration="143"/>
+  <file path="/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/src/components/FishModal/FishModal.spec.tsx">
+    <testCase name="FishModal Component" duration="1"/>
+    <testCase name="FishModal Component Should render component" duration="204"/>
+    <testCase name="FishModal Component renders an image from modal" duration="50">
+      <failure message="TestingLibraryElementError: Unable to find an element with the text: complex. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible."><![CDATA[TestingLibraryElementError: Unable to find an element with the text: complex. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, <script />, <style />
+<body>
+  <div>
+    <div
+      class="MuiBox-root css-zp5rwu"
+    >
+      <div
+        class="MuiBox-root css-5ew8ie"
+      >
+        <button
+          class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-sqwd7d-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+          >
+            <svg
+              fill="currentColor"
+              height="1em"
+              stroke="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"
+              />
+              <path
+                d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"
+              />
+            </svg>
+          </span>
+          Editar Espécie
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+        <img
+          alt="complex"
+          class="css-3263f5"
+          id="fishImage"
+          src="https://source.unsplash.com/qsHDqcJzHOA"
+          style="width: 200px; height: 175px;"
+        />
+        <div
+          class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom css-i1hrn3-MuiTypography-root"
+          style="font-size: 18px; font-weight: bold; text-overflow: ellipsis; color: rgb(2, 139, 222); text-align: center;"
+        >
+          Ueua, peixe-cachorro, Bicuda-branca
+        </div>
+        <div
+          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom css-h93ljk-MuiTypography-root"
+          style="font-size: 14px; font-weight: 700; text-overflow: ellipsis;"
+        >
+          Acestrorhynchus falcatus
+        </div>
+      </div>
+      <div
+        class="MuiBox-root css-a6rva7"
+        style="padding: 2px;"
+      >
+        <div
+          class="MuiBox-root css-8atqhb"
+          style="padding: 3px 3px 3px 8px; background-color: rgb(227, 241, 250); display: flex; justify-content: space-between; flex-direction: row; border-radius: 8px; gap: 20px;"
+        >
+          <div
+            class="MuiBox-root css-1rpi0dt"
+          >
+            <label
+              style="color: rgb(2, 139, 222); font-weight: bold;"
+            >
+              Grande Grupo
+            </label>
+            <p>
+              Peixes com escamas
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-1rpi0dt"
+          >
+            <label
+              style="color: rgb(2, 139, 222); font-weight: bold;"
+            >
+              Grupo
+            </label>
+            <p>
+              Cachorras
+            </p>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-8atqhb"
+          style="padding: 3px 3px 3px 8px; display: flex; justify-content: space-between; flex-direction: row; border-radius: 8px; gap: 20px;"
+        >
+          <div
+            class="MuiBox-root css-1rpi0dt"
+          >
+            <label
+              style="color: rgb(2, 139, 222); font-weight: bold;"
+            >
+              Família
+            </label>
+            <p>
+              Acestrorhynchidae
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-1rpi0dt"
+          >
+            <label
+              style="color: rgb(2, 139, 222); font-weight: bold;"
+            >
+              Alimentação
+            </label>
+            <p>
+              Peixes
+            </p>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-8atqhb"
+          style="padding: 3px 3px 3px 8px; background-color: rgb(227, 241, 250); display: flex; justify-content: space-between; flex-direction: row; border-radius: 8px; gap: 20px;"
+        >
+          <div
+            class="MuiBox-root css-1rpi0dt"
+          >
+            <label
+              style="color: rgb(2, 139, 222); font-weight: bold;"
+            >
+              Tamanho Máx(cm)
+            </label>
+            <p>
+              45
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-1rpi0dt"
+          >
+            <label
+              style="color: rgb(2, 139, 222); font-weight: bold;"
+            >
+              Peso Máx(kg)
+            </label>
+            <p>
+              ---
+            </p>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-8atqhb"
+          style="padding: 3px 3px 3px 8px; display: flex; justify-content: space-between; flex-direction: row; border-radius: 8px; gap: 20px;"
+        >
+          <div
+            class="MuiBox-root css-1rpi0dt"
+          >
+            <label
+              style="color: rgb(2, 139, 222); font-weight: bold;"
+            >
+              Habitat
+            </label>
+            <p>
+              Grandes rios.
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-1rpi0dt"
+          >
+            <label
+              style="color: rgb(2, 139, 222); font-weight: bold;"
+            >
+              Endêmico ?
+            </label>
+            <p>
+              Não
+            </p>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-8atqhb"
+          style="padding: 3px 3px 3px 8px; background-color: rgb(227, 241, 250); display: flex; justify-content: space-between; flex-direction: row; border-radius: 8px; gap: 20px;"
+        >
+          <div
+            class="MuiBox-root css-1rpi0dt"
+          >
+            <label
+              style="color: rgb(2, 139, 222); font-weight: bold;"
+            >
+              Ameaçado ?
+            </label>
+            <p>
+              Não
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-1rpi0dt"
+          >
+            <label
+              style="color: rgb(2, 139, 222); font-weight: bold;"
+            >
+              Faz Piracema ?
+            </label>
+            <p>
+              Não
+            </p>
+          </div>
+        </div>
+        <div
+          class="MuiBox-root css-8atqhb"
+          style="padding: 3px 3px 3px 8px; display: flex; flex-direction: row; border-radius: 8px; gap: 20px;"
+        >
+          <div
+            class="MuiBox-root css-s6h007"
+          >
+            <label
+              style="color: rgb(2, 139, 222); font-weight: bold;"
+            >
+              Foi introduzido ?
+            </label>
+            <p>
+              Não
+            </p>
+          </div>
+        </div>
+      </div>
+      <span
+        style="color: rgb(0, 149, 217); cursor: pointer; position: absolute; left: 95%; bottom: 93%;"
+      >
+        ✖
+      </span>
+    </div>
+  </div>
+</body>
+    at Object.getElementError (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/node_modules/@testing-library/dom/dist/config.js:40:19)
+    at /Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/node_modules/@testing-library/dom/dist/query-helpers.js:90:38
+    at /Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/node_modules/@testing-library/dom/dist/query-helpers.js:130:15
+    at Object.getAllByText (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/src/components/FishModal/FishModal.spec.tsx:52:23)
+    at Promise.then.completed (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/node_modules/jest-cli/node_modules/jest-circus/build/utils.js:333:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/node_modules/jest-cli/node_modules/jest-circus/build/utils.js:259:10)
+    at _callCircusTest (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/node_modules/jest-cli/node_modules/jest-circus/build/run.js:277:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/node_modules/jest-cli/node_modules/jest-circus/build/run.js:209:3)
+    at _runTestsForDescribeBlock (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/node_modules/jest-cli/node_modules/jest-circus/build/run.js:97:9)
+    at _runTestsForDescribeBlock (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/node_modules/jest-cli/node_modules/jest-circus/build/run.js:91:9)
+    at run (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/node_modules/jest-cli/node_modules/jest-circus/build/run.js:31:3)
+    at runAndTransformResultsToJestFormat (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/node_modules/jest-cli/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapterInit.js:135:21)
+    at jestAdapter (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/node_modules/jest-cli/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js:92:19)
+    at runTestInternal (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/node_modules/jest-cli/node_modules/jest-runner/build/runTest.js:411:16)
+    at runTest (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/node_modules/jest-cli/node_modules/jest-runner/build/runTest.js:499:34)
+    at Object.worker (/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/node_modules/jest-cli/node_modules/jest-runner/build/testWorker.js:133:12)]]></failure>
+    </testCase>
+    <testCase name="FishModal Component renders an " duration="37"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\components\Header.spec.tsx">
-    <testCase name="Header Component Should render title" duration="244"/>
-    <testCase name="Header Component Should render avatar" duration="30"/>
-    <testCase name="Header Component Should render username" duration="25"/>
-    <testCase name="Header Component Should render type of user" duration="41"/>
-    <testCase name="Header Component Title color should be default" duration="216"/>
-    <testCase name="Header Component Header Background should be white" duration="40"/>
-    <testCase name="Header Component Header should be visible" duration="28"/>
-    <testCase name="Header Component Check if width is 100%" duration="48"/>
-    <testCase name="Header Component Check if font-color is black" duration="29"/>
+  <file path="/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/src/pages/Login/index.spec.tsx">
+    <testCase name="Login page Should render page" duration="345"/>
+    <testCase name="Login page Register button should be render" duration="111"/>
+    <testCase name="Login page Title color should be default" duration="89"/>
+    <testCase name="Login page Title should be visible" duration="70"/>
+    <testCase name="Login page Should render avatar" duration="57"/>
+    <testCase name="Login page Should render first TextField" duration="77"/>
+    <testCase name="Login page First TextField background color should be default" duration="85"/>
+    <testCase name="Login page Should render second TextField" duration="59"/>
+    <testCase name="Login page Second TextField background color should be default" duration="67"/>
+    <testCase name="Login page Image should be visible" duration="61"/>
+    <testCase name="Login page Image should be get by url" duration="67"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\pages\Login\index.spec.tsx">
-    <testCase name="Login page Should render page" duration="1164"/>
-    <testCase name="Login page Register button should be render" duration="443"/>
-    <testCase name="Login page Title color should be default" duration="285"/>
-    <testCase name="Login page Title should be visible" duration="290"/>
-    <testCase name="Login page Should render avatar" duration="223"/>
-    <testCase name="Login page Should render first TextField" duration="231"/>
-    <testCase name="Login page First TextField background color should be default" duration="180"/>
-    <testCase name="Login page Should render second TextField" duration="293"/>
-    <testCase name="Login page Second TextField background color should be default" duration="220"/>
-    <testCase name="Login page Image should be visible" duration="234"/>
-    <testCase name="Login page Image should be get by url" duration="165"/>
+  <file path="/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/src/pages/Datas/index.spec.tsx">
+    <testCase name="Login page Should render page" duration="89"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\pages\Datas\index.spec.tsx">
-    <testCase name="Login page Should render page" duration="888"/>
+  <file path="/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/src/services/api/wikiServices/index.spec.tsx">
+    <testCase name="Wiki Service Test Recuperar dados de um peixe" duration="656"/>
+    <testCase name="Wiki Service Test Peixe não existente" duration="612"/>
+    <testCase name="Wiki Service Test Recuperar todos os peixes" duration="771"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\components\Table\index.spec.tsx">
-    <testCase name="Table component Should render component" duration="180"/>
-    <testCase name="Table component Should render edit button" duration="125"/>
-    <testCase name="Table component Should render delete button" duration="87"/>
+  <file path="/Users/luquinhas/Documents/projetos/2022-2-EuPescador-Web/src/components/Table/index.spec.tsx">
+    <testCase name="Table component Should render component" duration="41"/>
+    <testCase name="Table component Should render edit button" duration="31"/>
+    <testCase name="Table component Should render delete button" duration="19"/>
   </file>
 </testExecutions>
