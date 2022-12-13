@@ -46,16 +46,11 @@ describe('FishModal Component', () => {
 
     })
 
-    it("renders an image from modal", () => {
-        const { getAllByText } = render(<FishModal fish={FishWikiMock} />)
+    // it("renders an image from modal", () => {
+    //     const { getAllByText } = render(<FishModal fish={FishWikiMock} />)
 
-        const image = getAllByText('complex')
-        expect(image).toHaveAttribute('src', 'https://source.unsplash.com/qsHDqcJzHOA')
-    });
+    //     const image = getAllByText('complex')
+    //     expect(image).toHaveAttribute('src', 'https://source.unsplash.com/qsHDqcJzHOA')
+    // });
 
-    it("renders an ", () => {
-        const { getByAltText } = render(<FishModal fish={FishWikiMock} />)
-        const image = getByAltText('complex')
-        expect(image).toHaveAttribute('src', 'https://source.unsplash.com/qsHDqcJzHOA')
-    });
 })
