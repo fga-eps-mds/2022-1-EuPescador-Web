@@ -54,7 +54,7 @@ export default function Header() {
         }}
       >
         <Box sx={{ justifyContent: 'center', margin: 'auto', pl: 22 }}>
-          <img src={logo} width={140} height={61} />
+          <img alt="logo" src={logo} width={140} height={61} />
         </Box>
         <UserCard />
       </Toolbar>

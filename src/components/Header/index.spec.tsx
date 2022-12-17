@@ -2,6 +2,12 @@ import { render } from '@testing-library/react'
 import Header from './index'
 
 describe('Header Component', () => {
+  it('Should render img', () => {
+    const { getByAltText } = render(<Header />)
+    const image = getByAltText('logo')
+    expect(image).toHaveAttribute('src', 'logo.png')
+  })
+
   it('Should render avatar', () => {
     const { getAllByTestId } = render(<Header />)
     const [avatar] = getAllByTestId('avatar')
