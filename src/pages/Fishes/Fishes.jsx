@@ -5,11 +5,12 @@ import Sidebar from '../../components/Sidebar'
 const Fishes = () => {
   return (
     <Grid container>
+      <Header />
       <Grid item xs={1}>
         <Sidebar />
       </Grid>
       <Grid item xs={11}>
-        <Header title="Criar Registro"></Header>
+        Criar Registro
       </Grid>
     </Grid>
   )

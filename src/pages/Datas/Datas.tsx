@@ -36,17 +36,20 @@ const Datas = () => {
   return (
     <>
       <Grid container>
+        <Header />
         <Grid item xs={1}>
           <Sidebar children={undefined} />
         </Grid>
         <Grid item xs={11}>
-          <Header title="Listagem de Peixes"></Header>
+          Listagem de Peixes
           <Grid container spacing={{ xs: 2, md: 3 }}>
             {(fishes || [])?.map((res: FishWiki, index) => {
               return (
                 <Grid item xs={12} sm={6} md={4} xl={3} key={index}>
                   <Box
-                    onClick={() => { handleOpenFishModal(res) }}
+                    onClick={() => {
+                      handleOpenFishModal(res)
+                    }}
                   >
                     <FishCard
                       fish={{
@@ -54,7 +57,10 @@ const Datas = () => {
                         size: res.maxSize,
                         weigth: res.maxWeight,
                         place: res.habitat,
-                        imageUrl: res.photo == null ? 'https://source.unsplash.com/qsHDqcJzHOA' : res.photo,
+                        imageUrl:
+                          res.photo == null
+                            ? 'https://source.unsplash.com/qsHDqcJzHOA'
+                            : res.photo,
                       }}
                     ></FishCard>
                   </Box>
@@ -65,14 +71,9 @@ const Datas = () => {
         </Grid>
       </Grid>
 
-      <Modal
-        open={open}
-        onClose={handleClose}
-      >
+      <Modal open={open} onClose={handleClose}>
         <Box>
-          <FishModal
-            fish={modalFish}
-          ></FishModal>
+          <FishModal fish={modalFish}></FishModal>
         </Box>
       </Modal>
     </>

@@ -1,4 +1,13 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, CircularProgress } from '@mui/material'
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Grid,
+  CircularProgress,
+} from '@mui/material'
 import Header, { UserProps } from '~components/Header'
 import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
@@ -42,7 +51,9 @@ export default function User() {
 
   const [users, setUsers] = useState<UserI[]>()
   useEffect(() => {
-    const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
+    const user: UserProps = JSON.parse(
+      localStorage.getItem('UserData')
+    ) as UserProps
     GetAllUsers(user.token)
       .then((res: UserI[]) => {
         setUsers(res)
@@ -52,20 +63,25 @@ export default function User() {
 
   return (
     <Grid container>
+      <Header />
       <Grid item xs={1}>
         <Sidebar children={undefined} />
       </Grid>
       <Grid item xs={11}>
-        <Header title="Gerência de Usuários"></Header>
+        Gerência de Usuários
         {users && users.length ? (
           <TableComponent
             columns={columns}
-            rows={(users || []).map(user => {
+            rows={(users || []).map((user) => {
               return {
                 id: user.id.toString(),
                 name: user.name,
                 email: user.email,
-                userRole: (user.superAdmin ? 'Super Admin' : (user.admin ? 'Admin' : ' Usuário'))
+                userRole: user.superAdmin
+                  ? 'Super Admin'
+                  : user.admin
+                  ? 'Admin'
+                  : ' Usuário',
               }
             })}
             onDelete={(user) => console.log(user.id)}
@@ -73,9 +89,7 @@ export default function User() {
           />
         ) : (
           <CircularProgress />
-
         )}
-
       </Grid>
       <Dialog
         open={open}
@@ -84,7 +98,7 @@ export default function User() {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Deseja excluir o usuário?"}
+          {'Deseja excluir o usuário?'}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
