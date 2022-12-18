@@ -8,6 +8,7 @@ import Header from '../../components/Header'
 import Sidebar from '../../components/Sidebar'
 import { FishCard } from '../../components/FishCard/FishCard'
 import { FishModal } from '../../components/FishModal/FishModal'
+import { TitlePage } from '../../components/TitlePage/TitlePage'
 
 // Services
 import { GetWikiFishes } from '../../services/api/wikiServices/getWikiFishes'
@@ -36,11 +37,12 @@ const Datas = () => {
   return (
     <>
       <Grid container>
+        <Header title=""></Header>
         <Grid item xs={1}>
           <Sidebar children={undefined} />
         </Grid>
         <Grid item xs={11}>
-          <Header title="Listagem de Peixes"></Header>
+          <TitlePage title="Listagem de Peixes" button />
           <Grid container spacing={{ xs: 2, md: 3 }}>
             {(fishes || [])?.map((res: FishWiki, index) => {
               return (

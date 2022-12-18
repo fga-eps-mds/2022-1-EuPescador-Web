@@ -35,12 +35,13 @@ export function FishCard(props: FishCardProps) {
         flexGrow: 1,
         width: '330px',
         height: '160px',
-        border: '1px solid #DDDFE4',
+        border: '2px solid #0095F9',
         borderRadius: '12px',
-        backgroundColor: (theme) => (theme.palette.mode === 'dark' ? '#1A2027' : '#fff'),
+        backgroundColor: (theme) =>
+          theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
       }}
     >
-      <Grid container spacing={2}>
+      <Grid container spacing={2} sx={{ alignItems: 'center' }}>
         <Grid item>
           <ButtonBase sx={{ width: 170, height: 150 }}>
             <Img alt="complex" src={props.fish.imageUrl} style={{ width: '140px', height: '110px' }} />
@@ -49,7 +50,14 @@ export function FishCard(props: FishCardProps) {
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
-              <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', marginTop: '16px' }}>
+              <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                <div
+                  style={{
+                    borderBottom: '4px dotted #0095F9',
+                    width: '100px',
+                    marginBottom: '5px',
+                  }}
+                ></div>
                 <Typography
                   gutterBottom
                   variant="h5"
@@ -62,17 +70,14 @@ export function FishCard(props: FishCardProps) {
                 >
                   {props.fish.name}
                 </Typography>
+                <div
+                  style={{
+                    borderBottom: '4px dotted #0095F9',
+                    width: '100px',
+                    paddingTop: '3px',
+                  }}
+                ></div>
               </div>
-
-              <Typography variant="body2" color="text.secondary">
-                {props.fish.size}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {props.fish.place}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {props.fish.weigth}
-              </Typography>
             </Grid>
           </Grid>
         </Grid>
