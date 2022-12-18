@@ -1,16 +1,10 @@
-import {
-  Box,
-  Button,
-  Grid,
-  TextField,
-  Switch,
-  FormGroup,
-  FormControlLabel,
-} from '@mui/material'
+import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, TextField, Switch, FormGroup, FormControlLabel } from '@mui/material'
 import Header from '~components/Header'
 import Sidebar from '../../components/Sidebar'
+import TableComponent from '~components/Table'
 import { GetOneUser, UserI } from '~services/api/userServices/getOneUser'
 import { useEffect, useState } from 'react'
+import * as React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { UpdateUser } from '~services/api/userServices/UpdateUser'
 import { toast } from 'react-toastify'
@@ -22,13 +16,12 @@ export interface UserProps {
 }
 
 export default function UserForm() {
+
   const [user, setUser] = useState({} as UserI)
   const { id } = useParams()
 
   const getLog = async (logId: string) => {
-    const user: UserProps = JSON.parse(
-      localStorage.getItem('UserData')
-    ) as UserProps
+    const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
     const data = await GetOneUser(logId, user.token)
     console.log(data)
     setUser(data)
@@ -46,9 +39,7 @@ export default function UserForm() {
   }, [id])
   const handleSubmit = async () => {
     try {
-      const userprp: UserProps = JSON.parse(
-        localStorage.getItem('UserData')
-      ) as UserProps
+      const userprp: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
       await UpdateUser(id, userprp.token, user)
       toast.success('usuário editado com successo!')
       routeChange()
@@ -73,10 +64,9 @@ export default function UserForm() {
             label="Nome"
             name="Nome"
             autoComplete="Nome"
+
             value={user.name}
-            onChange={(e) => {
-              setUser({ ...user, name: e.target.value })
-            }}
+            onChange={(e) => { setUser({ ...user, name: e.target.value }) }}
             InputLabelProps={{
               shrink: true,
               style: { color: '#111111' },
@@ -86,6 +76,7 @@ export default function UserForm() {
                 borderRadius: '8px',
                 color: '#111111',
                 width: '500px',
+
               },
             }}
           />
@@ -98,9 +89,8 @@ export default function UserForm() {
             name="email"
             autoComplete="email"
             value={user.email}
-            onChange={(e) => {
-              setUser({ ...user, email: e.target.value })
-            }}
+            onChange={(e) => { setUser({ ...user, email: e.target.value }) }}
+
             InputLabelProps={{
               shrink: true,
               style: { color: '#111111' },
@@ -110,6 +100,7 @@ export default function UserForm() {
                 borderRadius: '8px',
                 color: '#111111',
                 width: '500px',
+
               },
             }}
           />
@@ -122,9 +113,7 @@ export default function UserForm() {
             label="Cidade"
             name="cidade"
             value={user.city}
-            onChange={(e) => {
-              setUser({ ...user, city: e.target.value })
-            }}
+            onChange={(e) => { setUser({ ...user, city: e.target.value }) }}
             InputLabelProps={{
               shrink: true,
               style: { color: '#111111' },
@@ -134,6 +123,7 @@ export default function UserForm() {
                 borderRadius: '8px',
                 color: '#111111',
                 width: '500px',
+
               },
             }}
           />
@@ -146,10 +136,9 @@ export default function UserForm() {
             label="Estado"
             name="Estado"
             value={user.state}
-            onChange={(e) => {
-              setUser({ ...user, state: e.target.value })
-            }}
+            onChange={(e) => { setUser({ ...user, state: e.target.value }) }}
             autoComplete="Estado"
+
             InputLabelProps={{
               shrink: true,
               style: { color: '#111111' },
@@ -159,6 +148,7 @@ export default function UserForm() {
                 borderRadius: '8px',
                 color: '#111111',
                 width: '500px',
+
               },
             }}
           />
@@ -170,10 +160,9 @@ export default function UserForm() {
             label="Telefone"
             name="Telefone"
             value={user.phone}
-            onChange={(e) => {
-              setUser({ ...user, phone: e.target.value })
-            }}
+            onChange={(e) => { setUser({ ...user, phone: e.target.value }) }}
             autoComplete="Telefone"
+
             InputLabelProps={{
               shrink: true,
               style: { color: '#111111' },
@@ -188,28 +177,8 @@ export default function UserForm() {
           />
 
           <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={user.admin}
-                  onChange={() => {
-                    setUser({ ...user, admin: !user.admin })
-                  }}
-                />
-              }
-              label="Administrador"
-            />
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={user.superAdmin}
-                  onChange={() => {
-                    setUser({ ...user, superAdmin: !user.superAdmin })
-                  }}
-                />
-              }
-              label="Super Admim"
-            />
+            <FormControlLabel control={<Switch checked={user.admin} onChange={(e) => { setUser({ ...user, admin: !user.admin }) }} />} label="Administrador" />
+            <FormControlLabel control={<Switch checked={user.superAdmin} onChange={(e) => { setUser({ ...user, superAdmin: !user.superAdmin }) }} />} label="Super Admim" />
           </FormGroup>
 
           <Button
@@ -251,4 +220,5 @@ export default function UserForm() {
       </Grid>
     </Grid>
   )
+
 }

@@ -1,15 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import {
-  Grid,
-  Box,
-  TextField,
-  Typography,
-  ButtonBase,
-  Button,
-  Alert,
-} from '@mui/material'
+import { Grid, Box, TextField, Typography, ButtonBase, Button, Alert } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Header, { UserProps } from '~components/Header'
@@ -43,9 +35,7 @@ export default function LogsDetails() {
   const { id } = useParams()
 
   const getLog = async (logId: string) => {
-    const user: UserProps = JSON.parse(
-      localStorage.getItem('UserData')
-    ) as UserProps
+    const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
     const data = await GetOneFishLog(logId, user.token)
     setLog(data)
   }
@@ -60,9 +50,7 @@ export default function LogsDetails() {
   }, [id])
 
   const atualizaLog = async () => {
-    const user: UserProps = JSON.parse(
-      localStorage.getItem('UserData')
-    ) as UserProps
+    const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
     const dadinhos = await UpdateFishLog(
       id,
       log.name,
@@ -78,7 +66,7 @@ export default function LogsDetails() {
       true,
       true,
       true,
-      user.token
+      user.token,
     )
     console.log(dadinhos)
     routeChange()
@@ -92,9 +80,7 @@ export default function LogsDetails() {
 
   const handleReviewLog = async () => {
     try {
-      const user: UserProps = JSON.parse(
-        localStorage.getItem('UserData')
-      ) as UserProps
+      const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
       await ReviewFishLog(id, log.name, user.token)
       toast.success('Registro aprovado com sucesso!')
       setLog({
@@ -226,9 +212,7 @@ export default function LogsDetails() {
                 }}
               />
             </Box>
-            <Typography sx={{ mt: 2 }}>
-              Status: {log.reviewed ? 'Aprovado' : 'Pendente'}
-            </Typography>
+            <Typography sx={{ mt: 2 }}>Status: {log.reviewed ? 'Aprovado' : 'Pendente'}</Typography>
             <Box sx={{ display: 'flex', width: '50%', mt: 10, ml: 0 }}>
               <button className="btn-save" onClick={atualizaLog}>
                 SALVAR
@@ -266,18 +250,12 @@ export default function LogsDetails() {
                 style={{ borderRadius: '20px' }}
               />
             ) : (
-              <Alert severity="info">
-                Opa, parece que este registro não possui uma foto.
-              </Alert>
+              <Alert severity="info">Opa, parece que este registro não possui uma foto.</Alert>
             )}
 
-            <Typography sx={{ mt: 5, mb: 1, fontWeight: 'bold' }}>
-              Localização:
-            </Typography>
+            <Typography sx={{ mt: 5, mb: 1, fontWeight: 'bold' }}>Localização:</Typography>
 
-            {log.coordenates &&
-            log.coordenates.latitude &&
-            log.coordenates.longitude ? (
+            {log.coordenates && log.coordenates.latitude && log.coordenates.longitude ? (
               <MapContainer
                 center={[log.coordenates.latitude, log.coordenates.longitude]}
                 zoom={13}
@@ -288,20 +266,13 @@ export default function LogsDetails() {
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <Marker
-                  position={[
-                    log.coordenates.latitude,
-                    log.coordenates.longitude,
-                  ]}
-                >
+                <Marker position={[log.coordenates.latitude, log.coordenates.longitude]}>
                   <Popup>Esta é a localização do {log.name}</Popup>
                 </Marker>
               </MapContainer>
             ) : (
               <Box sx={{ display: 'flex' }}>
-                <Typography sx={{ ml: 5, mt: 2, mb: 1, fontWeight: 'light' }}>
-                  Sem Localização
-                </Typography>
+                <Typography sx={{ ml: 5, mt: 2, mb: 1, fontWeight: 'light' }}>Sem Localização</Typography>
               </Box>
             )}
           </Box>
