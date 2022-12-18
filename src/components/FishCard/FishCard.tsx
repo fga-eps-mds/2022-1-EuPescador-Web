@@ -24,7 +24,7 @@ const Img = styled('img')({
 export function FishCard(props: FishCardProps) {
   return (
     <Paper
-      elevation={0}
+      elevation={2}
       sx={{
         p: 1,
         margin: 0,
@@ -38,44 +38,35 @@ export function FishCard(props: FishCardProps) {
       }}
     >
       <Grid container spacing={2} sx={{ alignItems: 'center' }}>
-        <Grid item>
+        <Grid item xs={6}>
           <ButtonBase sx={{ width: 170, height: 150 }}>
             <Img alt="complex" src={props.fish.imageUrl} style={{ width: '140px', height: '110px' }} />
           </ButtonBase>
         </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs>
-              <div style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                <div
-                  style={{
-                    borderBottom: '4px dotted #0095F9',
-                    width: '100px',
-                    marginBottom: '5px',
-                  }}
-                ></div>
+        <Grid item xs={6}>
+              <div style={{ 
+                overflow: 'hidden', 
+                textOverflow: 'ellipsis',
+                borderBottom: '4px dotted #0095F9',
+                borderTop: '4px dotted #0095F9',
+                paddingTop:'15px',
+                paddingBottom:'15px',
+                textAlign: 'center',
+                marginLeft: '5px',
+                marginRight:'15px',  }}>
                 <Typography
                   gutterBottom
                   variant="h5"
                   component="div"
                   style={{
-                    fontSize: '14px',
+                    fontSize: '0.875rem',
                     fontWeight: '700',
                     textOverflow: 'ellipsis',
                   }}
                 >
                   {props.fish.name}
                 </Typography>
-                <div
-                  style={{
-                    borderBottom: '4px dotted #0095F9',
-                    width: '100px',
-                    paddingTop: '3px',
-                  }}
-                ></div>
               </div>
-            </Grid>
-          </Grid>
         </Grid>
       </Grid>
     </Paper>

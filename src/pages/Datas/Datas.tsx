@@ -38,10 +38,10 @@ const Datas = () => {
     <>
       <Grid container>
         <Header title=""></Header>
-        <Grid item xs={1}>
+        <Grid item xs={2} md={1} >
           <Sidebar children={undefined} />
         </Grid>
-        <Grid item xs={11}>
+        <Grid item xs={10} md={11}>
           <TitlePage title="Listagem de Peixes" button />
           <Grid container spacing={{ xs: 2, md: 3 }}>
             {(fishes || [])?.map((res: FishWiki, index) => {
