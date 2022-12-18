@@ -5,7 +5,7 @@ describe('Header Component', () => {
   it('Should render img', () => {
     const { getByAltText } = render(<Header />)
     const image = getByAltText('logo')
-    expect(image).toHaveAttribute('src', 'logo.png')
+    expect(image).toHaveAttribute('alt', 'logo')
   })
 
   it('Should render avatar', () => {
