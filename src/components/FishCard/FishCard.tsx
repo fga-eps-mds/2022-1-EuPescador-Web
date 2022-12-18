@@ -6,9 +6,6 @@ import ButtonBase from '@mui/material/ButtonBase'
 
 type Fish = {
   name: string
-  size: string
-  weigth: string
-  place: string
   imageUrl: string
 }
 
@@ -37,8 +34,7 @@ export function FishCard(props: FishCardProps) {
         height: '160px',
         border: '2px solid #0095F9',
         borderRadius: '12px',
-        backgroundColor: (theme) =>
-          theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+        backgroundColor: '#FFF' 
       }}
     >
       <Grid container spacing={2} sx={{ alignItems: 'center' }}>

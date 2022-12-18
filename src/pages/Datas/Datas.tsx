@@ -53,9 +53,6 @@ const Datas = () => {
                     <FishCard
                       fish={{
                         name: res.commonName,
-                        size: res.maxSize,
-                        weigth: res.maxWeight,
-                        place: res.habitat,
                         imageUrl: res.photo == null ? 'https://source.unsplash.com/qsHDqcJzHOA' : res.photo,
                       }}
                     ></FishCard>
