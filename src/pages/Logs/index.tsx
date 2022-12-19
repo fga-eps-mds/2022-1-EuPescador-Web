@@ -75,11 +75,12 @@ export default function FishLogs() {
 
   return (
     <Grid container>
+      <Header />
       <Grid item xs={1}>
         <Sidebar children={undefined} />
       </Grid>
       <Grid item xs={11}>
-        <Header title="Logs dos Peixes"></Header>
+        Logs dos Peixes
 
         {logs.length ? (
           <>
