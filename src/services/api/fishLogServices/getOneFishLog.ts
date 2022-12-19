@@ -7,5 +7,6 @@ export async function GetOneFishLog(log_id: string, token: string) {
   const res: ResI = await fishLogService.get(`/fishLog/${log_id}`, {
     headers: { Authorization: userToken },
   })
-  return res.data as unknown as FishLogProps
+
+  return (res.data as unknown) as FishLogProps
 }
