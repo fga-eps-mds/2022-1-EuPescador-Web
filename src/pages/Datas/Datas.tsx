@@ -43,6 +43,7 @@ const Datas = () => {
         </Grid>
         <Grid item xs={10} md={11}>
           <TitlePage title="Listagem de Peixes" button />
+
           <Grid container spacing={{ xs: 2, md: 3 }}>
             {(fishes || [])?.map((res: FishWiki, index) => {
               return (

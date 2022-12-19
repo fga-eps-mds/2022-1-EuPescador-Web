@@ -94,11 +94,12 @@ export default function LogsDetails() {
 
   return (
     <Grid container>
+      <Header />
       <Grid item xs={1}>
         <Sidebar children={undefined} />
       </Grid>
       <Grid item xs={11}>
-        <Header title="Detalhes do Log"></Header>
+        Detalhes do Log
         <Box sx={{ mt: 5, ml: 5, display: 'flex' }}>
           <Box sx={{ mt: 2, width: '50%' }}>
             <TextField
