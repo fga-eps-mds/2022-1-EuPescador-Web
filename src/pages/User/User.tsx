@@ -16,6 +16,9 @@ import { useEffect, useState } from 'react'
 import { ResI } from '~services/api/interfaces'
 import { deleteUser } from '~services/api/userServices/deleteUser'
 import { useNavigate } from 'react-router-dom'
+import "../../assets/styles/User.css"
+
+import fishIcon from "../../assets/icons/peixe_simbolo1.svg"
 
 export default function User() {
   const navigate = useNavigate()
@@ -25,16 +28,12 @@ export default function User() {
       value: 'name',
     },
     {
-      label: 'Email',
+      label: 'E-mail',
       value: 'email',
     },
     {
       label: 'Tipo de usuario',
       value: 'userRole',
-    },
-    {
-      label: 'Desde',
-      value: 'userSince',
     },
   ]
 
@@ -68,7 +67,10 @@ export default function User() {
         <Sidebar children={undefined} />
       </Grid>
       <Grid item xs={11}>
+        <h2 style={{marginBottom: '20px', display: 'flex', alignItems: 'center'}}>
+        <img src={fishIcon} style={{width: "50px", height: "70px", marginRight:'8px'}}/>
         Gerência de Usuários
+        </h2>
         {users && users.length ? (
           <TableComponent
             columns={columns}
@@ -82,14 +84,14 @@ export default function User() {
                   : user.admin
                   ? 'Admin'
                   : ' Usuário',
-              }
-            })}
+                }
+              })}
             onDelete={(user) => console.log(user.id)}
             onEdit={(row) => navigate(`/usuarios/${row.id}`)}
           />
-        ) : (
-          <CircularProgress />
-        )}
+          ) : (
+            <CircularProgress />
+            )}
       </Grid>
       <Dialog
         open={open}

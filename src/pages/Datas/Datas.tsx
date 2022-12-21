@@ -37,7 +37,7 @@ const Datas = () => {
   return (
     <>
       <Grid container>
-        <Header title=""></Header>
+        <Header></Header>
         <Grid item xs={2} md={1} >
           <Sidebar children={undefined} />
         </Grid>
