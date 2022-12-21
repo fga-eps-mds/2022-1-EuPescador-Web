@@ -1,10 +1,8 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, TextField, Switch, FormGroup, FormControlLabel } from '@mui/material'
+import { Box, Button, Grid, TextField, Switch, FormGroup, FormControlLabel } from '@mui/material'
 import Header from '~components/Header'
 import Sidebar from '../../components/Sidebar'
-import TableComponent from '~components/Table'
 import { GetOneUser, UserI } from '~services/api/userServices/getOneUser'
 import { useEffect, useState } from 'react'
-import * as React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { UpdateUser } from '~services/api/userServices/UpdateUser'
 import { toast } from 'react-toastify'
@@ -177,8 +175,8 @@ export default function UserForm() {
           />
 
           <FormGroup>
-            <FormControlLabel control={<Switch checked={user.admin} onChange={(e) => { setUser({ ...user, admin: !user.admin }) }} />} label="Administrador" />
-            <FormControlLabel control={<Switch checked={user.superAdmin} onChange={(e) => { setUser({ ...user, superAdmin: !user.superAdmin }) }} />} label="Super Admim" />
+            <FormControlLabel control={<Switch checked={user.admin} onChange={() => { setUser({ ...user, admin: !user.admin }) }} />} label="Administrador" />
+            <FormControlLabel control={<Switch checked={user.superAdmin} onChange={() => { setUser({ ...user, superAdmin: !user.superAdmin }) }} />} label="Super Admim" />
           </FormGroup>
 
           <Button

@@ -4,7 +4,7 @@ import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { GetAllFishLogs, FishLogI } from '~services/api/fishLogServices/GetAllFishLogs'
+import { GetAllFishLogs } from '~services/api/fishLogServices/GetAllFishLogs'
 import { deleteFishLog } from '~services/api/fishLogServices/deleteFishLog'
 import { DownloadExcel } from "react-excel-export"
 
