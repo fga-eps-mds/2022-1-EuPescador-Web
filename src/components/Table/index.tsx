@@ -5,8 +5,6 @@ import { IconButton, Table, TableBody, TableCell, TableContainer, TableHead, Tab
 import editIcon from "../../assets/icons/senha_simbolo3.svg"
 import deleteIcon from "../../assets/icons/excluir_simbolo1.svg"
 
-import "../../assets/styles/User.css"
-
 interface RowProp {
   [key: string]: string | number
 }
