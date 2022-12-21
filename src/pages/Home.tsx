@@ -31,9 +31,8 @@ const Home = () => {
   }, [])
 
   const filteredLogs = logs.filter((log) => {
-    log.coordenates
-      ? log.coordenates.latitude && log.coordenates.longitude
-      : null
+    log.coordenates &&
+      log.coordenates.latitude && log.coordenates.longitude
   })
 
   return (
