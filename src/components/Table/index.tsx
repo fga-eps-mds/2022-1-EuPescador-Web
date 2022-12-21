@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/ban-types */
 import { IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import Pagination from '@mui/material/Pagination'
 
 import editIcon from "../../assets/icons/senha_simbolo3.svg"
 import deleteIcon from "../../assets/icons/excluir_simbolo1.svg"
@@ -103,7 +102,6 @@ export default function TableComponent({ rows, columns, onDelete, onEdit}: Table
         </TableBody>
       </Table>
     </TableContainer>
-    <Pagination count={10} style={{marginTop:'4px'}} color="primary" size="small"/>
   </>
   )
 }

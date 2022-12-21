@@ -8,10 +8,13 @@ import {
   Grid,
   CircularProgress,
 } from '@mui/material'
+
+import Pagination from '@mui/material/Pagination'
+
 import Header, { UserProps } from '~components/Header'
 import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
-import { GetAllUsers, UserI } from '~services/api/userServices/getAllUsers'
+import { GetAllUsers, UserResponseI } from '~services/api/userServices/getAllUsers'
 import { useEffect, useState } from 'react'
 import { ResI } from '~services/api/interfaces'
 import { deleteUser } from '~services/api/userServices/deleteUser'
@@ -38,6 +41,7 @@ export default function User() {
   ]
 
   const [open, setOpen] = useState(false)
+  const [page, setPage] = useState(1)
 
   const handleClickOpen = async (id: string) => {
     await deleteUser(id)
@@ -48,17 +52,22 @@ export default function User() {
     setOpen(false)
   }
 
-  const [users, setUsers] = useState<UserI[]>()
+  const [users, setUsers] = useState<UserResponseI>()
+ 
   useEffect(() => {
     const user: UserProps = JSON.parse(
       localStorage.getItem('UserData')
     ) as UserProps
-    GetAllUsers(user.token)
-      .then((res: UserI[]) => {
+    GetAllUsers(user.token, page, 8)
+      .then((res: UserResponseI) => {
         setUsers(res)
       })
       .catch((e) => console.error(e))
-  }, [])
+  }, [page])
+
+  const onPageChange = (event, page: number) => {
+    setPage(page)
+  }
 
   return (
     <Grid container>
@@ -71,24 +80,27 @@ export default function User() {
         <img src={fishIcon} style={{width: "50px", height: "70px", marginRight:'8px'}}/>
         Gerência de Usuários
         </h2>
-        {users && users.length ? (
+        {users && users.data.length ? (
+          <>
           <TableComponent
-            columns={columns}
-            rows={(users || []).map((user) => {
-              return {
-                id: user.id.toString(),
-                name: user.name,
-                email: user.email,
-                userRole: user.superAdmin
-                  ? 'Super Admin'
+          columns={columns}
+          rows={(users.data || []).map((user) => {
+            return {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+              userRole: user.superAdmin
+              ? 'Super Admin'
                   : user.admin
                   ? 'Admin'
                   : ' Usuário',
                 }
               })}
-            onDelete={(user) => console.log(user.id)}
-            onEdit={(row) => navigate(`/usuarios/${row.id}`)}
-          />
+              onDelete={(user) => console.log(user.id)}
+              onEdit={(row) => navigate(`/usuarios/${row.id}`)}
+              />
+          <Pagination count={users.totalPages} page={page} onChange={onPageChange} style={{marginTop:'16px'}} color="primary" size="small"/>
+          </>
           ) : (
             <CircularProgress />
             )}

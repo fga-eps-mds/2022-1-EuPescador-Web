@@ -13,10 +13,17 @@ export interface UserI {
   superAdmin: boolean
 }
 
-export async function GetAllUsers(token: string) {
+export interface UserResponseI {
+  data: UserI[],
+  page: number,
+  count: number,
+  totalPages: number
+}
+
+export async function GetAllUsers(token: string, page: number, count: number) {
   const userToken = `Bearer ${token}`
-  const res: ResI = await userService.get('/user/', {
+  const res: ResI = await userService.get(`/user?page=${page}&count=${count}`, {
     headers: { Authorization: userToken }
   })
-  return res.data as UserI[]
+  return res.data as unknown as UserResponseI
 }
