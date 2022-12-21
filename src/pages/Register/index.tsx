@@ -21,8 +21,7 @@ function Copyright(props: any) {
 export default function Register() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    new FormData(event.currentTarget)
-
+    const data = new FormData(event.currentTarget)
   }
 
   return (

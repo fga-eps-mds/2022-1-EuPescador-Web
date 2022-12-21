@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import Datas from './pages/Datas/Datas'
 import User from './pages/User/User'
 import Home from './pages/Home'
@@ -14,7 +14,7 @@ import UserForm from './pages/User/UserEdit'
 import LogsDetails from 'pages/Logs/Details'
 
 function App() {
-  const [auth] = React.useState<string>(localStorage.getItem('UserData'))
+  const [auth, setAuth] = React.useState<string>(localStorage.getItem('UserData'))
 
   return (
     <Routes>
