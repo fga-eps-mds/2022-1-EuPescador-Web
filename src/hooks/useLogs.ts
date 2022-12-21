@@ -1,4 +1,3 @@
-import { FishLogProps } from 'pages/Logs/Details'
 import { useEffect, useState } from 'react'
 import { UserProps } from '../components/Header'
 import { GetAllFishLogs } from '../services/api/fishLogServices/GetAllFishLogs'

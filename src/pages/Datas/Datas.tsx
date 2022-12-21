@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 // Externs and Interns libs
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Grid, Box, Modal } from '@mui/material'
 
 // Components
@@ -37,7 +37,7 @@ const Datas = () => {
   return (
     <>
       <Grid container>
-        <Header></Header>
+        <Header />
         <Grid item xs={2} md={1} >
           <Sidebar children={undefined} />
         </Grid>
