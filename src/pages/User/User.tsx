@@ -13,8 +13,6 @@ import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
 import { GetAllUsers, UserI } from '~services/api/userServices/getAllUsers'
 import { useEffect, useState } from 'react'
-import { ResI } from '~services/api/interfaces'
-import { deleteUser } from '~services/api/userServices/deleteUser'
 import { useNavigate } from 'react-router-dom'
 
 export default function User() {
@@ -39,11 +37,6 @@ export default function User() {
   ]
 
   const [open, setOpen] = useState(false)
-
-  const handleClickOpen = async (id: string) => {
-    await deleteUser(id)
-    setOpen(true)
-  }
 
   const handleClose = () => {
     setOpen(false)

@@ -19,10 +19,10 @@ const UserCard = () => {
   return (
     <Box display="flex" sx={{ alignItems: 'center', pr: 8 }}>
       <Box>
-        <Typography sx={{ fontWeight: 'bold', fontSize: '18px', mr: 2 }}>
+        <Typography sx={{ fontWeight: 'bold', fontSize: '18px', mr: 2, textAlign: 'right' }}>
           {user?.name ? user.name : 'Nome'}
         </Typography>
-        <Typography sx={{ fontWeight: 'bold', fontSize: '14px' }}>
+        <Typography sx={{ fontWeight: 'bold', fontSize: '14px', mr: 2, textAlign: 'right' }}>
           {user?.admin ? 'Administrador' : 'Usuário'}
         </Typography>
       </Box>
@@ -50,7 +50,7 @@ export default function Header() {
         sx={{
           color: 'black',
           backgroundColor: '#E3F1FA',
-          height: '100px',
+          height: '120px',
         }}
       >
         <Box sx={{ justifyContent: 'center', margin: 'auto', pl: 22 }}>

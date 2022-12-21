@@ -32,7 +32,7 @@ export default function Login() {
         window.location.href = '/dados'
         navigate('/dados', { replace: true })
       })
-      .catch((E) => {
+      .catch(() => {
         toast.error('Ooops! Algo deu errado! Tente novamente', {
           position: 'top-right',
           autoClose: 5000,
