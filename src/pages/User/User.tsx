@@ -16,7 +16,6 @@ import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
 import { GetAllUsers, UserResponseI } from '~services/api/userServices/getAllUsers'
 import { useEffect, useState } from 'react'
-import { ResI } from '~services/api/interfaces'
 import { deleteUser } from '~services/api/userServices/deleteUser'
 import { useNavigate } from 'react-router-dom'
 import "../../assets/styles/User.css"
@@ -40,6 +39,8 @@ export default function User() {
     },
   ]
 
+  const usersPerPage = 8
+
   const [open, setOpen] = useState(false)
   const [page, setPage] = useState(1)
 
@@ -58,7 +59,7 @@ export default function User() {
     const user: UserProps = JSON.parse(
       localStorage.getItem('UserData')
     ) as UserProps
-    GetAllUsers(user.token, page, 8)
+    GetAllUsers(user.token, page, usersPerPage)
       .then((res: UserResponseI) => {
         setUsers(res)
       })
