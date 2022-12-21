@@ -30,9 +30,11 @@ const Home = () => {
     }
   }, [])
 
-  const filteredLogs = logs.filter(
-    (log) => log.coordenates.latitude && log.coordenates.longitude
-  )
+  const filteredLogs = logs.filter((log) => {
+    log.coordenates
+      ? log.coordenates.latitude && log.coordenates.longitude
+      : " "
+  })
 
   return (
     <Grid container>
