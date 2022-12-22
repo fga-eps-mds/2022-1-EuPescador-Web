@@ -38,7 +38,7 @@ export default function Header() {
   return (
     <AppBar
       className="appbar"
-      position="static"
+      position="fixed"
       sx={{
         color: 'black',
         backgroundColor: 'white',

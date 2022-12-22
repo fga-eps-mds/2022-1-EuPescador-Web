@@ -79,7 +79,7 @@ export default function FishLogs() {
       <Grid item xs={1}>
         <Sidebar children={undefined} />
       </Grid>
-      <Grid item xs={11}>
+      <Grid marginTop="160px" item xs={11}>
         Logs dos Peixes
 
         {logs.length ? (

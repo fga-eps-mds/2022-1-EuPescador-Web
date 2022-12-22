@@ -41,7 +41,7 @@ const Datas = () => {
         <Grid item xs={2} md={1} >
           <Sidebar children={undefined} />
         </Grid>
-        <Grid item xs={10} md={11}>
+        <Grid marginTop="160px" item xs={10} md={11}>
           <TitlePage title="Listagem de Peixes" button />
 
           <Grid container spacing={{ xs: 2, md: 3 }}>
@@ -50,13 +50,13 @@ const Datas = () => {
                 <Grid item xs={12} sm={6} md={4} xl={3} key={index}>
                   <Box
                     onClick={() => { handleOpenFishModal(res) }}
-                  >
+                    >
                     <FishCard
                       fish={{
                         name: res.commonName,
                         imageUrl: res.photo == null ? 'https://source.unsplash.com/qsHDqcJzHOA' : res.photo,
                       }}
-                    ></FishCard>
+                      ></FishCard>
                   </Box>
                 </Grid>
               )
@@ -68,11 +68,11 @@ const Datas = () => {
       <Modal
         open={open}
         onClose={handleClose}
-      >
+        >
         <Box>
           <FishModal
             fish={modalFish}
-          ></FishModal>
+            ></FishModal>
         </Box>
       </Modal>
     </>

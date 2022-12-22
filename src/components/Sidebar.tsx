@@ -7,27 +7,33 @@ import { FaCircle } from 'react-icons/fa'
 import { GiDoubleFish } from 'react-icons/gi'
 import { UserProps } from './Header'
 
+import exit from '../assets/icons/sair_simbolo_web.svg'
+import log from '../assets/icons/log_simbolo.svg'
+import map from '../assets/icons/mapa_simbolo.svg'
+import list from '../assets/icons/listagem_simbolo.svg'
+import user from '../assets/icons/usuario_simbolo.svg'
+
 const routesAdmin = [
   {
     path: '/dados',
     name: 'Listar',
-    icon: <MdOutlineAssignment />,
+    icon: list,
   },
   {
     path: '/',
     name: 'Mapa',
-    icon: <BsMap />,
+    icon: map,
   },
   {
     path: '/usuarios',
     name: 'Usuários',
-    icon: <MdInsertEmoticon />,
+    icon: user,
   },
 
   {
     path: '/logs',
     name: 'Logs',
-    icon: <GiDoubleFish />,
+    icon: log,
   },
 
 ]
@@ -36,12 +42,12 @@ const routesNotAdmin = [
   {
     path: '/dados',
     name: 'Listar',
-    icon: <MdOutlineAssignment />,
+    icon: list,
   },
   {
     path: '/',
     name: 'Mapa',
-    icon: <BsMap />,
+    icon: map,
   },
 ]
 
@@ -75,7 +81,9 @@ const Sidebar = ({ children }) => {
         <section className="routes">
           {routesAdmin.map((route) => (
             <NavLink to={route.path} key={route.name} className="link">
-              <div className="icon">{route.icon}</div>
+              <div className="icon">
+                <img src={route.icon} style={{width: "25px", height: "30px"}}/>
+              </div>
               <AnimatePresence>
                 {isOpen && (
                   <motion.div
@@ -98,7 +106,9 @@ const Sidebar = ({ children }) => {
         <section className="routes">
           {routesNotAdmin.map((route) => (
             <NavLink to={route.path} key={route.name} className="link">
-              <div className="icon">{route.icon}</div>
+              <div className="icon">
+                <img src={route.icon} style={{width: "25px", height: "30px"}}/>
+              </div>
               <AnimatePresence>
                 {isOpen && (
                   <motion.div
@@ -147,23 +157,11 @@ const Sidebar = ({ children }) => {
         }}
         className={`sidebar`}
       >
-        <div className="top_section">
-          <AnimatePresence>
-            {isOpen && (
-              <motion.h1 variants={showAnimation} initial="hidden" animate="show" exit="hidden" className="logo">
-                Logo
-              </motion.h1>
-            )}
-          </AnimatePresence>
-          <div className="bars">
-            <FaCircle onClick={toggle} />
-          </div>
-        </div>
         <div>{fazRota()}</div>
         <section className="logout">
           <div className="logout-icon">
             <button onClick={handleLogoutClick}>
-              <MdLogout />
+              <img src={exit} style={{width: "25px", height: "30px"}}/>
             </button>
           </div>
         </section>

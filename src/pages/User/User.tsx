@@ -17,7 +17,6 @@ import TableComponent from '~components/Table'
 import { GetAllUsers, UserResponseI } from '~services/api/userServices/getAllUsers'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import "../../assets/styles/User.css"
 
 import fishIcon from "../../assets/icons/peixe_simbolo1.svg"
 
@@ -70,7 +69,7 @@ export default function User() {
       <Grid item xs={1}>
         <Sidebar children={undefined} />
       </Grid>
-      <Grid item xs={11}>
+      <Grid marginTop="160px" item xs={11}>
         <h2 style={{marginBottom: '20px', display: 'flex', alignItems: 'center'}}>
         <img src={fishIcon} style={{width: "50px", height: "70px", marginRight:'8px'}}/>
         Gerência de Usuários

@@ -41,14 +41,14 @@ const Home = () => {
       <Grid item xs={1}>
         <Sidebar children={null} />
       </Grid>
-      <Grid item xs={11}>
+      <Grid marginTop="160px" item xs={11}>
         Mapa
         {logs.length ? (
           <MapContainer
             center={[position.latitude, position.longitude]}
             zoom={13}
             scrollWheelZoom
-            style={{ height: '100%', width: '80%', borderRadius: '20px solid' }}
+            style={{ height: '100%', width: '100%', borderRadius: '20px solid' }}
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
