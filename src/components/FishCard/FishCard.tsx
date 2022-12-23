@@ -6,9 +6,6 @@ import ButtonBase from '@mui/material/ButtonBase'
 
 type Fish = {
   name: string
-  size: string
-  weigth: string
-  place: string
   imageUrl: string
 }
 
@@ -27,7 +24,7 @@ const Img = styled('img')({
 export function FishCard(props: FishCardProps) {
   return (
     <Paper
-      elevation={0}
+      elevation={2}
       sx={{
         p: 1,
         margin: 0,
@@ -35,27 +32,34 @@ export function FishCard(props: FishCardProps) {
         flexGrow: 1,
         width: '330px',
         height: '160px',
-        border: '1px solid #DDDFE4',
+        border: '2px solid #0095F9',
         borderRadius: '12px',
-        backgroundColor: (theme) => (theme.palette.mode === 'dark' ? '#1A2027' : '#fff'),
+        backgroundColor: '#FFF' 
       }}
     >
-      <Grid container spacing={2}>
-        <Grid item>
+      <Grid container spacing={2} sx={{ alignItems: 'center' }}>
+        <Grid item xs={6}>
           <ButtonBase sx={{ width: 170, height: 150 }}>
             <Img alt="complex" src={props.fish.imageUrl} style={{ width: '140px', height: '110px' }} />
           </ButtonBase>
         </Grid>
-        <Grid item xs={12} sm container>
-          <Grid item xs container direction="column" spacing={2}>
-            <Grid item xs>
-              <div style={{ overflow: 'hidden', textOverflow: 'ellipsis', marginTop: '16px' }}>
+        <Grid item xs={6}>
+              <div style={{ 
+                overflow: 'hidden', 
+                textOverflow: 'ellipsis',
+                borderBottom: '4px dotted #0095F9',
+                borderTop: '4px dotted #0095F9',
+                paddingTop:'15px',
+                paddingBottom:'15px',
+                textAlign: 'center',
+                marginLeft: '5px',
+                marginRight:'15px',  }}>
                 <Typography
                   gutterBottom
                   variant="h5"
                   component="div"
                   style={{
-                    fontSize: '14px',
+                    fontSize: '0.875rem',
                     fontWeight: '700',
                     textOverflow: 'ellipsis',
                   }}
@@ -63,18 +67,6 @@ export function FishCard(props: FishCardProps) {
                   {props.fish.name}
                 </Typography>
               </div>
-
-              <Typography variant="body2" color="text.secondary">
-                {props.fish.size}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {props.fish.place}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {props.fish.weigth}
-              </Typography>
-            </Grid>
-          </Grid>
         </Grid>
       </Grid>
     </Paper>

@@ -1,12 +1,25 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, CircularProgress } from '@mui/material'
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Grid,
+  CircularProgress,
+} from '@mui/material'
+
+import Pagination from '@mui/material/Pagination'
+
 import Header, { UserProps } from '~components/Header'
 import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
-import { GetAllUsers, UserI } from '~services/api/userServices/getAllUsers'
+import { GetAllUsers, UserResponseI } from '~services/api/userServices/getAllUsers'
 import { useEffect, useState } from 'react'
-import { ResI } from '~services/api/interfaces'
-import { deleteUser } from '~services/api/userServices/deleteUser'
 import { useNavigate } from 'react-router-dom'
+import "../../assets/styles/User.css"
+
+import fishIcon from "../../assets/icons/peixe_simbolo1.svg"
 
 export default function User() {
   const navigate = useNavigate()
@@ -16,66 +29,76 @@ export default function User() {
       value: 'name',
     },
     {
-      label: 'Email',
+      label: 'E-mail',
       value: 'email',
     },
     {
       label: 'Tipo de usuario',
       value: 'userRole',
     },
-    {
-      label: 'Desde',
-      value: 'userSince',
-    },
   ]
 
-  const [open, setOpen] = useState(false)
+  const usersPerPage = 8
 
-  const handleClickOpen = async (id: string) => {
-    await deleteUser(id)
-    setOpen(true)
-  }
+  const [open, setOpen] = useState(false)
+  const [page, setPage] = useState(1)
 
   const handleClose = () => {
     setOpen(false)
   }
 
-  const [users, setUsers] = useState<UserI[]>()
+  const [users, setUsers] = useState<UserResponseI>()
+ 
   useEffect(() => {
-    const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
-    GetAllUsers(user.token)
-      .then((res: UserI[]) => {
+    const user: UserProps = JSON.parse(
+      localStorage.getItem('UserData')
+    ) as UserProps
+    GetAllUsers(user.token, page, usersPerPage)
+      .then((res: UserResponseI) => {
         setUsers(res)
       })
       .catch((e) => console.error(e))
-  }, [])
+  }, [page])
+
+  const onPageChange = (event, page: number) => {
+    setPage(page)
+  }
 
   return (
     <Grid container>
+      <Header />
       <Grid item xs={1}>
         <Sidebar children={undefined} />
       </Grid>
       <Grid item xs={11}>
-        <Header title="Gerência de Usuários"></Header>
-        {users && users.length ? (
+        <h2 style={{marginBottom: '20px', display: 'flex', alignItems: 'center'}}>
+        <img src={fishIcon} style={{width: "50px", height: "70px", marginRight:'8px'}}/>
+        Gerência de Usuários
+        </h2>
+        {users && users.data.length ? (
+          <>
           <TableComponent
-            columns={columns}
-            rows={(users || []).map(user => {
-              return {
-                id: user.id.toString(),
-                name: user.name,
-                email: user.email,
-                userRole: (user.superAdmin ? 'Super Admin' : (user.admin ? 'Admin' : ' Usuário'))
-              }
-            })}
-            onDelete={(user) => console.log(user.id)}
-            onEdit={(row) => navigate(`/usuarios/${row.id}`)}
-          />
-        ) : (
-          <CircularProgress />
-
-        )}
-
+          columns={columns}
+          rows={(users.data || []).map((user) => {
+            return {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+              userRole: user.superAdmin
+              ? 'Super Admin'
+                  : user.admin
+                  ? 'Admin'
+                  : ' Usuário',
+                }
+              })}
+              onDelete={(user) => console.log(user.id)}
+              onEdit={(row) => navigate(`/usuarios/${row.id}`)}
+              />
+          <Pagination count={users.totalPages} page={page} onChange={onPageChange} style={{marginTop:'16px'}} color="primary" size="small"/>
+          </>
+          ) : (
+            <CircularProgress />
+            )}
       </Grid>
       <Dialog
         open={open}
@@ -84,7 +107,7 @@ export default function User() {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Deseja excluir o usuário?"}
+          {'Deseja excluir o usuário?'}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">

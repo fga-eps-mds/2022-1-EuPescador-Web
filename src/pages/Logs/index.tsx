@@ -4,7 +4,7 @@ import Sidebar from '../../components/Sidebar'
 import TableComponent from '~components/Table'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { GetAllFishLogs, FishLogI } from '~services/api/fishLogServices/GetAllFishLogs'
+import { GetAllFishLogs } from '~services/api/fishLogServices/GetAllFishLogs'
 import { deleteFishLog } from '~services/api/fishLogServices/deleteFishLog'
 import { DownloadExcel } from "react-excel-export"
 
@@ -33,8 +33,8 @@ export default function FishLogs() {
           element.reviewed = 'Pendente'
         }
 
-        element.latitude = element.coordenates.latitude || " "
-        element.longitude = element.coordenates.longitude || " "
+        element.latitude = element.coordenates ? (element.coordenates.latitude || " ") : ""
+        element.longitude = element.coordenates ? (element.coordenates.longitude || " ") : ""
 
         delete element.reviewedBy
         delete element.family
@@ -75,22 +75,21 @@ export default function FishLogs() {
 
   return (
     <Grid container>
+      <Header />
       <Grid item xs={1}>
         <Sidebar children={undefined} />
       </Grid>
       <Grid item xs={11}>
-        <Header title="Logs dos Peixes"></Header>
+        Logs dos Peixes
 
         {logs.length ? (
           <>
-            <button id="excel-logs-button">
-              <DownloadExcel
-                data={logs}
-                buttonLabel="Clique aqui para exportar logs"
-                fileName="fish-logs"
-                className="button"
-              />
-            </button>
+            <DownloadExcel
+              data={logs}
+              buttonLabel="Clique aqui para exportar logs"
+              fileName="fish-logs"
+              className="button"
+            />
             <TableComponent
               columns={columns}
               rows={logs || []}

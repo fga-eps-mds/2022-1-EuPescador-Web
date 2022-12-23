@@ -49,11 +49,12 @@ export default function UserForm() {
   }
   return (
     <Grid container>
+      <Header />
       <Grid item xs={1}>
         <Sidebar children={undefined} />
       </Grid>
       <Grid item xs={11}>
-        <Header title="Alterar Usuário"></Header>
+        Alterar Usuário
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <TextField
             margin="normal"

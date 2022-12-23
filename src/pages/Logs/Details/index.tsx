@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { Grid, Box, TextField, Typography, ButtonBase, Button, Alert } from '@mui/material'
+import { Grid, Box, TextField, Typography, Button, Alert } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Header, { UserProps } from '~components/Header'
@@ -94,11 +94,12 @@ export default function LogsDetails() {
 
   return (
     <Grid container>
+      <Header />
       <Grid item xs={1}>
         <Sidebar children={undefined} />
       </Grid>
       <Grid item xs={11}>
-        <Header title="Detalhes do Log"></Header>
+        Detalhes do Log
         <Box sx={{ mt: 5, ml: 5, display: 'flex' }}>
           <Box sx={{ mt: 2, width: '50%' }}>
             <TextField
