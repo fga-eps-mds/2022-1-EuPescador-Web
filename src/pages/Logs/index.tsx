@@ -1,12 +1,23 @@
-import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid } from '@mui/material'
+import {
+  Button,
+  CircularProgress,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Grid,
+} from '@mui/material'
 import Header, { UserProps } from '~components/Header'
-import Sidebar from '../../components/Sidebar'
+import Sidebar from '~components/Sidebar'
 import TableComponent from '~components/Table'
+import { TitlePage } from '~components/TitlePage/TitlePage'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { GetAllFishLogs } from '~services/api/fishLogServices/GetAllFishLogs'
 import { deleteFishLog } from '~services/api/fishLogServices/deleteFishLog'
-import { DownloadExcel } from "react-excel-export"
+import { DownloadExcel } from 'react-excel-export'
+import '~assets/styles/DetailsButtons.css'
 
 import { columns } from './tableColumns'
 
@@ -24,7 +35,9 @@ export default function FishLogs() {
 
   const fetchData = async () => {
     try {
-      const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
+      const user: UserProps = JSON.parse(
+        localStorage.getItem('UserData')
+      ) as UserProps
       const reps = await GetAllFishLogs(user.token, '')
       reps.forEach((element) => {
         if (element.reviewed) {
@@ -33,8 +46,12 @@ export default function FishLogs() {
           element.reviewed = 'Pendente'
         }
 
-        element.latitude = element.coordenates ? (element.coordenates.latitude || " ") : ""
-        element.longitude = element.coordenates ? (element.coordenates.longitude || " ") : ""
+        element.latitude = element.coordenates
+          ? element.coordenates.latitude || ' '
+          : ''
+        element.longitude = element.coordenates
+          ? element.coordenates.longitude || ' '
+          : ''
 
         delete element.reviewedBy
         delete element.family
@@ -49,7 +66,7 @@ export default function FishLogs() {
         delete element.photo
       })
       setLogs(reps)
-    } catch(err) {
+    } catch (err) {
       console.error(err)
       setLogs([])
     }
@@ -80,21 +97,32 @@ export default function FishLogs() {
         <Sidebar children={undefined} />
       </Grid>
       <Grid item xs={11}>
-        Logs dos Peixes
-
+        <TitlePage title="Logs dos Peixes" />
         {logs.length ? (
           <>
+            <div
+              style={{
+                backgroundColor: '#0095D9',
+                borderRadius: '20px',
+                height: '40px',
+                textTransform: 'capitalize',
+                width: '170px',
+                marginBottom: '30px',
+              }}
+            >
             <DownloadExcel
               data={logs}
+              sx={{color: 'red'}}
               buttonLabel="Clique aqui para exportar logs"
               fileName="fish-logs"
               className="button"
             />
+            </div>
             <TableComponent
               columns={columns}
               rows={logs || []}
-              onDelete={
-                (row: { id: string, name: string }) => handleClickOpen(parseInt(`${row.id}`), row.name)
+              onDelete={(row: { id: string; name: string }) =>
+                handleClickOpen(parseInt(`${row.id}`), row.name)
               }
               onEdit={(row: { id: string }) => navigate(`/logs/${row.id}`)}
             />
@@ -110,7 +138,7 @@ export default function FishLogs() {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-        {`Deseja excluir o registro do peixe ${logNameToDelete}?`}
+          {`Deseja excluir o registro do peixe ${logNameToDelete}?`}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">

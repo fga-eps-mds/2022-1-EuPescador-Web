@@ -1,5 +1,6 @@
 import { Box, Button, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import { MouseEventHandler } from 'react'
 import { BiEdit } from 'react-icons/bi'
 
 import { FishWiki } from '../../services/api/interfaces'
@@ -23,33 +24,37 @@ const estiloTabela = {
   paddingLeft: 3,
   paddingTop: 4,
   paddingRight: 1,
-  paddingBottom: 1
+  paddingBottom: 1,
 }
 
 const Img = styled('img')({
   maxWidth: '100%',
   maxHeight: '100%',
-  borderRadius: '10%'
+  borderRadius: '10%',
 })
 
+const closeModal = () => {
+  document.getElementById('fishEditModal').style.visibility = 'hidden'
+  document.getElementById('fishEditModalBackground').style.visibility = 'hidden'
+}
 
 export function FishModal(props: FishModalProps) {
   return (
     <Box
-      flexWrap='wrap'
-      overflow='hidden'
-      justifyContent='space-between'
+      flexWrap="wrap"
+      overflow="hidden"
+      justifyContent="space-between"
       sx={estiloTabela}
+      id="fishEditModal"
     >
-
       <Box
-        width='40%'
-        display='flex'
-        flexDirection='column'
+        width="40%"
+        display="flex"
+        flexDirection="column"
         gap={2}
-        alignContent='center'
-        flexBasis='200px'
-        textAlign='center'
+        alignContent="center"
+        flexBasis="200px"
+        textAlign="center"
       >
         <Button
           sx={{
@@ -59,7 +64,7 @@ export function FishModal(props: FishModalProps) {
             justifySelf: 'center',
             alignSelf: 'center',
             textTransform: 'capitalize',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
           }}
           variant="contained"
           startIcon={<BiEdit />}
@@ -67,7 +72,16 @@ export function FishModal(props: FishModalProps) {
           Editar Espécie
         </Button>
 
-        <Img alt="complex" id="fishImage" src={props.fish.photo == null ? 'https://source.unsplash.com/qsHDqcJzHOA' : props.fish.photo} style={{ width: '200px', height: '175px' }} />
+        <Img
+          alt="complex"
+          id="fishImage"
+          src={
+            props.fish.photo == null
+              ? 'https://source.unsplash.com/qsHDqcJzHOA'
+              : props.fish.photo
+          }
+          style={{ width: '200px', height: '175px' }}
+        />
 
         <Typography
           gutterBottom
@@ -78,7 +92,7 @@ export function FishModal(props: FishModalProps) {
             fontWeight: 'bold',
             textOverflow: 'ellipsis',
             color: '#028BDE',
-            textAlign: 'center'
+            textAlign: 'center',
           }}
         >
           {props.fish.commonName}
@@ -99,14 +113,13 @@ export function FishModal(props: FishModalProps) {
       </Box>
 
       <Box
-        width='60%'
+        width="60%"
         style={{
-          padding: '2px'
+          padding: '2px',
         }}
       >
-
         <Box
-          width='100%'
+          width="100%"
           style={{
             padding: '3px',
             backgroundColor: '#E3F1FA',
@@ -115,30 +128,26 @@ export function FishModal(props: FishModalProps) {
             flexDirection: 'row',
             borderRadius: '8px',
             gap: '20px',
-            paddingLeft: '8px'
+            paddingLeft: '8px',
           }}
         >
-
-          <Box
-            width='50%'
-            margin='5px auto'
-          >
-            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Grande Grupo</label>
+          <Box width="50%" margin="5px auto">
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>
+              Grande Grupo
+            </label>
             <p>{props.fish.largeGroup ?? '---'}</p>
           </Box>
 
-
-          <Box
-            width='50%'
-            margin='5px auto'
-          >
-            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Grupo</label>
+          <Box width="50%" margin="5px auto">
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>
+              Grupo
+            </label>
             <p>{props.fish.group ?? '---'}</p>
           </Box>
         </Box>
 
         <Box
-          width='100%'
+          width="100%"
           style={{
             padding: '3px',
             display: 'flex',
@@ -149,26 +158,23 @@ export function FishModal(props: FishModalProps) {
             paddingLeft: '8px',
           }}
         >
-
-          <Box
-            width='50%'
-            margin='5px auto'
-          >
-            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Família</label>
+          <Box width="50%" margin="5px auto">
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>
+              Família
+            </label>
             <p>{props.fish.family ?? '---'}</p>
           </Box>
 
-          <Box
-            width='50%'
-            margin='5px auto'
-          >
-            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Alimentação</label>
+          <Box width="50%" margin="5px auto">
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>
+              Alimentação
+            </label>
             <p>{props.fish.food ?? '---'}</p>
           </Box>
         </Box>
 
         <Box
-          width='100%'
+          width="100%"
           style={{
             padding: '3px',
             backgroundColor: '#E3F1FA',
@@ -177,30 +183,26 @@ export function FishModal(props: FishModalProps) {
             flexDirection: 'row',
             borderRadius: '8px',
             gap: '20px',
-            paddingLeft: '8px'
+            paddingLeft: '8px',
           }}
         >
-
-          <Box
-            width='50%'
-            margin='5px auto'
-          >
-            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Tamanho Máx(cm)</label>
+          <Box width="50%" margin="5px auto">
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>
+              Tamanho Máx(cm)
+            </label>
             <p>{props.fish.maxSize ?? '---'}</p>
           </Box>
 
-
-          <Box
-            width='50%'
-            margin='5px auto'
-          >
-            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Peso Máx(kg)</label>
+          <Box width="50%" margin="5px auto">
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>
+              Peso Máx(kg)
+            </label>
             <p>{props.fish.maxWeight ?? '---'}</p>
           </Box>
         </Box>
 
         <Box
-          width='100%'
+          width="100%"
           style={{
             padding: '3px',
             display: 'flex',
@@ -211,26 +213,23 @@ export function FishModal(props: FishModalProps) {
             paddingLeft: '8px',
           }}
         >
-
-          <Box
-            width='50%'
-            margin='5px auto'
-          >
-            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Habitat</label>
+          <Box width="50%" margin="5px auto">
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>
+              Habitat
+            </label>
             <p>{props.fish.habitat ?? '---'}</p>
           </Box>
 
-          <Box
-            width='50%'
-            margin='5px auto'
-          >
-            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Endêmico ?</label>
+          <Box width="50%" margin="5px auto">
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>
+              Endêmico ?
+            </label>
             <p>{props.fish.isEndemic ? 'Sim' : 'Não' ?? '---'}</p>
           </Box>
         </Box>
 
         <Box
-          width='100%'
+          width="100%"
           style={{
             padding: '3px',
             backgroundColor: '#E3F1FA',
@@ -239,30 +238,26 @@ export function FishModal(props: FishModalProps) {
             flexDirection: 'row',
             borderRadius: '8px',
             gap: '20px',
-            paddingLeft: '8px'
+            paddingLeft: '8px',
           }}
         >
-
-          <Box
-            width='50%'
-            margin='5px auto'
-          >
-            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Ameaçado ?</label>
+          <Box width="50%" margin="5px auto">
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>
+              Ameaçado ?
+            </label>
             <p>{props.fish.isThreatened ? 'Sim' : 'Não' ?? '---'}</p>
           </Box>
 
-
-          <Box
-            width='50%'
-            margin='5px auto'
-          >
-            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Faz Piracema ?</label>
+          <Box width="50%" margin="5px auto">
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>
+              Faz Piracema ?
+            </label>
             <p>{props.fish.hasSpawningSeason ? 'Sim' : 'Não' ?? '---'}</p>
           </Box>
         </Box>
 
         <Box
-          width='100%'
+          width="100%"
           style={{
             padding: '3px',
             display: 'flex',
@@ -272,28 +267,27 @@ export function FishModal(props: FishModalProps) {
             paddingLeft: '8px',
           }}
         >
-
-          <Box
-            width='50%'
-            margin='0px'
-            paddingTop='5px'
-
-          >
-            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>Foi introduzido ?</label>
+          <Box width="50%" margin="0px" paddingTop="5px">
+            <label style={{ color: '#028BDE', fontWeight: 'bold' }}>
+              Foi introduzido ?
+            </label>
             <p>{props.fish.wasIntroduced ? 'Sim' : 'Não' ?? '---'}</p>
           </Box>
-
         </Box>
-
       </Box>
 
-      < span style={{
-        color: '#0095D9',
-        cursor: 'pointer',
-        position: 'absolute',
-        left: '95%',
-        bottom: '93%'
-      }} >&#10006;</span >
-    </Box >
+      <span
+        onClick={closeModal}
+        style={{
+          color: '#0095D9',
+          cursor: 'pointer',
+          position: 'absolute',
+          left: '95%',
+          bottom: '93%',
+        }}
+      >
+        &#10006;
+      </span>
+    </Box>
   )
 }
