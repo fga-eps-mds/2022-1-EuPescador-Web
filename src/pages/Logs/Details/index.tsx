@@ -5,13 +5,17 @@ import { Grid, Box, TextField, Typography, Button, Alert } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Header, { UserProps } from '~components/Header'
-import Sidebar from '../../../components/Sidebar'
-import { GetOneFishLog } from '../../../services/api/fishLogServices/getOneFishLog'
+import Sidebar from '~components/Sidebar'
+import { TitlePage } from '~components/TitlePage/TitlePage'
+import { GetOneFishLog } from '~services/api/fishLogServices/getOneFishLog'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
-import '../../../assets/styles/DetailsButtons.css'
+import '~assets/styles/DetailsButtons.css'
 import { UpdateFishLog } from '~services/api/fishLogServices/updateFishLog'
 import { ReviewFishLog } from '~services/api/fishLogServices/reviewFishLog'
 import { toast } from 'react-toastify'
+import { withStyles } from '@material-ui/core/styles'
+import CheckIcon from '@mui/icons-material/Check'
+import CloseIcon from '@mui/icons-material/Close'
 
 export interface FishLogProps {
   id: number
@@ -35,7 +39,9 @@ export default function LogsDetails() {
   const { id } = useParams()
 
   const getLog = async (logId: string) => {
-    const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
+    const user: UserProps = JSON.parse(
+      localStorage.getItem('UserData')
+    ) as UserProps
     const data = await GetOneFishLog(logId, user.token)
     setLog(data)
   }
@@ -49,8 +55,35 @@ export default function LogsDetails() {
     }
   }, [id])
 
+  const CssTextField = withStyles({
+    root: {
+      '& label.Mui-focused': {
+        color: '#0095D9',
+      },
+      '& .MuiInput-underline:after': {
+        borderBottomColor: '#0095D9',
+      },
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: '#0095D9',
+          borderWidth: 1,
+        },
+        '&:hover fieldset': {
+          borderColor: '#0095D9',
+          borderWidth: 2,
+        },
+        '&.Mui-focused fieldset': {
+          borderColor: '#0095D9',
+          borderWidth: 2,
+        },
+      },
+    },
+  })(TextField)
+
   const atualizaLog = async () => {
-    const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
+    const user: UserProps = JSON.parse(
+      localStorage.getItem('UserData')
+    ) as UserProps
     const dadinhos = await UpdateFishLog(
       id,
       log.name,
@@ -66,7 +99,7 @@ export default function LogsDetails() {
       true,
       true,
       true,
-      user.token,
+      user.token
     )
     console.log(dadinhos)
     routeChange()
@@ -80,7 +113,9 @@ export default function LogsDetails() {
 
   const handleReviewLog = async () => {
     try {
-      const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
+      const user: UserProps = JSON.parse(
+        localStorage.getItem('UserData')
+      ) as UserProps
       await ReviewFishLog(id, log.name, user.token)
       toast.success('Registro aprovado com sucesso!')
       setLog({
@@ -99,184 +134,233 @@ export default function LogsDetails() {
         <Sidebar children={undefined} />
       </Grid>
       <Grid item xs={11}>
-        Detalhes do Log
-        <Box sx={{ mt: 5, ml: 5, display: 'flex' }}>
-          <Box sx={{ mt: 2, width: '50%' }}>
-            <TextField
-              margin="normal"
-              fullWidth
-              label="Nome"
-              name="name"
-              defaultValue={log.name || loadingMessage}
-              key={log.name}
-              onChange={(e) => (log.name = e.target.value)}
-              InputLabelProps={{
-                style: { color: '#111111' },
-              }}
-              InputProps={{
-                style: {
-                  borderRadius: '25px',
-                  color: '#111111',
-                  width: '500px',
-                },
-              }}
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              label="Classe"
-              name="largeGroup"
-              defaultValue={log.largeGroup || loadingMessage}
-              key={log.largeGroup}
-              onChange={(e) => (log.largeGroup = e.target.value)}
-              InputLabelProps={{
-                style: { color: '#111111' },
-              }}
-              InputProps={{
-                style: {
-                  borderRadius: '25px',
-                  color: '#111111',
-                  width: '500px',
-                },
-              }}
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              label="Ordem"
-              name="group"
-              defaultValue={log.group || loadingMessage}
-              key={log.group}
-              onChange={(e) => (log.group = e.target.value)}
-              InputLabelProps={{
-                style: { color: '#111111' },
-              }}
-              InputProps={{
-                style: {
-                  borderRadius: '25px',
-                  color: '#111111',
-                  width: '500px',
-                },
-              }}
-            />
-            <TextField
-              margin="normal"
-              fullWidth
-              label=" Espécie"
-              name="species"
-              defaultValue={log.species || loadingMessage}
-              key={log.species}
-              onChange={(e) => (log.species = e.target.value)}
-              InputLabelProps={{
-                style: { color: '#111111' },
-              }}
-              InputProps={{
-                style: {
-                  borderRadius: '25px',
-                  color: '#111111',
-                  width: '500px',
-                },
-              }}
-            />
-            <Box sx={{ display: 'flex', width: '50%', mt: 2 }}>
-              <TextField
-                label="Massa(g)"
-                defaultValue={log.weight || loadingMessage}
-                key={log.weight}
-                onChange={(e) => (log.weight = e.target.value)}
-                sx={{ mr: 4 }}
+        <TitlePage title="Detalhes do Log" />
+        {log && Object.keys(log).length > 0 && (
+          <Box sx={{ mt: 5, ml: 5, display: 'flex' }}>
+            <Box sx={{ mt: 2, width: '50%' }}>
+              <CssTextField
+                margin="normal"
+                fullWidth
+                label="Nome"
+                name="name"
+                value={log.name || loadingMessage}
+                onChange={(e) => (log.name = e.target.value)}
                 InputLabelProps={{
-                  style: { color: '#111111' },
+                  style: { color: '#0095D9', fontWeight: 'bold' },
                 }}
                 InputProps={{
                   style: {
                     borderRadius: '25px',
-                    color: '#111111',
+                    color: 'black',
+                    width: '500px',
                   },
                 }}
               />
-              <TextField
-                label="Tamanho(Cm)"
-                name="length"
-                defaultValue={log.length || loadingMessage}
-                key={log.length}
-                onChange={(e) => (log.length = e.target.value)}
+              <CssTextField
+                margin="normal"
+                fullWidth
+                label="Classe"
+                name="largeGroup"
+                value={log.largeGroup || loadingMessage}
+                onChange={(e) => (log.largeGroup = e.target.value)}
                 InputLabelProps={{
-                  style: { color: '#111111' },
+                  style: { color: '#0095D9', fontWeight: 'bold' },
                 }}
                 InputProps={{
                   style: {
                     borderRadius: '25px',
-                    color: '#111111',
+                    color: 'black',
+                    width: '500px',
                   },
                 }}
               />
-            </Box>
-            <Typography sx={{ mt: 2 }}>Status: {log.reviewed ? 'Aprovado' : 'Pendente'}</Typography>
-            <Box sx={{ display: 'flex', width: '50%', mt: 10, ml: 0 }}>
-              <button className="btn-save" onClick={atualizaLog}>
-                SALVAR
-              </button>
-              <button className="btn-cancel" onClick={routeChange}>
-                CANCELAR
-              </button>
-            </Box>
-            {!log.reviewed && (
-              <Button
-                onClick={handleReviewLog}
-                sx={{
-                  display: 'flex',
-                  width: '50%',
-                  height: '40px',
-                  backgroundColor: '#ACEA97',
-                  borderRadius: '12px',
-                  mt: 2,
-                  color: '#000000',
-                  fontSize: '14px',
-                  fontWeight: '',
+              <CssTextField
+                margin="normal"
+                fullWidth
+                label="Ordem"
+                name="group"
+                value={log.group || loadingMessage}
+                onChange={(e) => (log.group = e.target.value)}
+                InputLabelProps={{
+                  style: { color: '#0095D9', fontWeight: 'bold' },
                 }}
-              >
-                APROVAR
-              </Button>
-            )}
-          </Box>
-          <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column' }}>
-            <Typography sx={{ mb: 1, fontWeight: 'bold' }}>Foto:</Typography>
-            {log.photo ? (
-              <img
-                src={`data:image/png;base64,${log.photo}`}
-                width={400}
-                height={250}
-                style={{ borderRadius: '20px' }}
+                InputProps={{
+                  style: {
+                    borderRadius: '25px',
+                    color: 'black',
+                    width: '500px',
+                  },
+                }}
               />
-            ) : (
-              <Alert severity="info">Opa, parece que este registro não possui uma foto.</Alert>
-            )}
-
-            <Typography sx={{ mt: 5, mb: 1, fontWeight: 'bold' }}>Localização:</Typography>
-
-            {log.coordenates && log.coordenates.latitude && log.coordenates.longitude ? (
-              <MapContainer
-                center={[log.coordenates.latitude, log.coordenates.longitude]}
-                zoom={13}
-                scrollWheelZoom
-                style={{ height: '40vh', borderRadius: '20px solid' }}
-              >
-                <TileLayer
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              <CssTextField
+                margin="normal"
+                fullWidth
+                label=" Espécie"
+                name="species"
+                defaultValue={log.species || loadingMessage}
+                // value={log.species}
+                onChange={(e) => (log.species = e.target.value)}
+                InputLabelProps={{
+                  style: { color: '#0095D9', fontWeight: 'bold' },
+                }}
+                InputProps={{
+                  style: {
+                    borderRadius: '25px',
+                    color: 'black',
+                    width: '500px',
+                  },
+                }}
+              />
+              <Box sx={{ display: 'flex', width: '50%', mt: 2 }}>
+                <CssTextField
+                  label="Massa(g)"
+                  value={log.weight || loadingMessage}
+                  onChange={(e) => (log.weight = e.target.value)}
+                  sx={{ mr: 4 }}
+                  InputLabelProps={{
+                    style: { color: '#0095D9', fontWeight: 'bold' },
+                  }}
+                  InputProps={{
+                    style: {
+                      borderRadius: '25px',
+                      color: 'black',
+                    },
+                  }}
                 />
-                <Marker position={[log.coordenates.latitude, log.coordenates.longitude]}>
-                  <Popup>Esta é a localização do {log.name}</Popup>
-                </Marker>
-              </MapContainer>
-            ) : (
-              <Box sx={{ display: 'flex' }}>
-                <Typography sx={{ ml: 5, mt: 2, mb: 1, fontWeight: 'light' }}>Sem Localização</Typography>
+                <CssTextField
+                  label="Tamanho(cm)"
+                  name="length"
+                  value={log.length || loadingMessage}
+                  onChange={(e) => (log.length = e.target.value)}
+                  InputLabelProps={{
+                    style: { color: '#0095D9', fontWeight: 'bold' },
+                  }}
+                  InputProps={{
+                    style: {
+                      borderRadius: '25px',
+                      color: 'black',
+                    },
+                  }}
+                />
               </Box>
-            )}
+              <Box display="flex" alignItems="center" sx={{ mt: 2 }}>
+                <Typography sx={{ mr: 2 }}>
+                  Status: {log.reviewed ? 'Aprovado' : 'Pendente'}
+                </Typography>
+                {!log.reviewed && (
+                  <Button
+                    onClick={handleReviewLog}
+                    sx={{
+                      backgroundColor: '#0095D9',
+                      borderRadius: '20px',
+                      height: '35px',
+                      textTransform: 'capitalize',
+                      fontWeight: 'bold',
+                      width: '140px',
+                      color: 'white',
+                    }}
+                  >
+                    Aprovar
+                  </Button>
+                )}
+              </Box>
+              <Box sx={{ display: 'flex', width: '50%', mt: 10, ml: 0 }}>
+                <Button
+                  onClick={routeChange}
+                  variant="contained"
+                  disableElevation
+                  sx={{
+                    backgroundColor: '#0095D9',
+                    borderRadius: '20px',
+                    height: '40px',
+                    textTransform: 'capitalize',
+                    fontWeight: 'bold',
+                    width: '180px',
+                    mr: 2,
+                  }}
+                >
+                  <CloseIcon
+                    data-testid="close"
+                    sx={{ backgroundColor: '#0095D9', color: 'white' }}
+                  />
+                  Cancelar
+                </Button>
+                <Button
+                  onClick={atualizaLog}
+                  variant="contained"
+                  disableElevation
+                  sx={{
+                    backgroundColor: '#0095D9',
+                    borderRadius: '20px',
+                    height: '40px',
+                    textTransform: 'capitalize',
+                    fontWeight: 'bold',
+                    width: '180px',
+                  }}
+                >
+                  <CheckIcon
+                    data-testid="check"
+                    sx={{ backgroundColor: '#0095D9', color: 'white' }}
+                  />
+                  Salvar
+                </Button>
+              </Box>
+            </Box>
+            <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column' }}>
+              <Typography sx={{ mb: 1, fontWeight: 'bold', color: '#0095D9' }}>
+                Foto
+              </Typography>
+              {log.photo ? (
+                <img
+                  src={`data:image/png;base64,${log.photo}`}
+                  width={400}
+                  height={250}
+                  style={{ borderRadius: '20px' }}
+                />
+              ) : (
+                <Alert severity="info">
+                  Opa, parece que este registro não possui uma foto.
+                </Alert>
+              )}
+
+              <Typography
+                sx={{ mt: 5, mb: 1, fontWeight: 'bold', color: '#0095D9' }}
+              >
+                Localização
+              </Typography>
+
+              {log.coordenates &&
+              log.coordenates.latitude &&
+              log.coordenates.longitude ? (
+                <MapContainer
+                  center={[log.coordenates.latitude, log.coordenates.longitude]}
+                  zoom={13}
+                  scrollWheelZoom
+                  style={{ height: '40vh', borderRadius: '20px solid' }}
+                >
+                  <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  />
+                  <Marker
+                    position={[
+                      log.coordenates.latitude,
+                      log.coordenates.longitude,
+                    ]}
+                  >
+                    <Popup>Esta é a localização do {log.name}</Popup>
+                  </Marker>
+                </MapContainer>
+              ) : (
+                <Box sx={{ display: 'flex' }}>
+                  <Typography sx={{ ml: 5, mt: 2, mb: 1, fontWeight: 'light' }}>
+                    Sem Localização
+                  </Typography>
+                </Box>
+              )}
+            </Box>
           </Box>
-        </Box>
+        )}
       </Grid>
     </Grid>
   )
