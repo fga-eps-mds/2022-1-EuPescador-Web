@@ -15,10 +15,14 @@ import Header, { UserProps } from '~components/Header'
 import Sidebar from '~components/Sidebar'
 import TableComponent from '~components/Table'
 import { TitlePage } from '~components/TitlePage/TitlePage'
-import { GetAllUsers, UserResponseI } from '~services/api/userServices/getAllUsers'
+import {
+  GetAllUsers,
+  UserResponseI,
+} from '~services/api/userServices/getAllUsers'
+import { deleteUser } from '~services/api/userServices/deleteUser'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import "~assets/styles/User.css"
+import '~assets/styles/User.css'
 
 export default function User() {
   const navigate = useNavigate()
@@ -32,7 +36,7 @@ export default function User() {
       value: 'email',
     },
     {
-      label: 'Tipo de usuario',
+      label: 'Tipo de usuário',
       value: 'userRole',
     },
   ]
@@ -41,13 +45,30 @@ export default function User() {
 
   const [open, setOpen] = useState(false)
   const [page, setPage] = useState(1)
+  const [idToDelete, setIdToDelete] = useState('')
 
   const handleClose = () => {
     setOpen(false)
   }
 
   const [users, setUsers] = useState<UserResponseI>()
- 
+
+  const handleClickOpen = (id: string) => {
+    setIdToDelete(id)
+    setOpen(true)
+  }
+
+  const handleClickClose = () => {
+    setOpen(false)
+    setIdToDelete('')
+  }
+
+  const handleDelete = async () => {
+    await deleteUser(`${idToDelete}`)
+    handleClickClose()
+    window.location.reload()
+  }
+
   useEffect(() => {
     const user: UserProps = JSON.parse(
       localStorage.getItem('UserData')
@@ -73,28 +94,37 @@ export default function User() {
         <TitlePage title="Gerência de Usuários" />
         {users && users.data.length ? (
           <>
-          <TableComponent
-          columns={columns}
-          rows={(users.data || []).map((user) => {
-            return {
-              id: user.id,
-              name: user.name,
-              email: user.email,
-              userRole: user.superAdmin
-              ? 'Super Admin'
-                  : user.admin
-                  ? 'Admin'
-                  : ' Usuário',
+            <TableComponent
+              columns={columns}
+              rows={(users.data || []).map((user) => {
+                return {
+                  id: user.id,
+                  name: user.name,
+                  email: user.email,
+                  userRole: user.superAdmin
+                    ? 'Super Admin'
+                    : user.admin
+                    ? 'Admin'
+                    : ' Usuário',
                 }
               })}
-              onDelete={(user) => console.log(user.id)}
+              onDelete={(row: { id: string; name: string }) => {
+                handleClickOpen(row.id)
+              }}
               onEdit={(row) => navigate(`/usuarios/${row.id}`)}
-              />
-          <Pagination count={users.totalPages} page={page} onChange={onPageChange} style={{marginTop:'16px'}} color="primary" size="small"/>
+            />
+            <Pagination
+              count={users.totalPages}
+              page={page}
+              onChange={onPageChange}
+              style={{ marginTop: '16px' }}
+              color="primary"
+              size="small"
+            />
           </>
-          ) : (
-            <CircularProgress />
-            )}
+        ) : (
+          <CircularProgress />
+        )}
       </Grid>
       <Dialog
         open={open}
@@ -111,8 +141,8 @@ export default function User() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={handleClickClose}>Cancelar</Button>
+          <Button onClick={handleDelete} autoFocus>
             Confirmar
           </Button>
         </DialogActions>

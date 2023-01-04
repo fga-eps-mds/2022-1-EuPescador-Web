@@ -1,9 +1,5 @@
 export const columns = [
   {
-    label: 'Id',
-    value: 'id',
-  },
-  {
     label: 'Nome',
     value: 'name',
   },

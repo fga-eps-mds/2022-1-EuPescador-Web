@@ -25,6 +25,31 @@ export interface UserProps {
   token: string
 }
 
+const CssTextField = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: '#0095D9',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#0095D9',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#0095D9',
+        borderWidth: 1,
+      },
+      '&:hover fieldset': {
+        borderColor: '#0095D9',
+        borderWidth: 2,
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#0095D9',
+        borderWidth: 2,
+      },
+    },
+  },
+})(TextField)
+
 export default function UserForm() {
   const [user, setUser] = useState({} as UserI)
   const { id } = useParams()
@@ -44,31 +69,6 @@ export default function UserForm() {
     navigate(path)
   }
 
-  const CssTextField = withStyles({
-    root: {
-      '& label.Mui-focused': {
-        color: '#0095D9',
-      },
-      '& .MuiInput-underline:after': {
-        borderBottomColor: '#0095D9',
-      },
-      '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-          borderColor: '#0095D9',
-          borderWidth: 1,
-        },
-        '&:hover fieldset': {
-          borderColor: '#0095D9',
-          borderWidth: 2,
-        },
-        '&.Mui-focused fieldset': {
-          borderColor: '#0095D9',
-          borderWidth: 2,
-        },
-      },
-    },
-  })(TextField)
-
   useEffect(() => {
     if (id) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -76,7 +76,6 @@ export default function UserForm() {
     }
   }, [id])
   const handleSubmit = async () => {
-    console.log("hereee")
     try {
       const userprp: UserProps = JSON.parse(
         localStorage.getItem('UserData')
@@ -100,7 +99,6 @@ export default function UserForm() {
           <Box
             component="form"
             noValidate
-            onSubmit={handleSubmit}
             sx={{ mt: 1, width: '95%' }}
           >
             <Box
@@ -270,7 +268,7 @@ export default function UserForm() {
 
             <Box display="flex" justifyContent="center" mt="100px">
               <Button
-                onClick={handleSubmit}
+                onClick={routeChange}
                 variant="contained"
                 disableElevation
                 sx={{
@@ -285,12 +283,12 @@ export default function UserForm() {
               >
                 <CloseIcon
                   data-testid="close"
-                  sx={{ backgroundColor: '#0095D9', color: 'white' }}
+                  sx={{ color: 'white' }}
                 />
                 Cancelar
               </Button>
               <Button
-                onClick={routeChange}
+                onClick={handleSubmit}
                 variant="contained"
                 disableElevation
                 sx={{
@@ -304,7 +302,7 @@ export default function UserForm() {
               >
                 <CheckIcon
                   data-testid="check"
-                  sx={{ backgroundColor: '#0095D9', color: 'white' }}
+                  sx={{ color: 'white' }}
                 />
                 Salvar
               </Button>
