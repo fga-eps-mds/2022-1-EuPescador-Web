@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import { UserLogin } from '../../services/api/userServices/login'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer, toast, ToastOptions } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function Copyright(props: any) {
@@ -26,22 +26,35 @@ export default function Login() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
+
+    const toastConfig = {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    } as ToastOptions
+
     await UserLogin(data.get('email').toString(), data.get('password').toString())
       .then((res) => {
-        localStorage.setItem('UserData', JSON.stringify(res.data))
-        window.location.href = '/dados'
-        navigate('/dados', { replace: true })
+        if(res.data.admin || res.data.superAdmin){
+          navigate('/admin', { replace: true })
+          localStorage.setItem('UserData', JSON.stringify(res.data))
+          window.location.href = '/dados'
+          navigate('/dados', { replace: true })
+        }else{
+          toast.warning('Você não tem permissão para acessar essa página', toastConfig)
+        }
       })
-      .catch(() => {
-        toast.error('Ooops! Algo deu errado! Tente novamente', {
-          position: 'top-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        })
+      .catch((err) => {
+        if(err.response.status === 401){
+          toast.error('E-mail ou senha incorretos', toastConfig)
+        }else{
+          toast.error('Ooops! Algo deu errado! Tente novamente', toastConfig)
+        }
+
       })
   }
 
