@@ -1,12 +1,9 @@
-import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
 import Link from '@mui/material/Link'
-import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import InputAdornment from '@mui/material/InputAdornment'
 import Typography from '@mui/material/Typography'
 import { UserLogin } from '../../services/api/userServices/login'
@@ -16,7 +13,6 @@ import icon from '../../assets/icons/logo_login1.svg'
 import passwordIcon from '../../assets/icons/senha_simbolo2.svg'
 import userIcon from '../../assets/icons/senha_simbolo1.svg'
 import bg from '../../assets/images/background_login.png'
-import AccountCircle from '@mui/icons-material/AccountCircle'
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
 export default function Login() {
@@ -84,7 +80,7 @@ export default function Login() {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              
+
             }}
           >
             <Box>
@@ -117,13 +113,13 @@ export default function Login() {
                 }}
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position="end">
+                    <InputAdornment position="start">
                       <img src={userIcon} style={{width: "20px", height: "27px"}}/>
                     </InputAdornment>
                   ),
                   style: {
                     borderRadius: '8px',
-                    color: '#111111',
+                    color: '#0095D9',
                   },
                 }}
               />
@@ -183,7 +179,7 @@ export default function Login() {
                 >
                   Entrar
                 </Button>
-                
+
                 <Link href="/" variant="body2" sx={{
                   color: '#0095D9',
                   fontWeight: '850',
