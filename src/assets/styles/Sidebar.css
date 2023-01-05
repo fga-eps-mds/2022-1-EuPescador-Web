@@ -22,7 +22,7 @@ main {
 }
 
 .sidebar {
-  top: 12%;
+  top: 160px;
   background: #E3F1FA;
   color: #111111;
   border-top-right-radius: 25px;
@@ -76,7 +76,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 100px 30px;
+  padding: 55px 30px;
 }
 
 button {
