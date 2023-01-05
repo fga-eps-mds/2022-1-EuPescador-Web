@@ -88,7 +88,7 @@ export default function Login() {
             }}
           >
             <Box>
-              <img src={icon}/>
+              <img className='logo' src={icon}/>
             </Box>
             <Typography component="h1" variant="h5" sx={{
               mt: 3,
