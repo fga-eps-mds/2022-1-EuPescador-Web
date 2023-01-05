@@ -19,7 +19,13 @@ const Datas = () => {
   const [fishes, setFishes] = useState([] as FishWiki[])
   const [modalFish, setModalFish] = useState({} as FishWiki)
 
-  const handleOpen = () => setOpen(true)
+  const handleOpen = () => {
+    setOpen(true)
+    const fishModal = document.getElementById('fishEditModal')
+    const fishModalBack = document.getElementById('fishEditModalBackground')
+    if (fishModal) fishModal.style.visibility = 'visible'
+    if (fishModalBack) fishModalBack.style.visibility = 'visible'
+  }
   const handleClose = () => setOpen(false)
 
   useEffect(() => {
@@ -38,7 +44,7 @@ const Datas = () => {
     <>
       <Grid container>
         <Header />
-        <Grid item xs={2} md={1} >
+        <Grid item xs={2} md={1}>
           <Sidebar children={undefined} />
         </Grid>
         <Grid marginTop="160px" item xs={10} md={11}>
@@ -49,12 +55,17 @@ const Datas = () => {
               return (
                 <Grid item xs={12} sm={6} md={4} xl={3} key={index}>
                   <Box
-                    onClick={() => { handleOpenFishModal(res) }}
-                    >
+                    onClick={() => {
+                      handleOpenFishModal(res)
+                    }}
+                  >
                     <FishCard
                       fish={{
                         name: res.commonName,
-                        imageUrl: res.photo == null ? 'https://source.unsplash.com/qsHDqcJzHOA' : res.photo,
+                        imageUrl:
+                          res.photo == null
+                            ? 'https://source.unsplash.com/qsHDqcJzHOA'
+                            : res.photo,
                       }}
                       ></FishCard>
                   </Box>
@@ -64,15 +75,9 @@ const Datas = () => {
           </Grid>
         </Grid>
       </Grid>
-
-      <Modal
-        open={open}
-        onClose={handleClose}
-        >
+      <Modal id="fishEditModalBackground" open={open} onClose={handleClose}>
         <Box>
-          <FishModal
-            fish={modalFish}
-            ></FishModal>
+          <FishModal fish={modalFish}></FishModal>
         </Box>
       </Modal>
     </>

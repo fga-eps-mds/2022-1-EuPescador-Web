@@ -3,6 +3,7 @@ import { Edit } from '@mui/icons-material'
 import Header from '~components/Header'
 import Sidebar from '../components/Sidebar'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { TitlePage } from '~components/TitlePage/TitlePage'
 import useLogs from 'hooks/useLogs'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
@@ -30,10 +31,10 @@ const Home = () => {
     }
   }, [])
 
-  const filteredLogs = logs.filter((log) => (
-    log.coordenates &&
-      log.coordenates.latitude && log.coordenates.longitude
-  ))
+  const filteredLogs = logs.filter(
+    (log) =>
+      log.coordenates && log.coordenates.latitude && log.coordenates.longitude
+  )
 
   return (
     <Grid container>
@@ -42,7 +43,7 @@ const Home = () => {
         <Sidebar children={null} />
       </Grid>
       <Grid marginTop="160px" item xs={11}>
-        Mapa
+        <TitlePage title="Mapa" />
         {logs.length ? (
           <MapContainer
             center={[position.latitude, position.longitude]}
@@ -54,8 +55,9 @@ const Home = () => {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            {filteredLogs.map((log: FishLogI) => (
+            {filteredLogs.map((log: FishLogI, index) => (
               <Marker
+                key={index}
                 position={[
                   Number(log.coordenates.latitude),
                   Number(log.coordenates.longitude),
