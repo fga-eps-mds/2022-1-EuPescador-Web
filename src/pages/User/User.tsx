@@ -20,8 +20,6 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import fishIcon from "../../assets/icons/peixe_simbolo1.svg"
 
-import "~assets/styles/User.css"
-
 export default function User() {
   const navigate = useNavigate()
   const columns = [
