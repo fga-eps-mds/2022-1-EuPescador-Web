@@ -1,10 +1,6 @@
 import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { MdLogout, MdInsertEmoticon, MdOutlineAssignment } from 'react-icons/md'
-import { BsMap } from 'react-icons/bs'
-import { FaCircle } from 'react-icons/fa'
-import { GiDoubleFish } from 'react-icons/gi'
 import { UserProps } from './Header'
 
 import exit from '../assets/icons/sair_simbolo_web.svg'
@@ -38,18 +34,7 @@ const routesAdmin = [
 
 ]
 
-const routesNotAdmin = [
-  {
-    path: '/dados',
-    name: 'Listar',
-    icon: list,
-  },
-  {
-    path: '/',
-    name: 'Mapa',
-    icon: map,
-  },
-]
+const routesNotAdmin = [routesAdmin[0], routesAdmin[1]]
 
 
 const Sidebar = ({ children }) => {
@@ -74,6 +59,14 @@ const Sidebar = ({ children }) => {
     },
   }
 
+  function renderIcon (icon: string) {
+    return (
+      <div className="icon">
+        <img src={icon} style={{width: "25px", height: "30px"}}/>
+      </div>
+    )
+  }
+
   function fazRota() {
     const user = JSON.parse(localStorage.getItem('UserData')) as UserProps
     if (user.admin) {
@@ -81,9 +74,7 @@ const Sidebar = ({ children }) => {
         <section className="routes">
           {routesAdmin.map((route) => (
             <NavLink to={route.path} key={route.name} className="link">
-              <div className="icon">
-                <img src={route.icon} style={{width: "25px", height: "30px"}}/>
-              </div>
+              {renderIcon(route.icon)}
               <AnimatePresence>
                 {isOpen && (
                   <motion.div
@@ -106,9 +97,7 @@ const Sidebar = ({ children }) => {
         <section className="routes">
           {routesNotAdmin.map((route) => (
             <NavLink to={route.path} key={route.name} className="link">
-              <div className="icon">
-                <img src={route.icon} style={{width: "25px", height: "30px"}}/>
-              </div>
+              {renderIcon(route.icon)}
               <AnimatePresence>
                 {isOpen && (
                   <motion.div
@@ -161,7 +150,7 @@ const Sidebar = ({ children }) => {
         <section className="logout">
           <div className="logout-icon">
             <button onClick={handleLogoutClick}>
-              <img src={exit} style={{width: "25px", height: "30px"}}/>
+              {renderIcon(exit)}
             </button>
           </div>
         </section>
