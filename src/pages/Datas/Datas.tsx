@@ -67,7 +67,7 @@ const Datas = () => {
                             ? 'https://source.unsplash.com/qsHDqcJzHOA'
                             : res.photo,
                       }}
-                    ></FishCard>
+                      ></FishCard>
                   </Box>
                 </Grid>
               )
@@ -75,7 +75,6 @@ const Datas = () => {
           </Grid>
         </Grid>
       </Grid>
-
       <Modal id="fishEditModalBackground" open={open} onClose={handleClose}>
         <Box>
           <FishModal fish={modalFish}></FishModal>

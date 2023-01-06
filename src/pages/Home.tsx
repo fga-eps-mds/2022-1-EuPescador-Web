@@ -49,7 +49,15 @@ const Home = () => {
             center={[position.latitude, position.longitude]}
             zoom={13}
             scrollWheelZoom
-            style={{ height: '100%', width: '80%', borderRadius: '20px solid' }}
+            style={{ 
+              height: '90%', 
+              maxHeight: '600px', 
+              width: '90%', 
+              maxWidth: '1000px',
+              marginLeft: '16px',
+              marginRight: '16px',
+              borderRadius: '20px solid' 
+            }}
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

@@ -18,7 +18,6 @@ import { TitlePage } from '~components/TitlePage/TitlePage'
 import { GetAllUsers, UserResponseI } from '~services/api/userServices/getAllUsers'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import "~assets/styles/User.css"
 
 export default function User() {
   const navigate = useNavigate()
@@ -90,7 +89,7 @@ export default function User() {
               onDelete={(user) => console.log(user.id)}
               onEdit={(row) => navigate(`/usuarios/${row.id}`)}
               />
-          <Pagination count={users.totalPages} page={page} onChange={onPageChange} style={{marginTop:'16px'}} color="primary" size="small"/>
+          <Pagination count={users.totalPages} page={page} onChange={onPageChange} style={{marginTop:'16px', justifyContent:'center', display:'flex', marginBottom:'10px'}} color="primary" size="small"/>
           </>
           ) : (
             <CircularProgress />
