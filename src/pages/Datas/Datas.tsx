@@ -47,7 +47,7 @@ const Datas = () => {
         <Grid item xs={2} md={1}>
           <Sidebar children={undefined} />
         </Grid>
-        <Grid marginTop="160px" item xs={10} md={11}>
+        <Grid item xs={10} md={11}>
           <TitlePage title="Listagem de Peixes" button />
 
           <Grid container spacing={{ xs: 2, md: 3 }}>

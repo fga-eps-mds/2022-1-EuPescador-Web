@@ -68,7 +68,7 @@ export default function User() {
       <Grid item xs={1}>
         <Sidebar children={undefined} />
       </Grid>
-      <Grid marginTop="160px"  item xs={11}>
+      <Grid item xs={11}>
         <TitlePage title="Gerência de Usuários" />
         {users && users.data.length ? (
           <>
@@ -89,7 +89,7 @@ export default function User() {
               onDelete={(user) => console.log(user.id)}
               onEdit={(row) => navigate(`/usuarios/${row.id}`)}
               />
-          <Pagination count={users.totalPages} page={page} onChange={onPageChange} style={{marginTop:'16px'}} color="primary" size="small"/>
+          <Pagination count={users.totalPages} page={page} onChange={onPageChange} style={{marginTop:'16px', justifyContent:'center', display:'flex', marginBottom:'10px'}} color="primary" size="small"/>
           </>
           ) : (
             <CircularProgress />

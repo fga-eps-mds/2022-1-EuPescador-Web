@@ -42,7 +42,7 @@ const Home = () => {
       <Grid item xs={1}>
         <Sidebar children={null} />
       </Grid>
-      <Grid marginTop="160px" item xs={11}>
+      <Grid item xs={11}>
         <TitlePage title="Mapa" />
         {logs.length ? (
           <MapContainer

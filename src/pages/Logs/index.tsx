@@ -96,7 +96,7 @@ export default function FishLogs() {
       <Grid item xs={1}>
         <Sidebar children={undefined} />
       </Grid>
-      <Grid marginTop="160px" item xs={11}>
+      <Grid item xs={11}>
         <TitlePage title="Logs dos Peixes" />
         {logs.length ? (
           <>

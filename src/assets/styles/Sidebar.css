@@ -9,6 +9,10 @@ a {
   text-decoration: none;
 }
 
+body {
+  margin-top: 140px;
+}
+
 .main-container {
   min-height: calc(90vh - 120px) ;
   width: 80px;
