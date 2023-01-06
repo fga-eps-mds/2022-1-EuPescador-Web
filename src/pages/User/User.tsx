@@ -18,7 +18,6 @@ import { TitlePage } from '~components/TitlePage/TitlePage'
 import { GetAllUsers, UserResponseI } from '~services/api/userServices/getAllUsers'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import fishIcon from "../../assets/icons/peixe_simbolo1.svg"
 
 export default function User() {
   const navigate = useNavigate()

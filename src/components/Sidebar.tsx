@@ -38,9 +38,7 @@ const routesNotAdmin = [routesAdmin[0], routesAdmin[1]]
 
 
 const Sidebar = ({ children }) => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const toggle = () => setIsOpen(isOpen) // Desativei a animação porque nao agrega valor ao produto e esta com bugs
+  const [isOpen] = useState(false)
 
   const showAnimation = {
     hidden: {
