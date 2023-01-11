@@ -1,8 +1,10 @@
+import { useState } from 'react'
 import Box from '@mui/material/Box'
 import AddIcon from '@mui/icons-material/Add'
-import { Typography, Button } from '@mui/material'
+import { Typography, Button, Modal } from '@mui/material'
 
 import one_fish from '../../assets/images/one_fish.png'
+import { FishRecord } from '../../components/FishRecord/FishRecord'
 
 interface HeaderProps {
   title: string
@@ -10,6 +12,22 @@ interface HeaderProps {
 }
 
 export function TitlePage({ title = 'Titulo', button = false }: HeaderProps) {
+  const [open, setOpen] = useState(false)
+  const handleClose = () => setOpen(false)
+
+  const handleOpen = () => {
+    setOpen(true)
+    const fishModal = document.getElementById('fishRecordModal')
+    const fishModalBack = document.getElementById('fishRecordModalBackground')
+    console.log("###############",fishModal)
+    if (fishModal) fishModal.style.visibility = 'visible'
+    if (fishModalBack) fishModalBack.style.visibility = 'visible'
+  }
+
+  const handleOpenFishModal = () => {
+    handleOpen()
+  }
+
   return (
     <Box
       sx={{
@@ -28,6 +46,9 @@ export function TitlePage({ title = 'Titulo', button = false }: HeaderProps) {
         <Button
           variant="contained"
           startIcon={<AddIcon />}
+          onClick={() => {
+            handleOpenFishModal()
+          }}
           sx={{
             backgroundColor: '#0095D9',
             borderRadius: '20px',
@@ -39,6 +60,11 @@ export function TitlePage({ title = 'Titulo', button = false }: HeaderProps) {
           Cadastrar Espécie
         </Button>
       )}
+      <Modal id="fishRecordModalBackground" open={open} onClose={handleClose}>
+        <Box>
+          <FishRecord />
+        </Box>
+      </Modal>
     </Box>
   )
 }
