@@ -1,0 +1,44 @@
+.custom-file-upload {
+  border: 2px solid #0095d9;
+  display: flex;
+  cursor: pointer;
+  width: 200px;
+  padding: 20px;
+  height: 116px;
+  background-color: rgba(0, 149, 217, 0.2);
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+.text-color-file-upload {
+  color: #0095d9;
+  font-weight: bold;
+  text-align: center;
+  font-size: 18px;
+}
+
+.box-input-fish-record {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.label-input-fish-record {
+  color: #0095d9;
+  font-weight: bold;
+}
+
+.input-fish-record {
+  background-color: rgba(0, 149, 217, 0.2);
+  border: none;
+  border-radius: 10px;
+  height: 40px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
