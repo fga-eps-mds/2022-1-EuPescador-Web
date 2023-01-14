@@ -7,13 +7,13 @@ import {
   FormGroup,
   FormControlLabel,
 } from '@mui/material'
-import Header from '~components/Header'
-import Sidebar from '~components/Sidebar'
-import { TitlePage } from '~components/TitlePage/TitlePage'
-import { GetOneUser, UserI } from '~services/api/userServices/getOneUser'
+import Header from '../../components/Header'
+import Sidebar from '../../components/Sidebar'
+import { TitlePage } from '../../components/TitlePage/TitlePage'
+import { GetOneUser, UserI } from '../../services/api/userServices/getOneUser'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { UpdateUser } from '~services/api/userServices/UpdateUser'
+import { UpdateUser } from '../../services/api/userServices/UpdateUser'
 import { toast } from 'react-toastify'
 import { withStyles } from '@material-ui/core/styles'
 import CheckIcon from '@mui/icons-material/Check'
@@ -79,6 +79,7 @@ export default function UserForm() {
     try {
       const userprp: UserProps = JSON.parse(
         localStorage.getItem('UserData')
+        
       ) as UserProps
       await UpdateUser(id, userprp.token, user)
       toast.success('usuário editado com successo!')
@@ -190,7 +191,7 @@ export default function UserForm() {
               <CssTextField
                 margin="normal"
                 required
-                id="nome"
+                id="telefone"
                 label="Telefone"
                 name="Telefone"
                 value={user.phone}

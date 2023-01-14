@@ -1,67 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\pages\Register\index.spec.tsx">
-    <testCase name="Register page Should render page" duration="461"/>
-    <testCase name="Register page Login button should be render" duration="198"/>
-    <testCase name="Register page Title color should be default" duration="127"/>
-    <testCase name="Register page Title should be visible" duration="88"/>
-    <testCase name="Register page Should render avatar" duration="89"/>
-    <testCase name="Register page Should render email TextField" duration="105"/>
-    <testCase name="Register page Email TextField background color should be default" duration="109"/>
-    <testCase name="Register page Should render password TextField" duration="93"/>
-    <testCase name="Register page Password TextField background color should be default" duration="100"/>
-    <testCase name="Register page Image should be visible" duration="93"/>
-    <testCase name="Register page Image should be get by url" duration="82"/>
-  </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\pages\Login\index.spec.tsx">
-    <testCase name="Login page Should render page" duration="564"/>
-    <testCase name="Login page Register button should be render" duration="231"/>
-    <testCase name="Login page Title color should be default" duration="105"/>
-    <testCase name="Login page Title should be visible" duration="103"/>
-    <testCase name="Login page Should render avatar" duration="94"/>
-    <testCase name="Login page Should render first TextField" duration="99"/>
-    <testCase name="Login page First TextField background color should be default" duration="84"/>
-    <testCase name="Login page Should render second TextField" duration="112"/>
-    <testCase name="Login page Second TextField background color should be default" duration="85"/>
-    <testCase name="Login page Image should be visible" duration="95"/>
-    <testCase name="Login page Image should be get by url" duration="76"/>
-  </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\components\FishCard\FishCard.spec.tsx">
-    <testCase name="FishCard Component should render Fish Card component" duration="128"/>
-    <testCase name="FishCard Component should render alternative image in Fish Card component" duration="22"/>
-  </file>
   <file path="D:\MDS\2022-2-EuPescador-Web\src\components\FishModal\FishModal.spec.tsx">
     <testCase name="FishModal Component" duration="1"/>
-    <testCase name="FishModal Component Should render component" duration="191"/>
+    <testCase name="FishModal Component Should render component" duration="405"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\services\api\fishLogServices\index.spec.tsx">
-    <testCase name="Fish Log Service Test Recuperar todos os logs" duration="2102"/>
+  <file path="D:\MDS\2022-2-EuPescador-Web\src\pages\User\UserEdit.spec.tsx">
+    <testCase name="UserEdit Component Should render type of user" duration="340">
+      <failure message="Error: useNavigate() may be used only in the context of a &lt;Router&gt; component."><![CDATA[Error: useNavigate() may be used only in the context of a <Router> component.
+    at invariant (D:\MDS\packages\react-router\lib\router.ts:5:20)
+    at invariant (D:\MDS\packages\react-router\lib\hooks.tsx:140:3)
+    at UserForm (D:\MDS\2022-2-EuPescador-Web\src\pages\User\UserEdit.tsx:66:31)
+    at renderWithHooks (D:\MDS\2022-2-EuPescador-Web\node_modules\react-dom\cjs\react-dom.development.js:16305:18)
+    at mountIndeterminateComponent (D:\MDS\2022-2-EuPescador-Web\node_modules\react-dom\cjs\react-dom.development.js:20074:13)
+    at beginWork (D:\MDS\2022-2-EuPescador-Web\node_modules\react-dom\cjs\react-dom.development.js:21587:16)
+    at beginWork$1 (D:\MDS\2022-2-EuPescador-Web\node_modules\react-dom\cjs\react-dom.development.js:27426:14)
+    at performUnitOfWork (D:\MDS\2022-2-EuPescador-Web\node_modules\react-dom\cjs\react-dom.development.js:26560:12)
+    at workLoopSync (D:\MDS\2022-2-EuPescador-Web\node_modules\react-dom\cjs\react-dom.development.js:26466:5)
+    at renderRootSync (D:\MDS\2022-2-EuPescador-Web\node_modules\react-dom\cjs\react-dom.development.js:26434:7)
+    at recoverFromConcurrentError (D:\MDS\2022-2-EuPescador-Web\node_modules\react-dom\cjs\react-dom.development.js:25850:20)
+    at performConcurrentWorkOnRoot (D:\MDS\2022-2-EuPescador-Web\node_modules\react-dom\cjs\react-dom.development.js:25750:22)
+    at flushActQueue (D:\MDS\2022-2-EuPescador-Web\node_modules\react\cjs\react.development.js:2667:24)
+    at act (D:\MDS\2022-2-EuPescador-Web\node_modules\react\cjs\react.development.js:2582:11)
+    at D:\MDS\2022-2-EuPescador-Web\node_modules\@testing-library\react\dist\act-compat.js:63:25
+    at renderRoot (D:\MDS\2022-2-EuPescador-Web\node_modules\@testing-library\react\dist\pure.js:159:26)
+    at render (D:\MDS\2022-2-EuPescador-Web\node_modules\@testing-library\react\dist\pure.js:246:10)
+    at Object.<anonymous> (D:\MDS\2022-2-EuPescador-Web\src\pages\User\UserEdit.spec.tsx:8:37)
+    at Promise.then.completed (D:\MDS\2022-2-EuPescador-Web\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:333:28)
+    at new Promise (<anonymous>)
+    at callAsyncCircusFn (D:\MDS\2022-2-EuPescador-Web\node_modules\jest-cli\node_modules\jest-circus\build\utils.js:259:10)
+    at _callCircusTest (D:\MDS\2022-2-EuPescador-Web\node_modules\jest-cli\node_modules\jest-circus\build\run.js:277:40)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at _runTest (D:\MDS\2022-2-EuPescador-Web\node_modules\jest-cli\node_modules\jest-circus\build\run.js:209:3)
+    at _runTestsForDescribeBlock (D:\MDS\2022-2-EuPescador-Web\node_modules\jest-cli\node_modules\jest-circus\build\run.js:97:9)
+    at _runTestsForDescribeBlock (D:\MDS\2022-2-EuPescador-Web\node_modules\jest-cli\node_modules\jest-circus\build\run.js:91:9)
+    at run (D:\MDS\2022-2-EuPescador-Web\node_modules\jest-cli\node_modules\jest-circus\build\run.js:31:3)
+    at runAndTransformResultsToJestFormat (D:\MDS\2022-2-EuPescador-Web\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapterInit.js:135:21)
+    at jestAdapter (D:\MDS\2022-2-EuPescador-Web\node_modules\jest-cli\node_modules\jest-circus\build\legacy-code-todo-rewrite\jestAdapter.js:92:19)
+    at runTestInternal (D:\MDS\2022-2-EuPescador-Web\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:411:16)
+    at runTest (D:\MDS\2022-2-EuPescador-Web\node_modules\jest-cli\node_modules\jest-runner\build\runTest.js:499:34)
+    at Object.worker (D:\MDS\2022-2-EuPescador-Web\node_modules\jest-cli\node_modules\jest-runner\build\testWorker.js:133:12)]]></failure>
+    </testCase>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\components\Header.spec.tsx">
-    <testCase name="Header Component Should render title" duration="74"/>
-    <testCase name="Header Component Should render avatar" duration="12"/>
-    <testCase name="Header Component Should render username" duration="14"/>
-    <testCase name="Header Component Should render type of user" duration="16"/>
-    <testCase name="Header Component Title color should be default" duration="80"/>
-    <testCase name="Header Component Header Background should be white" duration="29"/>
-    <testCase name="Header Component Header should be visible" duration="24"/>
-    <testCase name="Header Component Check if width is 100%" duration="17"/>
-    <testCase name="Header Component Check if font-color is black" duration="18"/>
+  <file path="D:\MDS\2022-2-EuPescador-Web\src\pages\Login\index.spec.tsx">
+    <testCase name="Login page Should render page" duration="586"/>
+    <testCase name="Login page Register button should be render" duration="213"/>
+    <testCase name="Login page Title color should be default" duration="131"/>
+    <testCase name="Login page Title should be visible" duration="118"/>
+    <testCase name="Login page Should render avatar" duration="104"/>
+    <testCase name="Login page Should render first TextField" duration="117"/>
+    <testCase name="Login page First TextField background color should be default" duration="95"/>
+    <testCase name="Login page Should render second TextField" duration="100"/>
+    <testCase name="Login page Second TextField background color should be default" duration="92"/>
+    <testCase name="Login page Image should be visible" duration="129"/>
+    <testCase name="Login page Image should be get by url" duration="75"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\services\api\userServices\index.spec.tsx">
-    <testCase name="User Service Test Deve falhar o login" duration="867"/>
+  <file path="D:\MDS\2022-2-EuPescador-Web\src\pages\Datas\Datas.spec.tsx">
+    <testCase name="Login page Should render page" duration="513"/>
+  </file>
+  <file path="D:\MDS\2022-2-EuPescador-Web\src\pages\Register\index.spec.tsx">
+    <testCase name="Register page Should render page" duration="434"/>
+    <testCase name="Register page Login button should be render" duration="226"/>
+    <testCase name="Register page Title color should be default" duration="211"/>
+    <testCase name="Register page Title should be visible" duration="121"/>
+    <testCase name="Register page Should render avatar" duration="144"/>
+    <testCase name="Register page Should render email TextField" duration="106"/>
+    <testCase name="Register page Email TextField background color should be default" duration="105"/>
+    <testCase name="Register page Should render password TextField" duration="103"/>
+    <testCase name="Register page Password TextField background color should be default" duration="121"/>
+    <testCase name="Register page Image should be visible" duration="89"/>
+    <testCase name="Register page Image should be get by url" duration="99"/>
   </file>
   <file path="D:\MDS\2022-2-EuPescador-Web\src\services\api\wikiServices\index.spec.tsx">
-    <testCase name="Wiki Service Test Recuperar dados de um peixe" duration="674"/>
-    <testCase name="Wiki Service Test Peixe não existente" duration="600"/>
-    <testCase name="Wiki Service Test Recuperar todos os peixes" duration="919"/>
-  </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\pages\Datas\index.spec.tsx">
-    <testCase name="Login page Should render page" duration="266"/>
+    <testCase name="Wiki Service Test Recuperar dados de um peixe" duration="14591"/>
+    <testCase name="Wiki Service Test Peixe não existente" duration="644"/>
+    <testCase name="Wiki Service Test Recuperar todos os peixes" duration="918"/>
   </file>
   <file path="D:\MDS\2022-2-EuPescador-Web\src\components\Table\index.spec.tsx">
-    <testCase name="Table component Should render component" duration="163"/>
-    <testCase name="Table component Should render edit button" duration="58"/>
-    <testCase name="Table component Should render delete button" duration="42"/>
+    <testCase name="Table component Should render component" duration="216"/>
+    <testCase name="Table component Should render edit button" duration="114"/>
+    <testCase name="Table component Should render delete button" duration="45"/>
+  </file>
+  <file path="D:\MDS\2022-2-EuPescador-Web\src\components\Header\index.spec.tsx">
+    <testCase name="Header Component Should render img" duration="109"/>
+    <testCase name="Header Component Should render avatar" duration="26"/>
+    <testCase name="Header Component Should render username" duration="40"/>
+    <testCase name="Header Component Should render type of user" duration="25"/>
+    <testCase name="Header Component Header Background should be white" duration="106"/>
+    <testCase name="Header Component Header should be visible" duration="14"/>
+    <testCase name="Header Component Check if width is 100%" duration="12"/>
+    <testCase name="Header Component Check if font-color is black" duration="14"/>
+  </file>
+  <file path="D:\MDS\2022-2-EuPescador-Web\src\components\FishCard\FishCard.spec.tsx">
+    <testCase name="FishCard Component should render Fish Card component" duration="98"/>
+    <testCase name="FishCard Component should render alternative image in Fish Card component" duration="12"/>
+  </file>
+  <file path="D:\MDS\2022-2-EuPescador-Web\src\services\api\userServices\index.spec.tsx">
+    <testCase name="User Service Test Deve falhar o login" duration="5898"/>
+  </file>
+  <file path="D:\MDS\2022-2-EuPescador-Web\src\services\api\fishLogServices\index.spec.tsx">
+    <testCase name="Fish Log Service Test Recuperar todos os logs" duration="31409"/>
   </file>
 </testExecutions>
