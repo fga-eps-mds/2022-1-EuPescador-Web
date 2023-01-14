@@ -1,69 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testExecutions version="1">
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\pages\User\UserEdit.spec.tsx">
-    <testCase name="UserEdit Component Should render type of user" duration="0"/>
+  <file path="/home/arklok/Documents/10semestre/eps/2022-2-EuPescador-Web/src/components/FishCard/FishCard.spec.tsx">
+    <testCase name="FishCard Component should render Fish Card component" duration="110"/>
+    <testCase name="FishCard Component should render alternative image in Fish Card component" duration="15"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\components\Table\index.spec.tsx">
-    <testCase name="Table component Should render component" duration="75"/>
-    <testCase name="Table component Should render edit button" duration="57"/>
-    <testCase name="Table component Should render delete button" duration="18"/>
+  <file path="/home/arklok/Documents/10semestre/eps/2022-2-EuPescador-Web/src/components/Table/index.spec.tsx">
+    <testCase name="Table component Should render component" duration="90"/>
+    <testCase name="Table component Should render edit button" duration="71"/>
+    <testCase name="Table component Should render delete button" duration="22"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\services\api\fishLogServices\index.spec.tsx">
-    <testCase name="Fish Log Service Test Recuperar todos os logs" duration="3724"/>
+  <file path="/home/arklok/Documents/10semestre/eps/2022-2-EuPescador-Web/src/pages/Register/index.spec.tsx">
+    <testCase name="Register page Should render page" duration="265"/>
+    <testCase name="Register page Login button should be render" duration="163"/>
+    <testCase name="Register page Title color should be default" duration="83"/>
+    <testCase name="Register page Title should be visible" duration="64"/>
+    <testCase name="Register page Should render avatar" duration="68"/>
+    <testCase name="Register page Should render email TextField" duration="77"/>
+    <testCase name="Register page Email TextField background color should be default" duration="76"/>
+    <testCase name="Register page Should render password TextField" duration="85"/>
+    <testCase name="Register page Password TextField background color should be default" duration="42"/>
+    <testCase name="Register page Image should be visible" duration="53"/>
+    <testCase name="Register page Image should be get by url" duration="52"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\services\api\wikiServices\index.spec.tsx">
-    <testCase name="Wiki Service Test Recuperar dados de um peixe" duration="1196"/>
-    <testCase name="Wiki Service Test Peixe não existente" duration="839"/>
-    <testCase name="Wiki Service Test Recuperar todos os peixes" duration="1302"/>
-  </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\components\FishModal\FishModal.spec.tsx">
+  <file path="/home/arklok/Documents/10semestre/eps/2022-2-EuPescador-Web/src/components/FishModal/FishModal.spec.tsx">
     <testCase name="FishModal Component" duration="1"/>
-    <testCase name="FishModal Component Should render component" duration="329"/>
+    <testCase name="FishModal Component Should render component" duration="189"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\services\api\userServices\index.spec.tsx">
-    <testCase name="User Service Test Deve falhar o login" duration="1411"/>
+  <file path="/home/arklok/Documents/10semestre/eps/2022-2-EuPescador-Web/src/components/Header/index.spec.tsx">
+    <testCase name="Header Component Should render img" duration="75"/>
+    <testCase name="Header Component Should render avatar" duration="9"/>
+    <testCase name="Header Component Should render username" duration="13"/>
+    <testCase name="Header Component Should render type of user" duration="12"/>
+    <testCase name="Header Component Header Background should be white" duration="57"/>
+    <testCase name="Header Component Header should be visible" duration="19"/>
+    <testCase name="Header Component Check if width is 100%" duration="17"/>
+    <testCase name="Header Component Check if font-color is black" duration="9"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\pages\Register\index.spec.tsx">
-    <testCase name="Register page Should render page" duration="352"/>
-    <testCase name="Register page Login button should be render" duration="134"/>
-    <testCase name="Register page Title color should be default" duration="115"/>
-    <testCase name="Register page Title should be visible" duration="111"/>
-    <testCase name="Register page Should render avatar" duration="88"/>
-    <testCase name="Register page Should render email TextField" duration="126"/>
-    <testCase name="Register page Email TextField background color should be default" duration="80"/>
-    <testCase name="Register page Should render password TextField" duration="91"/>
-    <testCase name="Register page Password TextField background color should be default" duration="98"/>
-    <testCase name="Register page Image should be visible" duration="82"/>
-    <testCase name="Register page Image should be get by url" duration="76"/>
+  <file path="/home/arklok/Documents/10semestre/eps/2022-2-EuPescador-Web/src/pages/Login/index.spec.tsx">
+    <testCase name="Login page Should render page" duration="413"/>
+    <testCase name="Login page Title color should be default" duration="135"/>
+    <testCase name="Login page Title should be visible" duration="76"/>
+    <testCase name="Login page Should render logo" duration="83"/>
+    <testCase name="Login page Should render first TextField" duration="52"/>
+    <testCase name="Login page First TextField background color should be default" duration="59"/>
+    <testCase name="Login page Should render second TextField" duration="65"/>
+    <testCase name="Login page Second TextField background color should be default" duration="58"/>
+    <testCase name="Login page Image should be visible" duration="58"/>
+    <testCase name="Login page Image should be get by url" duration="47"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\pages\Datas\Datas.spec.tsx">
-    <testCase name="Login page Should render page" duration="476"/>
+  <file path="/home/arklok/Documents/10semestre/eps/2022-2-EuPescador-Web/src/services/api/userServices/index.spec.tsx">
+    <testCase name="User Service Test Deve falhar o login" duration="856"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\components\FishCard\FishCard.spec.tsx">
-    <testCase name="FishCard Component should render Fish Card component" duration="138"/>
-    <testCase name="FishCard Component should render alternative image in Fish Card component" duration="20"/>
+  <file path="/home/arklok/Documents/10semestre/eps/2022-2-EuPescador-Web/src/services/api/fishLogServices/index.spec.tsx">
+    <testCase name="Fish Log Service Test Recuperar todos os logs" duration="3505"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\pages\Login\index.spec.tsx">
-    <testCase name="Login page Should render page" duration="450"/>
-    <testCase name="Login page Register button should be render" duration="213"/>
-    <testCase name="Login page Title color should be default" duration="145"/>
-    <testCase name="Login page Title should be visible" duration="152"/>
-    <testCase name="Login page Should render avatar" duration="83"/>
-    <testCase name="Login page Should render first TextField" duration="74"/>
-    <testCase name="Login page First TextField background color should be default" duration="86"/>
-    <testCase name="Login page Should render second TextField" duration="77"/>
-    <testCase name="Login page Second TextField background color should be default" duration="91"/>
-    <testCase name="Login page Image should be visible" duration="61"/>
-    <testCase name="Login page Image should be get by url" duration="87"/>
+  <file path="/home/arklok/Documents/10semestre/eps/2022-2-EuPescador-Web/src/pages/Datas/Datas.spec.tsx">
+    <testCase name="Login page Should render page" duration="178"/>
   </file>
-  <file path="D:\MDS\2022-2-EuPescador-Web\src\components\Header\index.spec.tsx">
-    <testCase name="Header Component Should render img" duration="72"/>
-    <testCase name="Header Component Should render avatar" duration="11"/>
-    <testCase name="Header Component Should render username" duration="9"/>
-    <testCase name="Header Component Should render type of user" duration="11"/>
-    <testCase name="Header Component Header Background should be white" duration="42"/>
-    <testCase name="Header Component Header should be visible" duration="12"/>
-    <testCase name="Header Component Check if width is 100%" duration="13"/>
-    <testCase name="Header Component Check if font-color is black" duration="15"/>
+  <file path="/home/arklok/Documents/10semestre/eps/2022-2-EuPescador-Web/src/services/api/wikiServices/index.spec.tsx">
+    <testCase name="Wiki Service Test Recuperar dados de um peixe" duration="785"/>
+    <testCase name="Wiki Service Test Peixe não existente" duration="5731"/>
+    <testCase name="Wiki Service Test Recuperar todos os peixes" duration="1000"/>
   </file>
 </testExecutions>
