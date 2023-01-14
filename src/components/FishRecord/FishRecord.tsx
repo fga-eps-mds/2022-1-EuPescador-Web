@@ -113,7 +113,7 @@ export function FishRecord() {
           color: '#0095D9',
           cursor: 'pointer',
           position: 'absolute',
-          left: '95%',
+          left: '97%',
           bottom: '93%',
         }}
       >
@@ -122,7 +122,7 @@ export function FishRecord() {
 
       <Box sx={{ display: 'flex', width: '100%', mt: 2, justifyContent: 'center', mb: 2 }}>
         <Button
-          // onClick={routeChange}
+          onClick={closeModal}
           variant="contained"
           disableElevation
           sx={{
