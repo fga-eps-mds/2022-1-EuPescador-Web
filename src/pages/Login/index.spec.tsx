@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import Login from '.'
-import { UserLogin } from '../../services/api/userServices/login'
+import bg from '../../assets/images/background_login.png'
 
 jest.mock('react-router-dom')
 
@@ -13,12 +13,6 @@ describe('Login page', () => {
 
     expect(getByText('Entre na sua conta')).toBeInTheDocument()
     expect(loginButton).toBeInTheDocument()
-  })
-  it('Register button should be render', () => {
-    render(<Login />)
-    const element = screen.getByText('Ainda não tem uma conta?')
-    const style = getComputedStyle(element)
-    expect(style.visibility).toBe('visible')
   })
 
   it('Title color should be default', () => {
@@ -35,10 +29,11 @@ describe('Login page', () => {
     expect(style.visibility).toBe('visible')
   })
 
-  it('Should render avatar', () => {
-    const { getAllByTestId } = render(<Login />)
-    const [avatar] = getAllByTestId('avatar')
-    expect(avatar).toBeInTheDocument()
+  it('Should render logo', () => {
+    render(<Login />)
+    const element  = document.getElementsByClassName('logo')
+    const style = getComputedStyle(element[0])
+    expect(style.visibility).toBe('visible')
   })
 
   it('Should render first TextField', () => {
@@ -80,7 +75,7 @@ describe('Login page', () => {
     render(<Login />)
     const element = document.getElementsByClassName('imagem')
     const style = getComputedStyle(element[0])
-    expect(style.backgroundImage).toBe('url(https://source.unsplash.com/qsHDqcJzHOA)')
+    expect(style.backgroundImage).toBe(`url(${bg})`)
   })
 })
 

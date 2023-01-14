@@ -22,7 +22,6 @@ import {
 import { deleteUser } from '~services/api/userServices/deleteUser'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import '~assets/styles/User.css'
 
 export default function User() {
   const navigate = useNavigate()
@@ -112,15 +111,8 @@ export default function User() {
                 handleClickOpen(row.id)
               }}
               onEdit={(row) => navigate(`/usuarios/${row.id}`)}
-            />
-            <Pagination
-              count={users.totalPages}
-              page={page}
-              onChange={onPageChange}
-              style={{ marginTop: '16px' }}
-              color="primary"
-              size="small"
-            />
+              />
+          <Pagination count={users.totalPages} page={page} onChange={onPageChange} style={{marginTop:'16px', justifyContent:'center', display:'flex', marginBottom:'10px'}} color="primary" size="small"/>
           </>
         ) : (
           <CircularProgress />

@@ -27,7 +27,7 @@ describe('User edit', () => {
     cy.contains('Gerência de Usuários').
       should('be.visible')
 
-    cy.contains('Carlos Almeida').should('be.visible').get('[data-testid="editButton-1"').click()
+    cy.contains('Carlos Almeida').should('be.visible').get('[data-testid="editButton-2"').click()
 
     cy.contains('Alterar Usuário')
       .should('be.visible')
@@ -39,7 +39,7 @@ describe('User edit', () => {
     cy.contains('Gerência de Usuários').
       should('be.visible')
 
-    cy.contains('Carlos Almeida').should('be.visible').get('[data-testid="editButton-1"').click()
+    cy.contains('Carlos Almeida').should('be.visible').get('[data-testid="editButton-2"').click()
 
     cy.contains('Alterar Usuário')
       .should('be.visible')
