@@ -12,22 +12,26 @@ const routesAdmin = [
     path: '/dados',
     name: 'Listar',
     icon: <MdOutlineAssignment />,
+    datatesteid: "",
   },
   {
     path: '/',
     name: 'Mapa',
     icon: <BsMap />,
+    datatesteid: "",
   },
   {
     path: '/usuarios',
     name: 'Usuários',
     icon: <MdInsertEmoticon />,
+    datatesteid: "usuarios-button",
   },
 
   {
     path: '/logs',
     name: 'Logs',
     icon: <GiDoubleFish />,
+    datatesteid: "",
   },
 
 ]
@@ -74,7 +78,7 @@ const Sidebar = ({ children }) => {
       return (
         <section className="routes">
           {routesAdmin.map((route) => (
-            <NavLink to={route.path} key={route.name} className="link">
+            <NavLink to={route.path} key={route.name} className="link" data-testid={route.datatesteid}>
               <div className="icon">{route.icon}</div>
               <AnimatePresence>
                 {isOpen && (

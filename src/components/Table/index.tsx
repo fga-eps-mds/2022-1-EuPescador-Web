@@ -77,14 +77,14 @@ export default function TableComponent({ rows, columns, onDelete, onEdit}: Table
         </TableHead>
         <TableBody>
           {result.map((row, index) => (
-            <TableRow key={index}>
+            <TableRow key={index} data-testid={`rowTable-${index}`}>
               {row.map((data, index) => (
                 <TableCell key={index}>{data}</TableCell>
               ))}
               {onEdit && (
                 <TableCell>
-                  <IconButton data-testid="editButton" onClick={() => onEdit(rows[index])} >
-                    <img src={editIcon} style={{width: "25px", height: "30px"}}/>
+                  <IconButton  onClick={() => onEdit(rows[index])} >
+                    <img src={editIcon} data-testid={`editButton-${index}`} style={{width: "25px", height: "30px"}}/>
                   </IconButton>
                 </TableCell>
               )}
