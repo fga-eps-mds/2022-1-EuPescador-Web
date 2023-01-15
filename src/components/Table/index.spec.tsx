@@ -34,7 +34,7 @@ describe('Table component', () => {
   it('Should render edit button', () => {
     const onEditMocked = jest.fn()
     const { getAllByTestId } = render(<TableComponent columns={columns} rows={rows} onEdit={onEditMocked} />)
-    const [editButton] = getAllByTestId(`editButton-1`)
+    const [editButton] = getAllByTestId(`editButton`)
     editButton.click()
 
     expect(editButton).toBeInTheDocument()

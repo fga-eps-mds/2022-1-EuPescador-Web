@@ -84,7 +84,7 @@ export default function TableComponent({ rows, columns, onDelete, onEdit}: Table
               {onEdit && (
                 <TableCell>
                   <IconButton  onClick={() => onEdit(rows[index])} >
-                    <img src={editIcon} data-testid={`editButton-${index}`} style={{width: "25px", height: "30px"}}/>
+                    <img src={editIcon} data-testid={`editButton`} style={{width: "25px", height: "30px"}}/>
                   </IconButton>
                 </TableCell>
               )}

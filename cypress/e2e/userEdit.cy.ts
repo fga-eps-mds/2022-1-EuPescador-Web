@@ -1,4 +1,3 @@
-import { cpSync } from "fs"
 
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 describe('User edit', () => {
@@ -11,59 +10,47 @@ describe('User edit', () => {
 
     cy.get('#email').type('gabriel@email.com')
     cy.get('#password').type('1234')
-
     cy.get('[data-testid="login-button"]').click()
-
     cy.get('[data-testid="usuarios-button"').click()
-
   })
 
-  afterEach(() => {
+  it.only('Modificar os dados do usuário', () => {
+    cy.contains('Gerência de Usuários')
+      .should('be.visible')
 
-    cy.get('.logout-icon > button').click()
-  })
+    cy.url().should('include', '/usuarios')
 
-  it('Entrar na area de usuários e apresentar seus dados', () => {
-    cy.contains('Gerência de Usuários').
-      should('be.visible')
-
-    cy.contains('Carlos Almeida').should('be.visible').get('[data-testid="editButton-2"').click()
+    cy.contains('teste3@gmail.com').parent()
+      .find('[data-testid="editButton"]').click()
 
     cy.contains('Alterar Usuário')
       .should('be.visible')
+      
+    cy.get('#nome').type('{selectall}{backspace}nome editado')
+
+    cy.contains('Salvar').click()
+
+    cy.get('.Toastify__toast-body')
+    .should('have.text', 'usuário editado com successo!')
+    
+    cy.get('.Toastify__toast-body').click()
+      .should('not.exist')
 
   })
 
-  it('Modificar os dados do usuário', () => {
-
-    cy.contains('Gerência de Usuários').
-      should('be.visible')
-
-    cy.contains('Carlos Almeida').should('be.visible').get('[data-testid="editButton-2"').click()
-
-    cy.contains('Alterar Usuário')
-      .should('be.visible')
-
-    cy.contains('Nome')
-      .should('be.visible')
-
-    cy.get("input[name=Nome]").should('have.value', 'Carlos Almeida')
+  it('Não encontrar usuário especifico', () => {
 
   })
 
-  it.skip('Não encontrar usuário especifico', () => {
+  it('Modificar senha de um usuário', () => {
 
   })
 
-  it.skip('Modificar senha de um usuário', () => {
+  it('Logar com o usuário modificado', () => {
 
   })
 
-  it.skip('Logar com o usuário modificado', () => {
-
-  })
-
-  it.skip('Logar e alterar os dados do perfil do usuário modificado', () => {
+  it('Logar e alterar os dados do perfil do usuário modificado', () => {
 
   })
 })

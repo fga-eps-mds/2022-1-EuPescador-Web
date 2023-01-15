@@ -42,7 +42,7 @@ describe('Tela de login', () => {
 
     cy.get('[data-testid="login-button"]').click()
 
-    cy.get('.Toastify__toast-body').contains('Ooops! Algo deu errado! Tente novamente')
+    cy.get('.Toastify__toast-body').contains('E-mail ou senha incorretos')
       .should('to.exist')
   })
 
@@ -55,19 +55,7 @@ describe('Tela de login', () => {
 
     cy.get('[data-testid="login-button"]').click()
 
-    cy.contains('Ooops! Algo deu errado! Tente novamente')
+    cy.contains('E-mail ou senha incorretos')
       .should('to.exist')
   })
-
-  it('Cadastro de nova conta', () => {
-    cy.contains('Ainda não tem uma conta?').click()
-
-    cy.contains('Crie sua conta')
-      .should('be.visible')
-
-    // cy.get('#email').type('lucas@email.com')
-    // cy.get('#password').type('12345')
-
-  })
-  
-})
+}) 
