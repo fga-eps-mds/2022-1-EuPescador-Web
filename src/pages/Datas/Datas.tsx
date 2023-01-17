@@ -38,11 +38,11 @@ const Datas = () => {
       .catch((e) => console.log(e))
   }, [page])
 
-  const onPageChange = (event: any, page: number) => {
+  function onPageChange(event, page: number) {
     setPage(page)
   }
 
-  const handleOpenFishModal = (res: FishWiki) => {
+  function handleOpenFishModal(res: FishWiki) {
     setModalFish(res)
 
     handleOpen()

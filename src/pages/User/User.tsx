@@ -52,17 +52,17 @@ export default function User() {
 
   const [users, setUsers] = useState<UserResponseI>()
 
-  const handleClickOpen = (id: string) => {
+  function handleClickOpen(id: string) {
     setIdToDelete(id)
     setOpen(true)
   }
 
-  const handleClickClose = () => {
+  function handleClickClose() {
     setOpen(false)
     setIdToDelete('')
   }
 
-  const handleDelete = async () => {
+  async function handleDelete() {
     await deleteUser(`${idToDelete}`)
     handleClickClose()
     window.location.reload()

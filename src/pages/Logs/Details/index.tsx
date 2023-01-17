@@ -71,8 +71,6 @@ export default function LogsDetails() {
     setLog(data)
   }
 
-  const loadingMessage = 'Carregando...'
-
   useEffect(() => {
     if (id) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -84,7 +82,7 @@ export default function LogsDetails() {
     const user: UserProps = JSON.parse(
       localStorage.getItem('UserData')
     ) as UserProps
-    const dadinhos = await UpdateFishLog(
+    await UpdateFishLog(
       id,
       log.name,
       log.largeGroup,
@@ -143,7 +141,7 @@ export default function LogsDetails() {
                 label="Nome"
                 name="name"
                 value={log.name}
-                onChange={(e) => {
+                onChange={function (e) {
                   setLog({ ...log, name: e.target.value })
                 }}
                 InputLabelProps={{
@@ -163,7 +161,7 @@ export default function LogsDetails() {
                 label="Classe"
                 name="largeGroup"
                 value={log.largeGroup}
-                onChange={(e) => {
+                onChange={function (e) {
                   setLog({ ...log, largeGroup: e.target.value })
                 }}
                 InputLabelProps={{
@@ -183,7 +181,7 @@ export default function LogsDetails() {
                 label="Ordem"
                 name="group"
                 value={log.group}
-                onChange={(e) => {
+                onChange={function (e) {
                   setLog({ ...log, group: e.target.value })
                 }}
                 InputLabelProps={{
@@ -203,7 +201,7 @@ export default function LogsDetails() {
                 label=" Espécie"
                 name="species"
                 value={log.species}
-                onChange={(e) => {
+                onChange={function (e) {
                   setLog({ ...log, species: e.target.value })
                 }}
                 InputLabelProps={{
@@ -221,7 +219,7 @@ export default function LogsDetails() {
                 <CssTextField
                   label="Massa(g)"
                   value={log.weight}
-                  onChange={(e) => {
+                  onChange={function (e) {
                     setLog({ ...log, weight: e.target.value })
                   }}
                   sx={{ mr: 4 }}
@@ -239,7 +237,7 @@ export default function LogsDetails() {
                   label="Tamanho(cm)"
                   name="length"
                   value={log.length}
-                  onChange={(e) => {
+                  onChange={function (e) {
                     setLog({ ...log, length: e.target.value })
                   }}
                   InputLabelProps={{
