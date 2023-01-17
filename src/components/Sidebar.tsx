@@ -71,7 +71,7 @@ const Sidebar = ({ children }) => {
 
   function fazRota() {
     const user = JSON.parse(localStorage.getItem('UserData')) as UserProps
-    if (user.admin) {
+    if (user && user.admin) {
       return (
         <section className="routes">
           {routesAdmin.map((route) => (

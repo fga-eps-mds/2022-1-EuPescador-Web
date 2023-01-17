@@ -1,4 +1,4 @@
-import { styled } from "@mui/material"
+import wikiService  from './wikiServices/wikiService'
 
 
 export interface ResI {
@@ -27,4 +27,16 @@ export interface FishWiki {
   wasIntroduced?: boolean
   funFact?: string
   photo?: string
+}
+
+export interface FishWikiArray {
+  allFishWiki? : FishWiki[] 
+  page?: number
+  count?: number
+  totalPages?: number
+}
+
+export async function GetAllFishes(page: number, count: number) {
+  const res: ResI = await wikiService.get(`/fishWiki?page=${page}&count=${count}`)
+  return res.data as unknown as FishWikiArray
 }

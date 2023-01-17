@@ -8,16 +8,15 @@ import {
   DialogTitle,
   Grid,
 } from '@mui/material'
-import Header, { UserProps } from '~components/Header'
-import Sidebar from '~components/Sidebar'
-import TableComponent from '~components/Table'
-import { TitlePage } from '~components/TitlePage/TitlePage'
+import Header, { UserProps } from '../../components/Header'
+import Sidebar from '../../components/Sidebar'
+import TableComponent from '../../components/Table'
+import { TitlePage } from '../../components/TitlePage/TitlePage'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { GetAllFishLogs } from '~services/api/fishLogServices/GetAllFishLogs'
-import { deleteFishLog } from '~services/api/fishLogServices/deleteFishLog'
+import { GetAllFishLogs } from '../../services/api/fishLogServices/GetAllFishLogs'
+import { deleteFishLog } from '../../services/api/fishLogServices/deleteFishLog'
 import { DownloadExcel } from 'react-excel-export'
-import '~assets/styles/DetailsButtons.css'
 
 import { columns } from './tableColumns'
 
@@ -38,7 +37,7 @@ export default function FishLogs() {
       const user: UserProps = JSON.parse(
         localStorage.getItem('UserData')
       ) as UserProps
-      const reps = await GetAllFishLogs(user.token, '')
+      const reps = await GetAllFishLogs(user && user.token, '')
       reps.forEach((element) => {
         if (element.reviewed) {
           element.reviewed = element.reviewed ? 'Revisado' : 'Pendente'
