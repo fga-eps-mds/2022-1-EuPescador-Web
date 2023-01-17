@@ -59,7 +59,7 @@ export default function UserForm() {
       const user: UserProps = JSON.parse(
         localStorage.getItem('UserData')
       ) as UserProps
-      const data = await GetOneUser(logId, user.token)
+      const data = await GetOneUser(logId, user && user.token)
       setUser(data)
     }
   }

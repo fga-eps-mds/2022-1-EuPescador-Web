@@ -72,7 +72,7 @@ export default function User() {
     const user: UserProps = JSON.parse(
       localStorage.getItem('UserData')
     ) as UserProps
-    GetAllUsers(user.token, page, usersPerPage)
+    GetAllUsers(user && user.token, page, usersPerPage)
       .then((res: UserResponseI) => {
         setUsers(res)
       })

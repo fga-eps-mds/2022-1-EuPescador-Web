@@ -1,11 +1,12 @@
-import { render, screen } from '@testing-library/react'
+import { render, getByTestId } from '@testing-library/react'
 import FishLogs from '.'
 
 jest.mock('react-router-dom')
 
 describe('Logs page', () => {
-  it('Should render page', () => {
+  it('Should render TitlePage page', () => {
     const { getByText } = render(<FishLogs />)
-    console.log("###########", getByText)
+
+    expect(getByText('Logs dos Peixes')).toBeInTheDocument()
   })
 })
