@@ -1,6 +1,5 @@
 import { render } from '@testing-library/react'
 import Data from './Datas'
-import { GetWikiFishes } from '../../services/api/wikiServices/getWikiFishes'
 
 jest.mock('react-router-dom')
 

@@ -8,16 +8,15 @@ import {
   DialogTitle,
   Grid,
 } from '@mui/material'
-import Header, { UserProps } from '~components/Header'
-import Sidebar from '~components/Sidebar'
-import TableComponent from '~components/Table'
-import { TitlePage } from '~components/TitlePage/TitlePage'
+import Header, { UserProps } from '../../components/Header'
+import Sidebar from '../../components/Sidebar'
+import TableComponent from '../../components/Table'
+import { TitlePage } from '../../components/TitlePage/TitlePage'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { GetAllFishLogs } from '~services/api/fishLogServices/GetAllFishLogs'
-import { deleteFishLog } from '~services/api/fishLogServices/deleteFishLog'
+import { GetAllFishLogs } from '../../services/api/fishLogServices/GetAllFishLogs'
+import { deleteFishLog } from '../../services/api/fishLogServices/deleteFishLog'
 import { DownloadExcel } from 'react-excel-export'
-import '~assets/styles/DetailsButtons.css'
 
 import { columns } from './tableColumns'
 
@@ -26,7 +25,7 @@ export default function FishLogs() {
   const [open, setOpen] = useState(false)
   const navigate = useNavigate()
 
-  const [idToDelete, setIdToDelete] = useState(-1)
+  const [idToDelete, setIdToDelete] = useState('')
   const [logNameToDelete, setLogNameToDelete] = useState('')
 
   useEffect(() => {
@@ -38,7 +37,7 @@ export default function FishLogs() {
       const user: UserProps = JSON.parse(
         localStorage.getItem('UserData')
       ) as UserProps
-      const reps = await GetAllFishLogs(user.token, '')
+      const reps = await GetAllFishLogs(user && user.token, '')
       reps.forEach((element) => {
         if (element.reviewed) {
           element.reviewed = element.reviewed ? 'Revisado' : 'Pendente'
@@ -71,7 +70,7 @@ export default function FishLogs() {
       setLogs([])
     }
   }
-  const handleClickOpen = (id: number, name: string) => {
+  const handleClickOpen = (id: string, name: string) => {
     setIdToDelete(id)
     setLogNameToDelete(name)
     setOpen(true)
@@ -80,7 +79,7 @@ export default function FishLogs() {
   const handleClickClose = () => {
     setOpen(false)
     setLogNameToDelete('')
-    setIdToDelete(-1)
+    setIdToDelete('')
   }
 
   const handleDelete = async () => {
@@ -110,19 +109,19 @@ export default function FishLogs() {
                 marginBottom: '30px',
               }}
             >
-            <DownloadExcel
-              data={logs}
-              sx={{color: 'red'}}
-              buttonLabel="Clique aqui para exportar logs"
-              fileName="fish-logs"
-              className="button"
-            />
+              <DownloadExcel
+                data={logs}
+                sx={{ color: 'red' }}
+                buttonLabel="Clique aqui para exportar logs"
+                fileName="fish-logs"
+                className="button"
+              />
             </div>
             <TableComponent
               columns={columns}
               rows={logs || []}
               onDelete={(row: { id: string; name: string }) =>
-                handleClickOpen(parseInt(`${row.id}`), row.name)
+                handleClickOpen(row.id, row.name)
               }
               onEdit={(row: { id: string }) => navigate(`/logs/${row.id}`)}
             />

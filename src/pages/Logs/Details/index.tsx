@@ -34,6 +34,31 @@ export interface FishLogProps {
   weight: string
 }
 
+const CssTextField = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: '#0095D9',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#0095D9',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#0095D9',
+        borderWidth: 1,
+      },
+      '&:hover fieldset': {
+        borderColor: '#0095D9',
+        borderWidth: 2,
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#0095D9',
+        borderWidth: 2,
+      },
+    },
+  },
+})(TextField)
+
 export default function LogsDetails() {
   const [log, setLog] = useState({} as FishLogProps)
   const { id } = useParams()
@@ -46,8 +71,6 @@ export default function LogsDetails() {
     setLog(data)
   }
 
-  const loadingMessage = 'Carregando...'
-
   useEffect(() => {
     if (id) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -55,36 +78,11 @@ export default function LogsDetails() {
     }
   }, [id])
 
-  const CssTextField = withStyles({
-    root: {
-      '& label.Mui-focused': {
-        color: '#0095D9',
-      },
-      '& .MuiInput-underline:after': {
-        borderBottomColor: '#0095D9',
-      },
-      '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-          borderColor: '#0095D9',
-          borderWidth: 1,
-        },
-        '&:hover fieldset': {
-          borderColor: '#0095D9',
-          borderWidth: 2,
-        },
-        '&.Mui-focused fieldset': {
-          borderColor: '#0095D9',
-          borderWidth: 2,
-        },
-      },
-    },
-  })(TextField)
-
   const atualizaLog = async () => {
     const user: UserProps = JSON.parse(
       localStorage.getItem('UserData')
     ) as UserProps
-    const dadinhos = await UpdateFishLog(
+    await UpdateFishLog(
       id,
       log.name,
       log.largeGroup,
@@ -101,7 +99,6 @@ export default function LogsDetails() {
       true,
       user.token
     )
-    console.log(dadinhos)
     routeChange()
   }
 
@@ -143,8 +140,10 @@ export default function LogsDetails() {
                 fullWidth
                 label="Nome"
                 name="name"
-                value={log.name || loadingMessage}
-                onChange={(e) => (log.name = e.target.value)}
+                value={log.name}
+                onChange={function (e) {
+                  setLog({ ...log, name: e.target.value })
+                }}
                 InputLabelProps={{
                   style: { color: '#0095D9', fontWeight: 'bold' },
                 }}
@@ -161,8 +160,10 @@ export default function LogsDetails() {
                 fullWidth
                 label="Classe"
                 name="largeGroup"
-                value={log.largeGroup || loadingMessage}
-                onChange={(e) => (log.largeGroup = e.target.value)}
+                value={log.largeGroup}
+                onChange={function (e) {
+                  setLog({ ...log, largeGroup: e.target.value })
+                }}
                 InputLabelProps={{
                   style: { color: '#0095D9', fontWeight: 'bold' },
                 }}
@@ -179,8 +180,10 @@ export default function LogsDetails() {
                 fullWidth
                 label="Ordem"
                 name="group"
-                value={log.group || loadingMessage}
-                onChange={(e) => (log.group = e.target.value)}
+                value={log.group}
+                onChange={function (e) {
+                  setLog({ ...log, group: e.target.value })
+                }}
                 InputLabelProps={{
                   style: { color: '#0095D9', fontWeight: 'bold' },
                 }}
@@ -197,9 +200,10 @@ export default function LogsDetails() {
                 fullWidth
                 label=" Espécie"
                 name="species"
-                defaultValue={log.species || loadingMessage}
-                // value={log.species}
-                onChange={(e) => (log.species = e.target.value)}
+                value={log.species}
+                onChange={function (e) {
+                  setLog({ ...log, species: e.target.value })
+                }}
                 InputLabelProps={{
                   style: { color: '#0095D9', fontWeight: 'bold' },
                 }}
@@ -214,8 +218,10 @@ export default function LogsDetails() {
               <Box sx={{ display: 'flex', width: '50%', mt: 2 }}>
                 <CssTextField
                   label="Massa(g)"
-                  value={log.weight || loadingMessage}
-                  onChange={(e) => (log.weight = e.target.value)}
+                  value={log.weight}
+                  onChange={function (e) {
+                    setLog({ ...log, weight: e.target.value })
+                  }}
                   sx={{ mr: 4 }}
                   InputLabelProps={{
                     style: { color: '#0095D9', fontWeight: 'bold' },
@@ -230,8 +236,10 @@ export default function LogsDetails() {
                 <CssTextField
                   label="Tamanho(cm)"
                   name="length"
-                  value={log.length || loadingMessage}
-                  onChange={(e) => (log.length = e.target.value)}
+                  value={log.length}
+                  onChange={function (e) {
+                    setLog({ ...log, length: e.target.value })
+                  }}
                   InputLabelProps={{
                     style: { color: '#0095D9', fontWeight: 'bold' },
                   }}
@@ -281,7 +289,7 @@ export default function LogsDetails() {
                 >
                   <CloseIcon
                     data-testid="close"
-                    sx={{ backgroundColor: '#0095D9', color: 'white' }}
+                    sx={{ color: 'white' }}
                   />
                   Cancelar
                 </Button>
@@ -300,7 +308,7 @@ export default function LogsDetails() {
                 >
                   <CheckIcon
                     data-testid="check"
-                    sx={{ backgroundColor: '#0095D9', color: 'white' }}
+                    sx={{ color: 'white' }}
                   />
                   Salvar
                 </Button>

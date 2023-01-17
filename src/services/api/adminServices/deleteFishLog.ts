@@ -5,9 +5,7 @@ import { UserProps } from '~components/Header'
 export async function deleteFishLogs(id: number) {
   try {
     const userData = JSON.parse(localStorage.getItem('UserData')) as UserProps
-    console.log(`Deletar peixe ${id}`)
-    console.log(userData)
-
+    
     if (userData.superAdmin) {
       const token = userData.token
       const superAdminToken = `Bearer ${token}`

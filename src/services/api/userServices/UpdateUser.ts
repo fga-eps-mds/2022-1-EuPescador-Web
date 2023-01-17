@@ -16,7 +16,7 @@ export interface UserI {
 export async function UpdateUser(user_id: string, token: string, user: UserI) {
     const userToken = `Bearer ${token}`
     const res: ResI = await userService.put(
-        `/user/`,
+        `/user/${user_id}`,
         {
             user_id: user_id,
             ...user
