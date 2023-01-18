@@ -180,7 +180,7 @@ export default function Login() {
                   Entrar
                 </Button>
 
-                <Link href="/" variant="body2" sx={{
+                <Link href="/recovery" variant="body2" sx={{
                   color: '#0095D9',
                   fontWeight: '850',
                   fontSize: '15px',

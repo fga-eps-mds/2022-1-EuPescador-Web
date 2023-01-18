@@ -6,6 +6,7 @@ import Logs from './pages/Logs/index'
 
 import Login from 'pages/Login'
 import Register from 'pages/Register'
+import Recovery from 'pages/Recovery'
 
 import './assets/styles/Sidebar.css'
 
@@ -26,6 +27,7 @@ function App() {
       <Route path="/usuarios/:id" element={auth ? <UserForm /> : <Navigate replace to="/login" />} />
       <Route path="/login" element={auth ? <Login /> : <Login />} />
       <Route path="/register" element={auth ? <Register /> : <Register />} />
+      <Route path="/recovery" element={auth ? <Recovery /> : <Recovery />} />
     </Routes>
   )
 }
