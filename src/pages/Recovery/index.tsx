@@ -31,11 +31,10 @@ export default function Recovery() {
         toast.success('Senha alterada com sucesso, verifique seu email!', toastConfig)
       })
       .catch((err) => {
-        const mensagem = err.response.data.message as string
         if(err.response.status === 404){
-          toast.warning(mensagem, toastConfig)
+          toast.warning("Usuário não encontrado!", toastConfig)
         }else if(err.response.status === 408){
-          toast.warning(mensagem, toastConfig)
+          toast.warning("A senha dessa conta já foi alterada recentemente. Verifique o email da conta!", toastConfig)
         }else{
           toast.error('Não foi possível alterar a senha!', toastConfig)
         }
