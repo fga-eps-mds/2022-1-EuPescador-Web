@@ -7,11 +7,10 @@ jest.mock('react-router-dom')
 describe('Recover page', () => {
   it('Should render page', () => {
     const { getByText } = render(<Recovery />)
-    const loginButton = getByText('Entrar')
+    const loginButton = getByText('Redefinir')
 
     loginButton.click()
 
-    expect(getByText('Entre na sua conta')).toBeInTheDocument()
     expect(loginButton).toBeInTheDocument()
   })
 
@@ -22,12 +21,6 @@ describe('Recover page', () => {
     expect(style.backgroundColor).toBe('')
   })
 
-  it('Title should be visible', () => {
-    render(<Recovery />)
-    const element = screen.getByText('Entre na sua conta')
-    const style = getComputedStyle(element)
-    expect(style.visibility).toBe('visible')
-  })
 
   it('Should render logo', () => {
     render(<Recovery />)
@@ -47,20 +40,6 @@ describe('Recover page', () => {
     render(<Recovery />)
     const element = document.getElementsByClassName('textfield')
     const style = getComputedStyle(element[0])
-    expect(style.backgroundColor).toBe('')
-  })
-
-  it('Should render second TextField', () => {
-    render(<Recovery />)
-    const element = document.getElementsByClassName('textfield')
-    const style = getComputedStyle(element[1])
-    expect(style.visibility).toBe('visible')
-  })
-
-  it('Second TextField background color should be default', () => {
-    render(<Recovery />)
-    const element = document.getElementsByClassName('textfield')
-    const style = getComputedStyle(element[1])
     expect(style.backgroundColor).toBe('')
   })
 
