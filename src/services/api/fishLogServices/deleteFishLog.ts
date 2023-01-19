@@ -10,8 +10,6 @@ export async function deleteFishLog(logId: string) {
   try {
     if (user.admin) {
 
-      console.log(user.name)
-
       const token = user.token
       const adminToken = `Bearer ${token}`
 

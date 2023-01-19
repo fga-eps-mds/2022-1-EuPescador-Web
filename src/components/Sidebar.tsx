@@ -14,22 +14,26 @@ const routesAdmin = [
     path: '/dados',
     name: 'Listar',
     icon: list,
+    datatesteid: "",
   },
   {
     path: '/',
     name: 'Mapa',
     icon: map,
+    datatesteid: "",
   },
   {
     path: '/usuarios',
     name: 'Usuários',
     icon: user,
+    datatesteid: "usuarios-button",
   },
 
   {
     path: '/logs',
     name: 'Logs',
     icon: log,
+    datatesteid: "",
   },
 
 ]
@@ -67,11 +71,11 @@ const Sidebar = ({ children }) => {
 
   function fazRota() {
     const user = JSON.parse(localStorage.getItem('UserData')) as UserProps
-    if (user.admin) {
+    if (user && user.admin) {
       return (
         <section className="routes">
           {routesAdmin.map((route) => (
-            <NavLink to={route.path} key={route.name} className="link">
+            <NavLink to={route.path} key={route.name} className="link" data-testid={route.datatesteid}>
               {renderIcon(route.icon)}
               <AnimatePresence>
                 {isOpen && (
