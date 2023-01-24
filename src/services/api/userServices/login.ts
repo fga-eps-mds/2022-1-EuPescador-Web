@@ -8,3 +8,11 @@ export async function UserLogin(emailPhone: string, password: string) {
 
   return res
 }
+
+export async function RecoverPassword(email: string) {
+  const res = await userService.post('/recover-password', {
+    email,
+  })
+
+  return res
+}
