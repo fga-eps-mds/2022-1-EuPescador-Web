@@ -19,7 +19,6 @@ export function TitlePage({ title = 'Titulo', button = false }: HeaderProps) {
     setOpen(true)
     const fishModal = document.getElementById('fishRecordModal')
     const fishModalBack = document.getElementById('fishRecordModalBackground')
-    console.log("###############",fishModal)
     if (fishModal) fishModal.style.visibility = 'visible'
     if (fishModalBack) fishModalBack.style.visibility = 'visible'
   }

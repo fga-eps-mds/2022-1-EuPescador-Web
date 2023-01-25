@@ -12,6 +12,17 @@
   margin-bottom: 20px;
 }
 
+.custom-file-image {
+  display: flex;
+  cursor: pointer;
+  width: 93%;
+  height: 116px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 input[type='file'] {
   display: none;
 }

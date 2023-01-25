@@ -11,6 +11,8 @@ a {
 
 body {
   margin-top: 140px;
+  padding-right: 0px !important;
+  overflow: auto !important;
 }
 
 .main-container {
