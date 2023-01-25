@@ -8,6 +8,7 @@ import log from '../../assets/icons/log_simbolo.svg'
 import CheckIcon from '@mui/icons-material/Check'
 import CloseIcon from '@mui/icons-material/Close'
 import { FishWiki } from '../../services/api/interfaces'
+import { createWikiFish } from '../../services/api/wikiServices/createWikiFish'
 import { UpdateWikiFish } from '../../services/api/wikiServices/updateWikiFish'
 import { toast, ToastOptions } from 'react-toastify'
 
@@ -71,23 +72,35 @@ export function FishRecord(props: FishModalProps) {
     progress: undefined,
   } as ToastOptions
 
-  function atualizaPeixe() {
+  async function atualizaPeixe() {
     const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
 
-    UpdateWikiFish(fishWiki, user.token)
-      .then(() => {
-        toast.success('Peixe atualizado com sucesso!')
-        window.location.reload()
-      })
-      .catch(() => {
-        toast.error('Erro ao atualizar peixe', toastConfig)
-      })
+    if (props.edit) {
+      await UpdateWikiFish(fishWiki, user.token)
+        .then(async () => {
+          toast.success('Peixe atualizado com sucesso!')
+          await new Promise(resolve => setTimeout(resolve, 2000))
+          window.location.reload()
+        })
+        .catch(() => {
+          toast.error('Erro ao atualizar peixe', toastConfig)
+        })
+    } else {
+      await createWikiFish(fishWiki, user.token)
+        .then(async () => {
+          toast.success('Peixe criado com sucesso!')
+          await new Promise(resolve => setTimeout(resolve, 2000))
+          window.location.reload()
+        })
+        .catch(() => {
+          toast.error('Erro ao criar peixe', toastConfig)
+        })
+    }
   }
 
   useEffect(() => {
     if (props.fish) setFishWiki(props.fish)
     else setFishWiki(fishType)
-    console.log(props.fish.photo)
   }, [])
 
   return (
@@ -95,9 +108,9 @@ export function FishRecord(props: FishModalProps) {
       {Object.keys(fishWiki).length > 0 && (
         <>
           <Box width="35%">
-            {props.fish.photo ? (
+            {fishWiki.photo ? (
               <label htmlFor="file-input">
-                <img alt="complex" className="custom-file-image" src={props.fish.photo} />
+                <img alt="complex" className="custom-file-image" src={fishWiki.photo} />
                 <input
                   id="file-input"
                   type="file"
@@ -311,7 +324,6 @@ export function FishRecord(props: FishModalProps) {
               Cancelar
             </Button>
             <Button
-              // onClick={atualizaLog}
               onClick={atualizaPeixe}
               variant="contained"
               disableElevation
