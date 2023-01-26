@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react'
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { useState, useEffect, MouseEventHandler } from 'react'
 import { Box, Button } from '@mui/material'
 import Typography from '@mui/material/Typography'
 import AddIcon from '@mui/icons-material/Add'
@@ -29,6 +31,7 @@ const estiloTabela = {
 }
 
 type FishModalProps = {
+  onClose?: MouseEventHandler<HTMLSpanElement>
   fish?: FishWiki
   edit?: boolean
 }
@@ -47,16 +50,11 @@ const fishType = {
   isThreatened: false,
   isThreatenedInfo: '',
   largeGroup: '',
-  maxSize: '',
-  maxWeight: '',
-  photo: '',
+  maxSize: null,
+  maxWeight: null,
+  photo: null,
   scientificName: '',
   wasIntroduced: false,
-}
-
-const closeModal = () => {
-  document.getElementById('fishRecordModal').style.visibility = 'hidden'
-  document.getElementById('fishRecordModalBackground').style.visibility = 'hidden'
 }
 
 export function FishRecord(props: FishModalProps) {
@@ -72,6 +70,25 @@ export function FishRecord(props: FishModalProps) {
     progress: undefined,
   } as ToastOptions
 
+  const convertBase64 = (file: any) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader()
+      fileReader.readAsDataURL(file)
+      fileReader.onload = () => {
+        resolve(fileReader.result)
+      }
+      fileReader.onerror = (error) => {
+        reject(error)
+      }
+    })
+  }
+
+  const handleFileRead = async (event: any) => {
+    const file = event.target.files[0]
+    const base64 = await convertBase64(file)
+    setFishWiki({ ...fishWiki, photo: base64.toString() })
+  }
+
   async function atualizaPeixe() {
     const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
 
@@ -79,7 +96,7 @@ export function FishRecord(props: FishModalProps) {
       await UpdateWikiFish(fishWiki, user.token)
         .then(async () => {
           toast.success('Peixe atualizado com sucesso!')
-          await new Promise(resolve => setTimeout(resolve, 2000))
+          await new Promise((resolve) => setTimeout(resolve, 2000))
           window.location.reload()
         })
         .catch(() => {
@@ -89,8 +106,8 @@ export function FishRecord(props: FishModalProps) {
       await createWikiFish(fishWiki, user.token)
         .then(async () => {
           toast.success('Peixe criado com sucesso!')
-          await new Promise(resolve => setTimeout(resolve, 2000))
-          window.location.reload()
+          await new Promise((resolve) => setTimeout(resolve, 2000))
+          // window.location.reload()
         })
         .catch(() => {
           toast.error('Erro ao criar peixe', toastConfig)
@@ -116,6 +133,7 @@ export function FishRecord(props: FishModalProps) {
                   type="file"
                   accept="image/png, image/jpeg, image/jpg"
                   style={{ display: 'none' }}
+                  onChange={handleFileRead}
                 />
               </label>
             ) : (
@@ -130,6 +148,7 @@ export function FishRecord(props: FishModalProps) {
                   type="file"
                   accept="image/png, image/jpeg, image/jpg"
                   style={{ display: 'none' }}
+                  onChange={handleFileRead}
                 />
               </label>
             )}
@@ -293,7 +312,7 @@ export function FishRecord(props: FishModalProps) {
             </Box>
           </Box>
           <span
-            onClick={closeModal}
+            onClick={props.onClose}
             style={{
               color: '#0095D9',
               cursor: 'pointer',
@@ -307,7 +326,7 @@ export function FishRecord(props: FishModalProps) {
 
           <Box sx={{ display: 'flex', width: '100%', mt: 2, justifyContent: 'center', mb: 2 }}>
             <Button
-              onClick={closeModal}
+              onClick={props.onClose}
               variant="contained"
               disableElevation
               sx={{

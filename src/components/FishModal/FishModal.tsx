@@ -1,12 +1,26 @@
-import { useState } from 'react'
-import { Box, Button, Typography, Modal } from '@mui/material'
+import { MouseEventHandler, useState } from 'react'
+import {
+  Box,
+  Button,
+  Typography,
+  Modal,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from '@mui/material'
 import { styled } from '@mui/material/styles'
 import { BiEdit } from 'react-icons/bi'
+import DeleteIcon from '@mui/icons-material/Delete'
 
 import { FishWiki } from '../../services/api/interfaces'
+import { DeleteWikiFish } from '../../services/api/wikiServices/deleteWikiFish'
 import { FishRecord } from '../../components/FishRecord/FishRecord'
+import { toast, ToastOptions } from 'react-toastify'
 
 type FishModalProps = {
+  onClose?: MouseEventHandler<HTMLSpanElement>
   fish: FishWiki
 }
 
@@ -17,15 +31,14 @@ const estiloTabela = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 600,
-  height: 400,
   bgcolor: '#FEFEFE',
   border: '2px solid #0095D9',
   borderRadius: 4,
   boxShadow: 24,
   paddingLeft: 3,
   paddingTop: 4,
-  paddingRight: 1,
-  paddingBottom: 1,
+  paddingRight: 3,
+  paddingBottom: 3,
 }
 
 const Img = styled('img')({
@@ -35,29 +48,53 @@ const Img = styled('img')({
 })
 
 const closeModal = () => {
-  document.getElementById('fishEditModal').style.visibility = 'hidden'
-  document.getElementById('fishEditModalBackground').style.visibility = 'hidden'
+  console.log('here')
 }
-
 
 export function FishModal(props: FishModalProps) {
   const [open, setOpen] = useState(false)
   const [modalFish, setModalFish] = useState({} as FishWiki)
   const handleClose = () => setOpen(false)
+  const [openDialog, setOpenDialog] = useState(false)
 
   const handleOpen = () => {
     setOpen(true)
-    document.getElementById('fishEditModal').style.visibility = 'hidden'
-    document.getElementById('fishEditModalBackground').style.visibility = 'hidden'
-    const fishModal = document.getElementById('fishRecordModal')
-    const fishModalBack = document.getElementById('fishRecordModalBackground')
-    if (fishModal) fishModal.style.visibility = 'visible'
-    if (fishModalBack) fishModalBack.style.visibility = 'visible'
+  }
+
+  const handleClickOpen = () => {
+    setOpenDialog(true)
   }
 
   const handleOpenFishModal = () => {
     setModalFish(props.fish)
     handleOpen()
+  }
+
+  const handleClickClose = () => {
+    setOpenDialog(false)
+  }
+
+  const toastConfig = {
+    position: 'top-right',
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  } as ToastOptions
+
+  const handleDelete = async () => {
+    await DeleteWikiFish(props.fish.id)
+      .then(async () => {
+        toast.success('Peixe excluído com sucesso')
+        await new Promise((resolve) => setTimeout(resolve, 2000))
+        window.location.reload()
+      })
+      .catch(() => {
+        toast.error('Erro ao excluir peixe', toastConfig)
+      })
+    handleClickClose()
   }
 
   return (
@@ -88,11 +125,27 @@ export function FishModal(props: FishModalProps) {
           >
             Editar Espécie
           </Button>
-
+          <Button
+            onClick={handleClickOpen}
+            sx={{
+              borderRadius: '20px',
+              width: '170px',
+              fontSize: '0.90rem',
+              justifySelf: 'center',
+              alignSelf: 'center',
+              textTransform: 'capitalize',
+              fontWeight: 'bold',
+            }}
+            variant="contained"
+            color="error"
+            startIcon={<DeleteIcon />}
+          >
+            Excluir Espécie
+          </Button>
           <Img
             alt="complex"
             id="fishImage"
-            src={props.fish.photo == null ? 'https://source.unsplash.com/qsHDqcJzHOA' : props.fish.photo}
+            src={props.fish.photo == null ? 'https://imgur.com/ybTpCh6.png' : props.fish.photo}
             style={{ width: '200px', height: '175px' }}
           />
 
@@ -268,7 +321,7 @@ export function FishModal(props: FishModalProps) {
         </Box>
 
         <span
-          onClick={closeModal}
+          onClick={props.onClose}
           style={{
             color: '#0095D9',
             cursor: 'pointer',
@@ -280,11 +333,30 @@ export function FishModal(props: FishModalProps) {
           &#10006;
         </span>
       </Box>
-      <Modal id="fishRecordModalBackground" open={open} onClose={handleClose}>
+      <Modal open={open} onClose={handleClose}>
         <Box>
-          <FishRecord fish={modalFish} edit/>
+          <FishRecord fish={modalFish} edit onClose={handleClose} />
         </Box>
       </Modal>
+      <Dialog
+        open={openDialog}
+        onClose={handleClickClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{`Deseja excluir essa espécie de peixe?`}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Clique em confirmar para prosseguir com a exclusão do registro
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClickClose}>Cancelar</Button>
+          <Button onClick={handleDelete} autoFocus>
+            Confirmar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   )
 }

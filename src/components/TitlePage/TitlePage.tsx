@@ -17,10 +17,6 @@ export function TitlePage({ title = 'Titulo', button = false }: HeaderProps) {
 
   const handleOpen = () => {
     setOpen(true)
-    const fishModal = document.getElementById('fishRecordModal')
-    const fishModalBack = document.getElementById('fishRecordModalBackground')
-    if (fishModal) fishModal.style.visibility = 'visible'
-    if (fishModalBack) fishModalBack.style.visibility = 'visible'
   }
 
   const handleOpenFishModal = () => {
@@ -37,9 +33,7 @@ export function TitlePage({ title = 'Titulo', button = false }: HeaderProps) {
       }}
     >
       <img src={one_fish} width={35} height={20} />
-      <Typography sx={{ pl: 1, fontWeight: 'bold', fontSize: '20px' }}>
-        {title}
-      </Typography>
+      <Typography sx={{ pl: 1, fontWeight: 'bold', fontSize: '20px' }}>{title}</Typography>
 
       {button && (
         <Button
@@ -61,7 +55,7 @@ export function TitlePage({ title = 'Titulo', button = false }: HeaderProps) {
       )}
       <Modal id="fishRecordModalBackground" open={open} onClose={handleClose}>
         <Box>
-          <FishRecord />
+          <FishRecord onClose={handleClose} />
         </Box>
       </Modal>
     </Box>

@@ -27,7 +27,7 @@ describe('FishModal Component', () => {
         wasIntroducedInfo: "Não",
         wasIntroduced: false,
         funFact: null,
-        photo: 'https://source.unsplash.com/qsHDqcJzHOA'
+        photo: 'https://imgur.com/ybTpCh6.png'
     })
 
 
@@ -50,7 +50,7 @@ describe('FishModal Component', () => {
     //     const { getAllByText } = render(<FishModal fish={FishWikiMock} />)
 
     //     const image = getAllByText('complex')
-    //     expect(image).toHaveAttribute('src', 'https://source.unsplash.com/qsHDqcJzHOA')
+    //     expect(image).toHaveAttribute('src', 'https://imgur.com/ybTpCh6.png')
     // });
 
 })

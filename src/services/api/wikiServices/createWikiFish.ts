@@ -28,13 +28,11 @@ export const createWikiFish = async (fishWiki: fishType, token: string) => {
   const hasSpawning = fishWiki.hasSpawningSeasonInfo === 'Sim' ? true : false
   const isEndemic = fishWiki.isEndemicInfo === 'Sim' ? true : false
   const isThreatenedInfo = fishWiki.isThreatenedInfo === 'Sim' ? true : false
-  const photo = fishWiki.photo ? fishWiki.photo : null
 
-  // ao criar deve aparecer em primeiro
   const res: ResI = await wikiService.post(
     '/fishWiki/',
     {
-      commonName: fishWiki.commonName, // tem q ser obrigatorio
+      commonName: fishWiki.commonName,
       family: fishWiki.family,
       food: fishWiki.food,
       funFact: fishWiki.funFact,
@@ -47,9 +45,9 @@ export const createWikiFish = async (fishWiki: fishType, token: string) => {
       isThreatened: isThreatenedInfo,
       isThreatenedInfo: fishWiki.isThreatenedInfo,
       largeGroup: fishWiki.largeGroup,
-      maxSize: fishWiki.maxSize, // esta como obrigatorio
-      maxWeight: fishWiki.maxWeight, // esta como obrigatorio
-      photo: photo,
+      maxSize: fishWiki.maxSize,
+      maxWeight: fishWiki.maxWeight,
+      photo: fishWiki.photo,
       scientificName: fishWiki.scientificName,
       wasIntroduced: fishWiki.wasIntroduced,
     },
