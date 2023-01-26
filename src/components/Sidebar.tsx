@@ -14,32 +14,30 @@ const routesAdmin = [
     path: '/dados',
     name: 'Listar',
     icon: list,
-    datatesteid: "",
+    datatesteid: '',
   },
   {
     path: '/',
     name: 'Mapa',
     icon: map,
-    datatesteid: "",
+    datatesteid: '',
   },
   {
     path: '/usuarios',
     name: 'Usuários',
     icon: user,
-    datatesteid: "usuarios-button",
+    datatesteid: 'usuarios-button',
   },
 
   {
     path: '/logs',
     name: 'Logs',
     icon: log,
-    datatesteid: "",
+    datatesteid: '',
   },
-
 ]
 
-const routesNotAdmin = [routesAdmin[0], routesAdmin[1]]
-
+const routesOnlyAdmin = [routesAdmin[0], routesAdmin[1], routesAdmin[3]]
 
 const Sidebar = ({ children }) => {
   const [isOpen] = useState(false)
@@ -61,17 +59,17 @@ const Sidebar = ({ children }) => {
     },
   }
 
-  function renderIcon (icon: string) {
+  function renderIcon(icon: string) {
     return (
       <div className="icon">
-        <img src={icon} style={{width: "25px", height: "30px"}}/>
+        <img src={icon} style={{ width: '25px', height: '30px' }} />
       </div>
     )
   }
 
   function fazRota() {
     const user = JSON.parse(localStorage.getItem('UserData')) as UserProps
-    if (user && user.admin) {
+    if (user && user.superAdmin) {
       return (
         <section className="routes">
           {routesAdmin.map((route) => (
@@ -94,10 +92,10 @@ const Sidebar = ({ children }) => {
           ))}
         </section>
       )
-    } else {
+    } else if (user && user.admin) {
       return (
         <section className="routes">
-          {routesNotAdmin.map((route) => (
+          {routesOnlyAdmin.map((route) => (
             <NavLink to={route.path} key={route.name} className="link">
               {renderIcon(route.icon)}
               <AnimatePresence>
@@ -151,9 +149,7 @@ const Sidebar = ({ children }) => {
         <div>{fazRota()}</div>
         <section className="logout">
           <div className="logout-icon">
-            <button onClick={handleLogoutClick}>
-              {renderIcon(exit)}
-            </button>
+            <button onClick={handleLogoutClick}>{renderIcon(exit)}</button>
           </div>
         </section>
       </motion.div>

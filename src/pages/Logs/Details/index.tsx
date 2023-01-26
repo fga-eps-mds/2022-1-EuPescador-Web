@@ -99,6 +99,8 @@ export default function LogsDetails() {
       true,
       user.token
     )
+    toast.success('Log atualizado com sucesso!')
+    await new Promise((resolve) => setTimeout(resolve, 2000))
     routeChange()
   }
 

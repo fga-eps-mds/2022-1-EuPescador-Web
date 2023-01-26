@@ -35,7 +35,7 @@ export async function UpdateFishLog(
   } else {
     photo = null
   }
-  const res: ResI = await fishLogService.patch(
+  const res: ResI = await fishLogService.put(
     `/fishLog/${log_id}`,
     {
       name,

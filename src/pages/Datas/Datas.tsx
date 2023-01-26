@@ -24,10 +24,6 @@ const Datas = () => {
 
   const handleOpen = () => {
     setOpen(true)
-    const fishModal = document.getElementById('fishEditModal')
-    const fishModalBack = document.getElementById('fishEditModalBackground')
-    if (fishModal) fishModal.style.visibility = 'visible'
-    if (fishModalBack) fishModalBack.style.visibility = 'visible'
   }
 
   const handleClose = () => setOpen(false)
@@ -71,7 +67,7 @@ const Datas = () => {
                       <FishCard
                         fish={{
                           name: res.commonName,
-                          imageUrl: res.photo == null ? 'https://source.unsplash.com/qsHDqcJzHOA' : res.photo,
+                          imageUrl: res.photo == null ? 'https://imgur.com/ybTpCh6.png' : res.photo,
                         }}
                       ></FishCard>
                     </Box>
@@ -91,9 +87,9 @@ const Datas = () => {
           )}
         </Grid>
       </Grid>
-      <Modal id="fishEditModalBackground" open={open} onClose={handleClose}>
+      <Modal open={open} onClose={handleClose}>
         <Box>
-          <FishModal fish={modalFish}></FishModal>
+          <FishModal fish={modalFish} onClose={handleClose}></FishModal>
         </Box>
       </Modal>
     </>

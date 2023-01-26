@@ -44,6 +44,8 @@ export default function Header() {
         backgroundColor: 'white',
         boxShadow: 0,
         mb: 5,
+        paddingRight: '0px !important',
+
       }}
     >
       <Toolbar
