@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import Recovery from '.'
 import bg from '../../assets/images/background_login.png'
 
@@ -20,8 +20,6 @@ describe('Recover page', () => {
     const style = getComputedStyle(element)
     expect(style.backgroundColor).toBe('')
   })
-
-
   it('Should render logo', () => {
     render(<Recovery />)
     const element  = document.getElementsByClassName('logo')

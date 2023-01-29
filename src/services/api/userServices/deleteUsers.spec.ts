@@ -1,17 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { saveToStorage } from '../storage'
-// import { deleteUser } from './deleteUser'
+
 
 const fakeLocalStorage = (function () {
   let store = {}
 
   return {
-    getItem: function (key) {
+    getItem: function (key: number) {
       return store[key] || null
     },
-    setItem: function (key, value) {
+    setItem: function (key, value: string) {
       store[key] = value.toString()
     },
-    removeItem: function (key) {
+    removeItem: function (key: number) {
       delete store[key]
     },
     clear: function () {
@@ -34,7 +36,7 @@ describe('User Service Test', () => {
     token: '123',
   }
 
-  it('Deve criar o token', async () => {
+  it('Deve criar o token', () => {
     saveToStorage('UserData', JSON.stringify(myMockUserData))
     const localStorage = window.localStorage.getItem('UserData')
     expect(localStorage).not.toBeUndefined()

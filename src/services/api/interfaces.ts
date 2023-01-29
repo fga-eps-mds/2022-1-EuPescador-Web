@@ -2,7 +2,7 @@ import wikiService  from './wikiServices/wikiService'
 
 
 export interface ResI {
-  data: [any]
+  data: []
   status: string
 }
 
@@ -30,7 +30,7 @@ export interface FishWiki {
 }
 
 export interface FishWikiArray {
-  allFishWiki? : FishWiki[] 
+  allFishWiki? : FishWiki[]
   page?: number
   count?: number
   totalPages?: number

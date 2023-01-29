@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { fishLogService } from './fishLogService'
 
 export const createFishLog = async (
@@ -12,8 +13,8 @@ export const createFishLog = async (
   longitude: string | undefined,
   visible: boolean,
 ) => {
-  const userId = await localStorage.getItem('@eupescador/userId')
-  const token = await localStorage.getItem('@eupescador/token')
+  const userId = localStorage.getItem('@eupescador/userId')
+  const token = localStorage.getItem('@eupescador/token')
   let photo = null
 
   const coordenates = {

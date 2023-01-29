@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom'
+import { Routes, Route, Navigate} from 'react-router-dom'
 import Datas from './pages/Datas/Datas'
 import User from './pages/User/User'
 import Home from './pages/Home'
@@ -15,7 +15,7 @@ import UserForm from './pages/User/UserEdit'
 import LogsDetails from 'pages/Logs/Details'
 
 function App() {
-  const [auth, setAuth] = React.useState<string>(localStorage.getItem('UserData'))
+  const [auth] = React.useState<string>(localStorage.getItem('UserData'))
 
   return (
     <Routes>
@@ -25,9 +25,9 @@ function App() {
       <Route path="/logs" element={auth ? <Logs /> : <Navigate replace to="/login" />} />
       <Route path="/logs/:id" element={auth ? <LogsDetails /> : <Navigate replace to="/login" />} />
       <Route path="/usuarios/:id" element={auth ? <UserForm /> : <Navigate replace to="/login" />} />
-      <Route path="/login" element={auth ? <Login /> : <Login />} />
-      <Route path="/register" element={auth ? <Register /> : <Register />} />
-      <Route path="/recovery" element={auth ? <Recovery /> : <Recovery />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/recovery" element={<Recovery />} />
     </Routes>
   )
 }
