@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
-import { Grid, Box, TextField, Typography, Button, Alert } from '@mui/material'
+import { Grid, Box, TextField, Typography, Button, Alert, FormControlLabel, Switch } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import Header, { UserProps } from '~components/Header'
@@ -11,7 +11,6 @@ import { GetOneFishLog } from '~services/api/fishLogServices/getOneFishLog'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import '~assets/styles/DetailsButtons.css'
 import { UpdateFishLog } from '~services/api/fishLogServices/updateFishLog'
-import { ReviewFishLog } from '~services/api/fishLogServices/reviewFishLog'
 import { toast } from 'react-toastify'
 import { withStyles } from '@material-ui/core/styles'
 import CheckIcon from '@mui/icons-material/Check'
@@ -32,6 +31,7 @@ export interface FishLogProps {
   species: string
   length: string
   weight: string
+  visible: boolean
 }
 
 const CssTextField = withStyles({
@@ -108,22 +108,6 @@ export default function LogsDetails() {
   const routeChange = () => {
     const path = '/logs'
     navigate(path)
-  }
-
-  const handleReviewLog = async () => {
-    try {
-      const user: UserProps = JSON.parse(
-        localStorage.getItem('UserData')
-      ) as UserProps
-      await ReviewFishLog(id, log.name, user.token)
-      toast.success('Registro aprovado com sucesso!')
-      setLog({
-        ...log,
-        reviewed: true,
-      })
-    } catch (error) {
-      toast.error('Algo deu errado, tente novamente!')
-    }
   }
 
   return (
@@ -253,27 +237,17 @@ export default function LogsDetails() {
                   }}
                 />
               </Box>
-              <Box display="flex" alignItems="center" sx={{ mt: 2 }}>
-                <Typography sx={{ mr: 2 }}>
-                  Status: {log.reviewed ? 'Aprovado' : 'Pendente'}
-                </Typography>
-                {!log.reviewed && (
-                  <Button
-                    onClick={handleReviewLog}
-                    sx={{
-                      backgroundColor: '#0095D9',
-                      borderRadius: '20px',
-                      height: '35px',
-                      textTransform: 'capitalize',
-                      fontWeight: 'bold',
-                      width: '140px',
-                      color: 'white',
-                    }}
-                  >
-                    Aprovar
-                  </Button>
-                )}
-              </Box>
+              <FormControlLabel
+                  control={
+                    <Switch
+                      checked={log.visible}
+                      onChange={() => {
+                        setLog({ ...log, visible: !log.visible })
+                      }}
+                    />
+                  }
+                  label="Visível"
+                />
               <Box sx={{ display: 'flex', width: '50%', mt: 10, ml: 0 }}>
                 <Button
                   onClick={routeChange}
