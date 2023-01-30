@@ -4,7 +4,6 @@ const user = {
   email: "mock@email.com",
   id: "234",
   name: "name",
-  password: "password",
   phone: "phone",
   state: "state",
   superAdmin: true,
