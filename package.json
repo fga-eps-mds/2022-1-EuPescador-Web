@@ -33,7 +33,7 @@
     "lint": "eslint \"**/*.{ts,tsx}\"",
     "test": "jest --ci --coverage --testLocationInResults",
     "eject": "react-scripts eject",
-    "jest": "react-app-rewired test --passWithNoTests",
+    "jest": "jest --passWithNoTests --silent -0 --coverage=false",
     "prepare": "husky install"
   },
   "eslintConfig": {
