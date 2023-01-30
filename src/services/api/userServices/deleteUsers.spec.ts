@@ -48,7 +48,8 @@ describe('User Service Test', () => {
     saveToStorage('UserData', JSON.stringify(myMockUserData))
     window.localStorage.getItem('UserData')
 
-    await deleteUser('1')
+    const res = await deleteUser('1')
+    expect(res).toBe(200)
   })
 
   it('Shoud user not admin', async() => {
@@ -56,6 +57,7 @@ describe('User Service Test', () => {
     saveToStorage('UserData', JSON.stringify(myMockUserData))
     window.localStorage.getItem('UserData')
 
-    await deleteUser('1')
+    const res = await deleteUser('1')
+    expect(res).toBe(401)
   })
 })

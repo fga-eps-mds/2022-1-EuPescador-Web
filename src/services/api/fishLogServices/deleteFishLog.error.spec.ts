@@ -17,14 +17,8 @@ describe('fishLogServices Test', () => {
     window.localStorage.setItem("UserData", JSON.stringify({
       "admin": true,
     }))
-    await deleteFishLog('1')
-  })
-
-  it('Shoud get status code 200', async() => {
-    window.localStorage.setItem("UserData", JSON.stringify({
-      "admin": false,
-    }))
-    await deleteFishLog('1')
+    const data = await deleteFishLog('1')
+    expect(data).toBeUndefined()
   })
 
 })

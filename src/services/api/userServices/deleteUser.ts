@@ -13,7 +13,7 @@ export async function deleteUser(id: string) {
 
       return res.status
     } else {
-      //console.log('Deu errado')
+      return 401
     }
   } catch (error) {
     //console.error(error)

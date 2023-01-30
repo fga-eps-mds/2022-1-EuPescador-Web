@@ -12,11 +12,13 @@ jest.mock('./userService', () => {
 describe('Login and Recovery', () => {
 
   it('Shoud get status code 200 if login user', async () => {
-    await UserLogin('email@mock.com', 'password')
+    const res = await UserLogin('email@mock.com', 'password')
+    expect(res.status).toEqual(200)
   })
 
   it('Shoud get status code 200 if user recovery password', async () => {
-    await RecoverPassword('email@mock.com')
+    const res = await RecoverPassword('email@mock.com')
+    expect(res.status).toEqual(200)
   })
 
 })
