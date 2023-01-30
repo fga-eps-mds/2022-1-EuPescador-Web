@@ -5,7 +5,7 @@ import { FishModal } from './FishModal'
 describe('FishModal Component', () => {
 
     const FishWikiMock: FishWiki = ({
-        id: 1,
+        id: '123',
         largeGroup: "Peixes com escamas",
         group: "Cachorras",
         commonName: "Ueua, peixe-cachorro, Bicuda-branca",

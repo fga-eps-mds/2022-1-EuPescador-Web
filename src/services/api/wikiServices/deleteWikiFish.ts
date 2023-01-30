@@ -2,7 +2,7 @@ import { ResI } from '../interfaces'
 import wikiService from './wikiService'
 import { UserProps } from '~components/Header'
 
-export async function DeleteWikiFish(fish_id: number) {
+export async function DeleteWikiFish(fish_id: string) {
   try {
     const userData = JSON.parse(localStorage.getItem('UserData')) as UserProps
 
@@ -14,9 +14,9 @@ export async function DeleteWikiFish(fish_id: number) {
       })
       return res.status
     } else {
-      console.log('Deu errado')
+      //console.log('Deu errado')
     }
   } catch (error) {
-    console.error(error)
+    //console.error(error)
   }
 }

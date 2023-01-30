@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import wikiService from './wikiService'
-import { ResI } from '../interfaces'
+import { AxiosResponse } from 'axios'
 
 type fishType = {
   commonName?: string
@@ -10,7 +11,7 @@ type fishType = {
   habitat?: string
   hasSpawningSeason?: boolean
   hasSpawningSeasonInfo?: string
-  id?: number
+  id?: string
   isEndemic?: boolean
   isEndemicInfo?: string
   isThreatened?: boolean
@@ -29,7 +30,7 @@ export const createWikiFish = async (fishWiki: fishType, token: string) => {
   const isEndemic = fishWiki.isEndemicInfo === 'Sim' ? true : false
   const isThreatenedInfo = fishWiki.isThreatenedInfo === 'Sim' ? true : false
 
-  const res: ResI = await wikiService.post(
+  const res: AxiosResponse = await wikiService.post(
     '/fishWiki/',
     {
       commonName: fishWiki.commonName,
@@ -53,5 +54,5 @@ export const createWikiFish = async (fishWiki: fishType, token: string) => {
     },
     { headers: { Authorization: userToken } },
   )
-  return res.data
+  return res
 }

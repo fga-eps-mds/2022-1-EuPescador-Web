@@ -18,7 +18,7 @@ import CheckIcon from '@mui/icons-material/Check'
 import CloseIcon from '@mui/icons-material/Close'
 
 export interface FishLogProps {
-  id: number
+  id: string
   coordenates: {
     latitude: number
     longitude: number

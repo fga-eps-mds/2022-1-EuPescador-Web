@@ -2,10 +2,10 @@ import { fishLogService } from '../fishLogServices/fishLogService'
 import { ResI } from '../interfaces'
 import { UserProps } from '~components/Header'
 
-export async function deleteFishLogs(id: number) {
+export async function deleteFishLogs(id: string) {
   try {
     const userData = JSON.parse(localStorage.getItem('UserData')) as UserProps
-    
+
     if (userData.superAdmin) {
       const token = userData.token
       const superAdminToken = `Bearer ${token}`

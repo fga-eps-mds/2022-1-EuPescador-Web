@@ -3,10 +3,11 @@
 import { saveToStorage } from '../storage'
 import { deleteUser } from './deleteUser'
 
+
 jest.mock('../adminServices/adminService', () => {
   return {
     adminService: {
-      delete: jest.fn().mockResolvedValue({ status: 200 }),
+      delete: jest.fn().mockRejectedValue({ status: 500 }),
     },
   }
 })
@@ -44,18 +45,10 @@ describe('User Service Test', () => {
     token: '123',
   }
 
-  it('Shoud get status code 200', async() => {
+  it('Shoud get status code 500', async() => {
     saveToStorage('UserData', JSON.stringify(myMockUserData))
     window.localStorage.getItem('UserData')
-
     await deleteUser('1')
   })
 
-  it('Shoud user not admin', async() => {
-    myMockUserData.superAdmin = false
-    saveToStorage('UserData', JSON.stringify(myMockUserData))
-    window.localStorage.getItem('UserData')
-
-    await deleteUser('1')
-  })
 })

@@ -13,15 +13,15 @@ export async function deleteFishLog(logId: string) {
       const token = user.token
       const adminToken = `Bearer ${token}`
 
-      const res: ResI = await fishLogService.delete(`/fishLog/${logId}`, { headers: 
-        { Authorization: adminToken } 
+      const res: ResI = await fishLogService.delete(`/fishLog/${logId}`, { headers:
+        { Authorization: adminToken }
       })
       return res.status
     } else {
-      console.log('Usuario nao administrador')
+      //console.log('Usuario nao administrador')
     }
   } catch (error) {
-    console.error(error)
+    //console.error(error)
   }
 }
 

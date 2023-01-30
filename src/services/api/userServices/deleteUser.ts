@@ -10,12 +10,12 @@ export async function deleteUser(id: string) {
       const token = userData.token
       const superAdminToken = `Bearer ${token}`
       const res: ResI = await adminService.delete(`/user/${id}`, { headers: { Authorization: superAdminToken } })
-      // Mudança de rotas de admin para user
+
       return res.status
     } else {
-      console.log('Deu errado')
+      //console.log('Deu errado')
     }
   } catch (error) {
-    console.error(error)
+    //console.error(error)
   }
 }

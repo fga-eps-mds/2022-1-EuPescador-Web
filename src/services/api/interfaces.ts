@@ -3,11 +3,11 @@ import wikiService  from './wikiServices/wikiService'
 
 export interface ResI {
   data: []
-  status: string
+  status: number
 }
 
 export interface FishWiki {
-  id?: number
+  id?: string
   largeGroup?: string
   group?: string
   commonName?: string
@@ -38,5 +38,5 @@ export interface FishWikiArray {
 
 export async function GetAllFishes(page: number, count: number) {
   const res: ResI = await wikiService.get(`/fishWiki?page=${page}&count=${count}`)
-  return res.data as unknown as FishWikiArray
+  return res.data  as FishWikiArray
 }
