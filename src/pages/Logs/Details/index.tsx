@@ -142,7 +142,7 @@ export default function LogsDetails() {
                 fullWidth
                 label="Nome"
                 name="name"
-                value={log.name}
+                value={log.name ? log.name : ''}
                 onChange={function (e) {
                   setLog({ ...log, name: e.target.value })
                 }}
@@ -162,7 +162,7 @@ export default function LogsDetails() {
                 fullWidth
                 label="Classe"
                 name="largeGroup"
-                value={log.largeGroup}
+                value={log.largeGroup ? log.largeGroup : ''}
                 onChange={function (e) {
                   setLog({ ...log, largeGroup: e.target.value })
                 }}
@@ -182,7 +182,7 @@ export default function LogsDetails() {
                 fullWidth
                 label="Ordem"
                 name="group"
-                value={log.group}
+                value={log.group ? log.group : ''}
                 onChange={function (e) {
                   setLog({ ...log, group: e.target.value })
                 }}
@@ -200,9 +200,9 @@ export default function LogsDetails() {
               <CssTextField
                 margin="normal"
                 fullWidth
-                label=" Espécie"
+                label="Espécie"
                 name="species"
-                value={log.species}
+                value={log.species ? log.species : ''}
                 onChange={function (e) {
                   setLog({ ...log, species: e.target.value })
                 }}
@@ -220,7 +220,7 @@ export default function LogsDetails() {
               <Box sx={{ display: 'flex', width: '50%', mt: 2 }}>
                 <CssTextField
                   label="Massa(g)"
-                  value={log.weight}
+                  value={log.weight ? log.weight : ''}
                   onChange={function (e) {
                     setLog({ ...log, weight: e.target.value })
                   }}
@@ -238,7 +238,7 @@ export default function LogsDetails() {
                 <CssTextField
                   label="Tamanho(cm)"
                   name="length"
-                  value={log.length}
+                  value={log.length ? log.length : ''}
                   onChange={function (e) {
                     setLog({ ...log, length: e.target.value })
                   }}
@@ -254,9 +254,7 @@ export default function LogsDetails() {
                 />
               </Box>
               <Box display="flex" alignItems="center" sx={{ mt: 2 }}>
-                <Typography sx={{ mr: 2 }}>
-                  Status: {log.reviewed ? 'Aprovado' : 'Pendente'}
-                </Typography>
+                <Typography sx={{ mr: 2 }}>Status: {log.reviewed ? 'Aprovado' : 'Pendente'}</Typography>
                 {!log.reviewed && (
                   <Button
                     onClick={handleReviewLog}
@@ -289,10 +287,7 @@ export default function LogsDetails() {
                     mr: 2,
                   }}
                 >
-                  <CloseIcon
-                    data-testid="close"
-                    sx={{ color: 'white' }}
-                  />
+                  <CloseIcon data-testid="close" sx={{ color: 'white' }} />
                   Cancelar
                 </Button>
                 <Button
@@ -308,18 +303,13 @@ export default function LogsDetails() {
                     width: '180px',
                   }}
                 >
-                  <CheckIcon
-                    data-testid="check"
-                    sx={{ color: 'white' }}
-                  />
+                  <CheckIcon data-testid="check" sx={{ color: 'white' }} />
                   Salvar
                 </Button>
               </Box>
             </Box>
             <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column' }}>
-              <Typography sx={{ mb: 1, fontWeight: 'bold', color: '#0095D9' }}>
-                Foto
-              </Typography>
+              <Typography sx={{ mb: 1, fontWeight: 'bold', color: '#0095D9' }}>Foto</Typography>
               {log.photo ? (
                 <img
                   src={`data:image/png;base64,${log.photo}`}
@@ -328,20 +318,12 @@ export default function LogsDetails() {
                   style={{ borderRadius: '20px' }}
                 />
               ) : (
-                <Alert severity="info">
-                  Opa, parece que este registro não possui uma foto.
-                </Alert>
+                <Alert severity="info">Opa, parece que este registro não possui uma foto.</Alert>
               )}
 
-              <Typography
-                sx={{ mt: 5, mb: 1, fontWeight: 'bold', color: '#0095D9' }}
-              >
-                Localização
-              </Typography>
+              <Typography sx={{ mt: 5, mb: 1, fontWeight: 'bold', color: '#0095D9' }}>Localização</Typography>
 
-              {log.coordenates &&
-              log.coordenates.latitude &&
-              log.coordenates.longitude ? (
+              {log.coordenates && log.coordenates.latitude && log.coordenates.longitude ? (
                 <MapContainer
                   center={[log.coordenates.latitude, log.coordenates.longitude]}
                   zoom={13}
@@ -352,20 +334,13 @@ export default function LogsDetails() {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   />
-                  <Marker
-                    position={[
-                      log.coordenates.latitude,
-                      log.coordenates.longitude,
-                    ]}
-                  >
+                  <Marker position={[log.coordenates.latitude, log.coordenates.longitude]}>
                     <Popup>Esta é a localização do {log.name}</Popup>
                   </Marker>
                 </MapContainer>
               ) : (
                 <Box sx={{ display: 'flex' }}>
-                  <Typography sx={{ ml: 5, mt: 2, mb: 1, fontWeight: 'light' }}>
-                    Sem Localização
-                  </Typography>
+                  <Typography sx={{ ml: 5, mt: 2, mb: 1, fontWeight: 'light' }}>Sem Localização</Typography>
                 </Box>
               )}
             </Box>

@@ -8,11 +8,11 @@ export const columns = [
     value: 'largeGroup',
   },
   {
-    label: 'Ordem',
+    label: 'Grupo',
     value: 'group',
   },
   {
-    label: 'Espécie',
+    label: 'Grande grupo',
     value: 'species',
   },
   {

@@ -107,7 +107,7 @@ export function FishRecord(props: FishModalProps) {
         .then(async () => {
           toast.success('Peixe criado com sucesso!')
           await new Promise((resolve) => setTimeout(resolve, 2000))
-          // window.location.reload()
+          window.location.reload()
         })
         .catch(() => {
           toast.error('Erro ao criar peixe', toastConfig)
@@ -166,7 +166,7 @@ export function FishRecord(props: FishModalProps) {
             </Box>
 
             <Box className="box-input-fish-record">
-              <label className="label-input-fish-record">Nome cientista</label>
+              <label className="label-input-fish-record">Nome científico</label>
               <input
                 type="text"
                 className="input-fish-record"
