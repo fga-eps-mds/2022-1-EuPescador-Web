@@ -30,9 +30,10 @@
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
+    "lint": "eslint \"**/*.{ts,tsx}\"",
     "test": "jest --ci --coverage --testLocationInResults",
     "eject": "react-scripts eject",
-    "jest": "react-app-rewired test --passWithNoTests",
+    "jest": "jest --passWithNoTests --silent -0 --coverage=false",
     "prepare": "husky install"
   },
   "eslintConfig": {
@@ -88,6 +89,7 @@
     "jest": "^28.1.3",
     "jest-sonar-reporter": "^2.0.0",
     "jest-styled-components": "^7.0.8",
+    "jest-transform-stub": "^2.0.0",
     "miragejs": "^0.1.45",
     "parcel-bundler": "^1.12.5",
     "prettier": "^2.5.1",

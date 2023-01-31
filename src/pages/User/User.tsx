@@ -10,16 +10,15 @@ import {
 } from '@mui/material'
 
 import Pagination from '@mui/material/Pagination'
-
-import Header, { UserProps } from '~components/Header'
-import Sidebar from '~components/Sidebar'
-import TableComponent from '~components/Table'
-import { TitlePage } from '~components/TitlePage/TitlePage'
+import Header, { UserProps } from '../../components/Header'
+import Sidebar from '../../components/Sidebar'
+import TableComponent from '../../components/Table'
+import { TitlePage } from '../../components/TitlePage/TitlePage'
 import {
   GetAllUsers,
   UserResponseI,
-} from '~services/api/userServices/getAllUsers'
-import { deleteUser } from '~services/api/userServices/deleteUser'
+} from '../../services/api/userServices/getAllUsers'
+import { deleteUser } from '../../services/api/userServices/deleteUser'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 

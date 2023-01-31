@@ -1,6 +1,6 @@
-import { ResI } from '../interfaces'
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import wikiService from './wikiService'
-
+import { AxiosResponse } from 'axios'
 type fishType = {
   commonName?: string
   family?: string
@@ -10,7 +10,7 @@ type fishType = {
   habitat?: string
   hasSpawningSeason?: boolean
   hasSpawningSeasonInfo?: string
-  id?: number
+  id?: string,
   isEndemic?: boolean
   isEndemicInfo?: string
   isThreatened?: boolean
@@ -28,7 +28,7 @@ export async function UpdateWikiFish(fishWiki: fishType, token: string) {
   const hasSpawning = fishWiki.hasSpawningSeasonInfo === 'Sim' ? true : false
   const isEndemic = fishWiki.isEndemicInfo === 'Sim' ? true : false
   const isThreatenedInfo = fishWiki.isThreatenedInfo === 'Sim' ? true : false
-  const res: ResI = await wikiService.patch(
+  const res : AxiosResponse = await wikiService.patch(
     `/fishWiki/${fishWiki.id}`,
     {
       commonName: fishWiki.commonName,

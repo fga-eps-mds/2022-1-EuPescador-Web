@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Box,
   Button,
@@ -79,7 +80,7 @@ export default function UserForm() {
     try {
       const userprp: UserProps = JSON.parse(
         localStorage.getItem('UserData')
-        
+
       ) as UserProps
       await UpdateUser(id, userprp.token, user)
       toast.success('usuário editado com successo!')
@@ -257,7 +258,7 @@ export default function UserForm() {
                   control={
                     <Switch
                       checked={user.superAdmin}
-                      onChange={(e) => {
+                      onChange={() => {
                         setUser({ ...user, superAdmin: !user.superAdmin })
                       }}
                     />

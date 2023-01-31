@@ -5,7 +5,7 @@ export interface UserI {
   admin: boolean
   city: string
   email: string
-  id: number
+  id: string
   name: string
   password: string
   phone: string

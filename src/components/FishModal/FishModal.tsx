@@ -47,10 +47,6 @@ const Img = styled('img')({
   borderRadius: '10%',
 })
 
-const closeModal = () => {
-  console.log('here')
-}
-
 export function FishModal(props: FishModalProps) {
   const [open, setOpen] = useState(false)
   const [modalFish, setModalFish] = useState({} as FishWiki)

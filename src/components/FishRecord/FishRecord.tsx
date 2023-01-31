@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { useState, useEffect, MouseEventHandler } from 'react'
@@ -107,7 +108,7 @@ export function FishRecord(props: FishModalProps) {
         .then(async () => {
           toast.success('Peixe criado com sucesso!')
           await new Promise((resolve) => setTimeout(resolve, 2000))
-          // window.location.reload()
+          window.location.reload()
         })
         .catch(() => {
           toast.error('Erro ao criar peixe', toastConfig)
@@ -118,7 +119,7 @@ export function FishRecord(props: FishModalProps) {
   useEffect(() => {
     if (props.fish) setFishWiki(props.fish)
     else setFishWiki(fishType)
-  }, [])
+  }, [props.fish])
 
   return (
     <Box flexWrap="wrap" overflow="hidden" justifyContent="space-between" sx={estiloTabela} id="fishRecordModal">
@@ -166,7 +167,7 @@ export function FishRecord(props: FishModalProps) {
             </Box>
 
             <Box className="box-input-fish-record">
-              <label className="label-input-fish-record">Nome cientista</label>
+              <label className="label-input-fish-record">Nome científico</label>
               <input
                 type="text"
                 className="input-fish-record"

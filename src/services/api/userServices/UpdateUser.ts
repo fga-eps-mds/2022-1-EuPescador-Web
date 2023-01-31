@@ -5,9 +5,9 @@ export interface UserI {
     admin: boolean
     city: string
     email: string
-    id: number
+    id: string
     name: string
-    password: string
+    password?: string
     phone: string
     state: string
     superAdmin: boolean

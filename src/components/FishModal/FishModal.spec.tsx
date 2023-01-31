@@ -1,14 +1,11 @@
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { FishWiki } from '~services/api/interfaces'
 import { FishModal } from './FishModal'
 
 describe('FishModal Component', () => {
-    it('', () => {
-
-    })
 
     const FishWikiMock: FishWiki = ({
-        id: 1,
+        id: '123',
         largeGroup: "Peixes com escamas",
         group: "Cachorras",
         commonName: "Ueua, peixe-cachorro, Bicuda-branca",
@@ -29,8 +26,6 @@ describe('FishModal Component', () => {
         funFact: null,
         photo: 'https://imgur.com/ybTpCh6.png'
     })
-
-
     it('Should render component', () => {
         const { getByText } = render(<FishModal fish={FishWikiMock} />)
 
@@ -45,12 +40,4 @@ describe('FishModal Component', () => {
         expect(getByText(FishWikiMock.maxSize)).toBeInTheDocument()
 
     })
-
-    // it("renders an image from modal", () => {
-    //     const { getAllByText } = render(<FishModal fish={FishWikiMock} />)
-
-    //     const image = getAllByText('complex')
-    //     expect(image).toHaveAttribute('src', 'https://imgur.com/ybTpCh6.png')
-    // });
-
 })
