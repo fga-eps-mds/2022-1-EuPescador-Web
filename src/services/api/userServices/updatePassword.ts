@@ -1,7 +1,7 @@
 import { userService } from './userService'
 
 export async function UpdateUser(user_id: string, password: string) {
-  let route = '/user/'
+  const route = '/user/'
 
   await userService.put(route, { user_id, password })
 }

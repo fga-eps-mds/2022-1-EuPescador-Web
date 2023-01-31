@@ -39,11 +39,7 @@ export default function FishLogs() {
       ) as UserProps
       const reps = await GetAllFishLogs(user && user.token, '')
       reps.forEach((element) => {
-        if (element.reviewed) {
-          element.reviewed = element.reviewed ? 'Revisado' : 'Pendente'
-        } else {
-          element.reviewed = 'Pendente'
-        }
+        element.visible = element.visible ? 'Sim' : 'Não'
 
         element.latitude = element.coordenates
           ? element.coordenates.latitude || ' '
@@ -54,7 +50,6 @@ export default function FishLogs() {
 
         delete element.reviewedBy
         delete element.family
-        delete element.visible
         delete element.createdAt
         delete element.createdBy
         delete element.updatedAt

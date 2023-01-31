@@ -1,4 +1,4 @@
-import { render, getByTestId } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import FishLogs from '.'
 
 jest.mock('react-router-dom')

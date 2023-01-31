@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { render } from '@testing-library/react'
 import UserEdit from './UserEdit'
 import Router, { BrowserRouter } from 'react-router-dom'

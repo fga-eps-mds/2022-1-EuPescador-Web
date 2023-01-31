@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { useState, useEffect, MouseEventHandler } from 'react'
@@ -118,7 +119,7 @@ export function FishRecord(props: FishModalProps) {
   useEffect(() => {
     if (props.fish) setFishWiki(props.fish)
     else setFishWiki(fishType)
-  }, [])
+  }, [props.fish])
 
   return (
     <Box flexWrap="wrap" overflow="hidden" justifyContent="space-between" sx={estiloTabela} id="fishRecordModal">

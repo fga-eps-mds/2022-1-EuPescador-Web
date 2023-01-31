@@ -4,7 +4,7 @@ export const columns = [
     value: 'name',
   },
   {
-    label: 'Classe',
+    label: 'Grande Grupo',
     value: 'largeGroup',
   },
   {
@@ -24,7 +24,7 @@ export const columns = [
     value: 'weight',
   },
   {
-    label: 'Status',
-    value: 'reviewed',
+    label: 'Visível',
+    value: 'visible',
   },
 ]

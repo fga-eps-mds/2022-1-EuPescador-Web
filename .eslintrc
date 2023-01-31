@@ -69,6 +69,8 @@
   "ignorePatterns": [
     "src/utils/test-utils.jsx",
     "src/utils/setupTests.js",
-    "config-overrides.js"
+    "config-overrides.js",
+    "cypress/**/*",
+    "cypress.config.ts"
   ]
 }

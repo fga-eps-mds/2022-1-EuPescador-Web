@@ -2,7 +2,7 @@ import { ResI } from '../interfaces'
 import { fishLogService } from './fishLogService'
 
 export interface FishLogI {
-  id: number
+  id: string
   userId: string
   name: string
   largeGroup: string
