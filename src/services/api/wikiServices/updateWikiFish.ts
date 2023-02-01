@@ -15,6 +15,7 @@ type fishType = {
   isEndemicInfo?: string
   isThreatened?: boolean
   isThreatenedInfo?: string
+  wasIntroducedInfo?: string
   largeGroup?: string
   maxSize?: string
   maxWeight?: string
@@ -25,9 +26,11 @@ type fishType = {
 
 export async function UpdateWikiFish(fishWiki: fishType, token: string) {
   const userToken = `Bearer ${token}`
-  const hasSpawning = fishWiki.hasSpawningSeasonInfo === 'Sim' ? true : false
-  const isEndemic = fishWiki.isEndemicInfo === 'Sim' ? true : false
+  const hasSpawningSeasonInfo = fishWiki.hasSpawningSeason === true ? 'Sim' : 'Não'
+  const isEndemicInfo = fishWiki.isEndemic === true ? 'Sim' : 'Não'
+  const wasIntroducedInfo = fishWiki.wasIntroduced === true ? 'Sim' : 'Não'
   const isThreatenedInfo = fishWiki.isThreatenedInfo === 'Sim' ? true : false
+
   const res : AxiosResponse = await wikiService.patch(
     `/fishWiki/${fishWiki.id}`,
     {
@@ -37,12 +40,13 @@ export async function UpdateWikiFish(fishWiki: fishType, token: string) {
       funFact: fishWiki.funFact,
       group: fishWiki.group,
       habitat: fishWiki.habitat,
-      hasSpawningSeason: hasSpawning,
-      hasSpawningSeasonInfo: fishWiki.hasSpawningSeasonInfo,
-      isEndemic: isEndemic,
-      isEndemicInfo: fishWiki.isEndemicInfo,
+      hasSpawningSeason: fishWiki.hasSpawningSeason,
+      hasSpawningSeasonInfo: hasSpawningSeasonInfo,
+      isEndemic: fishWiki.isEndemic,
+      isEndemicInfo: isEndemicInfo,
       isThreatened: isThreatenedInfo,
       isThreatenedInfo: fishWiki.isThreatenedInfo,
+      wasIntroducedInfo: wasIntroducedInfo,
       largeGroup: fishWiki.largeGroup,
       maxSize: fishWiki.maxSize,
       maxWeight: fishWiki.maxWeight,

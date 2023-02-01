@@ -6,6 +6,7 @@ import { Box, Button } from '@mui/material'
 import Typography from '@mui/material/Typography'
 import AddIcon from '@mui/icons-material/Add'
 import '../../assets/styles/FishRecord.css'
+import { styled } from '@mui/material/styles'
 import { UserProps } from '../../components/Header'
 import log from '../../assets/icons/log_simbolo.svg'
 import CheckIcon from '@mui/icons-material/Check'
@@ -14,6 +15,8 @@ import { FishWiki } from '../../services/api/interfaces'
 import { createWikiFish } from '../../services/api/wikiServices/createWikiFish'
 import { UpdateWikiFish } from '../../services/api/wikiServices/updateWikiFish'
 import { toast, ToastOptions } from 'react-toastify'
+import Switch from '@mui/material/Switch'
+import Stack from '@mui/material/Stack'
 
 const estiloTabela = {
   position: 'absolute',
@@ -54,12 +57,53 @@ const fishType = {
   maxSize: null,
   maxWeight: null,
   photo: null,
+  wasIntroducedInfo: '',
   scientificName: '',
   wasIntroduced: false,
 }
 
 export function FishRecord(props: FishModalProps) {
   const [fishWiki, setFishWiki] = useState({} as FishWiki)
+  const AntSwitch = styled(Switch)(({ theme }) => ({
+    width: 28,
+    height: 16,
+    padding: 0,
+    display: 'flex',
+    '&:active': {
+      '& .MuiSwitch-thumb': {
+        width: 15,
+      },
+      '& .MuiSwitch-switchBase.Mui-checked': {
+        transform: 'translateX(9px)',
+      },
+    },
+    '& .MuiSwitch-switchBase': {
+      padding: 2,
+      '&.Mui-checked': {
+        transform: 'translateX(12px)',
+        color: '#fff',
+        '& + .MuiSwitch-track': {
+          opacity: 1,
+          backgroundColor: theme.palette.mode === 'dark' ? '#177ddc' : 'rgba(0, 149, 217, 0.2)',
+        },
+      },
+    },
+    '& .MuiSwitch-thumb': {
+      boxShadow: '0 2px 4px 0 rgb(0 35 11 / 20%)',
+      width: 12,
+      height: 12,
+      borderRadius: 6,
+      transition: theme.transitions.create(['width'], {
+        duration: 200,
+      }),
+    },
+    '& .MuiSwitch-track': {
+      borderRadius: 16 / 2,
+      opacity: 1,
+      backgroundColor: theme.palette.mode === 'dark' ? 'rgba(255,255,255,.35)' : 'rgba(0,0,0,.25)',
+      boxSizing: 'border-box',
+    },
+  }))
 
   const toastConfig = {
     position: 'top-right',
@@ -89,7 +133,6 @@ export function FishRecord(props: FishModalProps) {
     const base64 = await convertBase64(file)
     setFishWiki({ ...fishWiki, photo: base64.toString() })
   }
-
   async function atualizaPeixe() {
     const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
 
@@ -155,7 +198,7 @@ export function FishRecord(props: FishModalProps) {
             )}
 
             <Box className="box-input-fish-record">
-              <label className="label-input-fish-record">Nome usual</label>
+              <label className="label-input-fish-record">Nome usual (obrigatório)</label>
               <input
                 type="text"
                 className="input-fish-record"
@@ -193,7 +236,7 @@ export function FishRecord(props: FishModalProps) {
           <Box width="65%">
             <Box width="100%" sx={{ display: 'flex' }}>
               <Box width="50%" className="box-input-fish-record">
-                <label className="label-input-fish-record">Grande Grupo</label>
+                <label className="label-input-fish-record">Grande Grupo (obrigatório)</label>
                 <input
                   type="text"
                   className="input-fish-record"
@@ -205,19 +248,22 @@ export function FishRecord(props: FishModalProps) {
               </Box>
               <Box width="50%" className="box-input-fish-record">
                 <label className="label-input-fish-record">Foi introduzido?</label>
-                <input
-                  type="text"
-                  className="input-fish-record"
-                  value={fishWiki.wasIntroducedInfo || ''}
-                  onChange={function (e) {
-                    setFishWiki({ ...fishWiki, wasIntroducedInfo: e.target.value })
-                  }}
-                />
+                <Stack direction="row" spacing={1} alignItems="center" sx={{ mt: '10px' }}>
+                  <Typography>Não</Typography>
+                  <AntSwitch
+                    checked={fishWiki.wasIntroduced || false}
+                    onChange={function () {
+                      setFishWiki({ ...fishWiki, wasIntroduced: !fishWiki.wasIntroduced })
+                    }}
+                    inputProps={{ 'aria-label': 'ant design' }}
+                  />
+                  <Typography>Sim</Typography>
+                </Stack>
               </Box>
             </Box>
             <Box width="100%" sx={{ display: 'flex' }}>
               <Box width="50%" className="box-input-fish-record">
-                <label className="label-input-fish-record">Grupo</label>
+                <label className="label-input-fish-record">Grupo (obrigatório)</label>
                 <input
                   type="text"
                   className="input-fish-record"
@@ -277,14 +323,17 @@ export function FishRecord(props: FishModalProps) {
               </Box>
               <Box width="50%" className="box-input-fish-record">
                 <label className="label-input-fish-record">Endêmico?</label>
-                <input
-                  type="text"
-                  className="input-fish-record"
-                  value={fishWiki.isEndemicInfo || ''}
-                  onChange={function (e) {
-                    setFishWiki({ ...fishWiki, isEndemicInfo: e.target.value })
-                  }}
-                />
+                <Stack direction="row" spacing={1} alignItems="center" sx={{ mt: '10px' }}>
+                  <Typography>Não</Typography>
+                  <AntSwitch
+                    checked={fishWiki.isEndemic || false}
+                    onChange={function () {
+                      setFishWiki({ ...fishWiki, isEndemic: !fishWiki.isEndemic })
+                    }}
+                    inputProps={{ 'aria-label': 'ant design' }}
+                  />
+                  <Typography>Sim</Typography>
+                </Stack>
               </Box>
             </Box>
             <Box width="100%" sx={{ display: 'flex' }}>
@@ -299,16 +348,20 @@ export function FishRecord(props: FishModalProps) {
                   }}
                 />
               </Box>
+
               <Box width="50%" className="box-input-fish-record">
                 <label className="label-input-fish-record">Faz piracema?</label>
-                <input
-                  type="text"
-                  className="input-fish-record"
-                  value={fishWiki.hasSpawningSeasonInfo || ''}
-                  onChange={function (e) {
-                    setFishWiki({ ...fishWiki, hasSpawningSeasonInfo: e.target.value })
-                  }}
-                />
+                <Stack direction="row" spacing={1} alignItems="center" sx={{ mt: '10px' }}>
+                  <Typography>Não</Typography>
+                  <AntSwitch
+                    checked={fishWiki.hasSpawningSeason || false}
+                    onChange={function () {
+                      setFishWiki({ ...fishWiki, hasSpawningSeason: !fishWiki.hasSpawningSeason })
+                    }}
+                    inputProps={{ 'aria-label': 'ant design' }}
+                  />
+                  <Typography>Sim</Typography>
+                </Stack>
               </Box>
             </Box>
           </Box>
