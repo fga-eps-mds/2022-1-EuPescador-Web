@@ -149,9 +149,10 @@ export function FishRecord(props: FishModalProps) {
         })
         .catch((error) => {
           const { status } = error.response as AxiosError
-          if(Number(status) === 406) toast.error('Erro ao ler a imagem', toastConfig)
-          else if(Number(status) === 404) toast.error('Peixe não encontrado', toastConfig)
-          else if(Number(status) === 418) toast.warning('Os campos nome, grupo e grades grupos são obrigatórios', toastConfig)
+          if (Number(status) === 406) toast.error('Erro ao ler a imagem', toastConfig)
+          else if (Number(status) === 404) toast.error('Peixe não encontrado', toastConfig)
+          else if (Number(status) === 418)
+            toast.warning('Os campos nome, grupo e grades grupos são obrigatórios', toastConfig)
           else toast.error('Erro inesperado! Tente novamente mais tarde', toastConfig)
           toast.error('Erro ao atualizar peixe', toastConfig)
         })
@@ -164,9 +165,11 @@ export function FishRecord(props: FishModalProps) {
         })
         .catch((error) => {
           const { status } = error.response as AxiosError
-          if(Number(status) === 418) toast.warning('Os campos nome, grupo e grades grupos são obrigatórios', toastConfig)
-          else if(Number(status) === 406) toast.error('Erro ao ler a imagem', toastConfig)
-          else if(Number(status) === 409) toast.error('Essa espécie de peixe já foi cadastrada', toastConfig)
+          if (Number(status) === 418)
+            toast.warning('Os campos nome, grupo e grades grupos são obrigatórios', toastConfig)
+          else if (Number(status) === 406) toast.error('Erro ao ler a imagem', toastConfig)
+          else if (Number(status) === 409)
+            toast.error('Essa espécie de peixe já foi cadastrada, altere o campo de nome científico', toastConfig)
           else toast.error('Erro inesperado! Tente novamente mais tarde', toastConfig)
         })
     }
