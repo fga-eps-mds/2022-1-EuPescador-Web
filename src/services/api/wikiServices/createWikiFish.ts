@@ -30,7 +30,7 @@ export const createWikiFish = async (fishWiki: fishType, token: string) => {
   const hasSpawningSeasonInfo = fishWiki.hasSpawningSeason === true ? 'Sim' : 'Não'
   const isEndemicInfo = fishWiki.isEndemic === true ? 'Sim' : 'Não'
   const wasIntroducedInfo = fishWiki.wasIntroduced === true ? 'Sim' : 'Não'
-  const isThreatenedInfo = fishWiki.isThreatenedInfo === 'Sim' ? true : false
+  const isThreatened = fishWiki.isThreatenedInfo === 'Não' ? false : true
 
   const res: AxiosResponse = await wikiService.post(
     '/fishWiki/',
@@ -45,7 +45,7 @@ export const createWikiFish = async (fishWiki: fishType, token: string) => {
       hasSpawningSeasonInfo: hasSpawningSeasonInfo,
       isEndemic: fishWiki.isEndemic,
       isEndemicInfo: isEndemicInfo,
-      isThreatened: isThreatenedInfo,
+      isThreatened: isThreatened,
       isThreatenedInfo: fishWiki.isThreatenedInfo,
       largeGroup: fishWiki.largeGroup,
       wasIntroducedInfo: wasIntroducedInfo,

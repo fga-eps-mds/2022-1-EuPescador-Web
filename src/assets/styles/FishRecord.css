@@ -53,3 +53,27 @@ input[type='file'] {
   padding: 10px;
   margin-bottom: 10px;
 }
+
+.div-select {
+  overflow: hidden;
+}
+
+.div-select select {
+  background: rgba(0, 149, 217, 0.2);
+  height: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  padding-left: 10px;
+  width: 100%;
+  color: black;
+  text-indent: 0.01px;
+  border: none;
+  border-radius: 10px;
+}
+.div-select select::-ms-expand {
+  display: none;
+}
+.div-select select {
+  appearance: none;
+  -moz-appearance: none;
+}

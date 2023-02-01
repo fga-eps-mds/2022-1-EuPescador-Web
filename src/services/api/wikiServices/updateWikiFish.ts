@@ -29,7 +29,7 @@ export async function UpdateWikiFish(fishWiki: fishType, token: string) {
   const hasSpawningSeasonInfo = fishWiki.hasSpawningSeason === true ? 'Sim' : 'Não'
   const isEndemicInfo = fishWiki.isEndemic === true ? 'Sim' : 'Não'
   const wasIntroducedInfo = fishWiki.wasIntroduced === true ? 'Sim' : 'Não'
-  const isThreatenedInfo = fishWiki.isThreatenedInfo === 'Sim' ? true : false
+  const isThreatened = fishWiki.isThreatenedInfo === 'Não' ? false : true
 
   const res : AxiosResponse = await wikiService.patch(
     `/fishWiki/${fishWiki.id}`,
@@ -44,7 +44,7 @@ export async function UpdateWikiFish(fishWiki: fishType, token: string) {
       hasSpawningSeasonInfo: hasSpawningSeasonInfo,
       isEndemic: fishWiki.isEndemic,
       isEndemicInfo: isEndemicInfo,
-      isThreatened: isThreatenedInfo,
+      isThreatened: isThreatened,
       isThreatenedInfo: fishWiki.isThreatenedInfo,
       wasIntroducedInfo: wasIntroducedInfo,
       largeGroup: fishWiki.largeGroup,

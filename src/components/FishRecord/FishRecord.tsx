@@ -339,14 +339,19 @@ export function FishRecord(props: FishModalProps) {
             <Box width="100%" sx={{ display: 'flex' }}>
               <Box width="50%" className="box-input-fish-record">
                 <label className="label-input-fish-record">Ameaçado?</label>
-                <input
-                  type="text"
-                  className="input-fish-record"
-                  value={fishWiki.isThreatenedInfo || ''}
-                  onChange={function (e) {
-                    setFishWiki({ ...fishWiki, isThreatenedInfo: e.target.value })
-                  }}
-                />
+                <div className="div-select">
+                  <select
+                    value={fishWiki.isThreatenedInfo || ''}
+                    onChange={function (e) {
+                      setFishWiki({ ...fishWiki, isThreatenedInfo: e.target.value })
+                    }}
+                  >
+                    <option>Não</option>
+                    <option>Sim, categoria Vulnerável</option>
+                    <option>Sim, categoria Ameaçado</option>
+                    <option>Sim, categoria Criticamente Ameaçado</option>
+                  </select>
+                </div>
               </Box>
 
               <Box width="50%" className="box-input-fish-record">
