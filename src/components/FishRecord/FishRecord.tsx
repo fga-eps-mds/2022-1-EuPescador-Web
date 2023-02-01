@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { useState, useEffect, MouseEventHandler } from 'react'
 import { Box, Button } from '@mui/material'
 import Typography from '@mui/material/Typography'
@@ -17,6 +18,7 @@ import { UpdateWikiFish } from '../../services/api/wikiServices/updateWikiFish'
 import { toast, ToastOptions } from 'react-toastify'
 import Switch from '@mui/material/Switch'
 import Stack from '@mui/material/Stack'
+import groupsJson from './groups.json'
 
 const estiloTabela = {
   position: 'absolute',
@@ -45,7 +47,7 @@ const fishType = {
   family: '',
   food: '',
   funFact: '',
-  group: '',
+  group: 'Sem grupo',
   habitat: '',
   hasSpawningSeason: false,
   hasSpawningSeasonInfo: '',
@@ -53,7 +55,7 @@ const fishType = {
   isEndemicInfo: '',
   isThreatened: false,
   isThreatenedInfo: '',
-  largeGroup: '',
+  largeGroup: 'Sem grande grupo',
   maxSize: null,
   maxWeight: null,
   photo: null,
@@ -133,6 +135,7 @@ export function FishRecord(props: FishModalProps) {
     const base64 = await convertBase64(file)
     setFishWiki({ ...fishWiki, photo: base64.toString() })
   }
+
   async function atualizaPeixe() {
     const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
 
@@ -236,15 +239,21 @@ export function FishRecord(props: FishModalProps) {
           <Box width="65%">
             <Box width="100%" sx={{ display: 'flex' }}>
               <Box width="50%" className="box-input-fish-record">
-                <label className="label-input-fish-record">Grande Grupo (obrigatório)</label>
-                <input
-                  type="text"
-                  className="input-fish-record"
-                  value={fishWiki.largeGroup || ''}
-                  onChange={function (e) {
-                    setFishWiki({ ...fishWiki, largeGroup: e.target.value })
-                  }}
-                />
+                <>
+                  <label className="label-input-fish-record">Grande Grupo (obrigatório)</label>
+                  <div className="div-select">
+                    <select
+                      value={fishWiki.largeGroup || 'Sem grande grupo'}
+                      onChange={function (e) {
+                        setFishWiki({ ...fishWiki, largeGroup: e.target.value })
+                      }}
+                    >
+                      {Object.keys(groupsJson.GrandeGrupo[0]).map((value, index) => (
+                        <option key={index}>{value}</option>
+                      ))}
+                    </select>
+                  </div>
+                </>
               </Box>
               <Box width="50%" className="box-input-fish-record">
                 <label className="label-input-fish-record">Foi introduzido?</label>
@@ -263,15 +272,25 @@ export function FishRecord(props: FishModalProps) {
             </Box>
             <Box width="100%" sx={{ display: 'flex' }}>
               <Box width="50%" className="box-input-fish-record">
-                <label className="label-input-fish-record">Grupo (obrigatório)</label>
-                <input
-                  type="text"
-                  className="input-fish-record"
-                  value={fishWiki.group || ''}
-                  onChange={function (e) {
-                    setFishWiki({ ...fishWiki, group: e.target.value })
-                  }}
-                />
+                <>
+                  <label className="label-input-fish-record">Grupo (obrigatório)</label>
+                  <div className="div-select">
+                    <select
+                      value={fishWiki.group || 'Sem grupo'}
+                      onChange={function (e) {
+                        setFishWiki({ ...fishWiki, group: e.target.value })
+                      }}
+                    >
+                      {groupsJson.GrandeGrupo[0][fishWiki.largeGroup] ? (
+                        groupsJson.GrandeGrupo[0][fishWiki.largeGroup].Grupo.map((value: string, index: number) => (
+                          <option key={index}>{value}</option>
+                        ))
+                      ) : (
+                        <option>Sem grupo</option>
+                      )}
+                    </select>
+                  </div>
+                </>
               </Box>
               <Box width="50%" className="box-input-fish-record">
                 <label className="label-input-fish-record">Alimentação</label>

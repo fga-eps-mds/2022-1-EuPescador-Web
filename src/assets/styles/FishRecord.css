@@ -69,6 +69,7 @@ input[type='file'] {
   text-indent: 0.01px;
   border: none;
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 .div-select select::-ms-expand {
   display: none;
