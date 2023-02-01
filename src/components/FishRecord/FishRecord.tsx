@@ -19,6 +19,7 @@ import { toast, ToastOptions } from 'react-toastify'
 import Switch from '@mui/material/Switch'
 import Stack from '@mui/material/Stack'
 import groupsJson from './groups.json'
+import { AxiosError } from 'axios'
 
 const estiloTabela = {
   position: 'absolute',
@@ -146,7 +147,12 @@ export function FishRecord(props: FishModalProps) {
           await new Promise((resolve) => setTimeout(resolve, 2000))
           window.location.reload()
         })
-        .catch(() => {
+        .catch((error) => {
+          const { status } = error.response as AxiosError
+          if(Number(status) === 406) toast.error('Erro ao ler a imagem', toastConfig)
+          else if(Number(status) === 404) toast.error('Peixe não encontrado', toastConfig)
+          else if(Number(status) === 418) toast.warning('Os campos nome, grupo e grades grupos são obrigatórios', toastConfig)
+          else toast.error('Erro inesperado! Tente novamente mais tarde', toastConfig)
           toast.error('Erro ao atualizar peixe', toastConfig)
         })
     } else {
@@ -156,8 +162,12 @@ export function FishRecord(props: FishModalProps) {
           await new Promise((resolve) => setTimeout(resolve, 2000))
           window.location.reload()
         })
-        .catch(() => {
-          toast.error('Erro ao criar peixe', toastConfig)
+        .catch((error) => {
+          const { status } = error.response as AxiosError
+          if(Number(status) === 418) toast.warning('Os campos nome, grupo e grades grupos são obrigatórios', toastConfig)
+          else if(Number(status) === 406) toast.error('Erro ao ler a imagem', toastConfig)
+          else if(Number(status) === 409) toast.error('Essa espécie de peixe já foi cadastrada', toastConfig)
+          else toast.error('Erro inesperado! Tente novamente mais tarde', toastConfig)
         })
     }
   }
@@ -216,6 +226,7 @@ export function FishRecord(props: FishModalProps) {
               <label className="label-input-fish-record">Nome científico</label>
               <input
                 type="text"
+                id="input-fish-record"
                 className="input-fish-record"
                 value={fishWiki.scientificName || ''}
                 onChange={function (e) {
@@ -243,6 +254,7 @@ export function FishRecord(props: FishModalProps) {
                   <label className="label-input-fish-record">Grande Grupo (obrigatório)</label>
                   <div className="div-select">
                     <select
+                      id="selectLargeGroup"
                       value={fishWiki.largeGroup || 'Sem grande grupo'}
                       onChange={function (e) {
                         setFishWiki({ ...fishWiki, largeGroup: e.target.value })

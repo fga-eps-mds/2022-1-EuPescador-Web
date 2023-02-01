@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, fireEvent} from '@testing-library/react'
 import { FishWiki } from '~services/api/interfaces'
 import { FishModal } from './FishModal'
 

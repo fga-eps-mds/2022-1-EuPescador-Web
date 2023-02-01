@@ -56,5 +56,5 @@ export async function UpdateWikiFish(fishWiki: fishType, token: string) {
     },
     { headers: { Authorization: userToken } },
   )
-  return res.data
+  return res
 }
