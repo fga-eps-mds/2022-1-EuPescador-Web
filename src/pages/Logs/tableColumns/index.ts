@@ -12,7 +12,7 @@ export const columns = [
     value: 'group',
   },
   {
-    label: 'Grande grupo',
+    label: 'Espécies',
     value: 'species',
   },
   {
