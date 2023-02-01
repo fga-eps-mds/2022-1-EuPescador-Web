@@ -1,21 +1,19 @@
-name: ESLint
-
-on:
-  pull_request:
-  push:
-    branches:
-      - devel
-      - main
-
 jobs:
-  eslint:
+  build:
+    name: Lint
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-    - name: Install Dependencies
-      run: npm install
-
-    - name: ESLint check
-      run: npm run lint
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install # will run `yarn install` command
+      - name: Lint the app
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: lint # will run `yarn test` command
