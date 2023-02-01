@@ -1,19 +1,29 @@
+name: ESLint And Build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - devel
+      - main
+
 jobs:
   build:
-    name: Lint
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+    name: Build
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+        node_version: [14]
 
-      - name: Set Node.js 16.x
-        uses: actions/setup-node@v3
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
         with:
-          node-version: 16.x
-      - name: Run install
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: install # will run `yarn install` command
-      - name: Lint the app
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: lint # will run `yarn test` command
+          node_version: ${{ matrix.node_version }}
+
+      - name: run CI
+        run: |
+          yarn install
+          yarn lint
+          yarn build
