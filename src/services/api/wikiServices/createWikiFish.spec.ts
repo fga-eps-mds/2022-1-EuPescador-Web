@@ -18,13 +18,20 @@ describe('createWikiFish', () => {
   })
 
   it('Should get status code 200', async () => {
-    fish.isEndemicInfo = 'Sim'
+    fish.hasSpawningSeason = true
+    fish.isEndemic = true
+    fish.wasIntroduced = true
     fish.isThreatenedInfo = 'Sim'
-    fish.hasSpawningSeasonInfo = 'Sim'
     const res = await createWikiFish(fish, 'token')
     expect(res.status).toBe(200)
-    console.log(res)
+  })
 
-
+  it('Should get status code 200', async () => {
+    fish.hasSpawningSeason = false
+    fish.isEndemic = false
+    fish.wasIntroduced = false
+    fish.isThreatenedInfo = 'Não'
+    const res = await createWikiFish(fish, 'token')
+    expect(res.status).toBe(200)
   })
 })

@@ -1,0 +1,25 @@
+name: ESLint And Build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - devel
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [18.12.1]
+    name: Node ${{ matrix.node }} sample
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - run: yarn
+      - run: yarn build
+      - run: yarn lint

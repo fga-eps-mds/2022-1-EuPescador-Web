@@ -5,7 +5,7 @@ import { fish } from "../../../mocks/fishWiki"
 jest.mock('./wikiService', () => {
   return {
     patch: jest.fn(() => {
-      return Promise.resolve({ status: 200 })
+      return Promise.resolve( { data: { message: 'Fish updated' }, status: 200 })
     }),
   }
 })
@@ -13,16 +13,21 @@ jest.mock('./wikiService', () => {
 describe('updateWikiFish', () => {
 
   it('Should get status code 200', async () => {
+    fish.hasSpawningSeason = true
+    fish.isEndemic = true
+    fish.wasIntroduced = true
+    fish.isThreatenedInfo = 'Sim'
     const data = await UpdateWikiFish(fish, 'token')
-    expect(data).toBeUndefined()
+    expect(data.status).toBe(200)
   })
 
   it('Should get status code 200', async () => {
-    fish.isEndemicInfo = 'Sim'
-    fish.isThreatenedInfo = 'Sim'
-    fish.hasSpawningSeasonInfo = 'Sim'
+    fish.hasSpawningSeason = false
+    fish.isEndemic = false
+    fish.wasIntroduced = false
+    fish.isThreatenedInfo = 'Não'
     const data = await UpdateWikiFish(fish, 'token')
-    expect(data).toBeUndefined()
+    expect(data.status).toBe(200)
   })
 
 })

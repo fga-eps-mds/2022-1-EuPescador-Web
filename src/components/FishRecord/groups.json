@@ -1,0 +1,33 @@
+{
+  "GrandeGrupo": [
+    {
+      "Sem grande grupo": { "Grupo": ["Sem grupo"] },
+      "Arraias": {
+        "Grupo": ["Arraias"]
+      },
+      "Cascudos": { "Grupo": ["Cascudos grandes", "Cascudos pequenos"] },
+      "Outros": { "Grupo": ["Baiacu", "Outros", "Peixes elétricos"] },
+      "Peixes com escamas": {
+        "Grupo": [
+          "Bicudas",
+          "Cachorras",
+          "Carás, Marianas e Jacundás",
+          "Corvinas",
+          "Lambarís e piabas",
+          "Papa-terras e Curimatás",
+          "Peixes grandes",
+          "Peixes médios",
+          "Peixes pequenos",
+          "Peixes redondos",
+          "Piabanha, Matrinxã e Voadores",
+          "Piaus",
+          "Sardinhas",
+          "Traíras",
+          "Tucunarés"
+        ]
+      },
+      "Peixes de couro": { "Grupo": ["Bagres médios", "Bagres pequenos", "Candirús", "Grandes bagres", "Mandís"] },
+      "Peixes de escama": { "Grupo": ["Piaus"] }
+    }
+  ]
+}
