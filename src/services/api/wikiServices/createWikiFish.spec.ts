@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { createWikiFish } from './createWikiFish'
 import { fish } from "../../../mocks/fishWiki"
-import { f } from 'msw/lib/glossary-dc3fd077'
 
 jest.mock('./wikiService', () => {
   return {
