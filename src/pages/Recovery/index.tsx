@@ -48,26 +48,26 @@ export default function Recovery() {
         <CssBaseline />
         <Grid
           className="imagem"
-          item
           xs={false}
-          sm={4}
+          item
           md={7}
+          sm={4}
           sx={{
             backgroundImage: `url(${bg})`,
-            backgroundRepeat: 'no-repeat',
             backgroundColor: '#E3F1FA',
-            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
+            backgroundSize: 'cover',
           }}
         />
         <Grid item xs={12} sm={8} md={5} >
           <Box
             sx={{
-              my: 8,
               mx: 4,
-              display: 'flex',
+              my: 8,
               flexDirection: 'column',
               alignItems: 'center',
+              display: 'flex',
 
             }}
           >
@@ -76,28 +76,25 @@ export default function Recovery() {
             </Box>
             <Typography component="h1" variant="h5" sx={{
               mt: 3,
-              mb: 3,
               fontWeight: '900',
+              mb: 3,
               fontSize: '42'
             }}>
               Digite o email da conta
             </Typography>
             <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
-                className="textfield"
-                margin="normal"
                 required
-                fullWidth
+                className="textfield"
                 id="email"
-                label="E-mail"
+                margin="normal"
+                fullWidth
                 name="email"
                 autoComplete="email"
+                label="E-mail"
                 autoFocus
                 sx={{
                   fieldset: { borderColor: "#0095D9" }
-                }}
-                InputLabelProps={{
-                  style: { color: '#111111' },
                 }}
                 InputProps={{
                   startAdornment: (
@@ -110,29 +107,32 @@ export default function Recovery() {
                     color: '#0095D9',
                   },
                 }}
+                InputLabelProps={{
+                  style: { color: '#111111' },
+                }}
               />
 
               <Box
-                display="flex"
                 alignItems="center"
-                justifyContent="center"
+                display="flex"
                 flexDirection="column"
+                justifyContent="center"
               >
                 <Button
                   type="submit"
                   fullWidth
-                  variant="contained"
-                  disableElevation
                   data-testid="login-button"
+                  disableElevation
+                  variant="contained"
                   sx={{
-                    mt: 2,
                     mb: 2,
-                    backgroundColor: '#0095D9',
+                    mt: 2,
                     borderRadius: '10px',
-                    height: '50px',
+                    backgroundColor: '#0095D9',
                     width: '350px',
-                    textTransform: 'capitalize',
+                    height: '50px',
                     fontSize: '18px',
+                    textTransform: 'capitalize',
                     fontWeight: '900',
                   }}
                 >
