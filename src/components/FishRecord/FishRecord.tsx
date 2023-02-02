@@ -44,24 +44,24 @@ type FishModalProps = {
 }
 
 const fishType = {
-  commonName: '',
-  family: '',
-  food: '',
-  funFact: '',
-  group: 'Sem grupo',
-  habitat: '',
+  commonName: null,
+  family: null,
+  food: null,
+  funFact: null,
+  group: null,
+  habitat: null,
   hasSpawningSeason: false,
-  hasSpawningSeasonInfo: '',
+  hasSpawningSeasonInfo: null,
   isEndemic: false,
-  isEndemicInfo: '',
+  isEndemicInfo: null,
   isThreatened: false,
-  isThreatenedInfo: '',
-  largeGroup: 'Sem grande grupo',
+  isThreatenedInfo: null,
+  largeGroup: null,
   maxSize: null,
   maxWeight: null,
   photo: null,
-  wasIntroducedInfo: '',
-  scientificName: '',
+  wasIntroducedInfo: null,
+  scientificName: null,
   wasIntroduced: false,
 }
 
@@ -166,10 +166,10 @@ export function FishRecord(props: FishModalProps) {
         .catch((error) => {
           const { status } = error.response as AxiosError
           if (Number(status) === 418)
-            toast.warning('Os campos nome, grupo e grades grupos são obrigatórios', toastConfig)
+            toast.warning('Os campos nome, nome científico, grupo e grande grupos são obrigatórios', toastConfig)
           else if (Number(status) === 406) toast.error('Erro ao ler a imagem', toastConfig)
           else if (Number(status) === 409)
-            toast.error('Essa espécie de peixe já foi cadastrada, altere o campo de nome científico', toastConfig)
+            toast.error('Altere o nome científico com o nome de uma espécie nova', toastConfig)
           else toast.error('Erro inesperado! Tente novamente mais tarde', toastConfig)
         })
     }
@@ -258,9 +258,14 @@ export function FishRecord(props: FishModalProps) {
                   <div className="div-select">
                     <select
                       id="selectLargeGroup"
-                      value={fishWiki.largeGroup || 'Sem grande grupo'}
+                      value={fishWiki.largeGroup || ''}
                       onChange={function (e) {
-                        setFishWiki({ ...fishWiki, largeGroup: e.target.value })
+                        groupsJson.GrandeGrupo[0][e.target.value] &&
+                          setFishWiki({
+                            ...fishWiki,
+                            largeGroup: e.target.value,
+                            group: groupsJson.GrandeGrupo[0][e.target.value].Grupo[0],
+                          })
                       }}
                     >
                       {Object.keys(groupsJson.GrandeGrupo[0]).map((value, index) => (
@@ -291,7 +296,7 @@ export function FishRecord(props: FishModalProps) {
                   <label className="label-input-fish-record">Grupo (obrigatório)</label>
                   <div className="div-select">
                     <select
-                      value={fishWiki.group || 'Sem grupo'}
+                      value={fishWiki.group || ''}
                       onChange={function (e) {
                         setFishWiki({ ...fishWiki, group: e.target.value })
                       }}
