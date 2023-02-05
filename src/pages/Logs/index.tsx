@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom'
 import { GetAllFishLogs } from '../../services/api/fishLogServices/GetAllFishLogs'
 import { deleteFishLog } from '../../services/api/fishLogServices/deleteFishLog'
 import { DownloadExcel } from 'react-excel-export'
+import Pagination from '@mui/material/Pagination'
 
 import { columns } from './tableColumns'
 
@@ -27,6 +28,12 @@ export default function FishLogs() {
 
   const [idToDelete, setIdToDelete] = useState('')
   const [logNameToDelete, setLogNameToDelete] = useState('')
+  const [currentPage, setCurrentPage] = useState(1)
+  const [recordsPerPage] = useState(10)
+  const indexOfLastRecord = currentPage * recordsPerPage
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage
+  const currentRecords = logs.slice(indexOfFirstRecord, indexOfLastRecord)
+  const nPages = Math.ceil(logs.length / recordsPerPage)
 
   useEffect(() => {
     fetchData().catch(console.error)
@@ -34,19 +41,13 @@ export default function FishLogs() {
 
   const fetchData = async () => {
     try {
-      const user: UserProps = JSON.parse(
-        localStorage.getItem('UserData')
-      ) as UserProps
+      const user: UserProps = JSON.parse(localStorage.getItem('UserData')) as UserProps
       const reps = await GetAllFishLogs(user && user.token, '')
       reps.forEach((element) => {
         element.visible = element.visible ? 'Sim' : 'Não'
 
-        element.latitude = element.coordenates
-          ? element.coordenates.latitude || ' '
-          : ''
-        element.longitude = element.coordenates
-          ? element.coordenates.longitude || ' '
-          : ''
+        element.latitude = element.coordenates ? element.coordenates.latitude || ' ' : ''
+        element.longitude = element.coordenates ? element.coordenates.longitude || ' ' : ''
 
         delete element.reviewedBy
         delete element.family
@@ -71,6 +72,10 @@ export default function FishLogs() {
     setOpen(true)
   }
 
+  function onPageChange(event, page: number) {
+    setCurrentPage(page)
+  }
+
   const handleClickClose = () => {
     setOpen(false)
     setLogNameToDelete('')
@@ -92,7 +97,7 @@ export default function FishLogs() {
       </Grid>
       <Grid item xs={11}>
         <TitlePage title="Logs dos Peixes" />
-        {logs.length ? (
+        {currentRecords.length > 0 ? (
           <>
             <div
               style={{
@@ -114,16 +119,26 @@ export default function FishLogs() {
             </div>
             <TableComponent
               columns={columns}
-              rows={logs || []}
-              onDelete={(row: { id: string; name: string }) =>
-                handleClickOpen(row.id, row.name)
-              }
+              rows={currentRecords || []}
+              onDelete={(row: { id: string; name: string }) => handleClickOpen(row.id, row.name)}
               onEdit={(row: { id: string }) => navigate(`/logs/${row.id}`)}
             />
           </>
         ) : (
           <CircularProgress />
         )}
+        {currentRecords.length > 0
+          ? currentRecords && (
+              <Pagination
+                count={nPages}
+                page={currentPage}
+                onChange={onPageChange}
+                style={{ marginTop: '30px', justifyContent: 'center', display: 'flex', marginBottom: '15px' }}
+                color="primary"
+                size="small"
+              />
+            )
+          : null}
       </Grid>
       <Dialog
         open={open}
@@ -131,9 +146,7 @@ export default function FishLogs() {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">
-          {`Deseja excluir o registro do peixe ${logNameToDelete}?`}
-        </DialogTitle>
+        <DialogTitle id="alert-dialog-title">{`Deseja excluir o registro do peixe ${logNameToDelete}?`}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Clique em confirmar para prosseguir com a exclusão do registro

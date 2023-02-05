@@ -28,13 +28,13 @@ export default function Recovery() {
 
     await RecoverPassword(data.get('email').toString())
       .then(() => {
-        toast.success('Senha alterada com sucesso, verifique seu email!', toastConfig)
+        toast.success('Email de redefinição enviado, verifique seu email!', toastConfig)
       })
       .catch((err) => {
         if(err.response.status === 404){
           toast.warning("Usuário não encontrado!", toastConfig)
         }else if(err.response.status === 408){
-          toast.warning("A senha dessa conta já foi alterada recentemente. Verifique o email da conta!", toastConfig)
+          toast.warning("Email de redefinição já enviado. Verifique o email da conta!", toastConfig)
         }else{
           toast.error('Não foi possível alterar a senha!', toastConfig)
         }
